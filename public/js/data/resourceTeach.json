@@ -1,0 +1,101 @@
+[
+    {
+        "id": 1,
+        "title": "CodeCombat",
+        "desc": "標榜一邊玩遊戲，一邊學程式語言的教學網站，有中文版版本。",
+        "href": "https://codecombat.com/",
+        "article": false,
+        "path": "",
+        "cover": true,
+        "img": "codecombat",
+        "type": "web"
+    },
+    {
+        "id": 2,
+        "title": "jQuery Quick API Reference",
+        "desc": "學習 jQuery 的實用教學網站。",
+        "href": "https://oscarotero.com/jquery/",
+        "article": false,
+        "path": "",
+        "cover": true,
+        "img": "oscarotero",
+        "type": "web"
+    },
+    {
+        "id": 3,
+        "title": "codecademy",
+        "desc": "實用的網頁前端語言教學網站。",
+        "href": "https://www.codecademy.com/",
+        "article": false,
+        "path": "",
+        "cover": true,
+        "img": "codecademy",
+        "type": "web"
+    },
+    {
+        "id": 4,
+        "title": "htmlreference.io",
+        "desc": "收錄所有 HTML 元素及屬性說明的教學網站。",
+        "href": "https://htmlreference.io/",
+        "article": false,
+        "path": "",
+        "cover": true,
+        "img": "htmlreference",
+        "type": "web"
+    },
+    {
+        "id": 5,
+        "title": "cssreference.io",
+        "desc": "收錄所有 CSS 屬性的教學網站。",
+        "href": "https://cssreference.io/",
+        "article": false,
+        "path": "",
+        "cover": true,
+        "img": "cssreference",
+        "type": "web"
+    },
+    {
+        "id": 6,
+        "title": "学ui网—ui设计师学习教程平台",
+        "desc": "中國最大、最熱門的 UI 分享設計平台之一。",
+        "href": "http://www.xue-ui.com/",
+        "article": false,
+        "path": "",
+        "cover": true,
+        "img": "xueui",
+        "type": "web"
+    },
+    {
+        "id": 7,
+        "title": "UiiiUiii 优优教程网",
+        "desc": "適合所有設計師學習繪圖軟體或分享個人創意的設計平台。",
+        "href": "https://uiiiuiii.com/",
+        "article": false,
+        "path": "",
+        "cover": true,
+        "img": "uiiiuiii",
+        "type": "web"
+    },
+    {
+        "id": 8,
+        "title": "掘金",
+        "desc": "掘金是一個來自中國的高質量社區，提供網頁工作者分享技術、汲取新知的管道。",
+        "href": "https://juejin.cn/",
+        "article": false,
+        "path": "",
+        "cover": true,
+        "img": "juejin",
+        "type": "web"
+    },
+    {
+        "id": 9,
+        "title": "W3School",
+        "desc": "W3School 是一個非常完整，且內容遵循最新標準的網頁前端知識庫，所有的 HTML / CSS / JavaScript 基本語法都能在這裡找到。基本上所有網頁開發者都應該知道 W3School 的盛名。",
+        "href": "https://www.w3schools.com/",
+        "article": false,
+        "path": "",
+        "cover": true,
+        "img": "w3schools",
+        "type": "web"
+    }
+]
