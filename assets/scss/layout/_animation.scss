@@ -1,0 +1,150 @@
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeUp {
+    0% {
+        transform: translateY(10%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes svg_draw {
+    0% {
+        stroke: #FFF;
+        stroke-width: 4;
+        stroke-dasharray: 0 400;
+        stroke-dashoffset: 200;
+        fill-opacity: 0;
+    }
+
+    37% {
+        stroke-width: 4;
+        stroke-dasharray: 200 0;
+        stroke-dashoffset: 200;
+        fill-opacity: 0;
+    }
+
+    50% {
+        stroke-width: 0;
+        fill-opacity: 1;
+    }
+
+    100% {
+        stroke: transparent;
+        stroke-width: 0;
+        fill-opacity: 1;
+    }
+}
+
+// index
+@keyframes id_cover_1 {
+    0% {
+        transform: scale(2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes id_cover_2 {
+    0% {
+        transform: translate(-50%, -40%);
+    }
+
+    100% {
+        transform: translate(-50%, -15%);
+    }
+}
+
+@keyframes id_cover_2t {
+    0% {
+        transform: translate(-50%, -30%);
+    }
+
+    100% {
+        transform: translate(-50%, -10%);
+    }
+}
+
+@keyframes id_cover_2m {
+    0% {
+        transform: translate(-50%, -25%);
+    }
+
+    100% {
+        transform: translate(-50%, -10%);
+    }
+}
+
+@keyframes id_cover_3 {
+    0% {
+        -webkit-mask-position: 0 0;
+        -ms-mask-position: 0 0;
+        -moz-mask-position: 0 0;
+        -o-mask-position: 0 0;
+        mask-position: 0 0;
+    }
+
+    100% {
+        -webkit-mask-position: 100% 0;
+        -ms-mask-position: 100% 0;
+        -moz-mask-position: 100% 0;
+        -o-mask-position: 100% 0;
+        mask-position: 100% 0;
+    }
+}
+
+@keyframes id_zoomIn {
+    0% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes id_filter {
+    0% {
+        filter: hue-rotate(0);
+    }
+    
+
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+// error
+@keyframes error {
+    0%,
+    100% {
+        background-image: url("/images/error01.jpg");
+    }
+
+    50% {
+        background-image: url("/images/error02.jpg");
+    }
+}
+
+// inside
+@keyframes mt_zoomIn {
+    0% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

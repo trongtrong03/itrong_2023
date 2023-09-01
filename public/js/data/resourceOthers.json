@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1,
+        "title": "OpenAI",
+        "desc": "OpenAI 是美國一個人工智慧研究實驗室，由非營利組織 OpenAI Inc，和其營利組織子公司 OpenAI LP 所組成。目前最著名的莫過於 ChatGPT，一款甫一推出便造成世界轟動的人工智慧聊天機器人程式。",
+        "href": "https://openai.com/",
+        "article": false,
+        "path": "",
+        "cover": true,
+        "img": "openai",
+        "type": ""
+    },
+    {
+        "id": 2,
+        "title": "IlovePDF",
+        "desc": "完全免費、易於使用、豐富的PDF處理工具，包括：合併、拆分、壓縮、轉換、旋轉和解鎖PDF文檔，以及給PDF文檔添加浮水印的工具等。僅需幾秒鐘即可完成。",
+        "href": "https://www.ilovepdf.com/zh-tw",
+        "article": false,
+        "path": "",
+        "cover": true,
+        "img": "ilovepdf",
+        "type": ""
+    },
+    {
+        "id": 3,
+        "title": "TinyURL",
+        "desc": "TinyURL 是第一個專門提供縮網址服務的網站，它提供一個短網址並轉向指定的長網址，台灣網友常以其發音稱為台泥縮網址。",
+        "href": "https://tinyurl.com/create.php",
+        "article": false,
+        "path": "",
+        "cover": true,
+        "img": "tinyurl",
+        "type": ""
+    },
+    {
+        "id": 4,
+        "title": "0rz",
+        "desc": "由痞客邦提供的縮網址工具，可協助將長串的網址簡略化，方便我們分享或作其他用途。",
+        "href": "https://0rz.tw/",
+        "article": false,
+        "path": "",
+        "cover": true,
+        "img": "0rz",
+        "type": ""
+    }
+]
