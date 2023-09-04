@@ -2,7 +2,7 @@
     <section class="works-wrap">
         <div class="main-center">
             <div class="main-head">
-                <h1>程式補帖</h1>
+                <h1>程式語言</h1>
                 <h2>HTML</h2>
             </div>
             <div class="list-wrap">
@@ -24,7 +24,7 @@
                 </div>
                 <div class="list-article" v-if="jsonData">
                     <ul>
-                        <li v-for="(item, index) in filterSearch" :key="index" v-show="filter=='all' || filter==item.type" :class="'is-' + item.type">
+                        <li v-for="(item, index) in filterSearch" :key="index" v-show="filter=='all' || filter==item.type" :class="'is-' + item.type" data-aos="fade-up">
                             <NuxtLink :to="'/html/_' + item.href">
                                 <figure></figure>
                                 <h2 v-text="item.title"></h2>
@@ -62,6 +62,12 @@ export default {
             .catch(error => {
                 console.error('Error:', error);
             });
+
+        // scroll animation
+        AOS.init({
+            once: true,
+            easing: "ease-in-out-sine"
+        });
     },
     computed: {
         filterSearch() {

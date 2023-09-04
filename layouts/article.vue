@@ -1,5 +1,7 @@
 <template>
     <article id="wrap" class="pages-article">
+        <!--header -->
+        <Header />
         <!-- main -->
         <main class="main-wrap">
             <div class="main-inside">

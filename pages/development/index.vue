@@ -3,7 +3,7 @@
         <div class="main-center">
             <div class="main-head">
                 <h1>程式語言</h1>
-                <h2>CSS</h2>
+                <h2>開發工具</h2>
             </div>
             <div class="list-wrap">
                 <div class="list-tools">
@@ -11,10 +11,7 @@
                         <button></button>
                         <select v-model="filter">
                             <option value="all" selected>全部</option>
-                            <option value="css">CSS</option>
-                            <option value="css3">CSS3</option>
-                            <option value="sass">SASS</option>
-                            <option value="stylus">Stylus</option>
+                            <option value="git">git</option>
                             <option value="others">其他</option>
                         </select>
                     </div>
@@ -26,7 +23,7 @@
                 <div class="list-article" v-if="jsonData">
                     <ul>
                         <li v-for="(item, index) in filterSearch" :key="index" v-show="filter=='all' || filter==item.type" :class="'is-' + item.type" data-aos="fade-up">
-                            <NuxtLink :to="'/css/_' + item.href">
+                            <NuxtLink :to="'/development/_' + item.href">
                                 <figure></figure>
                                 <h2 v-text="item.title"></h2>
                                 <time v-text="item.time"></time>
@@ -55,7 +52,7 @@ export default {
     },
     mounted() {
         // get data
-        fetch('/js/data/learnCSS.json')
+        fetch('/js/data/learnDev.json')
             .then(response => response.json())
             .then(data => {
                 this.jsonData = data.reverse();

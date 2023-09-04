@@ -16,19 +16,17 @@
                     <li><MyNuxtLink to="/gallery">影像故事</MyNuxtLink></li>
                 </ul>
                 <ul>
-                    <li>程式補帖</li>
+                    <li>程式語言</li>
                     <li><MyNuxtLink to="/html">HTML</MyNuxtLink></li>
                     <li><MyNuxtLink to="/css">CSS</MyNuxtLink></li>
-                    <li><MyNuxtLink to="/_maintain">JavaScript</MyNuxtLink></li>
+                    <li><MyNuxtLink to="/javascript">JavaScript</MyNuxtLink></li>
                     <li><MyNuxtLink to="/_maintain">工作坊</MyNuxtLink></li>
-                    <li><MyNuxtLink to="/_maintain">開發工具</MyNuxtLink></li>
-                    <!-- <li><MyNuxtLink to="/js">JavaScript</MyNuxtLink></li>
-                    <li><MyNuxtLink to="/workshop">工作坊</MyNuxtLink></li>
-                    <li><MyNuxtLink to="/development">開發工具</MyNuxtLink></li> -->
+                    <li><MyNuxtLink to="/development">開發工具</MyNuxtLink></li>
+                    <!--<li><MyNuxtLink to="/workshop">工作坊</MyNuxtLink></li>-->
                 </ul>
                 <ul>
                     <li>知識文章</li>
-                    <li><MyNuxtLink to="/_maintain">網路相關</MyNuxtLink></li>
+                    <li><MyNuxtLink to="/kl_network">網路相關</MyNuxtLink></li>
                     <li><MyNuxtLink to="/_maintain">繪圖軟體</MyNuxtLink></li>
                     <li><MyNuxtLink to="/_maintain">野外觀念</MyNuxtLink></li>
                     <!-- <li><MyNuxtLink to="/">投資學習</MyNuxtLink></li> -->

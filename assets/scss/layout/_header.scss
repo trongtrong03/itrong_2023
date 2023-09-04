@@ -19,12 +19,12 @@
             transform: translateY(0%);
         }
     }
-    .pages-article & {
-        transform: translateY(-100%);
-        &.is-scrolling {
-            transform: translateY(0%);
-        }
-    }
+    // .pages-article & {
+    //     transform: translateY(-100%);
+    //     &.is-scrolling {
+    //         transform: translateY(0%);
+    //     }
+    // }
     @include MQ(max-960) {
         padding-left: 8rem;
         .pages-index & {

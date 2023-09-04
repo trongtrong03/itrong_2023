@@ -42,15 +42,15 @@
                 </div>
             </div>
             <div class="nav-item">
-                <span>程式補帖</span>
+                <span>程式語言</span>
                 <button></button>
                 <div class="nav-sub">
                     <ul>
                         <li><MyNuxtLink to="/html" @click="handleNavLinkFalse">HTML</MyNuxtLink></li>
                         <li><MyNuxtLink to="/css" @click="handleNavLinkFalse">CSS</MyNuxtLink></li>
-                        <li><MyNuxtLink to="/_maintain" @click="handleNavLinkFalse">JavaScript</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/javascript" @click="handleNavLinkFalse">JavaScript</MyNuxtLink></li>
                         <li><MyNuxtLink to="/_maintain" @click="handleNavLinkFalse">工作坊</MyNuxtLink></li>
-                        <li><MyNuxtLink to="/_maintain" @click="handleNavLinkFalse">開發工具</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/development" @click="handleNavLinkFalse">開發工具</MyNuxtLink></li>
                     </ul>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                 <button></button>
                 <div class="nav-sub">
                     <ul>
-                        <li><MyNuxtLink to="/_maintain" @click="handleNavLinkFalse">網路相關</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/kl_network" @click="handleNavLinkFalse">網路相關</MyNuxtLink></li>
                         <li><MyNuxtLink to="/_maintain" @click="handleNavLinkFalse">繪圖軟體</MyNuxtLink></li>
                         <li><MyNuxtLink to="/_maintain" @click="handleNavLinkFalse">野外觀念</MyNuxtLink></li>
                         <!-- <li><MyNuxtLink to="/" @click="handleNavLinkFalse">投資學習</MyNuxtLink></li> -->
