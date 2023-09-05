@@ -793,3 +793,71 @@
         }
     }
 }
+
+// workshop
+.workshop-list {
+    min-height: 40rem;
+    ul {
+        display: grid;
+        grid-column-gap: 1rem;
+        grid-row-gap: 1rem;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    li {
+        min-width: 0;
+        list-style-type: none;
+        transition: all .3s ease;
+        a {
+            display: block;
+            figure {
+                background-color: var(--c1);
+                overflow: hidden;
+                transition: all .3s ease;
+                img {
+                    display: block;
+                    width: 100%;
+                    transform: scale(0.8, 0.8);
+                    transition: transform .3s;
+                }
+            }
+            h2 {
+                line-height: 1;
+                font-size: 1rem;
+                color: var(--black);
+                transition: color .3s;
+                @include text-truncate;
+            }
+            h6 {
+                line-height: 2;
+                font-size: 0.75rem;
+                color: #999;
+                &::before {
+                    content: '#';
+                }
+            }
+        }
+        &:hover {
+            transform: scale(1.1, 1.1);
+            a {
+                figure {
+                    filter: grayscale(0) !important;
+                    img {
+                        transform: scale(1, 1);
+                    }
+                }
+                h2 {
+                    color: var(--c1);
+                }
+            }
+        }
+    }
+    &:hover {
+        li {
+            a {
+                figure {
+                    filter: grayscale(1);
+                }
+            }
+        }
+    }
+}

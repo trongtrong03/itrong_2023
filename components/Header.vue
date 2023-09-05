@@ -49,7 +49,7 @@
                         <li><MyNuxtLink to="/html" @click="handleNavLinkFalse">HTML</MyNuxtLink></li>
                         <li><MyNuxtLink to="/css" @click="handleNavLinkFalse">CSS</MyNuxtLink></li>
                         <li><MyNuxtLink to="/javascript" @click="handleNavLinkFalse">JavaScript</MyNuxtLink></li>
-                        <li><MyNuxtLink to="/_maintain" @click="handleNavLinkFalse">工作坊</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/workshop" @click="handleNavLinkFalse">工作坊</MyNuxtLink></li>
                         <li><MyNuxtLink to="/development" @click="handleNavLinkFalse">開發工具</MyNuxtLink></li>
                     </ul>
                 </div>

@@ -2,7 +2,7 @@
     {
         "id": 1,
         "href": "jq_faq",
-        "title": "jQuery 常見錯誤訊息問題彙整與除錯建議",
+        "title": "jQuery 常見錯誤訊息問題、除錯建議以及各種疑難雜症彙整",
         "time": "2019.09.10",
         "type": "jquery"
     }

@@ -152,7 +152,7 @@ $().ready(function(){
                     <p>優先使用 DOM 本身的屬性和方法</p>
                 </div>
                 <div class="accordin-content">
-                    <p>包含我在內，許多學習網頁前端的工程師，剛開始接觸 JavaScript 未必是原生的 JavaScript，而是從相對比較容易上手的 jQuery 開始學習，因此對於比較原生、基礎語法的認識相對薄弱，往往過於依賴 jQuery 函式庫提供的方法，但忽略了其實原生 JavaScript 就存在更直接、簡便的方法可以運用，透過 jQuery 反而多繞道了一圈的感覺。</p>
+                    <p>包含我在內，許多學習網頁前端的工程師，起初接觸 JavaScript 未必是原生的 JavaScript，而是從相對比較容易上手的 jQuery 開始學習，因此對於比較原生、基礎語法的認識相對薄弱，往往過於依賴 jQuery 函式庫提供的方法，卻忽略了其實原生 JavaScript 就存在更直接、簡便的方法可以運用，透過 jQuery 反而多繞道了一圈的感覺。</p>
                     <p><em>this</em> 的使用便是其中一個例子，譬如以下這段程式碼：</p>
                     <div class="text-code" v-pre>
                         <pre><code class="language-javascript">$(function(){
@@ -182,18 +182,119 @@ $().ready(function(){
                     <div class="text-code" v-pre>
                         <pre><code class="language-javascript">$(function(){
     $("button").click(function(e) {
-        $("h1").fadeOut("slow").remove();
+        $(".box").fadeOut("slow").remove();
     });
 });</code></pre>
                     </div>
-                    <p>然而，實際執行後會發現，在 <em>h1</em> 淡出動畫還沒執行完之前，<em>remove()</em> 方法便同時執行，導致該看到的動畫效果沒看到，元素便直接從 DOM 裡頭消失。要解決這個問題，我們必須透過 Callback 函式，將移除方法放在裡面，如此一來該方法只會在淡出動畫執行結束後才會開始執行。具體程式碼為下：</p>
+                    <p>然而，實際執行後會發現，在 <em>.box</em> 淡出動畫還沒執行完之前，<em>remove()</em> 方法便同時執行，導致該看到的動畫效果沒看到，元素便直接從 DOM 裡頭消失。要解決這個問題，我們必須透過 Callback 函式，將移除方法放在裡面，如此一來該方法只會在淡出動畫執行結束後才會開始執行。具體程式碼為下：</p>
                     <div class="text-code" v-pre>
                         <pre><code class="language-javascript">$(function(){
     $("button").click(function(e){
-        $("h1").fadeOut("slow", function(){
+        $(".box").fadeOut("slow", function(){
             $(this).remove();
         });
     });
+});</code></pre>
+                    </div>
+                </div>
+                <button class="accordin-close" @click="isActive = 0;"></button>
+            </div>
+            <div class="accordin-item" :class="isActive==3007 ? 'is-active' : ''">
+                <div class="accordin-title" @click="isActive = 3007;">
+                    <p>如何改變動畫方法中的元素 display: block 預設值？</p>
+                </div>
+                <div class="accordin-content">
+                    <p>jQuery 提供的數種動畫方法：<em>slideDown()</em>、<em>fadeIn()</em>、<em>show()</em> 等，可以使指定元素（元素的 <em>display</em> 值為 <em>none</em>）產生漸變動畫顯示在網頁上，這些方法最終會透過 HTML 的 inline-style 賦予該元素的 <em>display</em> 值為 <em>block</em>。</p>
+                    <p>例如：</p>
+                    <div class="text-code" v-pre>
+                        <pre><code class="language-javascript">$(function(){
+    $("button").click(function(){
+        $(".box").fadeIn();
+    });
+});</code></pre>
+                    </div>
+                    <p>點擊後查看 DOM 裡的變化：</p>
+                    <figure>
+                        <img src="/images/learn/js/jq-faq-1.jpg">
+                    </figure>
+                    <p>然而，我們可能會因為排板需求，會希望將動畫指定元素在顯示後的 <em>display</em> 模型設定為 <em>flex</em> 或 <em>grid</em> 之類的參數，若依照 jQuery 預設設定將會影響到元素裡面的子元件佈局。如果想要解決這個需求，我們可以在動畫方法中添加 <em>start</em> 的 Callback 函式：</p>
+                    <div class="text-code" v-pre>
+                        <pre><code class="language-javascript">$(function(){
+    $("button").click(function(){
+        $(".box").fadeIn({
+            start: function () {
+                $(this).css({
+                    display: "flex"
+                })
+            }
+        });
+    });
+});</code></pre>
+                    </div>
+                    <p>實測結果：</p>
+                    <figure>
+                        <img src="/images/learn/js/jq-faq-2.jpg">
+                    </figure>
+
+                </div>
+                <button class="accordin-close" @click="isActive = 0;"></button>
+            </div>
+            <div class="accordin-item" :class="isActive==3008 ? 'is-active' : ''">
+                <div class="accordin-title" @click="isActive = 3008;">
+                    <p>如何讓動態生成的元素能在 jQuery 事件中順利運作？</p>
+                </div>
+                <div class="accordin-content">
+                    <p>所謂的動態元素（Dynamic Elements）指的是一種透過程式碼在 HTML 上生成的元素，這種技術通常用於改變網頁的外觀和行為，以回應用戶的互動或其他事件，而無需重新載入整個網頁。在 jQuery 中，常見的動態元素生成方式有 <em>append()</em> 或 <em>clone()</em> 等方法，我們可以透過點擊之類的觸發事件，令 DOM 在指定元素後方產生新的元素。</p>
+                    <p>然而，如果你生成的動態元素有要用來執行其他的 jQuery 事件，例如：</p>
+                    <div class="text-code" v-pre>
+                        <pre><code class="language-javascript">$(function(){
+    $("button.btn-add").click(function(){
+        $(".content").append("&lt;button class='btn-close'&gt;close&lt;/button&gt;");
+    });
+
+    $("button.btn-close").click(function(){
+        $(this).hide();
+    });
+});</code></pre>
+                    </div>
+                    <p>實際測試的時候你會發現 <em>.btn-close</em> Button 確實是產生了，但不管怎麼點擊它都沒有作用，這是因為 jQuery 無法直接為動態生成的元素綁定事件。假如要解決這個問題，我們可以透過 <em>on()</em> 或 <em>delegate()</em> 方法來解決這個問題：</p>
+                    <div class="text-code" v-pre>
+                        <pre><code class="language-javascript">$(function(){
+    $("button.btn-add").click(function(){
+        $(".content").append("&lt;button class='btn-close'&gt;close&lt;/button&gt;");
+    });
+
+    $(document).on("click","button.btn-close", function(){
+        $(this).hide();
+    });
+});</code></pre>
+                    </div>
+                </div>
+                <button class="accordin-close" @click="isActive = 0;"></button>
+            </div>
+            <div class="accordin-item" :class="isActive==3009 ? 'is-active' : ''">
+                <div class="accordin-title" @click="isActive = 3009;">
+                    <p>如何限制 input checkbox 的勾選數量？</p>
+                </div>
+                <div class="accordin-content">
+                    <p>假設在某個複選問題裡有十個選項，但我們只能允許使用者勾選其中三個項目，實務上應該怎麼呈現？</p>
+                    <p>HTML：</p>
+                    <div class="text-code" v-pre>
+                        <pre><code class="language-html">&lt;ul class="list"&gt;
+    &lt;li&gt;&lt;input type="checkbox" name="group"&gt;&lt;label&gt;01&lt;/label&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;input type="checkbox" name="group"&gt;&lt;label&gt;02&lt;/label&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;input type="checkbox" name="group"&gt;&lt;label&gt;03&lt;/label&gt;&lt;/li&gt;
+    ...
+    &lt;li&gt;&lt;input type="checkbox" name="group"&gt;&lt;label&gt;10&lt;/label&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                    </div>
+                    <p>jQuery：</p>
+                    <div class="text-code" v-pre>
+                        <pre><code class="language-javascript">var limit = 3;
+$("input:checkbox").on("change", function(evt) {
+   if($(this).siblings(":checked").length >= limit) {
+       this.checked = false;
+   }
 });</code></pre>
                     </div>
                 </div>

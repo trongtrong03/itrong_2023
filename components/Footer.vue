@@ -20,9 +20,8 @@
                     <li><MyNuxtLink to="/html">HTML</MyNuxtLink></li>
                     <li><MyNuxtLink to="/css">CSS</MyNuxtLink></li>
                     <li><MyNuxtLink to="/javascript">JavaScript</MyNuxtLink></li>
-                    <li><MyNuxtLink to="/_maintain">工作坊</MyNuxtLink></li>
+                    <li><MyNuxtLink to="/workshop">工作坊</MyNuxtLink></li>
                     <li><MyNuxtLink to="/development">開發工具</MyNuxtLink></li>
-                    <!--<li><MyNuxtLink to="/workshop">工作坊</MyNuxtLink></li>-->
                 </ul>
                 <ul>
                     <li>知識文章</li>
