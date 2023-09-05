@@ -33,5 +33,12 @@
         "title": "垂直切換跑馬燈（News Ticker）",
         "time": "2019.04.03",
         "type": "jquery"
+    },
+    {
+        "id": 6,
+        "href": "imgcomparison",
+        "title": "兩張影像的拖曳比較（Image Comparison）",
+        "time": "2019.04.12",
+        "type": "jquery"
     }
 ]
