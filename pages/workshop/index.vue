@@ -24,7 +24,7 @@
                         <li v-for="(item, index) in filterSearch" :key="index" v-show="filter=='all' || filter==item.type" :class="'is-' + item.type" data-aos="fade-up">
                             <NuxtLink :to="'/workshop/_' + item.href">
                                 <figure>
-                                    <img :src="'/images/learn/js/plugin/plugin-' + item.href + '.jpg'">
+                                    <img :src="'/images/learn/js/plugin/plugin-' + item.img + '.jpg'">
                                 </figure>
                                 <h6 v-text="item.type"></h6>
                                 <h2 v-text="item.title"></h2>

@@ -534,25 +534,31 @@
         }
     }
     button.copy-to-clipboard-button {
-        font-size: 1rem !important;
-        color: var(--c1) !important;
         background-color: transparent !important;
         &::before {
+            content: '';
             font-family: 'Font Awesome 6 Free';
             font-weight: 400;
         }
-        span {
-            display: none !important;
+        &:hover {
+            span {
+                color: #bbb !important;
+            }
         }
         &[data-copy-state="copy"] {
             &::before {
-                content: '\f0c5';
+                content: '';
             }
         }
         &[data-copy-state="copy-success"] {
             &::before {
                 content: '\f00c';
                 font-weight: 900;
+                font-size: 1rem !important;
+                color: var(--c1) !important;
+            }
+            span {
+                display: none !important;
             }
         }
     }

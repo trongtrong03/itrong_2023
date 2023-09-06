@@ -1,0 +1,156 @@
+<template>
+    <NuxtLayout name="article">
+        <TempWorkshop :propValue="9" />
+<!-- start -->
+<div class="text-content">
+    <div class="text-catalog">
+        <ul>
+            <li><a href="#act1">一、效果預覽</a></li>
+            <li><a href="#act2">二、程式碼</a></li>
+            <li><a href="#act3">三、其他補充</a></li>
+        </ul>
+    </div>
+    <div class="text-block">
+        <h2 id="act1">一、效果預覽</h2>
+        <p>提到網站文字複製功能，多數開發者優先聯想到的可能是 <a href="https://clipboardjs.com/" target="_blank">clipboard.js</a> 這款輕量化 JS 套件，而本篇則要講述透過 jQuery 製作簡易文字複製功能的方法，且同樣不需要太多程式碼就能實現。</p>
+        <p>效果預覽：</p>
+        <div class="text-codepen">
+            <p class="codepen" data-height="480" data-default-tab="js,result" data-slug-hash="vwXzLx" data-user="itrong" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+            <span>See the Pen <a href="https://codepen.io/itrong/pen/vwXzLx">
+            jq-plugin: copy text</a> by Trong (<a href="https://codepen.io/itrong">@itrong</a>)
+            on <a href="https://codepen.io">CodePen</a>.</span>
+            </p>
+        </div>
+    </div>
+    <div class="text-block">
+        <h2 id="act2">二、程式碼</h2>
+        <p>此效果有使用到 jQuery，故 HTML 裡必須引用其官方套件：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-html">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"&gt;&lt;/script&gt;</code></pre>
+        </div>
+        <p><br></p>
+        <p>HTML：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-html">&lt;div class="content"&gt;
+    &lt;div class="text"&gt;
+        &lt;p&gt;文字內容&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;button class="copy-btn" data-text="COPY" data-text-copied="COPIED"&gt;
+        &lt;span&gt;COPY&lt;/span&gt;
+    &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+        <p><br></p>
+        <p>jQuery：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">(function(n) {
+    n.fn.copiq = function(e) {
+        var t = n.extend({
+            parent: "body",
+            content: "",
+            onSuccess: function() {},
+            onError: function() {}
+        }, e);
+        return this.each(function() {
+            var e = n(this);
+            e.on("click", function() {
+                var n = e.parents(t.parent).find(t.content);
+                var o = document.createRange();
+                var c = window.getSelection();
+                o.selectNodeContents(n[0]);
+                c.removeAllRanges();
+                c.addRange(o);
+                try {
+                    var r = document.execCommand("copy");
+                    var a = r ? "onSuccess" : "onError";
+                    t[a](e, n, c.toString())
+                } catch (i) {}
+                c.removeAllRanges()
+            })
+        })
+    }
+})(jQuery);
+
+$('.copy-btn').copiq({
+        parent: '.content',
+        content: '.text',
+        onSuccess: function($element, source, selection) {
+        $('span', $element).text($element.attr("data-text-copied"));
+        setTimeout(function() {
+            $('span', $element).text($element.attr("data-text"));
+        }, 2000);
+    }
+});</code></pre>
+        </div>
+    </div>
+    <div class="text-block">
+        <h2 id="act3">三、其他補充</h2>
+        <p>純 JavaScript 的寫法：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">(function() {
+    function copiq(selector, options) {
+        const defaults = {
+            parent: "body",
+            content: "",
+            onSuccess: function() {},
+            onError: function() {},
+        };
+
+        const settings = Object.assign({}, defaults, options);
+        const elements = document.querySelectorAll(selector);
+
+        elements.forEach(function(element) {
+            element.addEventListener("click", function() {
+                const parent = document.querySelector(settings.parent);
+                const content = parent.querySelector(settings.content);
+                const selection = window.getSelection();
+                const range = document.createRange();
+                range.selectNodeContents(content);
+                selection.removeAllRanges();
+                selection.addRange(range);
+
+                try {
+                    const successful = document.execCommand("copy");
+                    const callback = successful ? settings.onSuccess : settings.onError;
+                    callback(element, content, selection.toString());
+                } catch (error) {}
+
+                selection.removeAllRanges();
+            });
+        });
+    }
+
+    window.copiq = copiq;
+})();
+
+document.addEventListener("DOMContentLoaded", function() {
+    copiq('.copy-btn', {
+        parent: '.content',
+        content: '.text',
+        onSuccess: function(element, source, selection) {
+            const span = element.querySelector('span');
+            span.textContent = element.getAttribute("data-text-copied");
+            setTimeout(function() {
+                span.textContent = element.getAttribute("data-text");
+            }, 2000);
+        },
+    });
+});</code></pre>
+        </div>
+
+    </div>
+</div>
+<!-- end -->
+    </NuxtLayout>
+</template>
+
+<script>
+export default {
+    setup () {
+        // layout
+        definePageMeta({
+            layout: false
+        });
+    }
+}
+</script>
