@@ -754,7 +754,7 @@
             }
         }
 
-        $list: html html5 svg css css3 sass stylus javascript jquery ajax nodejs vue nuxtjs tabnine uiux git;
+        $list: html html5 svg css css3 sass stylus javascript jquery ajax nodejs vue nuxtjs tabnine uiux git yarn;
         @each $item in $list {
             &.is-#{$item} {
                 a {
