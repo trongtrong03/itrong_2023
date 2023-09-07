@@ -11,7 +11,10 @@
                         <button></button>
                         <select v-model="filter">
                             <option value="all" selected>全部</option>
+                            <option value="javascript">JavaScript</option>
                             <option value="jquery">jQuery</option>
+                            <option value="vue">Vue</option>
+                            <option value="css">CSS</option>
                         </select>
                     </div>
                     <div class="list-input">

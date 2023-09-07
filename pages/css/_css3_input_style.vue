@@ -12,7 +12,8 @@
             <li><a href="#act4">四、改變 input 的 placeholder 樣式</a></li>
             <li><a href="#act5">五、input 的 autofill</a></li>
             <li><a href="#act6">六、隨內容自動撐起高度</a></li>
-            <li><a href="#act7">七、參考資料</a></li>
+            <li><a href="#act7">七、select 也有 placeholder？</a></li>
+            <li><a href="#act8">八、參考資料</a></li>
         </ul>
     </div>
     <div class="text-block">
@@ -323,7 +324,43 @@ input:-webkit-autofill:active  {
         </blockquote>
     </div>
     <div class="text-block">
-        <h2 id="act7">七、參考資料</h2>
+        <h2 id="act7">七、select 也有 placeholder？</h2>
+        <p>雖然章節標題下的很聳動，但眾所皆知 <em>placeholder</em> 屬性在 <em>&lt;select&gt;</em> 是無效的，不過這也不代表 <em>&lt;select&gt;</em> 就無法實現類似 <em>&lt;input&gt;</em> 提示文字的效果，只是方法會有一些些複雜。</p>
+        <p>首先是 HTML 的部份：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-html">&lt;select required&gt;
+    &lt;option value="" disabled selected hidden&gt;請選擇項目&lt;/option&gt;
+    &lt;option value="1"&gt;選項一&lt;/option&gt;
+    &lt;option value="2"&gt;選項二&lt;/option&gt;
+    &lt;option value="3"&gt;選項三&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+        </div>
+        <p>這裡主要有兩個要點，第一個是 <em>&lt;select&gt;</em> 標籤的部份，必須添加 <em>required</em> 屬性，此屬性用途為使用者在提交表單之前必須選擇一個值，然而若要該屬性生效有個前提是第一個 <em>&lt;option&gt;</em> 必須為空值。第二個要點承襲第一點，因為要將第一個 <em>&lt;option&gt;</em> 設定為空值，換句話說不該讓使用者可以選擇，所以你會看到 HTML 範例中它加上了 <em>disabled</em> 屬性設定為禁選，同時又加上 <em>hidden</em> 屬性將其從選單下拉選擇時隱藏起來。由於要實現 Placeholder 的效果，所以我們又添加了 <em>selected</em> 屬性，讓第一個項目成為初始被選擇的狀態，藉此優先顯示在尚未開啟的選單上。</p>
+        <p>再來是 CSS，透過 <em>:invalid</em> 偽類選擇器，來處理尚未通過驗證的 <em>select</em> 元素：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-css">select:required:invalid {
+    color: red; 
+}
+
+option {
+    color: #000;
+}</code></pre>
+        </div>
+        <p>結果：</p>
+        <div class="text-example">
+            <div class="ex-select">
+                <select required>
+                    <option value="" disabled selected hidden>請選擇項目</option>
+                    <option value="">選項一</option>
+                    <option value="">選項二</option>
+                    <option value="">選項三</option>
+                </select>
+            </div>
+        </div>
+        <p>如此一來，就能讓 <em>&lt;select&gt;</em> 也能製作出類似 <em>&lt;input&gt;</em> Placeholder 提示文字的效果了。</p>
+    </div>
+    <div class="text-block">
+        <h2 id="act8">八、參考資料</h2>
         <dl>
             <dd><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/appearance" target="_blank">MDN web docs</a></dd>
             <dd><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement/contentEditable" target="_blank">HTMLElement.contentEditable</a></dd>
