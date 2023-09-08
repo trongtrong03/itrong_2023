@@ -13,7 +13,7 @@
     <div class="text-block">
         <h2 id="act1">一、效果預覽</h2>
         <div class="text-codepen">
-            <p class="codepen" data-height="480" data-default-tab="js,result" data-slug-hash="PXyQqR" data-user="itrong" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+            <p class="codepen" data-height="480" data-default-tab="result" data-slug-hash="PXyQqR" data-user="itrong" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
             <span>See the Pen <a href="https://codepen.io/itrong/pen/PXyQqR">
             vue-ex: search</a> by Trong (<a href="https://codepen.io/itrong">@itrong</a>)
             on <a href="https://codepen.io">CodePen</a>.</span>

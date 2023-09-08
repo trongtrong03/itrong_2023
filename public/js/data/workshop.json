@@ -1,123 +1,153 @@
 [
     {
         "id": 1,
-        "href": "jq_accordion",
+        "href": "accordion",
         "title": "兩層式摺疊列表（Accordion）",
         "time": "2019.03.15",
-        "type": "jquery",
-        "img": "accordion"
+        "js": true,
+        "jquery": true,
+        "vue": false,
+        "css": false
     },
     {
         "id": 2,
-        "href": "jq_htabs",
-        "title": "水平切換頁籤（Tabs）",
+        "href": "horizontal_tabs",
+        "title": "水平切換頁籤（Horizontal Tabs）",
         "time": "2019.03.18",
-        "type": "jquery",
-        "img": "htabs"
+        "js": true,
+        "jquery": true,
+        "vue": true,
+        "css": false
     },
     {
         "id": 3,
-        "href": "jq_vtabs",
-        "title": "垂直切換頁籤（Tabs）",
+        "href": "vertical_tabs",
+        "title": "垂直切換頁籤（Vertical Tabs）",
         "time": "2019.03.18",
-        "type": "jquery",
-        "img": "vtabs"
+        "js": true,
+        "jquery": true,
+        "vue": true,
+        "css": false
     },
     {
         "id": 4,
-        "href": "jq_particleground",
+        "href": "particleground",
         "title": "粒子特效（Particleground）",
         "time": "2019.03.29",
-        "type": "jquery",
-        "img": "particleground"
+        "js": false,
+        "jquery": true,
+        "vue": false,
+        "css": false
     },
     {
         "id": 5,
-        "href": "jq_vlnewsticker",
+        "href": "vertical_news_ticker",
         "title": "垂直切換跑馬燈（News Ticker）",
         "time": "2019.04.03",
-        "type": "jquery",
-        "img": "vlnewsticker"
+        "js": false,
+        "jquery": true,
+        "vue": false,
+        "css": false
     },
     {
         "id": 6,
-        "href": "jq_imgcomparison",
+        "href": "img_comparison",
         "title": "兩張影像的拖曳比較（Image Comparison）",
         "time": "2019.07.12",
-        "type": "jquery",
-        "img": "imgcomparison"
+        "js": false,
+        "jquery": true,
+        "vue": true,
+        "css": false
     },
     {
         "id": 7,
-        "href": "jq_mixitup",
-        "title": "項目篩選（MixItUp）",
+        "href": "filter",
+        "title": "項目篩選（Filter）",
         "time": "2019.08.29",
-        "type": "jquery",
-        "img": "mixitup"
+        "js": false,
+        "jquery": true,
+        "vue": true,
+        "css": false
     },
     {
         "id": 8,
-        "href": "jq_masonry",
+        "href": "masonry",
         "title": "瀑布流排版佈局（Masonry Grid）",
         "time": "2019.10.23",
-        "type": "jquery",
-        "img": "masonry"
+        "js": false,
+        "jquery": true,
+        "vue": false,
+        "css": false
     },
     {
         "id": 9,
-        "href": "jq_copy",
+        "href": "copy",
         "title": "複製區域文字（Copy）",
         "time": "2019.11.25",
-        "type": "jquery",
-        "img": "copy"
+        "js": true,
+        "jquery": true,
+        "vue": false,
+        "css": false
     },
     {
         "id": 10,
-        "href": "jq_pagination",
+        "href": "pagination",
         "title": "分頁效果（Pagination）",
         "time": "2020.02.02",
-        "type": "jquery",
-        "img": "pagination"
+        "js": false,
+        "jquery": true,
+        "vue": false,
+        "css": false
     },
     {
         "id": 11,
-        "href": "jq_textdots",
+        "href": "textdots",
         "title": "文字溢出省略符號（Text Dots）",
         "time": "2020.02.13",
-        "type": "jquery",
-        "img": "textdots"
+        "js": false,
+        "jquery": true,
+        "vue": false,
+        "css": true
     },
     {
         "id": 12,
-        "href": "jq_datepicker",
+        "href": "datepicker",
         "title": "日曆選擇工具（Calendar Picker）",
         "time": "2020.04.13",
-        "type": "jquery",
-        "img": "datepicker"
+        "js": false,
+        "jquery": true,
+        "vue": false,
+        "css": false
     },
     {
         "id": 13,
-        "href": "js_picturefill",
+        "href": "picturefill",
         "title": "使舊瀏覽器支援 HTML5 的 <picture> 標籤",
         "time": "2020.04.17",
-        "type": "javascript",
-        "img": "picturefill"
+        "js": true,
+        "jquery": false,
+        "vue": false,
+        "css": false
     },
     {
         "id": 14,
-        "href": "jq_gotop",
+        "href": "gotop",
         "title": "點擊返回網頁頂部的按鈕（Go Top）",
         "time": "2020.05.01",
-        "type": "jquery",
-        "img": "gotop"
+        "js": true,
+        "jquery": true,
+        "vue": true,
+        "css": true
     },
     {
         "id": 15,
-        "href": "jq_placeholder",
+        "href": "placeholder",
         "title": "點擊輸入框時提示文字變色（Placeholder）",
         "time": "2020.07.23",
-        "type": "jquery",
-        "img": "placeholder"
+        "js": true,
+        "jquery": true,
+        "vue": false,
+        "css": false
     },
     {
         "id": 16,
@@ -159,28 +189,30 @@
         "type": "vue",
         "img": "search"
     },
+    
+
     {
-        "id": 21,
-        "href": "vue_tabs",
-        "title": "VUE 頁籤（Tabs）切換功能",
-        "time": "2020.09.30",
-        "type": "vue",
-        "img": "htabs"
+        "id": 25,
+        "href": "jq_zoomin",
+        "title": "影像放大鏡（Image Zoom）",
+        "time": "2020.12.21",
+        "type": "jquery",
+        "img": "zoomin"
     },
     {
-        "id": 22,
-        "href": "vue_filter",
-        "title": "VUE 項目篩選（Filter）",
-        "time": "2020.10.23",
-        "type": "vue",
-        "img": "filter"
+        "id": 26,
+        "href": "jq_fixedtop",
+        "title": "指定元素於畫面下滑時接觸頂端順勢固定位置",
+        "time": "2021.01.04",
+        "type": "jquery",
+        "img": "fixedtop"
     },
     {
-        "id": 23,
-        "href": "vue_gotop",
-        "title": "VUE 點擊返回網頁頂部的按鈕（Go Top）",
-        "time": "2020.10.29",
-        "type": "vue",
-        "img": "gotop"
+        "id": 27,
+        "href": "js_tablerows",
+        "title": "選擇表格列並於畫面下滑時固定位置",
+        "time": "2021.01.05",
+        "type": "javascript",
+        "img": "tablerows"
     }
 ]

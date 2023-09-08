@@ -821,18 +821,26 @@
                 }
             }
             h2 {
-                line-height: 1;
+                line-height: 2.5;
                 font-size: 1rem;
                 color: var(--black);
                 transition: color .3s;
                 @include text-truncate;
             }
             h6 {
-                line-height: 2;
                 font-size: 0.75rem;
-                color: #999;
-                &::before {
-                    content: '#';
+                color: #CCC;
+                span {
+                    display: inline-block;
+                    line-height: 1.5rem;
+                    background-color: #EEE;
+                    border-radius: 0.75rem;
+                    padding: 0 0.5rem;
+                    margin-right: .5rem;
+                    &.is-on {
+                        color: #FFF;
+                        background-color: #666;
+                    }
                 }
             }
         }
@@ -840,7 +848,7 @@
             transform: scale(1.1, 1.1);
             a {
                 figure {
-                    filter: grayscale(0) !important;
+                    // filter: grayscale(0) !important;
                     img {
                         transform: scale(1, 1);
                     }
@@ -855,7 +863,7 @@
         li {
             a {
                 figure {
-                    filter: grayscale(1);
+                    // filter: grayscale(1);
                 }
             }
         }

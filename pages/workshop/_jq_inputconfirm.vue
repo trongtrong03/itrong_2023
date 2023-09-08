@@ -15,7 +15,7 @@
         <p>本篇效果實作的簡易功能目標是實現常見的註冊頁面中，輸入密碼的 <em>input</em> 輸入框除了設定密碼本身外，還有一欄確認密碼的欄位，使用者兩者輸入的內容必須相同，才能通過審核判定。</p>
         <p>效果預覽：</p>
         <div class="text-codepen">
-            <p class="codepen" data-height="480" data-default-tab="js,result" data-slug-hash="oeNxdd" data-user="itrong" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+            <p class="codepen" data-height="480" data-default-tab="result" data-slug-hash="oeNxdd" data-user="itrong" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
             <span>See the Pen <a href="https://codepen.io/itrong/pen/oeNxdd">
             jq-tec-txtConfirm</a> by Trong (<a href="https://codepen.io/itrong">@itrong</a>)
             on <a href="https://codepen.io">CodePen</a>.</span>

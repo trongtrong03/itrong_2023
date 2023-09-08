@@ -5,26 +5,28 @@
 <div class="text-content">
     <div class="text-catalog">
         <ul>
-            <li><a href="#act1">一、效果預覽</a></li>
-            <li><a href="#act2">二、程式碼</a></li>
-            <li><a href="#act3">三、其他補充</a></li>
+            <li><a href="#act1">一、JavaScript 版本</a></li>
+            <li><a href="#act2">二、jQuery 版本</a></li>
+            <li><a href="#act3">三、Vue 版本</a></li>
+            <li><a href="#act4">四、CSS 版本</a></li>
         </ul>
     </div>
     <div class="text-block">
-        <h2 id="act1">一、效果預覽</h2>
-        <p>當頁面裡的表單標題資料，或是產品數量眾多的時候，通常會透過一些技術將這些資料進行顯示數量。實務上常見大概有兩種做法，第一種是採取滾動讀取的方式，當畫面讀取完最後顯示的資料並被瀏覽器偵測到時，會立即向資料庫發送需求，繼續載入後續更多筆的資料。另一種則是以分頁的方式進行管理，也就是本篇 jQuery 效果要實現的目標。</p>
-        <p>效果預覽：</p>
+        <h2 id="act1">一、JavaScript 版本</h2>
+        <p>暫無內容。</p>
+    </div>
+    <div class="text-block">
+        <h2 id="act2">二、jQuery 版本</h2>
+        <p>效果演示：</p>
         <div class="text-codepen">
-            <p class="codepen" data-height="480" data-default-tab="js,result" data-slug-hash="zVRLPx" data-user="itrong" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+            <p class="codepen" data-height="480" data-default-tab="result" data-slug-hash="zVRLPx" data-user="itrong" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
             <span>See the Pen <a href="https://codepen.io/itrong/pen/zVRLPx">
             jq-plugin: pageination</a> by Trong (<a href="https://codepen.io/itrong">@itrong</a>)
             on <a href="https://codepen.io">CodePen</a>.</span>
             </p>
         </div>
-    </div>
-    <div class="text-block">
-        <h2 id="act2">二、程式碼</h2>
-        <p>此效果有使用到 jQuery，故 HTML 裡必須引用其官方套件：</p>
+        <p><br></p>
+        <p>引用外部檔案（非 CDN 建議下載至本機端專案資料夾內）：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-html">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"&gt;&lt;/script&gt;</code></pre>
         </div>
@@ -56,7 +58,7 @@
 &lt;/div&gt;</code></pre>
         </div>
         <p><br></p>
-        <p>jQuery：</p>
+        <p>JavaScript：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">$(function() {
     var show_per_page = 5;  // 一頁顯示幾筆項目
@@ -103,7 +105,12 @@ function go_to_page(page_num){
         </div>
     </div>
     <div class="text-block">
-        <h2 id="act3">三、其他補充</h2>
+        <h2 id="act3">三、Vue 版本</h2>
+        <p>暫無內容。</p>
+    </div>
+    <div class="text-block">
+        <h2 id="act4">四、CSS 版本</h2>
+        <p>暫無內容。</p>
     </div>
 </div>
 <!-- end -->

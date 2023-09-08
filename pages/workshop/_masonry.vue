@@ -5,33 +5,32 @@
 <div class="text-content">
     <div class="text-catalog">
         <ul>
-            <li><a href="#act1">一、效果預覽</a></li>
-            <li><a href="#act2">二、程式碼</a></li>
-            <li><a href="#act3">三、其他補充</a></li>
+            <li><a href="#act1">一、JavaScript 版本</a></li>
+            <li><a href="#act2">二、jQuery 版本</a></li>
+            <li><a href="#act3">三、Vue 版本</a></li>
+            <li><a href="#act4">四、CSS 版本</a></li>
         </ul>
     </div>
     <div class="text-block">
-        <h2 id="act1">一、效果預覽</h2>
-        <p>瀑布流（Masonry）是許多追求視覺效果的網站喜歡使用的一種影像排版風格，知名素材網站<a href="https://huaban.com/" target="_blank">花瓣網</a>採用的就是典型的瀑布流排版方式，讓各種尺寸不一的素材圖片，如瀑布般綿綿不絕銜接起來，比起裁切成整齊劃一的矩形排版方式給人比較生硬、制式的印象，瀑布流更能帶給人們一種活潑奔放的視覺體驗。</p>
-        <p>效果預覽：</p>
+        <h2 id="act1">一、JavaScript 版本</h2>
+        <p>暫無內容。</p>
+    </div>
+    <div class="text-block">
+        <h2 id="act2">二、jQuery 版本</h2>
+        <p>效果演示：</p>
         <div class="text-codepen">
-            <p class="codepen" data-height="480" data-default-tab="js,result" data-slug-hash="MMGRVg" data-user="itrong" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+            <p class="codepen" data-height="480" data-default-tab="result" data-slug-hash="MMGRVg" data-user="itrong" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
             <span>See the Pen <a href="https://codepen.io/itrong/pen/MMGRVg">
             jq-plugin: masonry</a> by Trong (<a href="https://codepen.io/itrong">@itrong</a>)
             on <a href="https://codepen.io">CodePen</a>.</span>
             </p>
         </div>
-    </div>
-    <div class="text-block">
-        <h2 id="act2">二、程式碼</h2>
-        <p>此效果有使用到 jQuery，故 HTML 裡必須引用其官方套件：</p>
+        <p><br></p>
+        <p>官方套件：<a href="https://masonry.desandro.com/layout.html" target="_blank">Masonry</a></p>
+        <p>引用外部檔案（非 CDN 建議下載至本機端專案資料夾內）：</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-html">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"&gt;&lt;/script&gt;</code></pre>
-        </div>
-        <p>此外也需要引用 <a href="https://masonry.desandro.com/layout.html" target="_blank">Masonry</a> 套件提供的 <a href="https://unpkg.com/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" target="_blank">masonry.pkgd.min.js</a> 文件，請下載檔案並放到專案資料夾裡，因此 HTML 引用基礎腳本文件應該會有以下這兩個檔案：</p>
-        <div class="text-code" v-pre>
-            <pre><code class="language-html">&lt;script src="https://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js"&gt;&lt;/script&gt;
-&lt;script src="js/masonry.pkgd.min.js"&gt;&lt;/script&gt;</code></pre>
+            <pre><code class="language-html">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://unpkg.com/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"&gt;&lt;/script&gt;</code></pre>
         </div>
         <p><br></p>
         <p>HTML：</p>
@@ -58,7 +57,7 @@
         </div>
         <p>雖然 <a href="https://masonry.desandro.com/layout.html" target="_blank">Masonry</a> 套件函式功能中有提供瀑布流各欄的寬度參數，但由於該參數的設定僅能給予固定像素值，對 RWD 網頁其實不太友善，在不熟悉語法或不擅自更動開發者邏輯的前提下，可改將欄位寬度值以百分比單位設定在 CSS 裡，上面 CSS 範例裡是以假設瀑布流為四欄作設定（100% / 4 = 25%），並利用 <em>calc</em> 屬性扣掉中間的間隔數值。</p>
         <p><br></p>
-        <p>jQuery：</p>
+        <p>JavaScript：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">$(function() {
     $(".grid-wrap").masonry({
@@ -73,9 +72,7 @@
     });
 });</code></pre>
         </div>
-    </div>
-    <div class="text-block">
-        <h2 id="act3">三、其他補充</h2>
+        <p><br></p>
         <p>以下列出較常用的 <a href="https://masonry.desandro.com/options" target="_blank">Masonry</a> <em>.masonry()</em> 方法裡可讓開發者自行去作細微的設定參數：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">$(".grid-wrap").masonry({
@@ -89,6 +86,14 @@
     resize: false,    // 設定子元件是否隨視窗縮放調整他的排序換行規則
 });</code></pre>
         </div>
+    </div>
+    <div class="text-block">
+        <h2 id="act3">三、Vue 版本</h2>
+        <p>暫無內容。</p>
+    </div>
+    <div class="text-block">
+        <h2 id="act4">四、CSS 版本</h2>
+        <p>暫無內容。</p>
     </div>
 </div>
 <!-- end -->

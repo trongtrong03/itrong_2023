@@ -5,18 +5,18 @@
 <div class="text-content">
     <div class="text-catalog">
         <ul>
-            <li><a href="#act1">一、效果預覽</a></li>
-            <li><a href="#act2">二、程式碼</a></li>
-            <li><a href="#act3">三、其他補充</a></li>
+            <li><a href="#act1">一、JavaScript 版本</a></li>
+            <li><a href="#act2">二、jQuery 版本</a></li>
+            <li><a href="#act3">三、Vue 版本</a></li>
+            <li><a href="#act4">四、CSS 版本</a></li>
         </ul>
     </div>
     <div class="text-block">
-        <h2 id="act1">一、效果預覽</h2>
+        <h2 id="act1">一、JavaScript 版本</h2>
         <p>&lt;picture&gt; 是 HTML5 新增的元素標籤，可依據裡頭設定不同的媒體（media）類型，顯示相對應的影像內容，大多廣泛運用在 RWD 設計上。不過由於是 HTML5 才訂立的標準，舊版本瀏覽器普遍不支援這個標籤，而 <a href="https://scottjehl.github.io/picturefill/" target="_blank">Picturefill.js</a> 的用途即是要讓舊瀏覽器也能識別該標籤。</p>
-    </div>
-    <div class="text-block">
-        <h2 id="act2">二、程式碼</h2>
-        <p>CDN：</p>
+        <p><br></p>
+        <p>官方套件：<a href="https://scottjehl.github.io/picturefill/" target="_blank">Picturefill.js</a></p>
+        <p>引用外部檔案（非 CDN 建議下載至本機端專案資料夾內）：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-html">&lt;script src="https://cdn.rawgit.com/scottjehl/picturefill/3.0.2/dist/picturefill.js"&gt;&lt;/script&gt;</code></pre>
         </div>
@@ -33,7 +33,16 @@
         </div>
     </div>
     <div class="text-block">
-        <h2 id="act3">三、其他補充</h2>
+        <h2 id="act2">二、jQuery 版本</h2>
+        <p>暫無內容。</p>
+    </div>
+    <div class="text-block">
+        <h2 id="act3">三、Vue 版本</h2>
+        <p>暫無內容。</p>
+    </div>
+    <div class="text-block">
+        <h2 id="act4">四、CSS 版本</h2>
+        <p>暫無內容。</p>
     </div>
 </div>
 <!-- end -->

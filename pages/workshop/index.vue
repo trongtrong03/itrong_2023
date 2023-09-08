@@ -11,10 +11,6 @@
                         <button></button>
                         <select v-model="filter">
                             <option value="all" selected>全部</option>
-                            <option value="javascript">JavaScript</option>
-                            <option value="jquery">jQuery</option>
-                            <option value="vue">Vue</option>
-                            <option value="css">CSS</option>
                         </select>
                     </div>
                     <div class="list-input">
@@ -27,10 +23,16 @@
                         <li v-for="(item, index) in filterSearch" :key="index" v-show="filter=='all' || filter==item.type" :class="'is-' + item.type" data-aos="fade-up">
                             <NuxtLink :to="'/workshop/_' + item.href">
                                 <figure>
-                                    <img :src="'/images/learn/js/plugin/plugin-' + item.img + '.jpg'">
+                                    <img :src="'/images/learn/js/plugin/' + item.href + '.jpg'">
                                 </figure>
-                                <h6 v-text="item.type"></h6>
                                 <h2 v-text="item.title"></h2>
+                                <h6>
+                                    <span :class="item.js==true ? 'is-on' : ''">#JavaScript</span>
+                                    <span :class="item.jquery==true ? 'is-on' : ''">#jQuery</span>
+                                    <span :class="item.vue==true ? 'is-on' : ''">#Vue</span>
+                                    <span :class="item.css==true ? 'is-on' : ''">#CSS</span>
+                                </h6>
+                                
                             </NuxtLink>
                         </li>
                     </ul>

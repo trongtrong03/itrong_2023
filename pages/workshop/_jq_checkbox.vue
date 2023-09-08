@@ -15,7 +15,7 @@
         <p>眾所皆知，<em>input</em> 元素中有兩種選擇 <em>type</em>，分別是單選按鈕的 <em>radio</em> 以及可複選的核選方塊 <em>checkbox</em>，開發者依據功能需要去使用相對應的類型。但如果今天因為一些原因，必須要設定 <em>checkbox</em> 群組中的核選項目一次只能選擇一項，本篇實作效果的目標便是要處理這種情況。</p>
         <p>效果預覽：</p>
         <div class="text-codepen">
-            <p class="codepen" data-height="480" data-default-tab="js,result" data-slug-hash="RmWaLK" data-user="itrong" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+            <p class="codepen" data-height="480" data-default-tab="result" data-slug-hash="RmWaLK" data-user="itrong" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
             <span>See the Pen <a href="https://codepen.io/itrong/pen/RmWaLK">
             jq-tec: checkbox group</a> by Trong (<a href="https://codepen.io/itrong">@itrong</a>)
             on <a href="https://codepen.io">CodePen</a>.</span>
