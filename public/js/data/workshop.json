@@ -151,68 +151,82 @@
     },
     {
         "id": 16,
-        "href": "jq_checkbox",
+        "href": "checkbox",
         "title": "使群組內的核選方塊（Checkbox）為單選項目",
         "time": "2020.07.24",
-        "type": "jquery",
-        "img": "checkbox"
+        "js": true,
+        "jquery": true,
+        "vue": false,
+        "css": false
     },
     {
         "id": 17,
-        "href": "jq_inputconfirm",
+        "href": "input_confirm",
         "title": "確認密碼輸入框內容是否符合的簡易判斷功能",
         "time": "2020.07.27",
-        "type": "jquery",
-        "img": "inputconfirm"
+        "js": true,
+        "jquery": true,
+        "vue": false,
+        "css": false
     },
     {
         "id": 18,
-        "href": "jq_getfilename",
+        "href": "get_filename",
         "title": "取得 Input File 上傳項目的名稱",
         "time": "2020.08.03",
-        "type": "jquery",
-        "img": "getfilename"
+        "js": true,
+        "jquery": true,
+        "vue": false,
+        "css": false
     },
     {
         "id": 19,
-        "href": "jq_pweyes",
+        "href": "password_eyes",
         "title": "顯示或隱藏輸入框裡的密碼字串",
         "time": "2020.08.18",
-        "type": "jquery",
-        "img": "pweyes"
+        "js": true,
+        "jquery": true,
+        "vue": false,
+        "css": false
     },
     {
         "id": 20,
-        "href": "vue_search",
-        "title": "VUE 同步搜尋結果（v-model Search）",
+        "href": "search",
+        "title": "同步搜尋結果（Search）",
         "time": "2020.09.10",
-        "type": "vue",
-        "img": "search"
+        "js": false,
+        "jquery": false,
+        "vue": true,
+        "css": false
     },
-    
-
     {
-        "id": 25,
-        "href": "jq_zoomin",
+        "id": 21,
+        "href": "image_zoom",
         "title": "影像放大鏡（Image Zoom）",
         "time": "2020.12.21",
-        "type": "jquery",
-        "img": "zoomin"
+        "js": false,
+        "jquery": true,
+        "vue": false,
+        "css": false
     },
     {
-        "id": 26,
-        "href": "jq_fixedtop",
+        "id": 22,
+        "href": "fixed_top",
         "title": "指定元素於畫面下滑時接觸頂端順勢固定位置",
         "time": "2021.01.04",
-        "type": "jquery",
-        "img": "fixedtop"
+        "js": true,
+        "jquery": true,
+        "vue": false,
+        "css": true
     },
     {
-        "id": 27,
-        "href": "js_tablerows",
+        "id": 23,
+        "href": "table_rows",
         "title": "選擇表格列並於畫面下滑時固定位置",
         "time": "2021.01.05",
-        "type": "javascript",
-        "img": "tablerows"
+        "js": true,
+        "jquery": false,
+        "vue": false,
+        "css": false
     }
 ]

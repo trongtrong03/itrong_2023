@@ -54,5 +54,12 @@
         "title": "如何使用瀏覽器內建截圖功能來擷取網頁畫面",
         "time": "2021.10.01",
         "type": "others"
+    },
+    {
+        "id": 9,
+        "href": "tabnine_intro",
+        "title": "全程式語言開發輔助工具，Tabnine 自動幫你補全程式碼",
+        "time": "2021.10.21",
+        "type": "others"
     }
 ]

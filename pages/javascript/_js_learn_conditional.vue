@@ -1,0 +1,258 @@
+<template>
+    <NuxtLayout name="article">
+        <TempJs :propValue="11" />
+<!-- start -->
+<div class="text-content">
+    <div class="text-catalog">
+        <ul>
+            <li><a href="#act0">序、前言</a></li>
+            <li><a href="#act1">一、條件運算子（Conditional Operator）</a></li>
+            <li><a href="#act2">二、展開運算子（Spread Operator）</a></li>
+            <li><a href="#act3">三、其餘運算子（Rest Operator）</a></li>
+            <li><a href="#act4">四、參考資料</a></li>
+        </ul>
+    </div>
+    <div class="text-block">
+        <h2 id="act0">序、前言</h2>
+        <p>運算子（Operators）是 JavaScript 敘述句組成中相當重要的成份之一，根據型別，運算子可區分成指定運算子、算術運算子、字串運算子...等種類，而本篇要介紹的主角是條件運算子（Conditional Operator），以及 <b>ES6</b> 版本新增 的展開運算子（Spread Operator）、其餘運算子（Rest Operator）。</p>
+    </div>
+    <div class="text-block">
+        <h2 id="act1">一、條件運算子（Conditional Operator）</h2>
+        <p>條件運算子（Conditional Operator）亦可稱為「三元運算子」（Ternary Operator），從名字不難看出與條件式有關，事實上此運算子的確也常被用來當作條件式（<em>if</em>）的簡潔寫法。據 <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Conditional_Operator" target="_blank">MDN Web Docs</a> 文件所示，條件運算子的基礎語法為：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">condition ? exprIfTrue : exprIfFalse</code></pre>
+        </div>
+        <p><em>condition</em> 為條件的表達式。若表達式的值為 <em>true</em>，則執行 <em>exprIfTrue</em>；反之若為 <em>false</em>，則執行 <em>exprIfFalse</em>。舉例來說：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var status = (score >= 60) ? '及格' : '不及格';</code></pre>
+        </div>
+        <p>上述條件式意思為「變數 <em>score</em> 的值若大於等於 <em>60</em>，則回傳 <em>true</em>（及格）的結果；若小於 <em>60</em>，則回傳 <em>false</em>（不及格）」。</p>
+        <p>實際執行結果：</p>
+        <div class="text-codepen">
+            <p class="codepen" data-height="300" data-default-tab="js,result" data-slug-hash="yLzoror" data-user="itrong" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+            <span>See the Pen <a href="https://codepen.io/itrong/pen/yLzoror">
+            js-條件運算子練習-1</a> by Trong (<a href="https://codepen.io/itrong">@itrong</a>)
+            on <a href="https://codepen.io">CodePen</a>.</span>
+            </p>
+        </div>
+        <p>在條件運算子敘述裡，條件表達式的括號可以被省略。而若將此條件運算子「還原」成條件式，可見語法如下：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var score = 61;
+var status;
+if(score >= 60){
+    status = '及格'
+}
+else {
+    status = '不及格'
+}
+document.write(status);</code></pre>
+        </div>
+        <p>還原成熟悉的條件式之後，就不禁產生聯想──我們在開發網頁寫條件式的時候，往往不會只有一個「非 A 即 B」的條件，通常要加入複數的 <em>else if</em> 以滿足多重條件的函式，以下先舉一段條件鏈：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var age = 35;
+var status;
+if (age >= 30 && age &lt; 40) {
+    status = '我三十而立';
+} else if (age >= 41 && age &lt; 50) {
+    status = '我四十而不惑';
+} else if (age >= 51 && age &lt; 60) {
+    status = '我五十而知天命';
+} else if (age >= 61) {
+    status = '我六十以上';
+} else {
+    status = '我未滿三十';
+}</code></pre>
+        </div>
+        <p>接著我們來看如何將它們簡化成條件運算子：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var age = 35;
+var status =
+    (age >= 30 && age &lt; 40) ? "我三十而立" :
+    (age >= 41 && age &lt; 50) ? "我四十而不惑" :
+    (age >= 51 && age &lt; 60) ? "我五十而知天命" :
+    (age >= 61) ? "我六十以上" :
+    "我未滿三十";</code></pre>
+        </div>
+        <div class="text-codepen">
+            <p class="codepen" data-height="300" data-default-tab="js,result" data-slug-hash="Yzrxoqm" data-user="itrong" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+            <span>See the Pen <a href="https://codepen.io/itrong/pen/Yzrxoqm">
+            js-條件運算子練習-2</a> by Trong (<a href="https://codepen.io/itrong">@itrong</a>)
+            on <a href="https://codepen.io">CodePen</a>.</span>
+            </p>
+        </div>
+    </div>
+    <div class="text-block">
+        <h2 id="act2">二、展開運算子（Spread Operator）</h2>
+        <p>展開運算子（Spread Operator）可用來將陣列中的值展開為個別值，其運算子表示方式為 <em>...</em>。首先我們來看一個基本的例子：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var number = [1, 2, 3, 4, 5];
+console.log(number);
+// 輸出的結果為 [1,2,3,4,5]</code></pre>
+        </div>
+        <p>倘若加入展開運算子，輸出結果就會變成：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var number = [1, 2, 3, 4, 5];
+console.log(...number);
+// 輸出的結果為 1 2 3 4 5</code></pre>
+        </div>
+        <p>當然除了數字之外，字串也可以透過展開運算子將之打散：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var name = 'iTrong';
+console.log(name);
+// 輸出的結果為 'iTrong'
+
+console.log(...name);
+// 輸出的結果為 'i' 'T' 'r' 'o' 'n' 'g'</code></pre>
+        </div>
+        <p>因為展開運算子這種類似將變數值「打散」的概念，所以我們可以運用在陣列的合併上，舉例來說：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var array1 = [1, 2, 3];
+var array2 = [...array1, 'apple', 'banana'];
+console.log(array2);
+// 輸出的結果為 [1, 2, 3, 'apple', 'banana']</code></pre>
+        </div>
+        <div class="text-codepen">
+            <p class="codepen" data-height="300" data-default-tab="js,result" data-slug-hash="jOGLgNK" data-user="itrong" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+            <span>See the Pen <a href="https://codepen.io/itrong/pen/jOGLgNK">
+            js-展開運算子練習-1</a> by Trong (<a href="https://codepen.io/itrong">@itrong</a>)
+            on <a href="https://codepen.io">CodePen</a>.</span>
+            </p>
+        </div>
+        <p>是否隱隱約約覺得和陣列中的操作方法 <em>.concat()</em> 很相似呢？沒錯，自 ES6 推出展開運算子之後，以往陣列合併 <em>.concat()</em> 的寫法就能用 <em>...</em> 取代，同樣的例子我們來看看如果用原本陣列合併的方法是如何表示：</p>
+        <div class="text-codepen">
+            <p class="codepen" data-height="300" data-default-tab="js,result" data-slug-hash="wvrqVmE" data-user="itrong" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+            <span>See the Pen <a href="https://codepen.io/itrong/pen/wvrqVmE">
+            js-展開運算子練習-2(.concat)</a> by Trong (<a href="https://codepen.io/itrong">@itrong</a>)
+            on <a href="https://codepen.io">CodePen</a>.</span>
+            </p>
+        </div>
+        <p><br></p>
+        <p>展開運算子也可以用於陣列的「淺拷貝」，即便經拷貝產生的新陣列加入新的值，也不會影響原本被拷貝的陣列：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var array1 = ['apple', 'banana'];
+var array2 = [...array1];
+array2.push('orange', 'grape');
+
+console.log(array1); // 輸出的結果為 ['apple', 'banana']
+console.log(array2); // 輸出的結果為 ['apple', 'banana', 'orange', 'grape']</code></pre>
+        </div>
+        <p><br></p>
+        <p>再來就是可取代 <em>.apply()</em> 方法，將陣列值傳入函式做為參數。例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function sumFuc(x, y){
+  return x + y;
+}
+var arr = [5, 10];
+var result = sumFuc.apply(null, arr);
+console.log(result);
+// 輸出的結果為 15</code></pre>
+        </div>
+        <p>改由展開運算子簡化的寫法：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function sumFuc(x, y){
+  return x + y;
+}
+var arr = [5, 10];
+var result = sumFuc(...arr);
+console.log(result);
+// 輸出的結果為 15</code></pre>
+        </div>
+        <div class="text-codepen">
+            <p class="codepen" data-height="300" data-default-tab="js,result" data-slug-hash="VwMzoJy" data-user="itrong" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+            <span>See the Pen <a href="https://codepen.io/itrong/pen/VwMzoJy">
+            js-展開運算子練習-3</a> by Trong (<a href="https://codepen.io/itrong">@itrong</a>)
+            on <a href="https://codepen.io">CodePen</a>.</span>
+            </p>
+        </div>
+    </div>
+    <div class="text-block">
+        <h2 id="act3">三、其餘運算子（Rest Operator）</h2>
+        <p>其餘運算子（Rest Operator）的符號表達方式與展開運算子相同，都是以 <em>...</em> 表示，然而用途卻不一樣。後者主要用於將陣列中的值打散成個別的值，而前者則是將不確定數量的參數值集合成一個陣列。比方來說，我們定義一個簡單輸出代入參數的函式：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function demo(e) {
+    console.log("result:", e);
+}
+
+demo('a', 'b', 3, 'n');
+// 輸出結果為 a</code></pre>
+        </div>
+        <p>由於只設置一個變數 <em>e</em>，因此即便傳入再多參數，也只有第一個參數 <em>a</em> 會被執行。但如果我們導入其餘運算子：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function demo(...e) {
+    console.log("result:", e);
+}
+
+demo('a', 'b', 3, 'n');
+// 輸出結果為 ['a', 'b', '3', 'n']</code></pre>
+        </div>
+        <p>加入其餘運算子後，會發現它將傳入的參數通通集結起來成為一個新的陣列，同樣的概念，這次在函式裡再多增加幾個定義參數，我們就能更明顯看出其餘運算子的功用：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function demo(x, y, ...e) {
+    console.log(x, y, e);
+}
+
+demo('a', 'b', 3, 'n', 5);
+// 輸出結果為 'a' 'b' [3, 'n', 5]</code></pre>
+        </div>
+        <div class="text-codepen">
+            <p class="codepen" data-height="300" data-default-tab="js,result" data-slug-hash="dyVVdKK" data-user="itrong" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+            <span>See the Pen <a href="https://codepen.io/itrong/pen/dyVVdKK">
+            js-其餘運算子練習-2</a> by Trong (<a href="https://codepen.io/itrong">@itrong</a>)
+            on <a href="https://codepen.io">CodePen</a>.</span>
+            </p>
+        </div>
+        <p>如果剩餘傳入的參數只剩一個值，其餘運算子依舊會將其組成陣列；再假設已經沒有剩餘的值分給其餘運算子，其餘運算子仍會產生一個空的陣列，而非 <em>undefined</em>。例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function demo(x, y, ...e) {
+    console.log(x, y, e);
+}
+
+demo('a', 'b', 'c');    // 輸出結果為 'a' 'b' ['c']
+demo('a', 'b');         // 輸出結果為 'a' 'b' []</code></pre>
+        </div>
+        <p><br></p>
+        <p>在前面練習展開運算子的時候，都是由展開運算子去處理其他陣列的參數，那如果現在反向由參數去填入 <em>...</em> 會發生什麼事呢？</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var [x, ...y] = ['a', 'b', 3, 'n'];
+
+console.log(x); // a
+console.log(y); // ['b', 3, 'n']</code></pre>
+        </div>
+        <div class="text-codepen">
+            <p class="codepen" data-height="300" data-default-tab="js,result" data-slug-hash="KKXXoda" data-user="itrong" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+            <span>See the Pen <a href="https://codepen.io/itrong/pen/KKXXoda">
+            js-其餘運算子練習-3</a> by Trong (<a href="https://codepen.io/itrong">@itrong</a>)
+            on <a href="https://codepen.io">CodePen</a>.</span>
+            </p>
+        </div>
+        <p>這種用法一般稱其為「解構賦值」（Destructuring），可以想像成鏡像的方式來進行賦值，而除了陣列之外，也可以用來解構物件（<em>{ ... }</em>）。</p>
+    </div>
+    <div class="text-block">
+        <h2 id="act4">四、參考資料</h2>
+        <dl>
+            <dd><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Conditional_Operator" target="_blank">MDN Web Docs</a></dd>
+            <dd><a href="https://www.itread01.com/content/1548882731.html" target="_blank">淺談js“三元表示式” （三元運算子）</a></dd>
+            <dd><a href="https://medium.com/@kyokyox2/js-%E4%B8%89%E5%85%83%E9%81%8B%E7%AE%97%E7%AC%A6-%E4%B8%89%E5%85%83%E9%81%8B%E7%AE%97%E5%80%BC-3987be9623a5" target="_blank">[Js] 三元運算符 / 三元運算值</a></dd>
+        </dl>
+    </div>
+</div>
+<!-- end -->
+    </NuxtLayout>
+</template>
+
+<script>
+export default {
+    setup () {
+        // layout
+        definePageMeta({
+            layout: false
+        });
+    },
+
+    data() {
+        return {
+            isActive: 0,
+        }
+    },
+}
+</script>

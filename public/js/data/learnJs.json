@@ -1,16 +1,100 @@
 [
     {
         "id": 1,
-        "href": "jq_faq",
-        "title": "jQuery 常見錯誤訊息問題、除錯建議以及各種疑難雜症彙整",
-        "time": "2019.09.10",
-        "type": "jquery"
+        "href": "js_learn01",
+        "title": "Javascript 學習筆記（一）：變數與資料型別",
+        "time": "2019.08.27",
+        "type": "javascript"
     },
     {
         "id": 2,
-        "href": "yarn",
-        "title": "什麼是 Yarn？淺談 Yarn 的前世今生與各種錯誤狀況處理集錦",
+        "href": "js_learn02",
+        "title": "Javascript 學習筆記（二）：敘述句",
+        "time": "2019.08.30",
+        "type": "javascript"
+    },
+    {
+        "id": 3,
+        "href": "js_learn03",
+        "title": "Javascript 學習筆記（三）：運算式＆運算子",
+        "time": "2019.08.31",
+        "type": "javascript"
+    },
+    {
+        "id": 4,
+        "href": "js_learn04",
+        "title": "Javascript 學習筆記（四）：函式",
+        "time": "2019.09.03",
+        "type": "javascript"
+    },
+    {
+        "id": 5,
+        "href": "js_learn05",
+        "title": "Javascript 學習筆記（五）：陣列---上",
+        "time": "2019.09.08",
+        "type": "javascript"
+    },
+    {
+        "id": 6,
+        "href": "js_learn06",
+        "title": "Javascript 學習筆記（六）：陣列---下",
         "time": "2019.09.10",
-        "type": "yarn"
+        "type": "javascript"
+    },
+    {
+        "id": 7,
+        "href": "js_learn07",
+        "title": "Javascript 學習筆記（七）：物件",
+        "time": "2019.09.12",
+        "type": "javascript"
+    },
+    {
+        "id": 8,
+        "href": "js_learn08",
+        "title": "Javascript 學習筆記（八）：基本型別與物件型別",
+        "time": "2019.09.13",
+        "type": "javascript"
+    },
+    {
+        "id": 9,
+        "href": "js_learn09",
+        "title": "Javascript 學習筆記（九）：物件模型---BOM",
+        "time": "2019.09.19",
+        "type": "javascript"
+    },
+    {
+        "id": 10,
+        "href": "js_learn10",
+        "title": "Javascript 學習筆記（十）：物件模型---DOM",
+        "time": "2019.09.23",
+        "type": "javascript"
+    },
+    {
+        "id": 11,
+        "href": "js_learn_conditional",
+        "title": "條件運算子、展開運算子、其餘運算子介紹",
+        "time": "2019.12.19",
+        "type": "javascript"
+    },
+    {
+        "id": 12,
+        "href": "js_learn_var",
+        "title": "ES6 新的宣告方式 const、let，和 var 的不同之處？",
+        "time": "2019.12.23",
+        "type": "javascript"
+    },
+    {
+        "id": 13,
+        "href": "js_sync_and_async",
+        "title": "認識 JavaScript 的 Synchronous（同步）& Asynchronous（非同步）",
+        "time": "2019.12.29",
+        "type": "javascript"
+    },
+    {
+        "id": 14,
+        "href": "jq_faq",
+        "title": "jQuery 常見錯誤訊息問題、除錯建議以及各種疑難雜症彙整",
+        "time": "2020.01.06",
+        "type": "jquery"
     }
 ]

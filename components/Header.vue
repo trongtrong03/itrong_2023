@@ -60,7 +60,7 @@
                 <div class="nav-sub">
                     <ul>
                         <li><MyNuxtLink to="/kl_network" @click="handleNavLinkFalse">網路相關</MyNuxtLink></li>
-                        <li><MyNuxtLink to="/_maintain" @click="handleNavLinkFalse">繪圖軟體</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/kl_draw" @click="handleNavLinkFalse">繪圖軟體</MyNuxtLink></li>
                         <li><MyNuxtLink to="/_maintain" @click="handleNavLinkFalse">野外觀念</MyNuxtLink></li>
                         <!-- <li><MyNuxtLink to="/" @click="handleNavLinkFalse">投資學習</MyNuxtLink></li> -->
                     </ul>

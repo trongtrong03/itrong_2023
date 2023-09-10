@@ -20,7 +20,7 @@
                 </div>
                 <div class="workshop-list" v-if="jsonData">
                     <ul>
-                        <li v-for="(item, index) in filterSearch" :key="index" v-show="filter=='all' || filter==item.type" :class="'is-' + item.type" data-aos="fade-up">
+                        <li v-for="(item, index) in filterSearch" :key="index" v-show="filter=='all'" data-aos="fade-up">
                             <NuxtLink :to="'/workshop/_' + item.href">
                                 <figure>
                                     <img :src="'/images/learn/js/plugin/' + item.href + '.jpg'">

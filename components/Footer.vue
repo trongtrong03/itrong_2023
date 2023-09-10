@@ -26,7 +26,7 @@
                 <ul>
                     <li>知識文章</li>
                     <li><MyNuxtLink to="/kl_network">網路相關</MyNuxtLink></li>
-                    <li><MyNuxtLink to="/_maintain">繪圖軟體</MyNuxtLink></li>
+                    <li><MyNuxtLink to="/kl_draw">繪圖軟體</MyNuxtLink></li>
                     <li><MyNuxtLink to="/_maintain">野外觀念</MyNuxtLink></li>
                     <!-- <li><MyNuxtLink to="/">投資學習</MyNuxtLink></li> -->
                 </ul>
