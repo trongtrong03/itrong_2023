@@ -17,10 +17,10 @@
     background-repeat: no-repeat;
     background-position: 50% 100%;
     &.bg-1 {
-        background-image: url("../images/about_bg01.webp");
+        background-image: url("~/assets/images/about_bg01.webp");
     }
     &.bg-2 {
-        background-image: url("../images/about_bg02.webp");
+        background-image: url("~/assets/images/about_bg02.webp");
     }
     @include MQ(max-1280) {
         flex: 0 0 30rem;
@@ -438,7 +438,7 @@
             display: block;
             width: 1.5rem;
             height: calc(100% - 2rem);
-            background-image: url("../images/log_dots.webp");
+            background-image: url("~/assets/images/log_dots.webp");
             background-position: 50% 0;
             background-repeat: repeat-y;
         }

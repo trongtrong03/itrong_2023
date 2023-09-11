@@ -77,7 +77,6 @@ export default {
             });
         }
     },
-    updated() {},
     methods: {
         // search
         toggleActiveState() {

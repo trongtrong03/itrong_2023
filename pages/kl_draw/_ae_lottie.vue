@@ -30,7 +30,7 @@
     <div class="text-block">
         <h2 id="act1">一、什麼是 Lottie？</h2>
         <figure>
-            <img src="/images/knowledge/svg-lottie-1.jpg">
+            <img src="/images/knowledge/lottie/svg-lottie-1.jpg">
         </figure>
         <p>為了解決 SVG 動畫造成的時間與溝通成本耗費甚多的問題，<a href="https://airbnb.design/lottie/" target="_blank">Airbnb Design</a> 推出一款名為「Lottie」的函式庫，藉由系統、軟體或網頁等媒介，直接製作出 SVG 動畫。這些媒介會將 SVG 輸出成 <b>.json</b> 格式的檔案，程式人員只需要將 JSON 嵌入到程式碼裡，網頁（或 APP）加載後程式碼就會自己匯入並生成出動畫......聽起來是不是很棒？</p>
         <p>而 Lottie 實現 SVG 動畫檔案的其中一個主要方式是透過 Adobe After Effect 來執行，接下來幾個章節將會說明相關套件安裝，以及使用流程與預覽方式。</p>
@@ -41,7 +41,7 @@
         <h3>Bodymovin GitHub：</h3>
         <p>下載連結：<a href="https://github.com/airbnb/lottie-web" target="_blank">https://github.com/airbnb/lottie-web</a></p>
         <figure>
-            <img src="/images/knowledge/svg-lottie-2.jpg">
+            <img src="/images/knowledge/lottie/svg-lottie-2.jpg">
         </figure>
         <p>點擊 GitHub 頁面右上方的「Clone or download」綠色按鈕，選擇「Download ZIP」，當然如果你會用 GIT 也可以用指令去 <em>clone</em> 檔案到個人電腦裡。</p>
         <p>下載完成後將壓縮檔解壓縮。</p>
@@ -50,12 +50,12 @@
         <h3>ZXP Installer：</h3>
         <p>下載連結：<a href="https://aescripts.com/learn/zxp-installer/" target="_blank">https://aescripts.com/learn/zxp-installer/</a></p>
         <figure>
-            <img src="/images/knowledge/svg-lottie-3.jpg">
+            <img src="/images/knowledge/lottie/svg-lottie-3.jpg">
         </figure>
         <p>aescripts + aeplugins 可說是 AE 套件的寶庫，使用者能從中搜尋符合需求的相關腳本或套件（據說是付費的，不確定），而我們要下載的是安裝套件格式 <em>.zxp</em> 時所需的 ZXP Installer，該軟體為免費公開資源，只需選擇自己個人電腦使用的作業系統對應的下載按鈕即可。</p>
         <p>以上兩個檔案都下載（ GitHub 下載的 Bodymovin 後記得解壓縮）後，此時你應該要有以下這些東西：</p>
         <figure>
-            <img src="/images/knowledge/svg-lottie-4.jpg">
+            <img src="/images/knowledge/lottie/svg-lottie-4.jpg">
         </figure>
         <p>接下來就要開始進行安裝了，請注意！安裝外掛套件時，請先確認 After Effect 是否已關閉喔！</p>
     </div>
@@ -69,25 +69,25 @@
         <h6>3. 將 bodymovin.zxp 拖曳至 ZXP</h6>
         <p>從 <b>lottie-web-master\build\extension</b> 找到 <b>bodymovin.zxp</b>，將他直接拖曳到 ZXP 視窗裡，或是從 ZXP 工具列「<b>File -> Open</b>」選取檔案。</p>
         <figure>
-            <img src="/images/knowledge/svg-lottie-5.jpg">
+            <img src="/images/knowledge/lottie/svg-lottie-5.jpg">
         </figure>
         <p>安裝前 ZXP 會詢問是否確定要安裝 Bodymovin，選擇「OK」。</p>
         <figure>
-            <img src="/images/knowledge/svg-lottie-6.jpg">
+            <img src="/images/knowledge/lottie/svg-lottie-6.jpg">
         </figure>
         <p>安裝成功的畫面：</p>
         <figure>
-            <img src="/images/knowledge/svg-lottie-7.jpg">
+            <img src="/images/knowledge/lottie/svg-lottie-7.jpg">
         </figure>
         <p>安裝完就可以關閉了。</p>
         <h6>4. 開啟 AE 設定權限</h6>
         <p>打開 AE（建議版本越新越好），從上方工具列依序尋找「<b>Edit -> Preferences -> General...</b>」來開啟偏好設定。</p>
         <figure>
-            <img src="/images/knowledge/svg-lottie-8.jpg">
+            <img src="/images/knowledge/lottie/svg-lottie-8.jpg">
         </figure>
         <p>找到「<b>Allow Scripts to Write Files and Access Network</b>」這個項目並打勾：</p>
         <figure>
-            <img src="/images/knowledge/svg-lottie-9.jpg">
+            <img src="/images/knowledge/lottie/svg-lottie-9.jpg">
         </figure>
         <blockquote class="is-warning">
             <p>一定要確認是否有打勾！如果沒勾，Bodymovin 要進行 Render 時就會因為沒有開放腳本寫入權限而出錯。</p>
@@ -97,35 +97,35 @@
         <h3>MAC：</h3>
         <p>基本上 MAC 的安裝流程和 Windows 作業系統一樣，主要差別在 AE 偏好設定的部份，要從工具列依序選擇「<b>After Effects -> Preferences -> Scripting & Expressions...</b>」：</p>
         <figure>
-            <img src="/images/knowledge/svg-lottie-10.jpg">
+            <img src="/images/knowledge/lottie/svg-lottie-10.jpg">
         </figure>
         <p>然後一樣也是將「<b>Allow Scripts to Write Files and Access Network</b>」選項核選打勾：</p>
         <figure>
-            <img src="/images/knowledge/svg-lottie-11.jpg">
+            <img src="/images/knowledge/lottie/svg-lottie-11.jpg">
         </figure>
     </div>
     <div class="text-block">
         <h2 id="act4">四、使用方法</h2>
         <p>假設現在我們已經在 AE 把動畫都做好了，確認可以輸出成 SVG 動畫，我們從上方工具列選擇「<b>Window -> Extensions -> Bodymovin</b>」：</p>
         <figure>
-            <img src="/images/knowledge/svg-lottie-12.jpg">
+            <img src="/images/knowledge/lottie/svg-lottie-12.jpg">
         </figure>
         <p>接著選取（selected）要輸出的動畫圖層，選擇輸出存放的資料夾路徑，再按下「Render」即可。</p>
         <figure>
-            <img src="/images/knowledge/svg-lottie-13.jpg">
+            <img src="/images/knowledge/lottie/svg-lottie-13.jpg">
             <figcaption>依照編號順序執行。</figcaption>
         </figure>
         <p>如果檔案有多個動畫圖層，可以全部或把需要輸出的圖層選取起來，但輸出路徑的檔名記得每個都不一樣（例如：<b>data1.json</b>、<b>data2.json</b>...），否則後面輸出的檔案會直接覆蓋掉前面圖層輸出的 JSON 檔。</p>
         <figure>
-            <img src="/images/knowledge/svg-lottie-14.jpg">
+            <img src="/images/knowledge/lottie/svg-lottie-14.jpg">
         </figure>
         <p>當你看到「<b>Renders Finished</b>」的訊息出現，即代表 Bodymovin 已經完成輸出，便可以將視窗關閉。</p>
         <figure>
-            <img src="/images/knowledge/svg-lottie-15.jpg">
+            <img src="/images/knowledge/lottie/svg-lottie-15.jpg">
         </figure>
         <p>Bodymovin 輸出一個動畫只會有一個 JSON 檔，若輸出內容包含外嵌影像（例如：點陣圖），則會多一個 <b>images</b> 資料夾，以用來存放該動畫所使用的影像圖片。</p>
         <figure>
-            <img src="/images/knowledge/svg-lottie-16.jpg">
+            <img src="/images/knowledge/lottie/svg-lottie-16.jpg">
         </figure>
     </div>
     <div class="text-block">
@@ -135,11 +135,11 @@
         <p>LottieFiles：<a href="https://lottiefiles.com/preview" target="_blank">https://lottiefiles.com/preview</a></p>
         <p>操作方式很簡單，只需要將 <b>data.json</b> 拖曳到網站裡的上傳區域中即可。</p>
         <figure>
-            <img src="/images/knowledge/svg-lottie-17.gif">
+            <img src="/images/knowledge/lottie/svg-lottie-17.gif">
         </figure>
         <p>如果動畫有含影像，則需要將 <b>data.json</b> 與 <b>images</b> 一起壓縮為 <b>.zip</b> 的壓縮檔，然後上傳到 LottieFiles。</p>
         <figure>
-            <img src="/images/knowledge/svg-lottie-18.gif">
+            <img src="/images/knowledge/lottie/svg-lottie-18.gif">
         </figure>
         <p><br></p>
         <h3>本機預覽：</h3>
@@ -148,7 +148,7 @@
         <p>首先我們需要下載 Lottie 的官方腳本 <a href="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.5.9/lottie.min.js" target="_blank">lottie.min.js</a>，下載後與動畫 <b>.json</b> 及 <b>images</b> 資料夾放入同一個資料夾內。</p>
         <p>接著在資料夾內建立一個 HTML 網頁，並命名為 <b>index</b>（要用別的名稱或網頁格式也可以）。完成以上動作後，此時資料夾內應該會有以下這些檔案：</p>
         <figure>
-            <img src="/images/knowledge/svg-lottie-19.jpg">
+            <img src="/images/knowledge/lottie/svg-lottie-19.jpg">
             <figcaption>若動畫沒有使用到影像圖片，那麼不會有 <b>images</b> 這個資料夾。</figcaption>
         </figure>
         <h6>2. 編輯 index.html</h6>
@@ -179,22 +179,22 @@
         <h6>3. 利用虛擬網頁伺服器預覽</h6>
         <p>在網址列輸入 <b>localhost/</b> 與 <b>demo</b> 資料夾路徑即可，例如 <b>localhost/202004/demo</b>：</p>
         <figure>
-            <img src="/images/knowledge/svg-lottie-20.gif">
+            <img src="/images/knowledge/lottie/svg-lottie-20.gif">
         </figure>
         <p><br></p>
         <h3>AE 輸出 Demo：</h3>
         <p>本機端預覽的方式對多數視覺設計師而言可能會比較棘手，沒關係，其實也可以直接在 AE 執行 Render 時一併匯出 HTML 格式的 Demo 檔案。</p>
         <p>首先，於 Bodymovin Render 視窗中對要輸出的動畫，點擊「Settings」齒輪圖示：</p>
         <figure>
-            <img src="/images/knowledge/svg-lottie-21.jpg">
+            <img src="/images/knowledge/lottie/svg-lottie-21.jpg">
         </figure>
         <p>從 Export Modes 功能區域中找到 Demo 的選項，並將其勾選，儲存後 Render 輸出即可。</p>
         <figure>
-            <img src="/images/knowledge/svg-lottie-22.jpg">
+            <img src="/images/knowledge/lottie/svg-lottie-22.jpg">
         </figure>
         <p>然後你就會看到輸出的檔案除了原本已知的 <b>data.json</b> 與 <b>images</b> 外，還多了一個 <b>demo</b> 資料夾：</p>
         <figure>
-            <img src="/images/knowledge/svg-lottie-23.jpg">
+            <img src="/images/knowledge/lottie/svg-lottie-23.jpg">
         </figure>
         <p>輸出資料夾裡除了 JSON 文件與外嵌影像存放的 <b>images</b> 資料夾外，還多了一個 <b>demo</b> 的資料夾，裡面有一個 <b>data.html</b> 的網頁檔案，打開就可以在本機預覽動畫輸出成 JSON 格式的結果畫面。然而，本方法生成的 Demo 僅適合觀看，並不適合直接用在專案網頁（因為 Demo 程式碼多且雜），提交時仍只提供 <b>.json</b> 與 <b>images</b> 給工程師即可。</p>
     </div>
@@ -203,7 +203,7 @@
         <p>最後來提一些用 AE 製作 SVG 動畫時需要注意的幾個細節：</p>
         <p>1. Lottie 並不支援所有 AE 功能，尤其是工具列上 <b>Layer</b> 與 <b>Effect</b> 功能裡的特效。Lottie 官網有提供一份<a href="https://airbnb.io/lottie/#/supported-features" target="_blank">Supported Features</a> 清單，提供使用者查詢他們動畫使用的效果是否有被支援。</p>
         <figure>
-            <img src="/images/knowledge/svg-lottie-24.jpg">
+            <img src="/images/knowledge/lottie/svg-lottie-24.jpg">
         </figure>
         <p>2. 盡量避免使用影像格式的圖片作素材，畢竟 SVG 主要優勢在於可縮放式向量圖形能確保在各種尺寸畫面上都不失真。</p>
         <p>3. 安裝 Bodymovin 外掛套件後，記得要在偏好設定裡將「<b>Allow Scripts to Write Files and Access Network</b>」項目打勾，這樣 Render 才能順利輸出動畫檔案而不受權限阻擋。</p>

@@ -26,8 +26,8 @@
         "title": "Eagle",
         "desc": "Eagle 可以輕鬆收集及整理設計工作的「案例、靈感、截圖、圖片、影片、音訊、情緒板」等各種素材，激發更多創意靈感，讓工作變得更有效率！",
         "href": "https://tw.eagle.cool/",
-        "article": false,
-        "path": "",
+        "article": true,
+        "path": "kl_draw/_eagle",
         "cover": true,
         "img": "eagle",
         "type": "image"

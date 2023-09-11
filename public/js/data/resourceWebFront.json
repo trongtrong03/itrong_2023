@@ -37,7 +37,7 @@
         "title": "Ultimate CSS Gradient Generator",
         "desc": "方便好用的線上漸層調製工具，可向下支援至 ie8。",
         "href": "https://www.colorzilla.com/gradient-editor/",
-        "article": true,
+        "article": false,
         "path": "",
         "cover": true,
         "img": "colorZilla",

@@ -458,6 +458,13 @@ export default {
         definePageMeta({
             layout: false
         });
+
+        // load js
+        useHead({
+            script: [
+                { src: "/js/slick.min.js" }
+            ],
+        });
     },
 
     data() {
@@ -472,9 +479,12 @@ export default {
             .then(response => response.json())
             .then(data => {
                 this.jsonData = data.reverse();
-                this.$nextTick(() => {
+                // this.$nextTick(() => {
+                //     this.initializeSlickSlider();
+                // });
+                setTimeout(() => {
                     this.initializeSlickSlider();
-                });
+                }, 100);
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -533,6 +543,7 @@ export default {
         });
         ////-- COPY END
     },
+
     methods: {
         initializeSlickSlider() {
             // slick slider

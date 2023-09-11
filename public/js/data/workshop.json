@@ -228,5 +228,15 @@
         "jquery": false,
         "vue": false,
         "css": false
+    },
+    {
+        "id": 24,
+        "href": "motionblur",
+        "title": "MotionBlurJS 使動畫效果更自然的輕量化 JS 套件",
+        "time": "2021.02.01",
+        "js": true,
+        "jquery": false,
+        "vue": false,
+        "css": false
     }
 ]

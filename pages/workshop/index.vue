@@ -32,7 +32,6 @@
                                     <span :class="item.vue==true ? 'is-on' : ''">#Vue</span>
                                     <span :class="item.css==true ? 'is-on' : ''">#CSS</span>
                                 </h6>
-                                
                             </NuxtLink>
                         </li>
                     </ul>

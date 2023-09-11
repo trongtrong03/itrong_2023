@@ -14,8 +14,8 @@
                     </div>
                     <div class="article-float">
                         <NuxtLink to="./" class="btn-back"></NuxtLink>
-                        <NuxtLink to="/" class="btn-home"></NuxtLink>
-                        <button class="btn-top" @click="isActive = false"></button>
+                        <!-- <NuxtLink to="/" class="btn-home"></NuxtLink> -->
+                        <button class="btn-top" :class="{ 'is-show': isShowButton }" @click="scrollToTop"></button>
                         <button class="btn-list" :class="{ 'is-active': isActive }" @click="isActive = !isActive"></button>
                         <div class="float-catalog" :class="{ 'is-active': isActive }"></div>
                     </div>
@@ -65,7 +65,8 @@ export default {
 
     data() {
         return {
-            isActive: false
+            isActive: false,
+            isShowButton: false
         }
     },
     
@@ -85,20 +86,6 @@ export default {
         ////-- 隨機背景 END
 
         ////-- GO TOP START
-        // 滾動事件處理函式
-        function onScroll() {
-            var btnTop = document.querySelector(".btn-top");
-            if (window.pageYOffset > 400) {
-                btnTop.style.display = "inline-block";
-            }
-            else {
-                btnTop.style.display = "none";
-            }
-        }
-
-        // 監聽滾動事件
-        window.addEventListener("scroll", onScroll);
-
         // 返回頂部按鈕點擊事件處理函式
         function onBtnTopClick() {
             var duration = 500;
@@ -136,19 +123,52 @@ export default {
     },
 
     methods: {
-        // Parallax Scrolling
+        ////-- Parallax Scrolling START
         parallax() {
             var parallax = document.getElementById("parallax");
             parallax.style.top = -(window.pageYOffset / 4)+'px';
-            // console.log(window.scrollY);
         },
+        ////-- Parallax Scrolling END
+
+        ////-- scroll show top btn START
+        scrollToTop() {
+            var duration = 500;
+            var start = window.pageYOffset;
+            var startTime = null;
+
+            function animateScroll(timestamp) {
+                if (!startTime) startTime = timestamp;
+                var progress = timestamp - startTime;
+                var easeInOutCubic = function (t) { return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1; };
+                var scrollTop = easeInOutCubic(Math.min(progress / duration, 1)) * (0 - start) + start;
+                window.scrollTo(0, scrollTop);
+
+                this.isShowButton = window.scrollY > 400;
+
+                if (progress < duration) {
+                    requestAnimationFrame(animateScroll);
+                }
+            }
+
+            requestAnimationFrame(animateScroll);
+        },
+
+        updateButtonVisibility() {
+            this.isShowButton = window.scrollY > 400;
+        }
+        ////-- scroll show top btn END
     },
 
     beforeMount () {
         window.addEventListener('scroll', this.parallax);
+        window.addEventListener('scroll', this.updateButtonVisibility);
     },
-    beforeDestroy() {
-        window.addEventListener('scroll', this.parallax);
+    beforeUnmount() {
+        window.removeEventListener('scroll', this.parallax);
+        window.removeEventListener('scroll', this.updateButtonVisibility);
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.updateButtonVisibility);
     },
 }
 </script>

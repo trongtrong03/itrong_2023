@@ -18,6 +18,8 @@ vite: {
 
 
 export default defineNuxtConfig({
+    components: true,
+    
     app: {
         head: {
             title: 'iTrong work studio',
@@ -31,7 +33,6 @@ export default defineNuxtConfig({
             ],
             script: [
                 { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js' },
-                { src: '/js/slick.min.js' },
                 { src: "/js/scroll-animation.js" }
             ]
         },

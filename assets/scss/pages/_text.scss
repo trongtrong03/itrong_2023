@@ -332,6 +332,9 @@
             &::before {
                 content: '\f062';
             }
+            &.is-show {
+                display: inline-block;
+            }
         }
         &:hover,
         &.is-active {
