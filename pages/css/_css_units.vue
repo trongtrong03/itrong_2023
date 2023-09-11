@@ -14,12 +14,12 @@
             <li><a href="#act6">六、裝置可視單位</a></li>
         </ul>
     </div>
-    <div class="text-block">
-        <h2 id="act0">序、前言</h2>
+    <div class="text-block" id="act0">
+        <h2>序、前言</h2>
         <p>當我們進行網頁開發的時候，無論是元素佔據的空間比例，抑或者文字的尺寸大小，皆需要給予度量單位以指示其在畫面中的顯示幅度。而在 CSS 世界裡存在相當繁多的單位屬性值，雖說通常情況下會使用到的可能不外乎就那幾種（例如 <em>px</em>、<em>%</em>、<em>rem</em> ...等），不過若能多知道一些種類的度量單位，興許在某些開發需求條件下就能更有效或正確地作業。本篇將參考多位前人主流的分類，以章節區隔的方式一一作介紹，那麼，以下開始吧。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act1">一、彙整列表</h2>
+    <div class="text-block" id="act1">
+        <h2>一、彙整列表</h2>
         <p>首先，以下列出目前截至 CSS3 為止已知的單位名單：</p>
         <h3>1. 網頁單位：</h3>
         <div class="text-flex">
@@ -175,8 +175,8 @@
             </div>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act2">二、絕對單位與相對單位</h2>
+    <div class="text-block" id="act2">
+        <h2>二、絕對單位與相對單位</h2>
         <p>瀏覽器支援的度量單位除了本身應用領域外，又大抵可區分「絕對單位」與「相對單位」兩種型態。所謂的「絕對單位」（absolute）指的是可對應到實際尺寸的度量單位，它們不會受到父元素或根元素單位運算影響自身的值，例如 <em>in</em>（英吋）、<em>cm</em>（公分）...等。反過來說，如果父元素或根元素，甚至瀏覽器設定有變更，該度量單位在網頁上的尺寸也會發生改變的，那就是「相對單位」（relative）了，基本上 CSS 支援的單位大多都屬於相對單位，請見下方圖表。</p>
         <figure>
             <img src="/images/learn/css/units-1.jpg">
@@ -185,8 +185,8 @@
         <p>在相對單位中最容易引起誤會的當屬 <em>px</em>（像素）了，相信許多人──包含本人在內，原本應該都認為像素屬於絕對單位，儘管關於網頁單位是否要存在「絕對」還是「相對」的區分曾是過去引起廣泛討論的議題，畢竟即便是實際物理存在的單位，如公分、英吋...等，經由瀏覽器呈現仍然會被換算成像素顯示，而像素成像大小又取決裝置設備的解析度，並非確定的物理量...其實由此亦已不難理解，像素為什麼在 CSS 規範中最後又被列為相對單位的原因了，因為像素更近似一種抽象單位。</p>
         <p>但我們其實也不用過於執著絕對單位與相對單位定義，在網頁排版設計裡基本上是不大使用絕對單位的，比起定義，開發者更需要的是裡解其他相對單位與像素、或是與其他相對單位之間的相對換算依據。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act3">三、網頁單位</h2>
+    <div class="text-block" id="act3">
+        <h2>三、網頁單位</h2>
         <div class="text-flex">
             <div class="f-width">
                 <div class="f-head">
@@ -250,8 +250,8 @@
             </p>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act4">四、網頁屬性</h2>
+    <div class="text-block" id="act4">
+        <h2>四、網頁屬性</h2>
         <div class="text-flex">
             <div class="f-width">
                 <div class="f-head">
@@ -315,8 +315,8 @@
             </p>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act5">五、印刷單位</h2>
+    <div class="text-block" id="act5">
+        <h2>五、印刷單位</h2>
         <div class="text-flex">
             <div class="f-width">
                 <div class="f-head">
@@ -373,8 +373,8 @@
             </p>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act6">六、裝置可視單位</h2>
+    <div class="text-block" id="act6">
+        <h2>六、裝置可視單位</h2>
         <div class="text-flex">
             <div class="f-width">
                 <div class="f-head">

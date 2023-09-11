@@ -15,12 +15,12 @@
             <li><a href="#act7">七、參考資料</a></li>
         </ul>
     </div>
-    <div class="text-block">
-        <h2 id="act0">序、前言</h2>
+    <div class="text-block" id="act0">
+        <h2>序、前言</h2>
         <p>函式（Function），亦有人稱之為函數，是構成 Javascript 的基本要素之一，它將一系列的敘述句組合起來，以執行一項特定的工作。本篇主題將介紹其基本運用及用法。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act1">一、函式是什麼</h2>
+    <div class="text-block" id="act1">
+        <h2>一、函式是什麼</h2>
         <p>在哲宇老師的 JavaScript 教程曾經說過，程式開發者寫程式時應該避免以下三件事情：重複相同程式碼、無規劃/命名陳述目的、無法重複使用。這些不好的撰寫方式都會導致程式執行效率不佳或帶來維護不易的麻煩，舉例來說：</p>
         <figure>
             <img src="/images/learn/js/learn-function-1.jpg">
@@ -31,8 +31,8 @@
             <figcaption>利用函式來處理重複使用的程式碼。</figcaption>
         </figure>
     </div>
-    <div class="text-block">
-        <h2 id="act2">二、函式結構與呼叫</h2>
+    <div class="text-block" id="act2">
+        <h2>二、函式結構與呼叫</h2>
         <p>函式的關鍵字為 <em>function</em>，以下是宣告一個函式的基本架構圖：</p>
         <figure>
             <img src="/images/learn/js/learn-function-3.jpg">
@@ -104,8 +104,8 @@ getArea(itemW, itemH);</code></pre>
             <p data-height="360" data-theme-id="0" data-slug-hash="PEyJbW" data-default-tab="js,result" data-user="itrong" data-embed-version="2" data-pen-title="JS-learn: example22" class="codepen">See the Pen <a href="https://codepen.io/itrong/pen/PEyJbW/">JS-learn: example22</a> by Trong (<a href="https://codepen.io/itrong">@itrong</a>) on <a href="https://codepen.io">CodePen</a>.</p>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act3">三、函式的回傳值──return</h2>
+    <div class="text-block" id="act3">
+        <h2>三、函式的回傳值──return</h2>
         <p>在大多數的函式中，我們可以看到其最末行使用 <em>return</em> 敘述句，例如：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">function calculateArea(width, height) {
@@ -138,8 +138,8 @@ getArea(itemW, itemH);</code></pre>
         <h3>參數與引數的不同？</h3>
         <p>參數是指函式在宣告時所使用的字彙（例如：<em>width</em>、<em>height</em>）；引數則是指傳遞給函式進行運算的數值。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act4">四、變數的存在範圍</h2>
+    <div class="text-block" id="act4">
+        <h2>四、變數的存在範圍</h2>
         <p>JavaScript 的變數有其存在範圍，在存在範圍以外的程式碼便無法存取到該變數。存在範圍在 JavaScript 裡稱為「作用域」（Scope），只要建立一個函式，同時也是建立了一個新的作用域。當 JavaScript 查找變數時，會循著其所在作用域鏈（scope chain）一層一層向外尋找，直到找到宣告的變數或找不到變數為止。也因為如此，不同函式無法找到其他外部函式作用鏈裡的變數，且我們也無法從函式外部使用函式內的變數，例如：</p>
         <div class="text-codepen">
             <p class="codepen" data-height="360" data-theme-id="dark" data-default-tab="js,result" data-user="itrong" data-slug-hash="abdJada" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="JS-learn: function 3">
@@ -161,8 +161,8 @@ getArea(itemW, itemH);</code></pre>
         <p>由於全域變數可以在任何地方...甚至被其他 js 文件存取到，因此大多專業人士會建議盡量審慎評估使用全域變數的必要，此乃避免不同文件都使用到了相同的全域變數命名，導致彼此互相覆蓋，進而引發程式問題。</p>
         <p>以上關於變數作用域的說明主要針對 JavaScript ES5 以前的版本，該版本之前變數存在範圍是以函式（Function）作為作用域，而從 ES6 開始，變數宣告方式多了 <em>let</em> 與 <em>const</em> 兩種，作用域將不再單純只是看 <em>function</em> 了，但本篇暫時不對 ES6 進行太多著墨，留待日後再行專文補充，現階段只需有個大概印象即可。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act5">五、函式宣告方式與匿名函式</h2>
+    <div class="text-block" id="act5">
+        <h2>五、函式宣告方式與匿名函式</h2>
         <p>JavaScript 一共提供三種函式宣告的方式：</p>
         <ol>
             <li>Function declaration</li>
@@ -216,8 +216,8 @@ var result = demo(10, 20);</code></pre>
             <figcaption>函式需要名稱。</figcaption>
         </figure>
     </div>
-    <div class="text-block">
-        <h2 id="act6">六、立即函式</h2>
+    <div class="text-block" id="act6">
+        <h2>六、立即函式</h2>
         <p>一般而言，函式未經呼叫的情況下不會被執行，例如：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">function demo() {
@@ -265,8 +265,8 @@ demo();</code></pre>
         <p><br></p>
         <p>匿名函式與立即函式在函式運用中都是比較常見的概念和用法，然而初學階段下並不容易理解，因此現階段主要先了解 JavaScript 的函式結構及基本概念，隨著學習越發深入，相信對於函式也會有更深度的認識。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act7">七、參考資料</h2>
+    <div class="text-block" id="act7">
+        <h2>七、參考資料</h2>
         <dd><a href="https://www.books.com.tw/products/0010744702" target="_blank">《JavaScript & JQuery：網站互動設計程式進化之道》</a></dd>
         <dd><a href="http://www.kangting.tw/2013/12/javascript-7.html" target="_blank">JavaScript 快速入門（7/10）－ 函式</a></dd>
         <dd><a href="https://www.fooish.com/javascript/function.html" target="_blank">JavaScript Function (函式)</a></dd>

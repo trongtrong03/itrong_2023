@@ -16,16 +16,16 @@
             <li><a href="#act8">八、參考資料</a></li>
         </ul>
     </div>
-    <div class="text-block">
-        <h2 id="act0">序、前言</h2>
+    <div class="text-block" id="act0">
+        <h2>序、前言</h2>
         <figure>
             <img src="/images/learn/js/learn-var-1.jpg">
             <figcaption>JavaScript 的思維流程。</figcaption>
         </figure>
         <p>上一篇<a href="js_learn_2.html">〈敘述句〉</a>的文章中，我們於條件式或迴圈頻繁使用了變數指定或數字比較的陳述，像是 <em>a = 0</em>、<em>a > b</em> 等。這些敘述在 JavaScript 世界裡稱之為「運算式」（expressions），而 <em>=</em>、<em>></em> 這些則叫做「運算子」（operators），本篇的重點將來談談運算式，以及介紹運算子的種類。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act1">一、運算式</h2>
+    <div class="text-block" id="act1">
+        <h2>一、運算式</h2>
         <p>說穿了，程式是一連串運算式的組合。</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">a = 20;</code></pre>
@@ -54,8 +54,8 @@
         </div>
         <p><em>total</em> 的值將會是 <em>10 * 3</em> 運算後的結果，也就是 <em>30</em>，這個值將會儲存到 <em>total</em> 這個變數裡。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act2">二、運算子</h2>
+    <div class="text-block" id="act2">
+        <h2>二、運算子</h2>
         <p>運算式的操作必須依賴運算子（operators），JavaScript 提供了大量的運算子提供運算式進行計算，不同種類的運算子，理所當然產生不同類型的運算式，例如算術運算式、比較運算式...等等。它們幫助程式開發者得以從一或多個值中，產生一個結果值。</p>
         <p>以下是運算子的類型：</p>
         <ol>
@@ -66,8 +66,8 @@
             <li>邏輯運算子（Logical operators）</li>
         </ol>
     </div>
-    <div class="text-block">
-        <h2 id="act3">三、指定運算子</h2>
+    <div class="text-block" id="act3">
+        <h2>三、指定運算子</h2>
         <p>最常見的指定運算子就是 <em>=</em> 符號，用來表示將某個值指定給變數。例如：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">var name = 'itrong';</code></pre>
@@ -149,8 +149,8 @@
         </div>
         <p>透過表格可以看出指定運算子常與其他類型的運算子搭配使用，以達到產生指定結果值予變數之目的。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act4">四、算術運算子</h2>
+    <div class="text-block" id="act4">
+        <h2>四、算術運算子</h2>
         <p>算術運算子（Arithmetic operators）包含基本的加減乘除，以及遞增、遞減等運算方式。例如：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">var total = 10 * 3;</code></pre>
@@ -217,8 +217,8 @@
         </div>
         <p>如此一來，回傳的結果就會是 <em>48</em>。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act5">五、字串運算子</h2>
+    <div class="text-block" id="act5">
+        <h2>五、字串運算子</h2>
         <p>字串運算子（String operators）只有一種──「加號（<em>+</em>）」，可用於連接運算子兩端的字串資料值。寫程式的我們經常需要連接兩個以上的字串，以建立一個新的字串，這個連接的程序稱為「字串連結（concatenation）」。譬如：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">var firstName = 'Trong ';
@@ -259,8 +259,8 @@ var final = number * name;</code></pre>
             <p data-height="360" data-theme-id="0" data-slug-hash="OzoQNj" data-default-tab="js,result" data-user="itrong" data-embed-version="2" data-pen-title="JS-learn: example16" class="codepen">See the Pen <a href="https://codepen.io/itrong/pen/OzoQNj/">JS-learn: example16</a> by Trong (<a href="https://codepen.io/itrong">@itrong</a>) on <a href="https://codepen.io">CodePen</a>.</p>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act6">六、比較運算子</h2>
+    <div class="text-block" id="act6">
+        <h2>六、比較運算子</h2>
         <p>如同它字面意義所述，我們可以將程式碼中的值與預期值進行比較，評估後的結果將會以「布林值」表示，也就是 <em>true</em> 或 <em>false</em>。運算元可以是數值、字串、表達式 (expression) 或物件等。假如比較的運算元型別不同，JavaScript 會嘗試將之轉型成相同型別後再行比較，通常情況下，會先轉成數字資料型別（Number）。</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">var pass = 60;
@@ -339,8 +339,8 @@ var hasPassed = score >= pass;</code></pre>
             </div>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act7">七、邏輯運算子</h2>
+    <div class="text-block" id="act7">
+        <h2>七、邏輯運算子</h2>
         <p>比較運算子通常回傳 <em>true</em> 或 <em>false</em> 的單一結果值，邏輯運算子則可以針對多個比較運算子產生的結果值，再進行邏輯判斷。以下是邏輯運算子的常見運用方法之一的範例：</p>
         <figure>
             <img src="/images/learn/js/learn-expressions-2.jpg">
@@ -388,8 +388,8 @@ var hasPassed = score >= pass;</code></pre>
         <p><br></p>
         <p>以上就是有關運算式和運算子的基本介紹了，其實除了上列運算子的分類外，運算子亦可以以一元（unary）、二元（binary）、三元（ternary）運算子區分，這部分留待日後再另行撰文介紹。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act8">八、參考資料</h2>
+    <div class="text-block" id="act8">
+        <h2>八、參考資料</h2>
         <dl>
             <dd><a href="https://www.books.com.tw/products/0010744702" target="_blank">《JavaScript & JQuery：網站互動設計程式進化之道》</a></dd>
             <dd><a href="http://www.kangting.tw/2013/11/javascript-4.html" target="_blank">JavaScript 快速入門（4/10）－ 運算子</a></dd>

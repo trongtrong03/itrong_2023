@@ -13,12 +13,12 @@
             <li><a href="#act5">五、參考資料</a></li>
         </ul>
     </div>
-    <div class="text-block">
-        <h2 id="act0">序、前言</h2>
+    <div class="text-block" id="act0">
+        <h2>序、前言</h2>
         <p>從這篇開始的接下來幾篇文章，我們將介紹 Stylus 的語法及函數，來源資料主要參考的是他們的<a href="https://stylus-lang.com/" target="_blank">官方文件</a>，如果看不懂英文文件的說明，官方文件也有提供<a href="https://stylus.bootcss.com/" target="_blank">簡體中文</a>的版本，雖說翻譯稱不上完善，但多看多練習應能克服語言問題。那麼趕緊進入正題吧。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act1">一、語法格式</h2>
+    <div class="text-block" id="act1">
+        <h2>一、語法格式</h2>
         <p>儘管 Stylus 允許開發者將傳統的 CSS 書寫方式直接沿用到 Stylus 樣式表裡，但作為預處理器程式語言，Stylus 自然有一套大幅簡化 CSS 語法結構的方式。</p>
         <p><br></p>
         <h3>1. 縮排：</h3>
@@ -195,8 +195,8 @@ button:hover {
         </div>
         <p>不過依照個人開發經驗，建議盡量不要使用過多的階層語法，否則縱使當下串連的很開心，爾後經過一段時間需要進行維護時，階層過多反而會帶來嚴重的閱讀障礙。因此，適度地使用即可。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act2">二、使用變數</h2>
+    <div class="text-block" id="act2">
+        <h2>二、使用變數</h2>
         <p>Stylus 提供將屬性值以變數形式進行事先定義的功能，方便我們快速把屬性值透過變數代入到不同選擇器。當要修改屬性值的時候，只需要編輯該變數即可，不需要逐一修改每個選擇器的值。我們可以直接定義變數的名稱，並指定（<em>=</em>）值即可，或是在變數名稱前加上 <em>$</em> 符號以利辨別。舉例來說：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-stylus">itemWidth = 100px
@@ -230,8 +230,8 @@ p
             <li><em>$</em> 除了可以放在最前面，也可以插入在變數名稱中，但應該很少人會這樣做。</li>
         </ol>
     </div>
-    <div class="text-block">
-        <h2 id="act3">三、數學運算</h2>
+    <div class="text-block" id="act3">
+        <h2>三、數學運算</h2>
         <p>如果要在 CSS 裡進行運算，要通過 CSS3 的 <em>calc</em> 屬性來達成。但就和其他預處理器程式語言相同，Stylus 可以直接在屬性值裡進行簡單的數學運算。</p>
         <p>例如：</p>
         <div class="text-code" v-pre>
@@ -328,8 +328,8 @@ div
 }</code></pre>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act4">四、註解</h2>
+    <div class="text-block" id="act4">
+        <h2>四、註解</h2>
         <p>Stylus 提供三種註解方式：</p>
         <p><br></p>
         <h3>1. 單行註解：</h3>
@@ -391,8 +391,8 @@ div
 .index-wrap{background-color:#eee;border:1px solid #000}</code></pre>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act5">五、參考資料</h2>
+    <div class="text-block" id="act5">
+        <h2>五、參考資料</h2>
         <dl>
             <dd><a href="https://stylus-lang.com/" target="_blank">stylus</a></dd>
         </dl>

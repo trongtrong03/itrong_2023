@@ -11,8 +11,8 @@
             <li><a href="#act4">四、CSS 版本</a></li>
         </ul>
     </div>
-    <div class="text-block">
-        <h2 id="act1">一、JavaScript 版本</h2>
+    <div class="text-block" id="act1">
+        <h2>一、JavaScript 版本</h2>
         <p>效果演示：</p>
         <div class="text-codepen">
             <p class="codepen" data-height="480" data-default-tab="result" data-slug-hash="ZEVLqOm" data-user="itrong" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
@@ -84,8 +84,8 @@
 });</code></pre>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act2">二、jQuery 版本</h2>
+    <div class="text-block" id="act2">
+        <h2>二、jQuery 版本</h2>
         <p><br></p>
         <p>引用外部檔案（非 CDN 建議下載至本機端專案資料夾內）：</p>
         <div class="text-code" v-pre>
@@ -139,12 +139,12 @@
 &lt;/ul&gt;</code></pre>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act3">三、Vue 版本</h2>
+    <div class="text-block" id="act3">
+        <h2>三、Vue 版本</h2>
         <p>暫無內容。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act4">四、CSS 版本</h2>
+    <div class="text-block" id="act4">
+        <h2>四、CSS 版本</h2>
         <p>暫無內容。</p>
     </div>
 </div>

@@ -12,12 +12,12 @@
             <li><a href="#act4">四、參考資料</a></li>
         </ul>
     </div>
-    <div class="text-block">
-        <h2 id="act0">序、前言</h2>
+    <div class="text-block" id="act0">
+        <h2>序、前言</h2>
         <p>運算子（Operators）是 JavaScript 敘述句組成中相當重要的成份之一，根據型別，運算子可區分成指定運算子、算術運算子、字串運算子...等種類，而本篇要介紹的主角是條件運算子（Conditional Operator），以及 <b>ES6</b> 版本新增 的展開運算子（Spread Operator）、其餘運算子（Rest Operator）。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act1">一、條件運算子（Conditional Operator）</h2>
+    <div class="text-block" id="act1">
+        <h2>一、條件運算子（Conditional Operator）</h2>
         <p>條件運算子（Conditional Operator）亦可稱為「三元運算子」（Ternary Operator），從名字不難看出與條件式有關，事實上此運算子的確也常被用來當作條件式（<em>if</em>）的簡潔寫法。據 <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Conditional_Operator" target="_blank">MDN Web Docs</a> 文件所示，條件運算子的基礎語法為：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">condition ? exprIfTrue : exprIfFalse</code></pre>
@@ -81,8 +81,8 @@ var status =
             </p>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act2">二、展開運算子（Spread Operator）</h2>
+    <div class="text-block" id="act2">
+        <h2>二、展開運算子（Spread Operator）</h2>
         <p>展開運算子（Spread Operator）可用來將陣列中的值展開為個別值，其運算子表示方式為 <em>...</em>。首先我們來看一個基本的例子：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">var number = [1, 2, 3, 4, 5];
@@ -165,8 +165,8 @@ console.log(result);
             </p>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act3">三、其餘運算子（Rest Operator）</h2>
+    <div class="text-block" id="act3">
+        <h2>三、其餘運算子（Rest Operator）</h2>
         <p>其餘運算子（Rest Operator）的符號表達方式與展開運算子相同，都是以 <em>...</em> 表示，然而用途卻不一樣。後者主要用於將陣列中的值打散成個別的值，而前者則是將不確定數量的參數值集合成一個陣列。比方來說，我們定義一個簡單輸出代入參數的函式：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">function demo(e) {
@@ -227,8 +227,8 @@ console.log(y); // ['b', 3, 'n']</code></pre>
         </div>
         <p>這種用法一般稱其為「解構賦值」（Destructuring），可以想像成鏡像的方式來進行賦值，而除了陣列之外，也可以用來解構物件（<em>{ ... }</em>）。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act4">四、參考資料</h2>
+    <div class="text-block" id="act4">
+        <h2>四、參考資料</h2>
         <dl>
             <dd><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Conditional_Operator" target="_blank">MDN Web Docs</a></dd>
             <dd><a href="https://www.itread01.com/content/1548882731.html" target="_blank">淺談js“三元表示式” （三元運算子）</a></dd>

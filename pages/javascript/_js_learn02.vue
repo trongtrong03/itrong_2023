@@ -13,16 +13,16 @@
             <li><a href="#act5">五、參考資料</a></li>
         </ul>
     </div>
-    <div class="text-block">
-        <h2 id="act0">序、前言</h2>
+    <div class="text-block" id="act0">
+        <h2>序、前言</h2>
         <figure>
             <img src="/images/learn/js/learn-var-1.jpg">
             <figcaption>JavaScript 的思維流程。</figcaption>
         </figure>
         <p>回顧這張流程圖，前一篇我們已經對變數宣告方式及其型別種類有了初步認識，本篇則聚焦「計算與處理」階段，淺談 JavaScript 基本的程式結構要如何看、怎麼寫，然後接著介紹敘述句的幾種分類。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act1">一、基本介紹</h2>
+    <div class="text-block" id="act1">
+        <h2>一、基本介紹</h2>
         <p>程式腳本的每一句指令都可以稱為敘述句（Statement），用來驅使電腦執行我們寫下的規則。一句完整的敘述句會以分號 <em>;</em> 作為結尾，向 JavaScript 表示一段可執行運算的程式。根據這個定義，我們回首看看上一篇是如何宣告變數的：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">var price = 20;</code></pre>
@@ -38,8 +38,8 @@
         <p>由一對大括號（或稱花括號）<em>{ }</em> 標示的區塊即為程式區塊，一個程式區塊內可包含一或多個敘述句。此外，程式區塊結尾不需要加上分號。</p>
         <p>有了 <em>;</em> 與 <em>{ }</em> 在程式碼代表意義的認知後，接下來學習各種類型的敘述句表現手法，應該會相對容易閱讀許多。大體而言，敘述句的種類可區分為三種：條件敘述句、迴圈敘述句與跳躍敘述句。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act2">二、條件敘述句</h2>
+    <div class="text-block" id="act2">
+        <h2>二、條件敘述句</h2>
         <p>條件敘述句的語法有兩種：<em>if</em> 與 <em>switch</em>。</p>
         <p><br></p>
         <h3>if：</h3>
@@ -155,8 +155,8 @@ switch(color){
         </div>
         <p><em>switch</em> 與 <em>if</em> 條件的差別在於前者會只讀取跟參數相符條件式裡的敘述句；而後者則讀取所有條件與其敘述句，效能消耗較 <em>switch</em> 來得多，渲染就會比較慢。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act3">三、迴圈敘述句</h2>
+    <div class="text-block" id="act3">
+        <h2>三、迴圈敘述句</h2>
         <p>當我們想重複執行某件事情（敘述句）十遍，直覺想到的可能是直接在編輯器裡面輸入十次內容，例如：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">document.write("1");
@@ -236,8 +236,8 @@ while (i &lt; 10) { ... }</code></pre>
         </div>
         <p>這兩個迴圈因為條件會永遠成立，迴圈將永遠不會結束。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act4">四、跳躍敘述句</h2>
+    <div class="text-block" id="act4">
+        <h2>四、跳躍敘述句</h2>
         <p>跳躍敘述句也有人稱跳出敘述句，用途如其名，指在程式執行到某種情況時，利用跳躍句迫使程式退出。看到這裡，腦海是否馬上浮現出了什麼？是的，<em>switch</em> 條件式裡使用到的 <em>break</em> 即是跳躍敘述句的一員。<em>break</em> 不僅可以使用在 <em>switch</em>，也可以用於迴圈。除了 <em>break</em> 之外，常見的跳躍句尚有：<em>continue</em>、<em>return</em>。</p>
         <p><br></p>
         <h3>break：</h3>
@@ -292,8 +292,8 @@ while (i &lt;= 10) {
         <h3>return：</h3>
         <p><em>return</em> 用來回覆函式（function）呼叫的變數，它只能出現在函式裡，若用在迴圈將會造成程式錯誤。由於本篇對函式尚未有太多著墨，因此有關 <em>return</em> 的用法就留到函式篇一起做筆記。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act5">五、參考資料</h2>
+    <div class="text-block" id="act5">
+        <h2>五、參考資料</h2>
         <dl>
             <dd><a href="https://www.books.com.tw/products/0010744702" target="_blank">《JavaScript & JQuery：網站互動設計程式進化之道》</a></dd>
             <dd><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/if...else" target="_blank">MDN web docs</a></dd>

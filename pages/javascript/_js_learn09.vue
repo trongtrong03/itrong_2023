@@ -12,13 +12,13 @@
             <li><a href="#act4">四、參考資料</a></li>
         </ul>
     </div>
-    <div class="text-block">
-        <h2 id="act0">序、前言</h2>
+    <div class="text-block" id="act0">
+        <h2>序、前言</h2>
         <p>在學習網頁設計的基礎中，初學者都會被灌輸網頁是由 HTML、CSS、JavaScript 構成的說法：HTML 是骨幹、CSS 負責美化，而 JavaScript 則用來實現網頁與使用者之間的互動行為。然而深入探討後就會發現，真正實現網頁互動行為的操作方法是由 JavaScript 的執行平台──也就是「瀏覽器」所提供，它們（操作方法）基本上會由「<b>BOM</b>」和「<b>DOM</b>」兩個物件持有，前端開發者即透過 JavaScript 去呼叫 <b>BOM</b> 與 <b>DOM</b> 提供的 API 來控制瀏覽器的行為與網頁的內容。</p>
         <p>除了 <b>BOM</b> 與 <b>DOM</b> 兩大物件模型外，JavaScript 亦內建以 ECMAScript 標準為基礎的標準物件，接下來的幾篇文章將來記錄這些物件模型與其操作方法的內容。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act1">一、BOM 簡介</h2>
+    <div class="text-block" id="act1">
+        <h2>一、BOM 簡介</h2>
         <p>Browser Object Model，簡稱 <b>BOM</b>，中文意為瀏覽器物件模型，顧名思義是瀏覽器提供的物件，是一組與瀏覽器視窗有關的物件模型。其核心物件為 <em>window</em> 物件，指的是目前瀏覽器的視窗或頁籤，它在瀏覽器主要扮演著「操作全域物件（Global Object）」及「JavaScript 用來與瀏覽器溝通的窗口」兩個角色。</p>
         <p>首先我們來談談「全域物件」的部份，全域物件（Global Object）指的是在全域作用範圍內宣告的變數、物件、函式...等，通通都會自動變成全域物件的屬性。例如：</p>
         <div class="text-code" v-pre>
@@ -64,8 +64,8 @@ console.log(window.myName);     // undefined</code></pre>
         </figure>
         <p>當我們使用 <em>window</em> 內的物件，前面的 <em>window</em> 是可以省略不寫的，因此我們才會看到或曾經直接使用 <em>alert()</em> 操作程式碼內容的寫法。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act2">二、常見屬性</h2>
+    <div class="text-block" id="act2">
+        <h2>二、常見屬性</h2>
         <p>不管是 <em>alert()</em>、<em>confirm()</em> 還是 <em>prompt()</em>，它們其實都是 <em>window</em> 的子物件（它們既是「方法」，卻同時也是物件，屬性亦然），<em>window</em> 的子物件很多，以下列舉一些常見的屬性並作簡單介紹：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">window.myName = 'itrong';
@@ -308,8 +308,8 @@ window.history.go(0);    // 等同重新整理當前頁面</code></pre>
             </div>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act3">三、常見方法</h2>
+    <div class="text-block" id="act3">
+        <h2>三、常見方法</h2>
         <h3>alert()：</h3>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">window.alert("Hello!");</code></pre>
@@ -482,8 +482,8 @@ function stop() {
         <p><br></p>
         <p>其實還有許多 <em>window</em> 的方法，因為個人較鮮少使用所以就略過不寫在筆記裡了，而關於 <b>BOM</b> 的文章心得同時亦在此暫告一段落，下一篇文章的主題將聚焦在 <b>DOM</b> 身上。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act4">四、參考資料</h2>
+    <div class="text-block" id="act4">
+        <h2>四、參考資料</h2>
         <dl>
             <dd><a href="https://www.itread01.com/content/1546565070.html" target="_blank">BOM（瀏覽器物件模型）和DOM(文件物件模型)</a></dd>
             <dd><a href="https://www.happycoding.today/posts/43" target="_blank">JavaScript入門系列：BOM和DOM筆記</a></dd>

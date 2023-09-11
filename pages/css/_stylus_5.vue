@@ -11,12 +11,12 @@
             <li><a href="#act3">三、參考資料</a></li>
         </ul>
     </div>
-    <div class="text-block">
-        <h2 id="act0">序、前言</h2>
+    <div class="text-block" id="act0">
+        <h2>序、前言</h2>
         <p>條件式（If）與迭代（Iteration）於多數程式語言中是很常被使用的語法，預處理器程式語言也不例外，本篇文章的內容將闡述如何在 Stylus 中使用這兩個語法。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act1">一、條件式（if）</h2>
+    <div class="text-block" id="act1">
+        <h2>一、條件式（if）</h2>
         <p>我們可以用條件式定義一系列的判斷規則，標準的條件式語法由 <em>if</em> 與 <em>else</em> 組成。若條件不止兩個，則第二個之後的條件以 <em>else if</em> 表示，最後一樣以 <em>else</em> 結尾。<a href="https://stylus-lang.com/docs/conditionals.html" target="_blank">官方文件</a>提供幾種使用方式，以下就來練習如何定義條件式。</p>
         <p><br></p>
         <h5>範例一：</h5>
@@ -174,8 +174,8 @@ div
 }</code></pre>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act2">二、迭代（Iteration）</h2>
+    <div class="text-block" id="act2">
+        <h2>二、迭代（Iteration）</h2>
         <p>在 Stylus 中用來表示迭代的語法為 <em>for ... in</em>，具體的語法規則為下：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-stylus">for &lt;val-name&gt; [, &lt;key-name&gt;] in &lt;expression&gt;</code></pre>
@@ -309,8 +309,8 @@ for color in $colors
         <p><br></p>
         <p>以上就是迭代的使用方法，善用迭代的功能不僅可以使程式碼更加簡潔，也可以增加開發者的工作效率。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act3">三、參考資料</h2>
+    <div class="text-block" id="act3">
+        <h2>三、參考資料</h2>
         <dl>
             <dd><a href="https://stylus-lang.com/" target="_blank">stylus</a></dd>
         </dl>

@@ -18,8 +18,8 @@
             <li><a href="#act10">十、參考資料</a></li>
         </ul>
     </div>
-    <div class="text-block">
-        <h2 id="act0">序、前言</h2>
+    <div class="text-block" id="act0">
+        <h2>序、前言</h2>
         <p>還記得變數的七種資料型別嗎？其中一種型別叫做 <b>Object</b>，也就是物件型別：</p>
         <div class="text-flex">
             <div class="f-width">
@@ -37,8 +37,8 @@
         </div>
         <p>我們可以看物件型別範例裡除了上一篇學到的函式（<em>function</em>）之外，尚有一項用中括號（或稱方括號 <em>[ ]</em>）表示的物件，它的真實身分是「陣列」（Array），不僅是 JavaScript 的內建物件，也是 JavaScript 很重要且常常需要使用到的技巧，本篇學習筆記將專注於陣列的介紹與相關操作方法。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act1">一、什麼是陣列</h2>
+    <div class="text-block" id="act1">
+        <h2>一、什麼是陣列</h2>
         <p>假設今天我們要建立一本班級名冊，用 JavaScript 的話大概會是這個模樣：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">var number1 = "王小明";
@@ -93,8 +93,8 @@ nameList[0] = '盧小小';</code></pre>
         </div>
         <p>以上就是陣列的基礎介紹了，接下來的章節將介紹陣列常用的幾種屬性方法。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act2">二、陣列的長度（length）</h2>
+    <div class="text-block" id="act2">
+        <h2>二、陣列的長度（length）</h2>
         <p>藉由陣列的 <em>length</em> 屬性，可以取得該陣列目前儲存的資料數量。</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">var nameList = ["王小明", "李大華", "張小芬"];
@@ -109,8 +109,8 @@ nameList.length;</code></pre>
             </p>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act3">三、新增陣列資料（unshift、push）</h2>
+    <div class="text-block" id="act3">
+        <h2>三、新增陣列資料（unshift、push）</h2>
         <p>陣列新增資料有以下這幾種方法：</p>
         <p><br></p>
         <h3>新增資料在陣列的首位：</h3>
@@ -156,8 +156,8 @@ nameList[nameList.length] = "盧小小";</code></pre>
         <h3>新增資料在陣列的某位：</h3>
         <p>可透過 <em>splice()</em> 方法進行，詳見 <a href="#act5">增刪改陣列資料（splice）</a> 一節。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act4">四、刪除陣列資料（shift、pop）</h2>
+    <div class="text-block" id="act4">
+        <h2>四、刪除陣列資料（shift、pop）</h2>
         <h3>刪除陣列首位的資料：</h3>
         <p>可使用 <em>shift()</em> 方法。</p>
         <div class="text-code" v-pre>
@@ -189,8 +189,8 @@ nameList.pop();</code></pre>
         <h3>刪除陣列某位的資料：</h3>
         <p>可透過 <em>splice()</em> 方法進行，詳見 <a href="#act5">增刪改陣列資料（splice）</a> 一節。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act5">五、增刪改陣列資料（splice）</h2>
+    <div class="text-block" id="act5">
+        <h2>五、增刪改陣列資料（splice）</h2>
         <p><em>splice()</em> 方法可針對陣列資料進行新增、刪除、修改的動作，是陣列操作裡很強大的功能之一。它的結構一共包含了三個參數：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">arrayObject.splice(index, howmany, item1,.....,itemN)</code></pre>
@@ -273,8 +273,8 @@ nameList.splice(1, 1, "甲員");</code></pre>
         </div>
         <p>索引值 <em>index</em> 為 <em>-1</em>，代表範例陣列最後一個的資料「張小芬」被移除，然後新增「甲員」到陣列中。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act6">六、反轉陣列資料（reverse）</h2>
+    <div class="text-block" id="act6">
+        <h2>六、反轉陣列資料（reverse）</h2>
         <p><em>reverse()</em> 方法可以用於反轉陣列裡的資料，也就是原本最後一筆資料變成第一個，倒數第二變成第二...依此類推。例如：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">var nameList = ["王小明", "李大華", "張小芬", "盧小小"];
@@ -288,8 +288,8 @@ nameList.reverse();</code></pre>
             </p>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act7">七、排序陣列資料（sort）</h2>
+    <div class="text-block" id="act7">
+        <h2>七、排序陣列資料（sort）</h2>
         <p><em>sort()</em> 方法可以對陣列重新進行排序，如果不使用函式判斷的預設情況下，<em>sort()</em> 會將陣列內的資料轉換成字串，並採用 <a href="https://zh.wikipedia.org/wiki/Unicode" target="_blank">Unicode</a> 的標準判斷排序先後順序。舉例來說：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">var nameList = [4, 2, 5, 3, 1];
@@ -382,8 +382,8 @@ nameList.sort(function (a, b) {
             </p>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act8">八、搜尋陣列資料（indexOf、lastIndexOf）</h2>
+    <div class="text-block" id="act8">
+        <h2>八、搜尋陣列資料（indexOf、lastIndexOf）</h2>
         <p>有關搜尋陣列裡資料的方法有兩種，分別是 <em>indexOf()</em> 與 <em>lastIndexOf()</em>。它們的差異只在於搜尋的方向不同，前者由左至右，後者則是由右至左。我們只需在 <em>()</em> 內填入要搜尋的資料值，<em>indexOf()</em> / <em>lastIndexOf()</em> 就會搜索陣列是否有相符的資料值，若有，則回傳該資料的索引值（<em>index</em>）；若無，則回傳 <em>-1</em>。</p>
         <p>假設現在有筆陣列資料如下：</p>
         <div class="text-code" v-pre>
@@ -423,8 +423,8 @@ nameList.indexOf("盧小小");    // -1</code></pre>
         </div>
         <p>即便第一個要判斷的參數值 <em>王小明</em> 確實存在於該陣列中，但由於我們給了 <em>indexOf()</em> 第二個參數索引值為 <em>2</em>，令陣列從第三個位置的資料開始判斷，位於第一個位置資料的 <em>王小明</em> 就無法被查找到，因而最終返回 <em>-1</em> 的結果。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act9">九、截取陣列資料（slice）</h2>
+    <div class="text-block" id="act9">
+        <h2>九、截取陣列資料（slice）</h2>
         <p><em>slice()</em> 方法可以截取陣列中的資料，使其成為新的陣列，雖說是「截取」，但也並非直接從原陣列裡把指定資料「剪」出來，而是比較近似複製的概念。<em>slice()</em> 一共可填兩個參數，分別代表索引值（<em>index</em>）的起始值與結束值。具體公式為：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">ary.slice(start, end)</code></pre>
@@ -485,8 +485,8 @@ nameList.slice(-3, -1);  // 從右邊第三位截取至右邊第一位</code></p
         <p><br></p>
         <p>礙於篇幅關係，陣列方法的介紹將拆分成兩篇，其他方法留到下篇再繼續。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act10">十、參考資料</h2>
+    <div class="text-block" id="act10">
+        <h2>十、參考資料</h2>
         <dl>
             <dd><a href="https://www.books.com.tw/products/0010744702" target="_blank">《JavaScript & JQuery：網站互動設計程式進化之道》</a></dd>
             <dd><a href="http://www.kangting.tw/2013/12/javascript-9.html" target="_blank">JavaScript 快速入門（9/10）－ 陣列</a></dd>

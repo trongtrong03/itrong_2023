@@ -17,12 +17,12 @@
             <li><a href="#act9">九、參考資料</a></li>
         </ul>
     </div>
-    <div class="text-block">
-        <h2 id="act0">序、前言</h2>
+    <div class="text-block" id="act0">
+        <h2>序、前言</h2>
         <p>本篇是陣列學習筆記的下篇，將繼續聚焦於陣列操作方法的介紹。廢話不多說，馬上進入正題。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act1">一、複製陣列資料（copyWithin）</h2>
+    <div class="text-block" id="act1">
+        <h2>一、複製陣列資料（copyWithin）</h2>
         <p><em>copyWithin()</em> 方法可以複製陣列的資料，並從指定索引值的位置開始將複製的資料覆蓋原本位置的資料。它一共可填入三個參數值，分別表示：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">ary.copyWithin(target, start, end);</code></pre>
@@ -67,8 +67,8 @@
             </p>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act2">二、填充陣列資料（fill）</h2>
+    <div class="text-block" id="act2">
+        <h2>二、填充陣列資料（fill）</h2>
         <p><em>fill()</em> 方法可用來將陣列中的資料填充為指定的值，其語法規則為：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">ary.fill(value, start, end);</code></pre>
@@ -87,8 +87,8 @@ nameList.fill("林小玉");</code></pre>
             </p>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act3">三、篩選陣列資料（filter）</h2>
+    <div class="text-block" id="act3">
+        <h2>三、篩選陣列資料（filter）</h2>
         <p><em>filter()</em> 方法用來使陣列依據指定的判斷函式，依序對陣列裡每一筆資料進行判斷，並篩選出符合條件的資料。例如：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">function aryFilter(n) {
@@ -123,8 +123,8 @@ nameList.filter(function(n) {
         </div>
         <p>篩選出字串長度大於等於 <em>5</em> 的陣列資料。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act4">四、遍歷陣列資料（forEach）</h2>
+    <div class="text-block" id="act4">
+        <h2>四、遍歷陣列資料（forEach）</h2>
         <p><em>forEach()</em> 方法可用來將陣列的「每一個值」傳遞到函式進行運算，其具體語法規則為下：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">ary.forEach(function(item, index, array){ ... });</code></pre>
@@ -146,8 +146,8 @@ nameList.filter(function(n) {
             </p>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act5">五、轉換陣列資料為字串（toString）</h2>
+    <div class="text-block" id="act5">
+        <h2>五、轉換陣列資料為字串（toString）</h2>
         <p><em>toString()</em> 方法可以將陣列物件型別轉換為字串並輸出，舉例來說，手邊有一筆陣列資料，內容如下：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">var nameList = ["王小明", "李大華", "張小芬", "盧小小", "黃阿亮"];</code></pre>
@@ -189,8 +189,8 @@ nameList.filter(function(n) {
             </p>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act6">六、轉換陣列資料為字串並加入自定義符號（join）</h2>
+    <div class="text-block" id="act6">
+        <h2>六、轉換陣列資料為字串並加入自定義符號（join）</h2>
         <p><em>join()</em> 方法和 <em>toString()</em> 有一點點像，共通點是將陣列裡的資料轉換成字符串輸出，不過 <em>toString()</em> 只是忠實地將每筆資料用逗號 <em>,</em> 隔開。而 <em>join()</em> 方法則可以令合併的資料之間加入自定義的符號。<br><em>join()</em> 的語法規則為：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">ary.join();</code></pre>
@@ -222,8 +222,8 @@ nameList.join("&");    // 王小明&李大華&張小芬&盧小小&黃阿亮</cod
 nameList.join("");    // 王小明李大華張小芬盧小小黃阿亮</code></pre>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act7">七、合併陣列資料（concat）</h2>
+    <div class="text-block" id="act7">
+        <h2>七、合併陣列資料（concat）</h2>
         <p><em>concat()</em> 方法用於合併二至多個不同的陣列。</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">ary.concat();</code></pre>
@@ -245,8 +245,8 @@ a.concat(b, c);</code></pre>
             </p>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act8">八、判斷陣列資料（every、some、includes）</h2>
+    <div class="text-block" id="act8">
+        <h2>八、判斷陣列資料（every、some、includes）</h2>
         <p><em>every()</em> 與 <em>some()</em> 方法都是藉由函式設定的內容，判斷陣列裡的資料是否合乎條件，並回傳 <em>true</em> 或 <em>false</em> 的結果。</p>
         <p><br></p>
         <h3>every()：</h3>
@@ -284,8 +284,8 @@ a.concat(b, c);</code></pre>
             </p>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act9">九、參考資料</h2>
+    <div class="text-block" id="act9">
+        <h2>九、參考資料</h2>
         <dl>
             <dd><a href="https://www.books.com.tw/products/0010744702" target="_blank">《JavaScript & JQuery：網站互動設計程式進化之道》</a></dd>
             <dd><a href="http://www.kangting.tw/2013/12/javascript-9.html" target="_blank">JavaScript 快速入門（9/10）－ 陣列</a></dd>

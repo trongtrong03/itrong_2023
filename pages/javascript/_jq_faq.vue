@@ -10,8 +10,8 @@
             <li><a href="#act3">三、其他疑難雜症</a></li>
         </ul>
     </div>
-    <div class="text-block">
-        <h2 id="act1">一、錯誤訊息</h2>
+    <div class="text-block" id="act1">
+        <h2>一、錯誤訊息</h2>
         <div class="text-accordin is-error">
             <div class="accordin-item" :class="isActive==1001 ? 'is-active' : ''">
                 <div class="accordin-title" @click="isActive = 1001;">
@@ -38,13 +38,13 @@
             </div>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act2">二、警告提示</h2>
+    <div class="text-block" id="act2">
+        <h2>二、警告提示</h2>
         <div class="text-accordin is-warning">
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act3">三、其他疑難雜症</h2>
+    <div class="text-block" id="act3">
+        <h2>三、其他疑難雜症</h2>
         <div class="text-accordin is-others">
             <div class="accordin-item" :class="isActive==3001 ? 'is-active' : ''">
                 <div class="accordin-title" @click="isActive = 3001;">

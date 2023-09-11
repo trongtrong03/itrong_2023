@@ -13,8 +13,8 @@
             <li><a href="#act5">五、參考資料</a></li>
         </ul>
     </div>
-    <div class="text-block">
-        <h2 id="act0">序、前言</h2>
+    <div class="text-block" id="act0">
+        <h2>序、前言</h2>
         <p>在 JavaScript 世界裡，除了原始型別（數字、布林值、字串），其餘東西都是物件（Object），我們可以再度請出資料型別表一看：</p>
         <div class="text-flex">
             <div class="f-width">
@@ -32,8 +32,8 @@
         </div>
         <p>包含上一篇學習筆記主題的陣列（Array）在內，函式（Function）甚至是未列於表中的根（roots）本身也都是物件。根物件又名全局物件，在瀏覽器裡的根物件指的是 <em>window</em>。此時此刻就先不針對 <em>window</em> 進行過多的解釋，我們只要知道，物件是 JavaScript 很重要的基礎，每一位工程師都必須要瞭解它的概念與相關應用。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act1">一、物件宣告與結構</h2>
+    <div class="text-block" id="act1">
+        <h2>一、物件宣告與結構</h2>
         <p>在 JavaScript 裡，一個基礎型別可以是一個數字、布林值或字串，但物件可能是由一個空值或一群屬性（property）組合而成的複雜型態資料。宣告物件的方式有兩種：</p>
         <p><br></p>
         <h3>物件建構式（Object Constructor）：</h3>
@@ -72,8 +72,8 @@
 };</code></pre>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act2">二、存取屬性</h2>
+    <div class="text-block" id="act2">
+        <h2>二、存取屬性</h2>
         <p>如果要存取物件裡的屬性，主要有兩種方法：</p>
         <p><br></p>
         <h3>1. 使用 <em>.</em> 運算子：</h3>
@@ -126,8 +126,8 @@ console.log(car[carBrand]);    // 這裡中括號裡引入的內容是變數，�
         </div>
         <p>透過實際操作展示可以發現輸出的結果是 <em>undefined</em>。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act3">三、刪除屬性</h2>
+    <div class="text-block" id="act3">
+        <h2>三、刪除屬性</h2>
         <p>倘如要刪除物件裡的屬性，我們可以使用 <em>delete</em> 關鍵字，具體操作方式為下：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">delete object.property;</code></pre>
@@ -154,8 +154,8 @@ delete car.year;</code></pre>
             </p>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act4">四、物件的方法</h2>
+    <div class="text-block" id="act4">
+        <h2>四、物件的方法</h2>
         <p>在前言曾提到，JavaScript 除了原始型別之外的所有東西都是物件，自然也包含「函式」（function）。我們除了可以將函式主體指定給某物件的某屬性外，也可以直接在物件屬性裡定義函式，例如：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">var obj = {
@@ -194,8 +194,8 @@ obj.f("Hello world!");</code></pre>
             </p>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act5">五、參考資料</h2>
+    <div class="text-block" id="act5">
+        <h2>五、參考資料</h2>
         <dl>
             <dd><a href="https://www.books.com.tw/products/0010744702" target="_blank">《JavaScript & JQuery：網站互動設計程式進化之道》</a></dd>
             <dd><a href="http://www.kangting.tw/2013/12/javascript-8.html" target="_blank">JavaScript 快速入門（8/10）－ 物件</a></dd>

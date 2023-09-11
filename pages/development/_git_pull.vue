@@ -12,12 +12,12 @@
             <li><a href="#act4">四、參考資料</a></li>
         </ul>
     </div>
-    <div class="text-block">
-        <h2 id="act0">序、前言</h2>
+    <div class="text-block" id="act0">
+        <h2>序、前言</h2>
         <p>先前已經介紹過如何將本機端版控專案推送到遠端儲存庫上，本篇則是要說明如何將遠端儲存庫最新的資料同步到本機端，在 Git 操作中主要有以下這些作法：<em>fetch</em>、<em>pull</em> 與 <em>clone</em>。其中，<em>fetch</em> 與 <em>pull</em> 作用相似，如果與本機端專案連接的遠端儲存庫有較新的版本，透過這兩種指令可以將較新的版本拉取下來。但如果今天工作電腦本身沒有該遠端儲存庫的專案時，我們則要使用 <em>clone</em> 指令，以下我們一一來觀看。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act1">一、fetch</h2>
+    <div class="text-block" id="act1">
+        <h2>一、fetch</h2>
         <p>無論是推還是拉的動作，都會很頻繁地在專案 Git 版控過程中被使用到，尤其是在多人維護的大型專案中，接手維護的人員第一件要做的事情就是確認自己本機端裡的檔案是否與遠端儲存庫的版本相同。</p>
         <figure>
             <img src="/images/learn/dev/git-pull-1.jpg">
@@ -61,8 +61,8 @@
             <figcaption>本機端的版控日誌已更新至 c5。</figcaption>
         </figure>
     </div>
-    <div class="text-block">
-        <h2 id="act2">二、pull</h2>
+    <div class="text-block" id="act2">
+        <h2>二、pull</h2>
         <p>再來看看 <em>pull</em> 的用法，這次 GitHub 遠端儲存庫上最新的提交版控記錄為 <b>c6</b>，而本機端則是 <b>c5</b>。</p>
         <figure>
             <img src="/images/learn/dev/git-pull-7.jpg">
@@ -86,8 +86,8 @@
         </figure>
         <p>由此可知 <em>pull</em> 同時執行了 <em>fetch</em> 與 <em>merge</em> 的動作，而多數使用者在拉取遠端儲存庫檔案時，使用 <em>pull</em> 的頻率更甚於透過 <em>fetch</em> 指令。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act3">三、clone</h2>
+    <div class="text-block" id="act3">
+        <h2>三、clone</h2>
         <p>同樣是向遠端儲存庫拉取檔案，<em>fetch</em> 與 <em>pull</em> 與其說是下載，不如說更趨近於本機端專案更新檔案的行為。倘若工作電腦不存在該專案，就無法用 <em>fetch</em>、<em>pull</em> 指令取得檔案，此時正確的執行指令為 <em>clone</em>。</p>
         <div class="text-code" v-pre>
             <pre><code class="language-bash">$git clone [REPO].git</code></pre>
@@ -101,8 +101,8 @@
             <img src="/images/learn/dev/git-pull-11.jpg">
         </figure>
     </div>
-    <div class="text-block">
-        <h2 id="act4">四、參考資料</h2>
+    <div class="text-block" id="act4">
+        <h2>四、參考資料</h2>
         <dl>
             <dd><a href="https://git-scm.com/" target="_blank">Git</a></dd>
         </dl>

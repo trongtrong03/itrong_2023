@@ -15,8 +15,8 @@
             <li><a href="#act7">七、參考資料</a></li>
         </ul>
     </div>
-    <div class="text-block">
-        <h2 id="act0">序、前言</h2>
+    <div class="text-block" id="act0">
+        <h2>序、前言</h2>
         <p>SVG（Scalable Vector Graphics，可縮放向量圖形）已經是現在網頁圖像表現的主流方法之一，因為向量的特色，解決了一般像素影像一經縮放就會失真的困擾，在檔案大小也較傳統影像格式來的節省。所以現在我們看到很多網站 Logo，乃至於精緻的小動畫，基本都直接透過 SVG 來完成。</p>
         <p>建立 SVG 的方式很多，精通語法的程式設計師可以用 IDE 輕鬆地寫出與形狀、色彩對應的 SVG 程式碼；而對視覺設計師來說，現在主流繪圖軟體例如 Adobe 系列的 Photoshop、illustrator 等也都有提供將檔案輸出成 SVG 格式的服務，不僅簡單，還直接節省去程式設計師作業時間。然而，姑且不提繪圖軟體轉出的 SVG 原始碼不是很乾淨這個缺點，此輸出方式通常僅止於滿足「靜態」 SVG 的需求，假如要做的是「動態」SVG，視覺設計師大多能協助的只剩下提供視覺素材，動畫方面依舊需要仰賴程式設計師幫忙實現，分工不是不好，只是有可能衍生以下幾個情況：</p>
         <ol>
@@ -27,16 +27,16 @@
         </ol>
         <p>相信相關從業人員都明瞭，當設計師與工程師陷入彼此不同調的泥沼，通常要嘛是設計師妥協工程師提交的結果，要不就是工程師反覆修改程式，盡可能滿足設計師期望。無論是哪一種，顯然都不會是良好團隊合作經驗。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act1">一、什麼是 Lottie？</h2>
+    <div class="text-block" id="act1">
+        <h2>一、什麼是 Lottie？</h2>
         <figure>
             <img src="/images/knowledge/lottie/svg-lottie-1.jpg">
         </figure>
         <p>為了解決 SVG 動畫造成的時間與溝通成本耗費甚多的問題，<a href="https://airbnb.design/lottie/" target="_blank">Airbnb Design</a> 推出一款名為「Lottie」的函式庫，藉由系統、軟體或網頁等媒介，直接製作出 SVG 動畫。這些媒介會將 SVG 輸出成 <b>.json</b> 格式的檔案，程式人員只需要將 JSON 嵌入到程式碼裡，網頁（或 APP）加載後程式碼就會自己匯入並生成出動畫......聽起來是不是很棒？</p>
         <p>而 Lottie 實現 SVG 動畫檔案的其中一個主要方式是透過 Adobe After Effect 來執行，接下來幾個章節將會說明相關套件安裝，以及使用流程與預覽方式。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act2">二、下載檔案</h2>
+    <div class="text-block" id="act2">
+        <h2>二、下載檔案</h2>
         <p>進行安裝之前，我們要先下載兩樣東西，分別是 Bodymovin 的套件壓縮檔，以及輔助 AE 套件管理的程式 ZXP installer。</p>
         <h3>Bodymovin GitHub：</h3>
         <p>下載連結：<a href="https://github.com/airbnb/lottie-web" target="_blank">https://github.com/airbnb/lottie-web</a></p>
@@ -59,8 +59,8 @@
         </figure>
         <p>接下來就要開始進行安裝了，請注意！安裝外掛套件時，請先確認 After Effect 是否已關閉喔！</p>
     </div>
-    <div class="text-block">
-        <h2 id="act3">三、開始安裝</h2>
+    <div class="text-block" id="act3">
+        <h2>三、開始安裝</h2>
         <h3>Windows：</h3>
         <h6>1. 安裝 ZXP</h6>
         <p>執行 <b>aescripts + aeplugins zxp installer(setup).exe</b> 應用程式，基本上就是按照預設建議安裝程式即可。</p>
@@ -104,8 +104,8 @@
             <img src="/images/knowledge/lottie/svg-lottie-11.jpg">
         </figure>
     </div>
-    <div class="text-block">
-        <h2 id="act4">四、使用方法</h2>
+    <div class="text-block" id="act4">
+        <h2>四、使用方法</h2>
         <p>假設現在我們已經在 AE 把動畫都做好了，確認可以輸出成 SVG 動畫，我們從上方工具列選擇「<b>Window -> Extensions -> Bodymovin</b>」：</p>
         <figure>
             <img src="/images/knowledge/lottie/svg-lottie-12.jpg">
@@ -128,8 +128,8 @@
             <img src="/images/knowledge/lottie/svg-lottie-16.jpg">
         </figure>
     </div>
-    <div class="text-block">
-        <h2 id="act5">五、如何預覽</h2>
+    <div class="text-block" id="act5">
+        <h2>五、如何預覽</h2>
         <p>一般情況下我們沒有辦法立即查看 Bodymovin 輸出的 JSON 檔轉譯之動畫，所以需要進一步借助其他方式來確認動畫是否有問題，預覽 JSON 檔的方式有以下三種：線上工具預覽、本機預覽，或在 AE Bodymovin 執行 Renders 前選擇一併輸出可 Demo 的 html 檔案。</p>
         <h3>線上工具：</h3>
         <p>LottieFiles：<a href="https://lottiefiles.com/preview" target="_blank">https://lottiefiles.com/preview</a></p>
@@ -198,8 +198,8 @@
         </figure>
         <p>輸出資料夾裡除了 JSON 文件與外嵌影像存放的 <b>images</b> 資料夾外，還多了一個 <b>demo</b> 的資料夾，裡面有一個 <b>data.html</b> 的網頁檔案，打開就可以在本機預覽動畫輸出成 JSON 格式的結果畫面。然而，本方法生成的 Demo 僅適合觀看，並不適合直接用在專案網頁（因為 Demo 程式碼多且雜），提交時仍只提供 <b>.json</b> 與 <b>images</b> 給工程師即可。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act6">六、注意事項</h2>
+    <div class="text-block" id="act6">
+        <h2>六、注意事項</h2>
         <p>最後來提一些用 AE 製作 SVG 動畫時需要注意的幾個細節：</p>
         <p>1. Lottie 並不支援所有 AE 功能，尤其是工具列上 <b>Layer</b> 與 <b>Effect</b> 功能裡的特效。Lottie 官網有提供一份<a href="https://airbnb.io/lottie/#/supported-features" target="_blank">Supported Features</a> 清單，提供使用者查詢他們動畫使用的效果是否有被支援。</p>
         <figure>
@@ -208,8 +208,8 @@
         <p>2. 盡量避免使用影像格式的圖片作素材，畢竟 SVG 主要優勢在於可縮放式向量圖形能確保在各種尺寸畫面上都不失真。</p>
         <p>3. 安裝 Bodymovin 外掛套件後，記得要在偏好設定裡將「<b>Allow Scripts to Write Files and Access Network</b>」項目打勾，這樣 Render 才能順利輸出動畫檔案而不受權限阻擋。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act7">七、參考資料</h2>
+    <div class="text-block" id="act7">
+        <h2>七、參考資料</h2>
         <dl>
             <dd><a href="https://aescripts.com/bodymovin/" target="_blank">Lottie &#8211; Airbnb Design</a></dd>
             <dd><a href="https://aescripts.com/bodymovin/" target="_blank">Bodymovin - Lottie</a></dd>

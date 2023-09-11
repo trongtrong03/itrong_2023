@@ -13,20 +13,20 @@
             <li><a href="#act5">五、參考資料</a></li>
         </ul>
     </div>
-    <div class="text-block">
-        <h2 id="act0">序、前言</h2>
+    <div class="text-block" id="act0">
+        <h2>序、前言</h2>
         <p>本篇學習筆記要記錄的主題是 JavaScript 基礎之一──「變數」（Variables），除了簡略介紹其用途與定義方式外，也會記述它的型別（Types）種類與約定成俗的命名規則。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act1">一、何謂變數</h2>
+    <div class="text-block" id="act1">
+        <h2>一、何謂變數</h2>
         <p>「JavaScript variables are containers for storing data values.」──在 <a href="https://www.w3schools.com/js/js_variables.asp" target="_blank">w3schools</a> 文件裡是這樣描述變數的，意即 JavaScript 變數是用來儲存資料參數值的容器。舉例來說，小明今天牽著一台油箱可容納 7 公升的摩托車去加油站加油，95 無鉛汽油的價格為每公升 20 元，在油箱一滴油都不剩的前提下，試問小明此行要花多少加油錢？這是很簡單的數學運算，公式為「容升 x 每公升價格 = 總價格」，最終得出 140 元（7 x 20）的結果。然而，雖然摩托車的油箱容升是固定的，油價卻不可能永遠停在每公升 20 元，也許下週大降 0.1 元，下下週小漲 2 元...等，它是一種時不時發生改變的浮動數字，因此，我們就可以稱它是──或者說是使它成為一個變數。在 JavaScript 中，會透過定義變數的方式，快速取得每一次數值變動後的計算結果，最後更新到畫面元素上。上述這段過程就是 JavaScript 的最基本思維了，透過下表我們可以更直觀地理解到 JavaScript 的流程運作方式：</p>
         <figure>
             <img src="/images/learn/js/learn-var-1.jpg">
             <figcaption>JavaScript 的思維流程。</figcaption>
         </figure>
     </div>
-    <div class="text-block">
-        <h2 id="act2">二、宣告變數</h2>
+    <div class="text-block" id="act2">
+        <h2>二、宣告變數</h2>
         <p>使用變數之前，必須先發佈通知，這個動作包含建立變數，以及賦予變數名稱。此一過程我們稱之為「宣告（declare）」，在 JavaScript 世界裡，使用 <em>var</em> 這個詞（variables 的簡寫）來宣告變數。例如：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">var price;</code></pre>
@@ -40,8 +40,8 @@
         </div>
         <p>需要注意的是，單一 <em>=</em> 符號在 JavaScript 並非「等於」的意思，而是表達「指定」的概念，故前面才會說將 <em>20</em> 「指定」給 <em>price</em>。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act3">三、變數的資料型別</h2>
+    <div class="text-block" id="act3">
+        <h2>三、變數的資料型別</h2>
         <p>我們常常會看見或聽別人說 JavaScript 是「弱型別」的程式語言，什麼是弱型別程式語言？這個問題留到本章節末段再來解釋，我們首先要知道的是，在電腦程式語言世界裡，存在著「型別」這樣的一個系統，用來定義程式語言中的數值或運算式之類型。拿前一章節的 <em>var price;</em> 為例，當沒有將任何數值指定給宣告變數的狀況下，其回傳值結果為 <em>undefined</em>，這個 <em>undefined</em> 就是 JavaScript 其中一種型別。而 <em>var price = 20;</em> 時，回傳的結果為 <em>20</em>，它也是型別的一種，屬於「數值（Number）資料型別」。或許看到這裡會狐疑定義變數數值的型別究竟有什麼用？當然有用，就像我們會用「元」來定論某個商品的售價，而不是以公分或顏色作為交易單位。對程式語言而言，型別象徵變數值的特徵，不同資料類型的型別，必須適才適所地運用在適當的程式邏輯。</p>
         <p>目前 ECMAScript 最新的標準定義了七種資料型別，分別是：</p>
         <div class="text-flex">
@@ -184,8 +184,8 @@ console.log(a);     // "100300"</code></pre>
         </div>
         <p><em>a</em> 回傳的結果為 <em>"100300"</em>，為字串相加。儘管它不像 PHP 這麼聰明，會自動將字串轉為數字並作加總計算，可是也不會像 JAVA 如同 NBA 裁判奉行零容忍原則般說一不二，依舊會回傳出個結果給我們。雖然比起強型別，弱型別語言的彈性較大，但不嚴謹招致錯誤轉型判斷的可能也比前者來的高（像 JavaScript 就是很好的例子），畢竟程式語言不是開發者本人，無法準確地判斷開發者給予的數值究竟是不是本人所期望的，因此培養編寫程式時反覆檢查的習慣非常重要。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act4">四、變數的命名規則</h2>
+    <div class="text-block" id="act4">
+        <h2>四、變數的命名規則</h2>
         <p>英文字母的大小寫在諸多程式語言是不同的字詞，而在 JavaScript 也不例外，除此之外，當我們在宣告變數名稱的時候，也有一些命名規則需要遵循或注意。</p>
         <p><br></p>
         <h3>1. 不能以數字起始：</h3>
@@ -304,8 +304,8 @@ console.log(a);     // "100300"</code></pre>
         <h3>6. 連接詞的「駝峰式」命名法：</h3>
         <p>如果變數名稱是由兩個字詞以上組成，除了可以使用底線（<em>_</em>）作字詞間的連接外，也可以使用駝峰式（camal case）命名法，除了第一個字詞之外的後面字詞其字首皆使用大寫，例如：<em>firstName</em>，與 <em>firstname</em> 相較，駝峰式命名顯然容易閱讀地多。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act5">五、參考資料</h2>
+    <div class="text-block" id="act5">
+        <h2>五、參考資料</h2>
         <dl>
             <dd><a href="https://www.books.com.tw/products/0010744702" target="_blank">《JavaScript & JQuery：網站互動設計程式進化之道》</a></dd>
             <dd><a href="https://cythilya.github.io/2018/10/11/types/" target="_blank">你懂 JavaScript 嗎？#4 型別（Types）</a></dd>

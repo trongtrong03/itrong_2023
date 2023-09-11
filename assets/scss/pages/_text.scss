@@ -332,9 +332,6 @@
             &::before {
                 content: '\f062';
             }
-            &.is-show {
-                display: inline-block;
-            }
         }
         &:hover,
         &.is-active {
@@ -808,8 +805,7 @@
 
 .text-block {
     position: relative;
-    margin-bottom: 4rem;
-    padding-bottom: 4rem;
+    padding: 5rem 0;
     &::after {
         content: '＊＊＊';
         position: absolute;
@@ -819,15 +815,13 @@
         transform: translateX(-50%);
     }
     &:last-of-type {
-        margin-bottom: 0;
         padding-bottom: 0;
         &::after {
             display: none;
         }
     }
     @include MQ(max-480) {
-        margin-bottom: 2rem;
-        padding-bottom: 2rem;
+        padding: 3rem 0;
         &::after {
             font-size: 0.75rem;
         }

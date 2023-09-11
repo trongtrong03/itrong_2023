@@ -12,12 +12,12 @@
             <li><a href="#act4">四、參考資料</a></li>
         </ul>
     </div>
-    <div class="text-block">
-        <h2 id="act0">序、前言</h2>
+    <div class="text-block" id="act0">
+        <h2>序、前言</h2>
         <p>前一篇主角的是 <b>BOM</b>，這一篇要來談的是 <b>DOM</b>。<b>DOM</b> 對網頁程式語言稍有涉略的人來說應該都不陌生，心想不就是一顆由許多 HTML 元素組成的樹嗎？雖說這樣總的的結論並不算錯，但若能更深入、全盤地了解 <b>DOM</b> 的觀念，會更能幫助我們理解 JavaScript 與瀏覽器之間的關係。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act1">一、DOM 簡介</h2>
+    <div class="text-block" id="act1">
+        <h2>一、DOM 簡介</h2>
         <p><b>DOM</b> 全名為 Document Object Model，直譯成中文一般都稱之為「文件物件模型」。在前一篇文章曾說到瀏覽器物件模型（<b>BOM</b>），其核心物件 <em>window</em> 底下還包含其他許多子物件，這之中也包含了 <em>document</em>，而這個 <em>document</em> 其實就是 <b>DOM</b>。我們可由下圖了解 <b>BOM</b> 與 <b>DOM</b> 之間的關聯性：</p>
         <figure>
             <img src="/images/learn/js/learn-dom-1.jpg">
@@ -45,8 +45,8 @@
         <p>總結來說，<b>DOM</b> 乃是由 W3C 制定的其中一種介面定義，目的是規範百家爭鳴的瀏覽器們能遵循其規則去設計瀏覽器，<b>DOM</b> 透過節點組成樹狀的文件結構，提供給 JavaScript 存取或改變文件的風格、內容，甚至是結構。所以回到多數人關心的問題：「<b>BOM</b> 與 <b>DOM</b> 的差異是什麼？」這兩者最大的區別在於 <b>BOM</b> 是 JavaScript 與瀏覽器之間溝通的窗口，各種屬性方法的操作不涉及網頁文件內容。而 <b>DOM</b> 則是讓 JavaScript 用來控制、改變網頁節點與內容的標準。</p>
         <p>根據 <a href="https://developer.mozilla.org/zh-TW/docs/Web/API/Document_Object_Model" target="_blank">MDN Web Docs</a> 的敘述，<b>DOM</b> 是 HTML、XML、SVG 等文件類型的程式介面，因此我們可以說我們常常使用 JavaScript 存取 <b>DOM</b>，但 <b>DOM</b> 本身卻不是 JavaScript 的一部份。接下來的兩個章節，筆者將以 JavaScript 的面向，分別介紹 <em>document</em> 有哪些常見的屬性及方法可以對 <b>DOM</b> 進行操作。</p>
     </div>
-    <div class="text-block">
-        <h2 id="act2">二、常見屬性</h2>
+    <div class="text-block" id="act2">
+        <h2>二、常見屬性</h2>
         <p>以下列出一些常見的對象屬性介紹簡表，然後會再對其中幾個屬性作補充說明。</p>
         <div class="text-flex">
             <div class="f-width">
@@ -124,11 +124,11 @@ https://www.w3school.com.cn/htmldom/coll_form_elements.asp
 https://www.w3school.com.cn/jsref/dom_obj_document.asp
 https://blog.xuite.net/trcy/vie/17670722-->
     </div>
-    <div class="text-block">
-        <h2 id="act3">三、常見方法</h2>
+    <div class="text-block" id="act3">
+        <h2>三、常見方法</h2>
     </div>
-    <div class="text-block">
-        <h2 id="act4">四、參考資料</h2>
+    <div class="text-block" id="act4">
+        <h2>四、參考資料</h2>
         <dl>
             <dd><a href="https://www.happycoding.today/posts/43" target="_blank">JavaScript入門系列：BOM和DOM筆記</a></dd>
             <dd><a href="https://ithelp.ithome.com.tw/articles/10214769" target="_blank">JavaScript 初心者筆記: JS 內建物件 - 全域物件篇</a></dd>

@@ -9,8 +9,8 @@
             <li><a href="#act2">二、指令介紹</a></li>
         </ul>
     </div>
-    <div class="text-block">
-        <h2 id="act1">一、MS-DOS 簡介</h2>
+    <div class="text-block" id="act1">
+        <h2>一、MS-DOS 簡介</h2>
         <p>使用 Windows 作業系統的用戶對 MS-DOS 這個詞應該不陌生，是的，它就是微軟發展的一套作業系統，全名為「MicroSoft Disk Operating System」，早期作業系統基本上是由鍵盤輸入特定的指令命令電腦執行動作，不若現在都是透過圖形化介面操作、管理我們的電腦。</p>
         <p>儘管對一般使用者來說幾乎沒有打開命令提示字元輸入指令的需要，但對程式語言工程師而言，仍是時不時會需要召喚它執行系統檢測、安裝軟體掛件或是專案作業，其效率有時甚至超越純使用圖形化介面執行工作的人。以下將一些網頁前端工作者較長使用到的指令整理成一份簡表，馬上一起來看看：</p>
         <div class="text-flex">
@@ -58,8 +58,8 @@
             </div>
         </div>
     </div>
-    <div class="text-block">
-        <h2 id="act2">二、指令介紹</h2>
+    <div class="text-block" id="act2">
+        <h2>二、指令介紹</h2>
         <h3 id="msdos_cd">cd：</h3>
         <p><em>cd</em> 也被稱作 <em>chdir</em>，全名 change directory，即改變目錄之意，更直白地講就是移動到指定資料夾目錄，或是進行返回的動作。</p>
         <p>移動至指定目錄：</p>

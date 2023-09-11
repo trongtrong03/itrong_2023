@@ -10,8 +10,8 @@
             <li><a href="#act3">三、問題集錦</a></li>
         </ul>
     </div>
-    <div class="text-block">
-        <h2 id="act3">三、問題集錦</h2>
+    <div class="text-block" id="act3">
+        <h2>三、問題集錦</h2>
         <div class="text-accordin is-error">
             <div class="accordin-item" :class="isActive==1 ? 'is-active' : ''">
                 <div class="accordin-title" @click="isActive = 1;">
