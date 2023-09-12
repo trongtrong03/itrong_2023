@@ -30,6 +30,10 @@
                             </NuxtLink>
                         </li>
                     </ul>
+                    <!-- no results -->
+                    <div class="no-results" v-if="filterSearch.length === 0">
+                        <NoResult />
+                    </div>
                 </div>
                 <div class="list-loading" v-else>
                     <p>loading...</p>

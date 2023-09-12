@@ -805,12 +805,23 @@
     {
         "id": 74,
         "title": "QR Code 產生器",
-        "desc": "QR Code 是二維條碼的一種，QR 為 Quick Response 的縮寫，即希望 QR Code 可以快速解碼其內容， 相對於傳統一維條碼有更大的儲存資料容量，也無需像一維條碼掃描時需要直線對準掃描器，且 QR Code 具有容錯能力，即使有部份汙損，仍然可以完整的讀取資訊。 。",
+        "desc": "QR Code 是二維條碼的一種，QR 為 Quick Response 的縮寫，即希望 QR Code 可以快速解碼其內容， 相對於傳統一維條碼有更大的儲存資料容量，也無需像一維條碼掃描時需要直線對準掃描器，且 QR Code 具有容錯能力，即使有部份汙損，仍然可以完整的讀取資訊。",
         "href": "https://qrcode-generator.tw/",
         "article": false,
         "path": "",
         "cover": true,
         "img": "qrcodegenerator",
         "type": "others"
+    },
+    {
+        "id": 75,
+        "title": "Vue3 One Piece",
+        "desc": "雖然不是官方 Vue 網站，但是是由中國一群 Vue 愛好者共同搭建的文件庫，整合了各種 Vue3 相關學習管道與套件等琳瑯滿目的公開資源。",
+        "href": "https://vue3js.cn/",
+        "article": false,
+        "path": "",
+        "cover": true,
+        "img": "vue3js",
+        "type": "js"
     }
 ]

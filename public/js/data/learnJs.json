@@ -96,5 +96,12 @@
         "title": "jQuery 常見錯誤訊息問題、除錯建議以及各種疑難雜症彙整",
         "time": "2020.01.06",
         "type": "jquery"
+    },
+    {
+        "id": 30,
+        "href": "vue_lifecycle",
+        "title": "循序漸進學 Vue3：認識 Vue1 到 Vue3 的生命週期（Lifecycle Diagram）",
+        "time": "2021.07.02",
+        "type": "vue"
     }
 ]
