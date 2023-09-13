@@ -69,13 +69,18 @@ var element = vm.$el;
         <p>在 <em>beforeCompile</em> 進入 <em>compile</em> 階段這之間，Vue 實例會開始解析模板，並生成在虛擬的 DOM 記憶體裡，因為是虛擬的，所以瀏覽器實際畫面仍未能顯示解析的內容。</p>
         <p><br></p>
         <h3><em>compile</em></h3>
-        <p>編譯完成後立即調用裡面的程式。通常在這個階段時所有指令都已生效，因此像是數據的變化都將會觸發 DOM 的更新，然而即便如此，此階段並不能保證 <em>$el</em> 也已經渲染到 DOM 裡面。</p>
+        <p>編譯完成後立即調用裡面的程式。通常在這個階段時所有指令都已生效，因此像是數據的變化都將會觸發 DOM 的更新，然而即便如此，此階段還不能保證 <em>$el</em> 也已經渲染到 DOM 裡面。</p>
         <p><br></p>
         <h3><em>ready</em></h3>
+        <p>根據官方文件的解釋，<em>ready</em> 會在編譯結束和 <em>$el</em> 首次渲染至 DOM 後調用，例如銜接在第一次 <em>attached</em> 鉤子之後。雖然生命週期圖表裡沒有 <em>attached</em>，但 <em>attached</em> 也是生命週期中的其中一個鉤子，它的呼叫時間點主要在 <em>vm.$el</em> 渲染進 DOM 之後，但有個前提，必須是由 Vue 指令或實例方法（例如 <em>$appendTo()</em>）插入才會觸發，直接針對 <em>vm.$el</em> 操作並無法觸發這個鉤子。</p>
         <p><br></p>
         <h3><em>beforeDestory</em></h3>
+        <p>Destory 是銷毀的意思，如此一來 <em>beforeDestory</em> 意思就不難懂了，指的就是實例開始銷毀前調用的函式，而此時實例仍保有目前的功能。</p>
+        <p>因此，<em>beforeDestory</em> 階段通常會執行一些資源清理的工作，譬如取消計時器、解除事件監聽器、銷毀子組件......等等。</p>
         <p><br></p>
         <h3><em>destoryed</em></h3>
+        <p><em>destoryed</em> 是 Vue 實例生命週期的最後一站，它會在實例被銷毀後才調用，此時實例中的所有指令都已經解除綁定，裡面的子組件也已通通被銷毀。</p>
+        <p>通常情況下，<em>destoryed</em> 鉤子在這個階段大多用來執行記憶體釋放之類的最終清理動作，和 <em>beforeDestory</em> 的主要差別在於實例進入銷毀階段的執行時機。</p>
 
     </div>
     <div class="text-block" id="act2">
