@@ -11,12 +11,12 @@
             <li><a href="#act3">三、如何重複使用？</a></li>
         </ul>
     </div>
-    <div class="text-block" id="act0">
-        <h2>序、前言</h2>
+    <div class="text-block">
+        <h2 id="act0">序、前言</h2>
         <p><a href="https://www.motionblurjs.com/" target="_blank">MotionBlurJS</a> 是一款輕量化的 JavaScript 函式庫，它可以令我們透過 CSS 寫的動畫（animation）效果更加自然、平滑，且導入方法簡單，調用參數也不多，十分容易上手。</p>
     </div>
-    <div class="text-block" id="act1">
-        <h2>一、如何使用？</h2>
+    <div class="text-block">
+        <h2 id="act1">一、如何使用？</h2>
         <p>僅需下載 MotionBlurJS 提供的 <a href="https://www.motionblurjs.com/blurSVG.js" target="_blank">JS</a> 文件並置入專案資料夾內，然後在網頁文件中引用它即可：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-html">&lt;script src="https://www.motionblurjs.com/blurSVG.js"&gt;&lt;/script&gt;</code></pre>
@@ -82,8 +82,8 @@
         </div>
         <p>但經過測試，<em>fadejs-data</em> 參數的作用與 CSS 的 <em>opacity</em> 相差無幾，若無必要，要調整元素的透明度建議仍直接從 CSS 下手。</p>
     </div>
-    <div class="text-block" id="act2">
-        <h2>二、動畫測試</h2>
+    <div class="text-block">
+        <h2 id="act2">二、動畫測試</h2>
         <p>1. 移動（<em>transform: translate</em>）：</p>
         <div class="ex-wrap">
             <div class="ex-item">
@@ -226,8 +226,8 @@
         <p><br></p>
         <p>可以看出，MotionBlurJS 對於縮放（<em>scale</em>）與傾斜（<em>skew</em>）的表現並不明顯，若搭配位移則可能會有較明顯的效果展現。</p>
     </div>
-    <div class="text-block" id="act3">
-        <h2>三、如何重複使用？</h2>
+    <div class="text-block">
+        <h2 id="act3">三、如何重複使用？</h2>
         <p>預設狀態下，無論是 <em>blurjs</em> 還是 <em>fadejs</em> 都僅能在單一網頁上作用於單一元素，若重複使用，則第二個之後的元素皆無法作用。倘若該網頁有複數個元素需要相同的 MotionBlurJS 效果，我們可以直接從官方文件中進行修改。</p>
         <p>首先在 JS 文件中找到這一段：</p>
         <div class="text-code" v-pre>
