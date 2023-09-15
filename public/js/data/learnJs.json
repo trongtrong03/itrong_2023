@@ -99,8 +99,15 @@
     },
     {
         "id": 30,
-        "href": "vue_lifecycle",
-        "title": "循序漸進學 Vue3：認識 Vue1.0 到 Vue3.0 的生命週期（Lifecycle Diagram）",
+        "href": "vue_lifecycle_1",
+        "title": "循序漸進學 Vue3：認識 Vue1.0 到 Vue3.0 的生命週期（Lifecycle Diagram）-上",
+        "time": "2021.07.02",
+        "type": "vue"
+    },
+    {
+        "id": 31,
+        "href": "vue_lifecycle_2",
+        "title": "循序漸進學 Vue3：認識 Vue1.0 到 Vue3.0 的生命週期（Lifecycle Diagram）-下",
         "time": "2021.07.02",
         "type": "vue"
     }

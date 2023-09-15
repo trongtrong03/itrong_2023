@@ -58,7 +58,7 @@ export default {
         }
     },
     mounted() {
-        // get data
+        ////- get data
         fetch('/js/data/gallery.json')
             .then(response => response.json())
             .then(data => {
@@ -78,10 +78,12 @@ export default {
             this.currentIndex = item.currentIndex;
         },
 
+        ////- 切換 body 滾動禁止與否
         noScroll() {
             document.body.classList.toggle('no-scroll');
         },
 
+        ////- 載入上一筆資料
         loadPrevItem() {
             this.currentIndex--;
             if (this.currentIndex < 0) {
@@ -90,6 +92,7 @@ export default {
             this.selectedItem = this.jsonData.find(item => item.currentIndex === this.currentIndex);
         },
 
+        ////- 載入下一筆資料
         loadNextItem() {
             this.currentIndex++;
             if (this.currentIndex >= this.jsonData.length) {

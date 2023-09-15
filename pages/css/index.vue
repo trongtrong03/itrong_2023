@@ -58,7 +58,7 @@ export default {
         }
     },
     mounted() {
-        // get data
+        ////- get data
         fetch('/js/data/learnCSS.json')
             .then(response => response.json())
             .then(data => {
@@ -68,7 +68,7 @@ export default {
                 console.error('Error:', error);
             });
         
-        // scroll animation
+        ////- scroll animation
         AOS.init({
             once: true,
             easing: "ease-in-out-sine"
@@ -82,9 +82,8 @@ export default {
             });
         }
     },
-    updated() {},
     methods: {
-        // search
+        ////- search
         toggleActiveState() {
             this.searchOn = !this.searchOn;
         }

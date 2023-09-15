@@ -11,6 +11,10 @@
                         <button></button>
                         <select v-model="filter">
                             <option value="all" selected>全部</option>
+                            <option value="js">JavaScript</option>
+                            <option value="jquery">jQuery</option>
+                            <option value="vue">Vue</option>
+                            <option value="css">CSS</option>
                         </select>
                     </div>
                     <div class="list-input">
@@ -20,7 +24,7 @@
                 </div>
                 <div class="workshop-list" v-if="jsonData">
                     <ul>
-                        <li v-for="(item, index) in filterSearch" :key="index" v-show="filter=='all'" data-aos="fade-up">
+                        <li v-for="(item, index) in filterSearch" :key="index" v-show="shouldShowItem(item)" data-aos="fade-up">
                             <NuxtLink :to="'/workshop/_' + item.href">
                                 <figure>
                                     <img :src="'/images/learn/js/plugin/' + item.href + '.jpg'">
@@ -60,7 +64,7 @@ export default {
         }
     },
     mounted() {
-        // get data
+        ////- get data
         fetch('/js/data/workshop.json')
             .then(response => response.json())
             .then(data => {
@@ -70,7 +74,7 @@ export default {
                 console.error('Error:', error);
             });
 
-        // scroll animation
+        ////- scroll animation
         AOS.init({
             once: true,
             easing: "ease-in-out-sine"
@@ -79,16 +83,34 @@ export default {
     computed: {
         filterSearch() {
             var search = this;
+            console.log("Filter:", search.filter); // 检查选项值
             return this.jsonData.filter(function(item) {
-                return item.title.toLowerCase().indexOf(search.query.toLowerCase()) !== -1;
+                console.log("Item:", item[search.filter]); // 检查每个项目的属性值
+                if (search.filter === 'all') {
+                    return item.title.toLowerCase().indexOf(search.query.toLowerCase()) !== -1;
+                } else {
+                    return (
+                        item.title.toLowerCase().indexOf(search.query.toLowerCase()) !== -1 &&
+                        item[search.filter] === true
+                    );
+                }
             });
         }
     },
     updated() {},
     methods: {
-        // search
+        ////- search
         toggleActiveState() {
             this.searchOn = !this.searchOn;
+        },
+
+        ////- 讓 data-aos 可以在每次選擇不同篩選項目都能重新執行
+        shouldShowItem(item) {
+            if (this.filter === 'all') {
+                return true;
+            } else {
+                return item[this.filter] && item.title.toLowerCase().indexOf(this.query.toLowerCase()) !== -1;
+            }
         }
     }
 }

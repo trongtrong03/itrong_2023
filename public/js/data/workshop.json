@@ -238,5 +238,15 @@
         "jquery": false,
         "vue": false,
         "css": false
+    },
+    {
+        "id": 25,
+        "href": "overflow_nav",
+        "title": "MotionBlurJS 使動畫效果更自然的輕量化 JS 套件",
+        "time": "2021.04.14",
+        "js": false,
+        "jquery": true,
+        "vue": false,
+        "css": false
     }
 ]

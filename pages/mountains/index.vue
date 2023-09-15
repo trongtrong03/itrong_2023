@@ -249,7 +249,7 @@ export default {
         }
     },
     mounted() {
-        // get data
+        ////- get data
         fetch("/js/data/mountains.json")
             .then(response => response.json())
             .then(data => {
@@ -259,7 +259,7 @@ export default {
                 console.error("Error:", error);
             });
 
-        // back to top
+        ////- back to top
         $(window).scroll(function() {
             if ($(this).scrollTop() > 400) {
                 $(".top-btn").fadeIn();
@@ -330,7 +330,7 @@ export default {
             return filtered;
         },
 
-        // search
+        ////- search
         toggleActiveState() {
             this.searchOn = !this.searchOn;
         }
@@ -338,8 +338,8 @@ export default {
     watch: {
         Filters: {
             handler(val) {
-            // console.log(val);
-        },
+                // console.log(val);
+            },
             deep: true
         }
     },

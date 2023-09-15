@@ -302,6 +302,9 @@ button {
         &::before {
             content: '\f062';
         }
+        &.is-show {
+            display: inline-block !important;
+        }
     }
     &.copy-to-clipboard-button {
         width: 2.5rem;

@@ -67,7 +67,7 @@ export default {
         }
     },
     mounted() {
-        // get data
+        ////- get data
         fetch('/js/data/resourceMaterial.json')
             .then(response => response.json())
             .then(data => {
@@ -85,7 +85,6 @@ export default {
             });
         }
     },
-    updated() {},
     methods: {
         toggleActiveState() {
             this.searchOn = !this.searchOn;

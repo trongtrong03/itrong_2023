@@ -474,7 +474,7 @@ export default {
     },
     
     mounted() {
-        // get data
+        ////- get data
         fetch('/js/data/mtlogs.json')
             .then(response => response.json())
             .then(data => {
@@ -490,13 +490,13 @@ export default {
                 console.error('Error:', error);
             });
 
-        // scroll animation
+        ////- scroll animation
         AOS.init({
             once: true,
             easing: "ease-in-out-sine"
         });
 
-        ////-- COPY START
+        ////- COPY START
         // 純JavaScript版本的copiq函式
         function copiq(element, options) {
         var settings = Object.assign(
@@ -541,12 +541,12 @@ export default {
                 }, 2000);
             }
         });
-        ////-- COPY END
+        ////- COPY END
     },
 
     methods: {
         initializeSlickSlider() {
-            // slick slider
+            ////- slick slider
             $(this.$refs.sliderListRef).slick({
                 centerMode: true,
                 centerPadding: '0',
