@@ -222,7 +222,7 @@
     {
         "id": 23,
         "href": "table_rows",
-        "title": "選擇表格列並於畫面下滑時固定位置",
+        "title": "會偵測寬度收納成下拉式的導覽列選單",
         "time": "2021.01.05",
         "js": true,
         "jquery": false,
@@ -242,7 +242,7 @@
     {
         "id": 25,
         "href": "overflow_nav",
-        "title": "MotionBlurJS 使動畫效果更自然的輕量化 JS 套件",
+        "title": "偵測寬度自動納入下拉選單的導覽列項目",
         "time": "2021.04.14",
         "js": false,
         "jquery": true,
