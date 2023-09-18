@@ -7,9 +7,8 @@
         <ul>
             <li><a href="#act0">序、前言</a></li>
             <li><a href="#act1">一、DOM 簡介</a></li>
-            <li><a href="#act2">二、常見屬性</a></li>
-            <li><a href="#act3">三、常見方法</a></li>
-            <li><a href="#act4">四、參考資料</a></li>
+            <li><a href="#act2">二、常見屬性和方法</a></li>
+            <li><a href="#act3">三、參考資料</a></li>
         </ul>
     </div>
     <div class="text-block" id="act0">
@@ -46,89 +45,213 @@
         <p>根據 <a href="https://developer.mozilla.org/zh-TW/docs/Web/API/Document_Object_Model" target="_blank">MDN Web Docs</a> 的敘述，<b>DOM</b> 是 HTML、XML、SVG 等文件類型的程式介面，因此我們可以說我們常常使用 JavaScript 存取 <b>DOM</b>，但 <b>DOM</b> 本身卻不是 JavaScript 的一部份。接下來的兩個章節，筆者將以 JavaScript 的面向，分別介紹 <em>document</em> 有哪些常見的屬性及方法可以對 <b>DOM</b> 進行操作。</p>
     </div>
     <div class="text-block" id="act2">
-        <h2>二、常見屬性</h2>
-        <p>以下列出一些常見的對象屬性介紹簡表，然後會再對其中幾個屬性作補充說明。</p>
+        <h2>二、常見屬性和方法</h2>
+        <p><em>document</em> 的 API 屬性與方法非常豐富，以下僅列出一些比較常見及常使用到的項目，如果想進一步了解全部的屬性，可以參考 <a href="https://developer.mozilla.org/zh-TW/docs/Web/API/Document_Object_Model" target="_blank">mdn web docs</a> 或 <a href="https://www.w3school.com.cn/jsref/dom_obj_document.asp" target="_blank">W3school</a> 的說明。</p>
+        <p>屬性（Properties）通常指的是元素對象的特性或狀態，透過指定屬性，我們可以快速取得目標屬性的值，例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">console.log(document.title);</code></pre>
+        </div>
+        <p>若以本站為例，我們將會在 Console 視窗中得到「iTrong work studio」的回傳結果。</p>
+        <p>常見屬性：</p>
         <div class="text-flex">
             <div class="f-width">
                 <div class="f-head">
-                    <div class="f-f1"></div>
-                    <div class="f-f3">用途</div>
-                </div>
-                <div class="f-row">
-                    <div class="f-f1"><em>document.width</em></div>
-                    <div class="f-f3">取得網頁的寬度。</div>
-                </div>
-                <div class="f-row">
-                    <div class="f-f1"><em>document.title</em></div>
-                    <div class="f-f3">取得網頁的標題內容。</div>
-                </div>
-                <div class="f-row">
-                    <div class="f-f1"><em>document.bgColor</em></div>
-                    <div class="f-f3">設定網頁的背景顏色。</div>
-                </div>
-                <div class="f-row">
-                    <div class="f-f1"><em>document.fgColor</em></div>
-                    <div class="f-f3">設定網頁的前景顏色（文字顏色）。</div>
-                </div>
-                <div class="f-row">
-                    <div class="f-f1"><em>document.linkColor</em></div>
-                    <div class="f-f3">設定網頁超連結的顏色。</div>
-                </div>
-                <div class="f-row">
-                    <div class="f-f1"><em>document.alinkColor</em></div>
-                    <div class="f-f3">設定滑鼠經過網頁超連結時的顏色。</div>
-                </div>
-                <div class="f-row">
-                    <div class="f-f1"><em>document.vlinkColor</em></div>
-                    <div class="f-f3">設定點擊過的網頁超連結顏色。</div>
+                    <div class="f-f1">屬性</div>
+                    <div class="f-f2">說明</div>
                 </div>
                 <div class="f-row">
                     <div class="f-f1"><em>document.URL</em></div>
-                    <div class="f-f3">取得網頁的網址。</div>
-                </div>
-                <div class="f-row">
-                    <div class="f-f1"><em>document.cookie</em></div>
-                    <div class="f-f3">查詢或設定網頁中的所有 cookie。</div>
+                    <div class="f-f2">取得網頁的完整網址（例如：https://google.com）</div>
                 </div>
                 <div class="f-row">
                     <div class="f-f1"><em>document.domain</em></div>
-                    <div class="f-f3">查詢網頁的域名。</div>
+                    <div class="f-f2">取得網頁的網域名稱（例如：google）</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.cookie</em></div>
+                    <div class="f-f2">取得或設置網頁的 Cookie</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.doctype</em></div>
+                    <div class="f-f2">取得網頁的檔案類型（例如：&lt;!DOCTYPE&gt;）</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.documentElement</em></div>
+                    <div class="f-f2">取得網頁的跟元素（通常是 <em>html</em>）</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.title</em></div>
+                    <div class="f-f2">取得或設置網頁的標題</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.head</em></div>
+                    <div class="f-f2">取得網頁的 <em>head</em> 元素</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.body</em></div>
+                    <div class="f-f2">取得網頁的 <em>body</em> 元素</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.links</em></div>
+                    <div class="f-f2">取得網頁所有的 <em>a</em> 元素</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.images</em></div>
+                    <div class="f-f2">取得網頁所有的 <em>img</em> 元素</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.forms</em></div>
+                    <div class="f-f2">取得網頁所有的 <em>form</em> 元素</div>
                 </div>
             </div>
         </div>
-        <p><br></p>
-        <h3>document.width：</h3>
-        <p>取得 HTML 網頁中 <em>&lt;body&gt;</em> 元素的寬度。然而在現今主流瀏覽器已不支援這個屬性，若要取得網頁文件的寬度可使用以下三種替代方案：</p>
+        <p>另外還有與設置 CSS 有關的一系列 Document HTML Style，早前用 jQuery 修改樣式的時候寫法非常方便，用 <em>.css</em> 然後把原本 CSS 格式裡的樣式屬性直接搬進來改就好，但原生 JavaScript 透過 DOM 去指定的寫法則是採駝峰式命名，不若 CSS 以「-」隔開單字那樣直覺易懂。例如：</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-javascript">document.body.clientWidth              // &lt;body&gt; 的寬度
-document.documentElement.clientWidth   // &lt;html&gt; 的寬度
-window.innerWidth                      // 視窗的寬度</code></pre>
+            <pre><code class="language-javascript">document.body.style.backgroundColor = "red";</code></pre>
         </div>
+        <p>將網頁 <em>body</em> 的背景色設置為 <em>red</em> 紅色。</p>
+        <p>基本上只要是 CSS 有的屬性，DOM 都可以指定的到，主要是差在使用時的寫法轉換，以下隨便列舉一些：</p>
+        <div class="text-flex">
+            <div class="f-width">
+                <div class="f-head">
+                    <div class="f-f1">屬性</div>
+                    <div class="f-f2">說明</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.background</em></div>
+                    <div class="f-f2">設置或回傳指定對象的背景屬性（一行式聲明）</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.backgroundColor</em></div>
+                    <div class="f-f2">設置或回傳指定對象的背景顏色</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.backgroundImage</em></div>
+                    <div class="f-f2">設置或回傳指定對象的背景影像</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.border</em></div>
+                    <div class="f-f2">設置或回傳指定對象的邊框屬性（一行式聲明）</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.borderWidth</em></div>
+                    <div class="f-f2">設置或回傳指定對象的邊框寬度</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.borderColor</em></div>
+                    <div class="f-f2">設置或回傳指定對象的邊框顏色</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.fontSize</em></div>
+                    <div class="f-f2">設置或回傳指定對象的字級大小</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.height</em></div>
+                    <div class="f-f2">設置或回傳指定對象的高度</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.lineHeight</em></div>
+                    <div class="f-f2">設置或回傳指定對象的行高</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.margin</em></div>
+                    <div class="f-f2">設置或回傳指定對象的外距（四個方向的一行式聲明）</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.padding</em></div>
+                    <div class="f-f2">設置或回傳指定對象的內距（四個方向的一行式聲明）</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.position</em></div>
+                    <div class="f-f2">設置或回傳指定對象的定位方法</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.textAlign</em></div>
+                    <div class="f-f2">設置或回傳指定對象的水平對齊模式</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.transform</em></div>
+                    <div class="f-f2">設置或回傳指定對象的變形效果</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.transition</em></div>
+                    <div class="f-f2">設置或回傳指定對象的過渡效果（一行式聲明）</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.transitionTimingFunction</em></div>
+                    <div class="f-f2">設置或回傳指定對象的過渡效果速度曲線</div>
+                </div>
+            </div>
+        </div>
+        <p>完整列表可參考 <a href="https://www.w3school.com.cn/jsref/dom_obj_style.asp" target="_blank">W3school HTML DOM Style 对象</a> 此頁說明。</p>
         <p><br></p>
-        <h3>document.title：</h3>
-        <p>取得網頁文件的標題內容，此處的標題指的是 <em>&lt;head&gt;</em> 中的 <em>&lt;title&gt;</em> 屬性，也就是瀏覽器上方網頁頁籤裡的名稱。</p>
-        <p><br></p>
-        <h3>document.bgColor：</h3>
-        <p>可用來設定網頁文件的背景顏色。例如：</p>
+        <p>方法（Methods）是指針對目標元素，指定執行特定任務的操作行為，譬如獲取、創造特定元素，添加事件監視器......等等。例如：</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-javascript">function demo(){
-    document.bgColor="#CCC";
-}
-demo();</code></pre>
+            <pre><code class="language-javascript">const element = document.getElementById("myBtn");
+element.addEventListener("click", function() {
+    document.getElementById("demo").innerHTML = "Hello World";
+});</code></pre>
         </div>
+        <p>像這個範例就動用了兩種 DOM 方法，分別是「取得指定元素 ID」<em>getElementById</em>以及「建立事件監視器」<em>addEventListener</em>。</p>
+        <p>常見方法：</p>
+        <div class="text-flex">
+            <div class="f-width">
+                <div class="f-head">
+                    <div class="f-f1">屬性</div>
+                    <div class="f-f2">說明</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.getElementById(id)</em></div>
+                    <div class="f-f2">取得符合 ID 名稱的指定元素</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.getElementsByClassName(className)</em></div>
+                    <div class="f-f2">取得符合 class 名稱的指定元素</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.getElementsByTagName(tagName)</em></div>
+                    <div class="f-f2">取得符合元素標籤名稱的指定元素</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.createElement</em></div>
+                    <div class="f-f2">創造元素節點</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.appendChild</em></div>
+                    <div class="f-f2">將節點添加在最後一個子元素之後</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.removeChild</em></div>
+                    <div class="f-f2">刪除子節點</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.replaceChild</em></div>
+                    <div class="f-f2">將新的節點替換掉子節點</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.write</em></div>
+                    <div class="f-f2">將 HTML 或 JavaScript 程式碼寫入文件</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.click</em></div>
+                    <div class="f-f2">滑鼠點擊事件</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.focus</em></div>
+                    <div class="f-f2">取得焦點</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>document.blur</em></div>
+                    <div class="f-f2">移除焦點</div>
+                </div>
+            </div>
+        </div>
+        <p>DOM 方法項目同樣族繁不及備載，想查找或深入認識的可以參考 <a href="https://www.w3school.com.cn/jsref/dom_obj_all.asp" target="_blank">W3school HTML DOM Element 对象</a> 此頁說明。</p>
         <p><br></p>
         <p>除了透過 <em>document</em> 指定對象屬性外，也可以經由 <em>body</em> 與 <em>location</em> 這兩個子對象以進一步取得對象屬性。</p>
-
-<!-- https://www.wibibi.com/info.php?tid=238
-https://www.w3school.com.cn/htmldom/coll_form_elements.asp
-https://www.w3school.com.cn/jsref/dom_obj_document.asp
-https://blog.xuite.net/trcy/vie/17670722-->
     </div>
     <div class="text-block" id="act3">
-        <h2>三、常見方法</h2>
-    </div>
-    <div class="text-block" id="act4">
-        <h2>四、參考資料</h2>
+        <h2>三、參考資料</h2>
         <dl>
             <dd><a href="https://www.happycoding.today/posts/43" target="_blank">JavaScript入門系列：BOM和DOM筆記</a></dd>
             <dd><a href="https://ithelp.ithome.com.tw/articles/10214769" target="_blank">JavaScript 初心者筆記: JS 內建物件 - 全域物件篇</a></dd>
