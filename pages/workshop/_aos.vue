@@ -263,15 +263,86 @@
         </div>
         <p><br></p>
         <h3>data-aos-anchor-placement</h3>
-        <p><em>data-aos-anchor-placement</em> 用來設定動畫元素的錨點位置，假如常使用或有使用繪圖軟體經驗的，應該都知道錨點的意思，即將物件分成九宮格，每個線條交錯點就是錨點。設定錨點的位置，可以決定動畫元素的觸發點要以哪一個錨點為基準，例如：</p>
+        <p><em>data-aos-anchor-placement</em> 用來設定動畫元素的錨點位置，假如常使用或有使用繪圖軟體經驗的，應該都知道錨點的意思，即將物件分成九宮格，每個線條交錯點就是錨點，不過 AOS 中網頁畫面滾動事件是垂直的，所以只有上、中、下三個定位點，透過設定錨點的位置，可以決定動畫元素的觸發點要以哪一個錨點為基準，而它的數值由兩個參數組成，例如：</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-html">&lt;div data-aos="fade-in" data-aos-anchor-placement="bottom-left"&gt;content&lt;/div&gt;</code></pre>
+            <pre><code class="language-html">&lt;div data-aos="fade-in" data-aos-anchor-placement="top-center"&gt;content&lt;/div&gt;</code></pre>
         </div>
-        <p><em>bottom-left</em> 表示我們將動畫元素的錨點設為左下角，只有當該動畫元素的左下角進入可試畫面範圍內時，才會觸發其過場動畫。</p>
+        <p>第一個參數是動畫元素本身的錨點位置，第二個參數則是可視畫面內的基準位置，因此 <em>top-center</em> 指的是動畫元素的上緣進入畫面中央時才會觸發動畫效果。</p>
+        <p>可用參數列表：</p>
+        <div class="text-flex">
+            <div class="f-width">
+                <div class="f-head">
+                    <div class="f-f1">參數</div>
+                    <div class="f-f2">說明</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>top-bottom</em></div>
+                    <div class="f-f2">元素上緣，畫面下緣</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>top-center</em></div>
+                    <div class="f-f2">元素上緣，畫面中間</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>top-top</em></div>
+                    <div class="f-f2">元素上緣，畫面上緣</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>center-bottom</em></div>
+                    <div class="f-f2">元素中間，畫面下緣</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>center-center</em></div>
+                    <div class="f-f2">元素中間，畫面中間</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>center-top</em></div>
+                    <div class="f-f2">元素中間，畫面上緣</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>bottom-bottom</em></div>
+                    <div class="f-f2">元素下緣，畫面下緣</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>bottom-center</em></div>
+                    <div class="f-f2">元素下緣，畫面中間</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>bottom-top</em></div>
+                    <div class="f-f2">元素下緣，畫面上緣</div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="text-block" id="act3">
         <h2>三、JavaScript 參數一覽</h2>
-        <p>暫無內容。</p>
+        <p>基本調用 AOS.js 的語法為 <em>AOS.init();</em>，我們可以在括號裡面傳入其他設定參數，來取代原本套件裡作者設定的預設值，以下是全域參數項目：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">AOS.init({
+    disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+    startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+    initClassName: 'aos-init', // class applied after initialization
+    animatedClassName: 'aos-animate', // class applied on animation
+    useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+    disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+    debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+    throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+});</code></pre>
+        </div>
+        <p>這些值依個人實務上經驗不太會有需要動到的時候，頂多就是修改一下 <em>initClassName</em>、<em>animatedClassName</em> 附加的 Class 名稱。</p>
+        <p>比較常更改的是在 HTML Tag 裡添加的 <em>data-aos</em> 系列屬性，在個別 HTML 元素添加的屬性其作用範圍僅限於自身，如果今天你要統一所有動畫元素的預設參數值，則在 <em>AOS.init();</em> 裡作修改：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">AOS.init({
+    offset: 120,
+    delay: 0,
+    duration: 400,
+    easing: 'ease',
+    once: false,
+    mirror: false,
+    anchorPlacement: 'top-bottom',
+});</code></pre>
+        </div>
+        <p>這些參數項目的名稱和 HTML Tags 裡使用的 <em>data-aos-</em> 相對應，例如 <em>once</em> 對應 <em>data-aos-once</em>，表示動畫元素的運作次數是否只執行一次。</p>
     </div>
 </div>
 <!-- end -->

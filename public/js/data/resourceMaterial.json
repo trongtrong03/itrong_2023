@@ -372,5 +372,27 @@
         "cover": true,
         "img": "irasutoya",
         "type": "material"
+    },
+    {
+        "id": 34,
+        "title": "千图",
+        "desc": "千图搭建了一个以创意作品库为核心，围绕着设计人群及泛办公人群提供优质创意服务的基础平台。",
+        "href": "https://www.58pic.com/",
+        "article": false,
+        "path": "",
+        "cover": true,
+        "img": "58pic",
+        "type": "material"
+    },
+    {
+        "id": 34,
+        "title": "CLEANPNG",
+        "desc": "CLEANPNG 擁有超過 3,000,000 張透明 PNG 圖像。目標是讓設計師能夠輕鬆地使用這些美麗的PNG圖像，以更快速、更簡單的方式進行設計。",
+        "href": "https://www.cleanpng.com/",
+        "article": false,
+        "path": "",
+        "cover": true,
+        "img": "cleanpng",
+        "type": "material"
     }
 ]

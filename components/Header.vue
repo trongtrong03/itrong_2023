@@ -72,6 +72,7 @@
                 <div class="nav-sub">
                     <ul>
                         <li><MyNuxtLink to="/rs_webfront" @click="handleNavLinkFalse">網頁開發</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/rs_plugins" @click="handleNavLinkFalse">前端套件</MyNuxtLink></li>
                         <li><MyNuxtLink to="/rs_material" @click="handleNavLinkFalse">素材模板</MyNuxtLink></li>
                         <li><MyNuxtLink to="/rs_media" @click="handleNavLinkFalse">影音繪圖</MyNuxtLink></li>
                         <li><MyNuxtLink to="/rs_teach" @click="handleNavLinkFalse">教學資源</MyNuxtLink></li>

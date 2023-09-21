@@ -33,6 +33,7 @@
                 <ul>
                     <li>推薦資源</li>
                     <li><MyNuxtLink to="/rs_webfront">網頁開發</MyNuxtLink></li>
+                    <li><MyNuxtLink to="/rs_plugins">前端套件</MyNuxtLink></li>
                     <li><MyNuxtLink to="/rs_material">素材模板</MyNuxtLink></li>
                     <li><MyNuxtLink to="/rs_media">影音繪圖</MyNuxtLink></li>
                     <li><MyNuxtLink to="/rs_teach">教學資源</MyNuxtLink></li>
