@@ -98,6 +98,13 @@
         "type": "jquery"
     },
     {
+        "id": 15,
+        "href": "node_faq",
+        "title": "Node.js 常見錯誤訊息問題、除錯建議以及各種疑難雜症彙整",
+        "time": "2022.02.18",
+        "type": "nodejs"
+    },
+    {
         "id": 30,
         "href": "vue_lifecycle_1",
         "title": "循序漸進學 Vue3：認識 Vue1.0 到 Vue3.0 的生命週期（Lifecycle Diagram）-上",
