@@ -57,38 +57,45 @@
 
 <script>
 export default {
-    data() {
-        return {
-            jsonData: [],
-            filter: 'all',
-            query: "",
-            isActive: 1,
-            searchOn: false
-        }
-    },
-    mounted() {
-        ////- get data
-        fetch('/js/data/resourceMaterial.json')
-            .then(response => response.json())
-            .then(data => {
-                this.jsonData = data;
-            })
-            .catch(error => {
+    setup() {
+        const jsonData = ref([]);
+        const filter = ref('all');
+        const query = ref('');
+        const isActive = ref(1);
+        const searchOn = ref(false);
+
+        // Fetch data on component mounted
+        onMounted(async () => {
+            try {
+                const response = await fetch('/js/data/resourceMaterial.json');
+                const data = await response.json();
+                jsonData.value = data;
+            } catch (error) {
                 console.error('Error:', error);
+            }
+        });
+
+        // Computed property for filtered data
+        const filterSearch = computed(() => {
+            return jsonData.value.filter((item) => {
+                return item.title.toLowerCase().indexOf(query.value.toLowerCase()) !== -1;
             });
+        });
+
+        // Function to toggle the search state
+        const toggleActiveState = () => {
+            searchOn.value = !searchOn.value;
+        };
+
+        return {
+            jsonData,
+            filter,
+            query,
+            isActive,
+            searchOn,
+            filterSearch,
+            toggleActiveState,
+        };
     },
-    computed: {
-        filterSearch() {
-            var search = this;
-            return this.jsonData.filter(function(item) {
-                return item.title.toLowerCase().indexOf(search.query.toLowerCase()) !== -1;
-            });
-        }
-    },
-    methods: {
-        toggleActiveState() {
-            this.searchOn = !this.searchOn;
-        }
-    }
-}
+};
 </script>

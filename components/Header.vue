@@ -1,5 +1,5 @@
 <template>
-    <header class="header-wrap">
+    <header class="header-wrap" :class="{ 'is-scrolling': isScrolling }">
         <figure class="logo-wrap">
             <MyNuxtLink to="/">
                 <svg id="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100" style="enable-background:new 0 0 200 100;">
@@ -100,70 +100,56 @@
 
 <script>
 export default {
-    data() {
-        return {
-            navActive: false
-        }
-    },
-    mounted() {
-        ////- SCROLL DOWN START
-        // 取得需要操作的元素
-        var headerWrap = document.querySelector(".header-wrap");
+    setup() {
+        // header scrolling
+        const isScrolling = ref(false);
 
-        // 監聽滾動事件
-        window.addEventListener("scroll", function() {
-            // 取得滾動的垂直位移量
-            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const handleScroll = () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            isScrolling.value = scrollTop > 50;
+        };
 
-            // 判斷是否超過 50 像素，並根據結果添加或移除 "is-scrolling" 類別
-            if (scrollTop > 50) {
-                headerWrap.classList.add("is-scrolling");
-            }
-            else {
-                headerWrap.classList.remove("is-scrolling");
-            }
+        onMounted(() => {
+            window.addEventListener('scroll', handleScroll);
         });
-        ////- SCROLL DOWN END
 
-        ////- NAV START
-        // 取得所有 .nav-item button 元素
-        var buttons = document.querySelectorAll(".nav-item button");
+        // nav sub
+        const navItems = ref([]);
+        const navSub = ref(null);
 
-        // 監聽 click 事件
-        buttons.forEach(function(button) {
-            button.addEventListener("click", function() {
-                // 移除所有 .nav-item 的 "is-active" 類別
-                var navItems = document.querySelectorAll(".nav-item");
-                navItems.forEach(function(navItem) {
-                    navItem.classList.remove("is-active");
-                    navSub.style.display = "none";
-                });
+        const handleButtonClick = (button) => {
+            navItems.value.forEach((navItem) => {
+                navItem.classList.remove('is-active');
+                navSub.value.style.display = 'none';
+            });
 
-                // 將父元素 .nav-item 加入 "is-active" 類別
-                var parentNavItem = this.parentNode;
-                parentNavItem.classList.add("is-active");
+            const parentNavItem = button.parentNode;
+            parentNavItem.classList.add('is-active');
 
-                // 取得下一個兄弟元素 .nav-sub 並使用 style.display 來控制顯示與否
-                var navSub = this.nextElementSibling;
-                if (navSub) {
-                    if (navSub.style.display === "block") {
-                        navSub.style.display = "none";
-                    }
-                    else {
-                        navSub.style.display = "block";
-                    }
-                }
+            const nextNavSub = button.nextElementSibling;
+            if (nextNavSub) {
+                nextNavSub.style.display = nextNavSub.style.display === 'block' ? 'none' : 'block';
+            }
+        };
+
+        onMounted(() => {
+            navItems.value = Array.from(document.querySelectorAll('.nav-item button'));
+            navSub.value = document.querySelector('.nav-sub');
+            navItems.value.forEach((button) => {
+                button.addEventListener('click', () => handleButtonClick(button));
             });
         });
-        ////- NAV END
+
+        return {
+            isScrolling,
+            handleNavLinkClick: () => {
+                isScrolling.value = !isScrolling.value;
+            },
+            handleNavLinkFalse: () => {
+                isScrolling.value = false;
+            },
+        };
     },
-    methods: {
-        handleNavLinkClick() {
-            this.navActive = !this.navActive;
-        },
-        handleNavLinkFalse() {
-            this.navActive = false;
-        }
-    }
-}
+};
+
 </script>

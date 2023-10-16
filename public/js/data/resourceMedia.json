@@ -288,12 +288,23 @@
     {
         "id": 27,
         "title": "Generated Humans",
-        "desc": "由 Generated Photos 推出的 AI 產生全身人像，每個人都不是真實世界存在的。可以用在各類設計品，",
+        "desc": "由 Generated Photos 推出的 AI 產生全身人像，每個人都不是真實世界存在的。",
         "href": "https://generated.photos/humans",
         "article": false,
         "path": "",
         "cover": true,
         "img": "generatedhumans",
+        "type": "image"
+    },
+    {
+        "id": 28,
+        "title": "Cleanup.pictures",
+        "desc": "這是一個可以將匯入照片中的物件，以筆刷形式進行去除並自動演算填補的線上工具。",
+        "href": "https://cleanup.pictures/",
+        "article": false,
+        "path": "",
+        "cover": true,
+        "img": "cleanup",
         "type": "image"
     }
 ]

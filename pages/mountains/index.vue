@@ -184,7 +184,7 @@
                 </div>
             </div>
         </div>
-        <button class="top-btn"></button>
+        <button class="top-btn" :class="{ 'is-show': isShowButton }" @click="scrollToTop"></button>
     </section>
 </template>
 
@@ -194,6 +194,7 @@ export default {
         return {
             jsonData: [],
             isActive: 1,
+            isShowButton: false,
             filterOpen: false,
             searchOn: false,
             Filters: {
@@ -259,23 +260,32 @@ export default {
                 console.error("Error:", error);
             });
 
-        ////- back to top
-        $(window).scroll(function() {
-            if ($(this).scrollTop() > 400) {
-                $(".top-btn").fadeIn();
-            } else {
-                $(".top-btn").fadeOut();
+        ////-- GO TOP START
+        // 返回頂部按鈕點擊事件處理函式
+        function onBtnTopClick() {
+            var duration = 500;
+            var start = window.pageYOffset;
+            var startTime = null;
+
+            function animateScroll(timestamp) {
+                if (!startTime) startTime = timestamp;
+                    var progress = timestamp - startTime;
+                    var easeInOutCubic = function (t) { return t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1; };
+                    var scrollTop = easeInOutCubic(Math.min(progress / duration, 1)) * (0 - start) + start;
+                    window.scrollTo(0, scrollTop);
+                if (progress < duration) {
+                    requestAnimationFrame(animateScroll);
+                }
             }
-        });
-        $(".top-btn").click(function() {
-            $('body, html').animate({
-                scrollTop: 0
-            }, 500);
-        });
+
+            requestAnimationFrame(animateScroll);
+        }
+
+        // 添加按鈕點擊事件監聽
+        var btnTopElement = document.querySelector(".top-btn");
+        btnTopElement.addEventListener("click", onBtnTopClick);
+        ////-- GO TOP END
     },
-    computed: {
-    },
-    updated() {},
     methods: {
         getArea() {
             let Area = [];
@@ -333,15 +343,44 @@ export default {
         ////- search
         toggleActiveState() {
             this.searchOn = !this.searchOn;
+        },
+
+        ////-- scroll show top btn START
+        scrollToTop() {
+            var duration = 500;
+            var start = window.pageYOffset;
+            var startTime = null;
+
+            function animateScroll(timestamp) {
+                if (!startTime) startTime = timestamp;
+                var progress = timestamp - startTime;
+                var easeInOutCubic = function (t) { return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1; };
+                var scrollTop = easeInOutCubic(Math.min(progress / duration, 1)) * (0 - start) + start;
+                window.scrollTo(0, scrollTop);
+
+                this.isShowButton = window.scrollY > 400;
+
+                if (progress < duration) {
+                    requestAnimationFrame(animateScroll);
+                }
+            }
+
+            requestAnimationFrame(animateScroll);
+        },
+
+        updateButtonVisibility() {
+            this.isShowButton = window.scrollY > 400;
         }
+        ////-- scroll show top btn END
     },
-    watch: {
-        Filters: {
-            handler(val) {
-                // console.log(val);
-            },
-            deep: true
-        }
+    beforeMount () {
+        window.addEventListener('scroll', this.updateButtonVisibility);
+    },
+    beforeUnmount() {
+        window.removeEventListener('scroll', this.updateButtonVisibility);
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.updateButtonVisibility);
     },
 }
 </script>

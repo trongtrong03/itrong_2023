@@ -26,55 +26,24 @@
 
 <script>
 export default {
-    data() {
-        return {
-            isShowButton: false
-        }
-    },
-    
-    mounted() {
-        ////-- GO TOP START
-        // 返回頂部按鈕點擊事件處理函式
-        function onBtnTopClick() {
-            var duration = 500;
-            var start = window.pageYOffset;
-            var startTime = null;
+    setup() {
+        // Data
+        const isShowButton = ref(false);
+
+        // Scroll to top functionality
+        const scrollToTop = () => {
+            const duration = 500;
+            const start = window.pageYOffset;
+            let startTime = null;
 
             function animateScroll(timestamp) {
                 if (!startTime) startTime = timestamp;
-                    var progress = timestamp - startTime;
-                    var easeInOutCubic = function (t) { return t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1; };
-                    var scrollTop = easeInOutCubic(Math.min(progress / duration, 1)) * (0 - start) + start;
-                    window.scrollTo(0, scrollTop);
-                if (progress < duration) {
-                    requestAnimationFrame(animateScroll);
-                }
-            }
-
-            requestAnimationFrame(animateScroll);
-        }
-
-        // 添加按鈕點擊事件監聽
-        var btnTopElement = document.querySelector(".btn-top");
-        btnTopElement.addEventListener("click", onBtnTopClick);
-        ////-- GO TOP END
-    },
-
-    methods: {
-        ////-- scroll show top btn START
-        scrollToTop() {
-            var duration = 500;
-            var start = window.pageYOffset;
-            var startTime = null;
-
-            function animateScroll(timestamp) {
-                if (!startTime) startTime = timestamp;
-                var progress = timestamp - startTime;
-                var easeInOutCubic = function (t) { return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1; };
-                var scrollTop = easeInOutCubic(Math.min(progress / duration, 1)) * (0 - start) + start;
+                const progress = timestamp - startTime;
+                const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1);
+                const scrollTop = easeInOutCubic(Math.min(progress / duration, 1)) * (0 - start) + start;
                 window.scrollTo(0, scrollTop);
 
-                this.isShowButton = window.scrollY > 400;
+                isShowButton.value = window.scrollY > 400;
 
                 if (progress < duration) {
                     requestAnimationFrame(animateScroll);
@@ -82,22 +51,25 @@ export default {
             }
 
             requestAnimationFrame(animateScroll);
-        },
+        };
 
-        updateButtonVisibility() {
-            this.isShowButton = window.scrollY > 400;
-        }
-        ////-- scroll show top btn END
-    },
+        // Update button visibility on scroll
+        const updateButtonVisibility = () => {
+            isShowButton.value = window.scrollY > 400;
+        };
 
-    beforeMount () {
-        window.addEventListener('scroll', this.updateButtonVisibility);
-    },
-    beforeUnmount() {
-        window.removeEventListener('scroll', this.updateButtonVisibility);
-    },
-    destroyed() {
-        window.removeEventListener('scroll', this.updateButtonVisibility);
-    },
+        onBeforeMount(() => {
+            window.addEventListener('scroll', updateButtonVisibility);
+        });
+
+        onBeforeUnmount(() => {
+            window.removeEventListener('scroll', updateButtonVisibility);
+        });
+
+        return {
+            isShowButton,
+            scrollToTop,
+        };
+  },
 }
 </script>

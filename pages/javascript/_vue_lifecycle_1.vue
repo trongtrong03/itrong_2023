@@ -524,12 +524,13 @@ export default {
         definePageMeta({
             layout: false
         });
-    },
 
-    data() {
+        // Define reactive data using ref
+        const isActive = ref(0);
+
         return {
-            isActive: 0,
-        }
-    },
+            isActive
+        };
+    }
 }
 </script>

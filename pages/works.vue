@@ -90,65 +90,65 @@
 
 <script>
 export default {
-    data() {
-        return {
-            tabsActive: 1,
-            jsonData: [],
-            selectedItem: null,
-            currentIndex: 0
-        }
-    },
-    mounted() {
-        ////- get data
-        fetch('/js/data/works.json')
-            .then(response => response.json())
-            .then(data => {
-                this.jsonData = data.reverse().map((item, index) => ({
+    setup() {
+        const tabsActive = ref(1);
+        const jsonData = ref([]);
+        const selectedItem = ref(null);
+        const currentIndex = ref(0);
+
+        // Fetch data on component mounted
+        onMounted(async () => {
+            try {
+                const response = await fetch('/js/data/works.json');
+                const data = await response.json();
+                jsonData.value = data.reverse().map((item, index) => ({
                     ...item,
-                    currentIndex: index
+                    currentIndex: index,
                 }));
-                // this.shuffleData(); // 亂數排序 但會影響next prev的判斷
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error('Error:', error);
-            });
-    },
-    updated() {},
-    methods: {
-        // shuffleData() {
-        //     for (let i = this.jsonData.length - 1; i > 0; i--) {
-        //     const j = Math.floor(Math.random() * (i + 1));
-        //     [this.jsonData[i], this.jsonData[j]] = [this.jsonData[j], this.jsonData[i]];
-        //     }
-        // },
+            }
+        });
 
-        fetchData(item) {
-            this.selectedItem = item;
-            this.currentIndex = item.currentIndex;
-        },
+        // Function to fetch data for a selected item
+        const fetchData = (item) => {
+            selectedItem.value = item;
+            currentIndex.value = item.currentIndex;
+        };
 
-        ////- 切換 body 滾動禁止與否
-        noScroll() {
+        // Function to toggle body scroll
+        const noScroll = () => {
             document.body.classList.toggle('no-scroll');
-        },
+        };
 
-        ////- 載入上一筆資料
-        loadPrevItem() {
-            this.currentIndex--;
-            if (this.currentIndex < 0) {
-                this.currentIndex = this.jsonData.length - 1;
+        // Function to load the previous item
+        const loadPrevItem = () => {
+            currentIndex.value--;
+            if (currentIndex.value < 0) {
+            currentIndex.value = jsonData.value.length - 1;
             }
-            this.selectedItem = this.jsonData.find(item => item.currentIndex === this.currentIndex);
-        },
+            selectedItem.value = jsonData.value.find((item) => item.currentIndex === currentIndex.value);
+        };
 
-        ////- 載入下一筆資料
-        loadNextItem() {
-            this.currentIndex++;
-            if (this.currentIndex >= this.jsonData.length) {
-                this.currentIndex = 0;
+        // Function to load the next item
+        const loadNextItem = () => {
+            currentIndex.value++;
+            if (currentIndex.value >= jsonData.value.length) {
+            currentIndex.value = 0;
             }
-            this.selectedItem = this.jsonData.find(item => item.currentIndex === this.currentIndex);
-        }
-    }
-}
+            selectedItem.value = jsonData.value.find((item) => item.currentIndex === currentIndex.value);
+        };
+
+        return {
+            tabsActive,
+            jsonData,
+            selectedItem,
+            currentIndex,
+            fetchData,
+            noScroll,
+            loadPrevItem,
+            loadNextItem,
+        };
+    },
+};
 </script>

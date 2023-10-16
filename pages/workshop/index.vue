@@ -54,64 +54,69 @@
 
 <script>
 export default {
-    data() {
-        return {
-            jsonData: [],
-            filter: 'all',
-            query: "",
-            isActive: 1,
-            searchOn: false,
-        }
-    },
-    mounted() {
-        ////- get data
-        fetch('/js/data/workshop.json')
-            .then(response => response.json())
-            .then(data => {
-                this.jsonData = data.reverse();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+    setup() {
+        const jsonData = ref([]);
+        const filter = ref('all');
+        const query = ref('');
+        const isActive = ref(1);
+        const searchOn = ref(false);
 
-        ////- scroll animation
-        AOS.init({
-            once: true,
-            easing: "ease-in-out-sine"
+        // Fetch data on component mounted
+        onMounted(async () => {
+            try {
+                const response = await fetch('/js/data/workshop.json');
+                const data = await response.json();
+                jsonData.value = data.reverse();
+            } catch (error) {
+                console.error('Error:', error);
+            }
+
+            // Initialize AOS after data is loaded
+            AOS.init({
+                once: true,
+                easing: 'ease-in-out-sine',
+            });
         });
-    },
-    computed: {
-        filterSearch() {
-            var search = this;
-            console.log("Filter:", search.filter); // 检查选项值
-            return this.jsonData.filter(function(item) {
-                console.log("Item:", item[search.filter]); // 检查每个项目的属性值
-                if (search.filter === 'all') {
-                    return item.title.toLowerCase().indexOf(search.query.toLowerCase()) !== -1;
-                } else {
+
+        // Computed property for filtered data
+        const filterSearch = computed(() => {
+            return jsonData.value.filter((item) => {
+                if (filter.value === 'all') {
+                    return item.title.toLowerCase().indexOf(query.value.toLowerCase()) !== -1;
+                }
+                else {
                     return (
-                        item.title.toLowerCase().indexOf(search.query.toLowerCase()) !== -1 &&
-                        item[search.filter] === true
+                        item.title.toLowerCase().indexOf(query.value.toLowerCase()) !== -1 &&
+                        item[filter.value] === true
                     );
                 }
             });
-        }
-    },
-    updated() {},
-    methods: {
-        ////- search
-        toggleActiveState() {
-            this.searchOn = !this.searchOn;
-        },
+        });
 
-        ////- 讓 data-aos 可以在每次選擇不同篩選項目都能重新執行
-        shouldShowItem(item) {
-            if (this.filter === 'all') {
+        // Method to toggle the search state
+        const toggleActiveState = () => {
+            searchOn.value = !searchOn.value;
+        };
+
+        // Function to check if an item should be shown
+        const shouldShowItem = (item) => {
+            if (filter.value === 'all') {
                 return true;
             } else {
-                return item[this.filter] && item.title.toLowerCase().indexOf(this.query.toLowerCase()) !== -1;
+                return item[filter.value] && item.title.toLowerCase().indexOf(query.value.toLowerCase()) !== -1;
             }
-        }
-    }
-}
+        };
+
+        return {
+            jsonData,
+            filter,
+            query,
+            isActive,
+            searchOn,
+            filterSearch,
+            toggleActiveState,
+            shouldShowItem,
+        };
+    },
+};
 </script>

@@ -6,32 +6,35 @@
 </template>
 <script>
 export default {
-    data() {
-        return {
-            jsonData: [],
-        }
-    },
     props: {
         propValue: {
             type: Number,
-            required: true
-        }
-    },
-    mounted() {
-        // get data
-        fetch(`/js/data/klDraw.json`)
-            .then(response => response.json())
-            .then(data => {
-                this.jsonData = data.reverse();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    },
-    methods: {
-        getIndex({ jsonData = [], index = 0 }) {
-            return jsonData[index] || {}
+            required: true,
         },
-    }
-}
+    },
+    setup(props) {
+        const jsonData = ref([]);
+
+        const getIndex = ({ jsonData = [], index = 0 }) => {
+            return jsonData[index] || {};
+        };
+
+        onMounted(() => {
+            // get data
+            fetch(`/js/data/klDraw.json`)
+                .then((response) => response.json())
+                .then((data) => {
+                    jsonData.value = data.reverse();
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        });
+
+        return {
+            jsonData,
+            getIndex,
+        };
+    },
+};
 </script>

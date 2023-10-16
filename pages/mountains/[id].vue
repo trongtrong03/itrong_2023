@@ -107,8 +107,8 @@
     </section>
 </template>
   
-  <script>
-  export default {
+<script>
+export default {
     data() {
         return {
             jsonData: [],
@@ -134,6 +134,6 @@
             return jsonData.find(item => item.id === postID) || {};
         },
     },
-  };
-  </script>
+};
+</script>
   

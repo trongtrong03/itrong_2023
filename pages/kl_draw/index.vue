@@ -45,45 +45,53 @@
 
 <script>
 export default {
-    data() {
-        return {
-            jsonData: [],
-            filter: 'all',
-            query: "",
-            isActive: 1,
-            searchOn: false,
-        }
-    },
-    mounted() {
-        ////- get data
-        fetch('/js/data/klDraw.json')
-            .then(response => response.json())
-            .then(data => {
-                this.jsonData = data.reverse();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+    setup() {
+        // Define reactive data using ref
+        const jsonData = ref([]);
+        const filter = ref('all');
+        const query = ref('');
+        const isActive = ref(1);
+        const searchOn = ref(false);
 
-        ////- scroll animation
-        AOS.init({
-            once: true,
-            easing: "ease-in-out-sine"
-        });
-    },
-    computed: {
-        filterSearch() {
-            var search = this;
-            return this.jsonData.filter(function(item) {
-                return item.title.toLowerCase().indexOf(search.query.toLowerCase()) !== -1;
+        onMounted(async () => {
+            // fetch data
+            try {
+                const response = await fetch('/js/data/klDraw.json');
+                const data = await response.json();
+                jsonData.value = data.reverse();
+            } catch (error) {
+                console.error('Error:', error);
+            }
+
+            // scroll animation
+            AOS.init({
+                once: true,
+                easing: "ease-in-out-sine"
             });
-        }
-    },
-    methods: {
-        ////- search
-        toggleActiveState() {
-            this.searchOn = !this.searchOn;
-        }
+        });
+
+        // Define a computed property for filtering search
+        const filterSearch = computed(() => {
+            return jsonData.value.filter(item => {
+                return item.title.toLowerCase().indexOf(query.value.toLowerCase()) !== -1;
+            });
+        });
+
+        // Define a method to toggle the search state
+        const toggleActiveState = () => {
+            searchOn.value = !searchOn.value;
+        };
+
+        // Return the data and methods you want to expose to the template
+        return {
+            jsonData,
+            filter,
+            query,
+            isActive,
+            searchOn,
+            filterSearch,
+            toggleActiveState
+        };
     }
 }
 </script>

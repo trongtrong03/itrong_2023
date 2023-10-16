@@ -1085,11 +1085,12 @@ export default {
         definePageMeta({
             layout: false
         });
-    },
-    data() {
+
+        const fixed = ref(false);
+
         return {
-            fixed: false
-        }
+            fixed
+        };
     },
 }
 </script>
