@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="mtlogs">
-        <TempMtlogs :propValue="4" />
+        <TempArticle :propValue="4" fileType="mtlogs" />
 <!-- start -->
 <div class="text-content">
     <div class="text-block">

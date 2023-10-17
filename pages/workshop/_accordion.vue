@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="article">
-        <TempWorkshop :propValue="1" />
+        <TempArticle :propValue="1" fileType="workshop" />
 <!-- start -->
 <div class="text-content">
     <div class="text-catalog">

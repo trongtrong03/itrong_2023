@@ -1,5 +1,5 @@
 <template>
-    <article id="wrap" class="pages-article">
+    <article id="wrap">
         <!--header -->
         <Header />
         <!-- main -->
@@ -38,18 +38,16 @@ import "prismjs/plugins/show-language/prism-show-language";
 
 export default {
     setup () {
-        // load js
         useHead({
+            // load js
             script: [
                 { 
                     src: "https://cpwebassets.codepen.io/assets/embed/ei.js",
                     body: true
                 },
             ],
-        });
 
-        // prismjs
-        useHead({
+            // prismjs
             bodyAttrs: {
                 "data-prismjs-copy": "Copy",
                 "data-prismjs-copy-error": "Error",
@@ -57,93 +55,66 @@ export default {
             }
         });
 
+        const isActive = ref(false);
+        const isShowButton = ref(false);
+
+        // prismjs
+        const initializePrism = () => {
+            Prism.highlightAll();
+        }
+
+        // async 異步操作完成後才會繼續執行後面程式碼
         onMounted(async () => {
-            await nextTick()
-            Prism.highlightAll()
+            await nextTick();
+            initializePrism();
         });
-    },
 
-    data() {
-        return {
-            isActive: false,
-            isShowButton: false
+        // 隨機背景
+        const randomBG = () => {
+            const totalClasses = 48;
+            const classes = Array.from({ length: totalClasses }, (_, index) => 'bg-' + (index + 1));
+
+            // 取得所有具有 'article-parallax' 類別的元素
+            const articleParallaxElements = document.querySelectorAll('.article-parallax');
+
+            // 對每個元素添加隨機的類別
+            articleParallaxElements.forEach(function(element) {
+                const randomClass = classes[Math.floor(Math.random() * classes.length)];
+                element.classList.add(randomClass);
+            });
         }
-    },
-    
-    mounted() {
-        ////-- 隨機背景 START
-        var totalClasses = 48;
-        var classes = Array.from({ length: totalClasses }, (_, index) => 'bg-' + (index + 1));
 
-        // 取得所有具有 'article-parallax' 類別的元素
-        var articleParallaxElements = document.querySelectorAll('.article-parallax');
+        // 複製目錄
+        const copyCatelog = () => {
+            // 取得需要操作的元素
+            const floatCatalog = document.querySelector(".float-catalog");
+            const textCatalogUl = document.querySelector(".text-catalog ul");
 
-        // 對每個元素添加隨機的類別
-        articleParallaxElements.forEach(function(element) {
-            var randomClass = classes[Math.floor(Math.random() * classes.length)];
-            element.classList.add(randomClass);
-        });
-        ////-- 隨機背景 END
+            // 克隆元素並將克隆的元素附加到floatCatalog中
+            const clonedUl = textCatalogUl.cloneNode(true);
+            floatCatalog.appendChild(clonedUl);
+        }
 
-        ////-- GO TOP START
-        // 返回頂部按鈕點擊事件處理函式
-        function onBtnTopClick() {
-            var duration = 500;
-            var start = window.pageYOffset;
-            var startTime = null;
+        // Parallax Scrolling
+        const parallax = () => {
+            const parallaxElement = document.getElementById("parallax");
+            parallaxElement.style.top = -(window.pageYOffset / 4) + 'px';
+        }
+
+        // Scroll to Top
+        const scrollToTop = () => {
+            const duration = 500;
+            const start = window.pageYOffset;
+            let startTime = null;
 
             function animateScroll(timestamp) {
                 if (!startTime) startTime = timestamp;
-                    var progress = timestamp - startTime;
-                    var easeInOutCubic = function (t) { return t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1; };
-                    var scrollTop = easeInOutCubic(Math.min(progress / duration, 1)) * (0 - start) + start;
-                    window.scrollTo(0, scrollTop);
-                if (progress < duration) {
-                    requestAnimationFrame(animateScroll);
-                }
-            }
-
-            requestAnimationFrame(animateScroll);
-        }
-
-        // 添加按鈕點擊事件監聽
-        var btnTopElement = document.querySelector(".btn-top");
-        btnTopElement.addEventListener("click", onBtnTopClick);
-        ////-- GO TOP END
-
-        ////-- 複製目錄於快捷選單 START
-        // 取得需要操作的元素
-        var floatCatalog = document.querySelector(".float-catalog");
-        var textCatalogUl = document.querySelector(".text-catalog ul");
-
-        // 克隆元素並將克隆的元素附加到floatCatalog中
-        var clonedUl = textCatalogUl.cloneNode(true);
-        floatCatalog.appendChild(clonedUl);
-        ////-- 複製目錄於快捷選單 END
-    },
-
-    methods: {
-        ////-- Parallax Scrolling START
-        parallax() {
-            var parallax = document.getElementById("parallax");
-            parallax.style.top = -(window.pageYOffset / 4)+'px';
-        },
-        ////-- Parallax Scrolling END
-
-        ////-- scroll show top btn START
-        scrollToTop() {
-            var duration = 500;
-            var start = window.pageYOffset;
-            var startTime = null;
-
-            function animateScroll(timestamp) {
-                if (!startTime) startTime = timestamp;
-                var progress = timestamp - startTime;
-                var easeInOutCubic = function (t) { return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1; };
-                var scrollTop = easeInOutCubic(Math.min(progress / duration, 1)) * (0 - start) + start;
+                const progress = timestamp - startTime;
+                const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1);
+                const scrollTop = easeInOutCubic(Math.min(progress / duration, 1)) * (0 - start) + start;
                 window.scrollTo(0, scrollTop);
 
-                this.isShowButton = window.scrollY > 400;
+                isShowButton.value = window.scrollY > 400;
 
                 if (progress < duration) {
                     requestAnimationFrame(animateScroll);
@@ -151,24 +122,33 @@ export default {
             }
 
             requestAnimationFrame(animateScroll);
-        },
-
-        updateButtonVisibility() {
-            this.isShowButton = window.scrollY > 400;
         }
-        ////-- scroll show top btn END
-    },
 
-    beforeMount () {
-        window.addEventListener('scroll', this.parallax);
-        window.addEventListener('scroll', this.updateButtonVisibility);
-    },
-    beforeUnmount() {
-        window.removeEventListener('scroll', this.parallax);
-        window.removeEventListener('scroll', this.updateButtonVisibility);
-    },
-    destroyed() {
-        window.removeEventListener('scroll', this.updateButtonVisibility);
+        // Update Button Visibility
+        const updateButtonVisibility = () => {
+            isShowButton.value = window.scrollY > 400;
+        }
+
+        // Event Listeners
+        onMounted(() => {
+            randomBG();
+            copyCatelog();
+            window.addEventListener('scroll', parallax);
+            window.addEventListener('scroll', updateButtonVisibility);
+        });
+
+        // Cleanup
+        const beforeUnmount = () => {
+            window.removeEventListener('scroll', parallax);
+            window.removeEventListener('scroll', updateButtonVisibility);
+        }
+
+        return {
+            isActive,
+            parallax,
+            isShowButton,
+            scrollToTop,
+        };
     },
 }
 </script>

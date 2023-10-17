@@ -111,20 +111,17 @@ input::-webkit-calendar-picker-indicator {
     height: -moz-available;
     height: -webkit-fill-available;
     // height: fill-available;
+    padding-left: 3rem;
     animation-name: fadeIn;
     animation-duration: .5s;
     animation-fill-mode: both;
+    @include MQ(max-960) {
+        padding-left: 0;
+    }
 }
 
 .main-wrap {
     position: relative;
-    padding-top: 4rem;
-    .pages-index & {
-        padding-top: 0;
-    }
-    .pages-article & {
-        padding-top: 0;
-    }
 }
 
 .main-inside {

@@ -61,8 +61,8 @@ export default {
                 const response = await fetch('/js/data/gallery.json');
                 const data = await response.json();
                 jsonData.value = data.reverse().map((item, index) => ({
-                ...item,
-                currentIndex: index,
+                    ...item,
+                    currentIndex: index,
                 }));
             } catch (error) {
                 console.error('Error:', error);

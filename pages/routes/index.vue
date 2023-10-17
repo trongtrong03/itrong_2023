@@ -146,150 +146,122 @@
                 </div>
             </div>
         </div>
-        <button class="top-btn" :class="{ 'is-show': isShowButton }" @click="scrollToTop"></button>
+        <button class="top-btn" :class="{ 'is-show': isShowButton }" @click="onBtnTopClick"></button>
     </section>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            jsonData: [],
-            isActive: 1,
-            isShowButton: false,
-            Filters: {
-                name: "",
-                lv: "",
-                daytime: "",
-                length: "",
-            },
-            searchOn: false
-        }
-    },
-    mounted() {
-        ////- get data
-        fetch("/js/data/routes.json")
-            .then(response => response.json())
-            .then(data => {
-                this.jsonData = data;
-            })
-            .catch(error => {
+    setup() {
+        const jsonData = ref([]);
+        const isActive = ref(1);
+        const isShowButton = ref(false);
+        const searchOn = ref(false);
+        const Filters = ref({
+            name: "",
+            lv: "",
+            daytime: "",
+            length: "",
+        });
+
+        // 篩選
+        const getLevel = () => jsonData.value.map((e) => e.lv);
+        const getDaytime = () => jsonData.value.map((e) => e.daytime);
+        const getLength = () => jsonData.value.map((e) => e.length);
+
+        const setLevel = (e) => {
+            Filters.value.lv = e.target.value;
+        };
+
+        const setDaytime = (e) => {
+            Filters.value.daytime = e.target.value;
+        };
+
+        const setLength = (e) => {
+            Filters.value.length = e.target.value;
+        };
+
+        const getItems = () => {
+            const { name, lv, daytime, length } = Filters.value;
+            return jsonData.value.filter((b) => {
+                return (
+                b.name.toLowerCase().includes(name.toLowerCase()) &&
+                b.lv.includes(lv) &&
+                b.daytime.includes(daytime) &&
+                b.length.includes(length)
+                );
+            });
+        };
+
+        // RWD 時 search 開關
+        const toggleActiveState = () => {
+            searchOn.value = !searchOn.value;
+        };
+
+        // Fetch data
+        onMounted(() => {
+            fetch("/js/data/routes.json")
+                .then((response) => response.json())
+                .then((data) => {
+                jsonData.value = data;
+                })
+                .catch((error) => {
                 console.error("Error:", error);
-            });
+                });
+        });
 
-        ////-- GO TOP START
-        // 返回頂部按鈕點擊事件處理函式
-        function onBtnTopClick() {
-            var duration = 500;
-            var start = window.pageYOffset;
-            var startTime = null;
+        // GO TOP
+        const onBtnTopClick = () => {
+            const duration = 500;
+            const start = window.pageYOffset;
+            let startTime = null;
 
-            function animateScroll(timestamp) {
+            const animateScroll = (timestamp) => {
                 if (!startTime) startTime = timestamp;
-                    var progress = timestamp - startTime;
-                    var easeInOutCubic = function (t) { return t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1; };
-                    var scrollTop = easeInOutCubic(Math.min(progress / duration, 1)) * (0 - start) + start;
-                    window.scrollTo(0, scrollTop);
-                if (progress < duration) {
-                    requestAnimationFrame(animateScroll);
-                }
-            }
-
-            requestAnimationFrame(animateScroll);
-        }
-
-        // 添加按鈕點擊事件監聽
-        var btnTopElement = document.querySelector(".top-btn");
-        btnTopElement.addEventListener("click", onBtnTopClick);
-        ////-- GO TOP END
-    },
-    methods: {
-        getLevel() {
-            let Level = [];
-            this.jsonData.map((e) => {
-                Level.push(e.lv);
-            });
-            return Level;
-        },
-        getDaytime() {
-            let Daytime = [];
-            this.jsonData.map((e) => {
-                Daytime.push(e.daytime);
-            });
-            return Daytime;
-        },
-        getLength() {
-            let Length = [];
-            this.jsonData.map((e) => {
-                Length.push(e.length);
-            });
-            return Length;
-        },
-        setLevel(e) {
-            this.Filters.lv = e.target.value;
-        },
-        setDaytime(e) {
-            this.Filters.daytime = e.target.value;
-        },
-        setLength(e) {
-            this.Filters.length = e.target.value;
-        },
-        getItems() {
-            let Filters = this.Filters;
-            let filtered = [];
-            this.jsonData.map((b) => {
-                if (
-                    b.name.toLowerCase().includes(Filters.name.toLowerCase()) &&
-                    b.lv.includes(Filters.lv) &&
-                    b.daytime.includes(Filters.daytime) &&
-                    b.length.includes(Filters.length)
-                )
-                filtered.push(b);
-            });
-            return filtered;
-        },
-
-        ////- search
-        toggleActiveState() {
-            this.searchOn = !this.searchOn;
-        },
-
-        ////-- scroll show top btn START
-        scrollToTop() {
-            var duration = 500;
-            var start = window.pageYOffset;
-            var startTime = null;
-
-            function animateScroll(timestamp) {
-                if (!startTime) startTime = timestamp;
-                var progress = timestamp - startTime;
-                var easeInOutCubic = function (t) { return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1; };
-                var scrollTop = easeInOutCubic(Math.min(progress / duration, 1)) * (0 - start) + start;
+                const progress = timestamp - startTime;
+                const easeInOutCubic = (t) =>
+                t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+                const scrollTop =
+                easeInOutCubic(Math.min(progress / duration, 1)) * (0 - start) + start;
                 window.scrollTo(0, scrollTop);
-
-                this.isShowButton = window.scrollY > 400;
-
                 if (progress < duration) {
-                    requestAnimationFrame(animateScroll);
+                requestAnimationFrame(animateScroll);
                 }
-            }
+            };
 
             requestAnimationFrame(animateScroll);
-        },
+        };
 
-        updateButtonVisibility() {
-            this.isShowButton = window.scrollY > 400;
-        }
-        ////-- scroll show top btn END
+        const updateButtonVisibility = () => {
+            isShowButton.value = window.scrollY > 400;
+        };
+
+        onBeforeMount(() => {
+            // Add event listener
+            window.addEventListener("scroll", updateButtonVisibility);
+        });
+
+        onBeforeUnmount(() => {
+            // Remove event listener
+            window.removeEventListener("scroll", updateButtonVisibility);
+        });
+
+        return {
+            jsonData,
+            isActive,
+            isShowButton,
+            Filters,
+            searchOn,
+            getLevel,
+            getDaytime,
+            getLength,
+            setLevel,
+            setDaytime,
+            setLength,
+            getItems,
+            toggleActiveState,
+            onBtnTopClick,
+        };
     },
-    beforeMount () {
-        window.addEventListener('scroll', this.updateButtonVisibility);
-    },
-    beforeUnmount() {
-        window.removeEventListener('scroll', this.updateButtonVisibility);
-    },
-    destroyed() {
-        window.removeEventListener('scroll', this.updateButtonVisibility);
-    },
-}
+};
 </script>

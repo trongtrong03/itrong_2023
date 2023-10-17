@@ -11,6 +11,11 @@
                         <div class="log-list">
                             <ul>
                                 <li>
+                                    <time>2023.10</time>
+                                    <p>變更導覽列風格</p>
+                                    <p>改寫 Vue3 Composition API</p>
+                                </li>
+                                <li>
                                     <time>2023.05</time>
                                     <p>網站視覺改版</p>
                                     <p>使用 Nuxt3 重構網站</p>

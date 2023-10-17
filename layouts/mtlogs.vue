@@ -26,11 +26,10 @@
 
 <script>
 export default {
-    setup() {
-        // Data
+    setup () {
         const isShowButton = ref(false);
 
-        // Scroll to top functionality
+        // Scroll to Top
         const scrollToTop = () => {
             const duration = 500;
             const start = window.pageYOffset;
@@ -51,25 +50,27 @@ export default {
             }
 
             requestAnimationFrame(animateScroll);
-        };
+        }
 
-        // Update button visibility on scroll
+        // Update Button Visibility
         const updateButtonVisibility = () => {
             isShowButton.value = window.scrollY > 400;
-        };
+        }
 
-        onBeforeMount(() => {
+        // Event Listeners
+        onMounted(() => {
             window.addEventListener('scroll', updateButtonVisibility);
         });
 
-        onBeforeUnmount(() => {
+        // Cleanup
+        const beforeUnmount = () => {
             window.removeEventListener('scroll', updateButtonVisibility);
-        });
+        }
 
         return {
             isShowButton,
             scrollToTop,
         };
-  },
+    },
 }
 </script>

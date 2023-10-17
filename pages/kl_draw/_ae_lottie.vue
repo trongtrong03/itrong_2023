@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="article">
-        <TempKlDraw :propValue="1" />
+        <TempArticle :propValue="1" fileType="klDraw" />
 <!-- start -->
 <div class="text-content">
     <div class="text-catalog">

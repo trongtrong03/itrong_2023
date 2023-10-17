@@ -109,30 +109,37 @@
   
 <script>
 export default {
-    data() {
-        return {
-            jsonData: [],
-            postID: null,
-        };
-    },
-    mounted() {
-        this.postID = this.$route.params.id;
-        // console.log(this.postID);
+    setup() {
+        // 使用 ref 创建响应式数据
+        const jsonData = ref([]);
+        const postID = ref(null);
 
+        // 获取路由参数
+        const route = useRoute();
+        postID.value = route.params.id;
+
+        // 发起数据请求
         fetch(`/js/data/mountains.json`)
             .then(response => response.json())
             .then(data => {
-                this.jsonData = data.reverse();
+                // 使用 .value 来更新 ref 数据
+                jsonData.value = data.reverse();
             })
             .catch(error => {
                 console.error('Error:', error);
             });
-    },
-    methods: {
-        getIndex(postID) {
-            const jsonData = this.jsonData;
-            return jsonData.find(item => item.id === postID) || {};
-        },
+
+        // 创建一个方法来获取数据
+        const getIndex = (id) => {
+            return jsonData.value.find(item => item.id === id) || {};
+        };
+
+        // 在 setup 函数中返回需要暴露给模板的数据和方法
+        return {
+            jsonData,
+            postID,
+            getIndex,
+        };
     },
 };
 </script>

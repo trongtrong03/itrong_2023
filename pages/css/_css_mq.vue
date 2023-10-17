@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="article">
-        <TempCSS :propValue="1" />
+        <TempArticle :propValue="1" fileType="learnCSS" />
 <!-- start -->
 <div class="text-content">
     <div class="text-catalog">
