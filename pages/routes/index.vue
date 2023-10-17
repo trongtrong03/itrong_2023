@@ -185,10 +185,10 @@ export default {
             const { name, lv, daytime, length } = Filters.value;
             return jsonData.value.filter((b) => {
                 return (
-                b.name.toLowerCase().includes(name.toLowerCase()) &&
-                b.lv.includes(lv) &&
-                b.daytime.includes(daytime) &&
-                b.length.includes(length)
+                    b.name.toLowerCase().includes(name.toLowerCase()) &&
+                    b.lv.includes(lv) &&
+                    b.daytime.includes(daytime) &&
+                    b.length.includes(length)
                 );
             });
         };
