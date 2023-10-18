@@ -116,6 +116,7 @@ input::-webkit-calendar-picker-indicator {
     animation-duration: .5s;
     animation-fill-mode: both;
     @include MQ(max-960) {
+        padding-top: 4rem;
         padding-left: 0;
     }
 }
@@ -251,44 +252,9 @@ input::-webkit-calendar-picker-indicator {
     }
 }
 
-// button
-.top-btn {
-    position: fixed;
-    bottom: 1rem;
-    right: 1rem;
-    z-index: 40;
-    display: none;
-    width: 2.5rem;
-    height: 2.5rem;
-    line-height: 2.5rem;
-    text-align: center;
-    font-size: 1rem;
-    color: var(--black);
-    background-color: rgba(255, 255, 255, .3);
-    border: 0;
-    border-radius: 4px;
-    transition: color .3s;
-    &::before {
-        content: '\f062';
-        font-family: 'Font Awesome 6 Free';
-        font-weight: 900;
-    }
-    &.is-show {
-        display: block;
-    }
-    &:hover {
-        color: var(--c1);
-    }
-    @include MQ(max-768) {
-        bottom: 5rem;
-        right: 0;
-    }
-    @include MQ(max-480) {
-        bottom: 4rem;
-    }
-}
-
+// BTN
 button {
+    position: relative;
     display: inline-block;
     vertical-align: middle;
     width: 2.5rem;
@@ -300,9 +266,17 @@ button {
     border: 0;
     transition: color .3s;
     &.btn-top {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+        z-index: 40;
         display: none;
+        background-color: rgba(255, 255, 255, .3);
+        border-radius: 4px;
         &::before {
             content: '\f062';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
         }
         &.is-show {
             display: inline-block !important;

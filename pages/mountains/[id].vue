@@ -106,41 +106,23 @@
         </div>
     </section>
 </template>
-  
-<script>
-export default {
-    setup() {
-        // 使用 ref 创建响应式数据
-        const jsonData = ref([]);
-        const postID = ref(null);
 
-        // 获取路由参数
-        const route = useRoute();
-        postID.value = route.params.id;
+<script setup lang="ts">
+    // 使用 ref 创建响应式数据
+    const jsonData = ref([]);
+    const postID = ref(null);
 
-        // 发起数据请求
-        fetch(`/js/data/mountains.json`)
-            .then(response => response.json())
-            .then(data => {
-                // 使用 .value 来更新 ref 数据
-                jsonData.value = data.reverse();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+    // 获取路由参数
+    const route = useRoute();
+    postID.value = route.params.id;
 
-        // 创建一个方法来获取数据
-        const getIndex = (id) => {
-            return jsonData.value.find(item => item.id === id) || {};
-        };
+    // mounted
+    onMounted(async () => {
+        await fetchData(jsonData, 'mountains');
+    });
 
-        // 在 setup 函数中返回需要暴露给模板的数据和方法
-        return {
-            jsonData,
-            postID,
-            getIndex,
-        };
-    },
-};
+    // 创建一个方法来获取数据
+    const getIndex = (id) => {
+        return jsonData.value.find(item => item.id === id) || {};
+    };
 </script>
-  

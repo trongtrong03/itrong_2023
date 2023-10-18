@@ -284,22 +284,18 @@ for (i = 0; i &lt; x.length; i++) {
     </NuxtLayout>
 </template>
 
-<script>
-export default {
-    setup () {
-        // layout
-        definePageMeta({
-            layout: false
-        });
+<script setup lang="ts">
+    // layout
+    definePageMeta({
+        layout: false
+    });
 
-        // load js
-        useHead({
-            script: [
-                { src: "/js/motionblur_blur.js", body: true }
-            ],
-        });
-    },
-}
+    // load js
+    useHead({
+        script: [
+            { src: "/js/motionblur_blur.js", body: true }
+        ],
+    });
 </script>
 
 <style>

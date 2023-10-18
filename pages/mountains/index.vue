@@ -84,7 +84,7 @@
                         </select>
                     </div>
                     <div class="list-input">
-                        <button @click="toggleActiveState" :class="{ 'search-on': searchOn }"></button>
+                        <button @click="searchToggleActive" :class="{ 'search-on': searchOn }"></button>
                         <input type="text" :class="{ 'search-on': searchOn }" placeholder="請輸入山岳名稱" v-model="Filters.name" @click="filterOpen = false">
                     </div>
                     <div class="list-filter">
@@ -184,180 +184,106 @@
                 </div>
             </div>
         </div>
-        <button class="top-btn" :class="{ 'is-show': isShowButton }" @click="onBtnTopClick"></button>
     </section>
 </template>
 
-<script>
-export default {
-    setup() {
-        const jsonData = ref([]);
-        const isActive = ref(1);
-        const isShowButton = ref(false);
-        const filterOpen = ref(false);
-        const searchOn = ref(false);
-        const Filters = ref({
-            name: "",
-            area: "",
-            county: "",
-            lv: "",
-            Tags: ["全部"],
+<script setup lang="ts">
+    const jsonData = ref([]);
+    const isActive = ref(1);
+    const filterOpen = ref(false);
+    const Filters = ref({
+        name: "",
+        area: "",
+        county: "",
+        lv: "",
+        Tags: ["全部"],
+    });
+    const Tags = ref([
+        { Tag: "", name: "全部", isOn: true },
+        { Tag: "百岳100", name: "百岳", info:"由台灣登山界名人林文安先生所發起，選定標高三千公尺，擁有奇、險、峻、秀特色的一百座台灣山峰。", isOn: false },
+        { Tag: "小百岳", name: "小百岳", info:"為了推動全民登山運動，以各縣市近郊山區為標的，所甄選出來的一百座較具特色或具代表性的「郊山」。", isOn: false },
+        { Tag: "百名山", name: "百名山", info:"由《台灣山岳》雜誌以自然與人文為評選依據，選出的「台灣百名山」。", isOn: false },
+        { Tag: "百步道", name: "百步道", info:"由林務局於民國建國百年，所特別嚴選的一百條推薦步道。", isOn: false },
+        { Tag: "十峻", name: "十峻", info:"十峻指「五嶽三尖」之外，台灣百岳中另十座山形險峻，岩壁孤挺，坡度極陡，斷崖一瀉千里，目標明顯者。", isOn: false },
+        { Tag: "十崇", name: "十崇", info:"台灣高山中，山高而大，有高低起伏，頂部寬闊，坡度和緩，有敦厚詳和之氣勢。", isOn: false },
+        { Tag: "十巖", name: "十巖", info:"台灣高山中，山頂巨石磊磊，純為岩峰，須攀岩附壁才能登頂。", isOn: false },
+        { Tag: "十翠", name: "十翠", info:"台灣高山中，山色蒼翠，樹木蒼籠，箭竹高密，須穿梭箭竹林叢。", isOn: false },
+        { Tag: "十潤", name: "十潤", info:"台灣高山中，山容潤澤，山勢柔和，坡度緩和，不須爬岩者。", isOn: false },
+        { Tag: "九嶂", name: "九嶂", info:"台灣高山中，山嶺頂平，橫亙如垣，密如籬籓，阻隔遠望視線如屏幛者。", isOn: false },
+        { Tag: "九峨", name: "九峨", info:"台灣高山中，山高而巍峨，雄偉壯麗，卓而不群，立於周圍諸山，英挺秀出者。", isOn: false },
+        { Tag: "九平", name: "九平", info:"台灣高山中，山頂寬闊平坦，無大石巨木，淺草短竹柔美，步履可輕鬆。", isOn: false },
+        { Tag: "九偏", name: "九偏", info:"台灣高山中，位置偏僻，遠隔主脈，縱走主脊，無兼登之便，必須專訪。", isOn: false },
+        { Tag: "八秀", name: "八秀", info:"台灣高山中，山容秀麗，坡度和緩，淺竹如茵，無巨石叢林者。", isOn: false },
+        { Tag: "八瘦", name: "八瘦", info:"台灣高山中，山脊狹長，山腹瘦削，兩側多為崖壁或急坡。", isOn: false },
+        { Tag: "八銳", name: "八銳", info:"台灣高山中，山峰尖銳，多崖壁，多峻坡。", isOn: false },
+        { Tag: "八小巒", name: "八小巒", info:"台灣高山中，山頂矮小，坡勢緩和，容易攀登，縱走順路兼登。", isOn: false },
+        { Tag: "七峭", name: "七峭", info:"台灣高山中，山勢峭拔，坡度陡急，多佈散石，多垂崖壁。", isOn: false },
+        { Tag: "六肩稜", name: "六肩稜", info:"台灣高山中，臨近高峰肩狀平坦稜，有基點，有山名，狀如平肩，稍肩突丘。", isOn: false },
+        { Tag: "六易", name: "六易", info:"台灣高山中，山勢和緩，近貼山徑，容易順便登頂。", isOn: false },
+        { Tag: "五嶽", name: "五嶽", info:"五嶽是指高山峻嶺，山形獨特明顯，展望極佳，可雄霸一方鎮護地方之山，評選有五座。", isOn: false },
+        { Tag: "三尖100", name: "三尖", info:"三尖是指百岳中三座以「尖山」為名，山形特別突出陡峭，頂端尖聳，山勢呈金字塔狀的高山。", isOn: false },
+        { Tag: "三高", name: "三高", info:"指日治時期，名稱有高字的三座高山，如此稱呼今已少用。", isOn: false },
+        { Tag: "一奇", name: "一奇", info:"一奇，又稱一怪，是指以「奇」為名的奇萊北峰，其山勢險峻，陡峭難行。", isOn: false },
+        { Tag: "武陵四秀", name: "武陵四秀", info:"又稱武陵四秀，因近武陵農場，且四座連峰而得此名。", isOn: false },
+        { Tag: "中橫四辣", name: "中橫四辣", info:"即中橫四辣，是登山口皆在中橫公路上的四座高山，山徑多陡坡峭壁，高度落差大，攀登不易，因而得名。", isOn: false },
+        { Tag: "南橫三星", name: "南橫三星", info:"即南橫三星，又稱南橫三山，是南橫公路旁的三座高山。", isOn: false },
+        { Tag: "嘉義十二名山", name: "嘉義十二名山", info:"是指位於台灣嘉義縣境內的十二座知名山峰。", isOn: false },
+        { Tag: "東北黃金十稜", name: "東北黃金十稜", info:"最早出現於《林宗聖黃金十大傳奇》一書，指的是東北角十條被喻為最美的山頭稜線。", isOn: false },
+        { Tag: "谷關七雄", name: "谷關七雄", info:"台灣中部谷關一帶的七座中級山。", isOn: false },
+        { Tag: "太魯閣七雄", name: "太魯閣七雄", info:"太魯閣七雄因山形特殊、陡峭，被人們視為中級山中的王者。", isOn: false },
+        { Tag: "埔里六秀", name: "埔里六秀", info:"環繞南投縣埔里鎮的六座知名中級山。", isOn: false },
+        { Tag: "廬山六寶", name: "廬山六寶", info:"起源於山界前輩曾木樹先生於 80 年代主編的【中台灣名山大系】一書，從原先的三寶後來慢慢增列到今日的六寶。", isOn: false },
+        { Tag: "蘭陽五大名山", name: "蘭陽五大名山", info:"蘭陽五大名山位於台北與宜蘭的交界，鎮守一方，景色各異。", isOn: false },
+        { Tag: "明潭四秀", name: "明潭四秀", info:"指的是日月潭周遭的四座名山，又稱日月潭四兄妹。", isOn: false },
+        { Tag: "溪頭四珠", name: "溪頭四珠", info:"均位於溪頭與杉林溪兩大熱門森林遊樂區周圍的四座山，遊園登山兼備，交通便利，可及性高。", isOn: false },
+        { Tag: "水雲三星", name: "水雲三星", info:"位在苗栗泰安鄉泰安溫泉附近的龍、虎、鳳三座山。", isOn: false },
+        { Tag: "砂卡噹三雄", name: "砂卡噹三雄", info:"三座位於花蓮縣秀林鄉，路程雖然艱辛，但風景壯麗，堪稱台灣山岳中的經典。", isOn: false },
+        { Tag: "復興三尖", name: "復興三尖", info:"復興三尖指的是位於桃園市復興區的三座尖尖山頭。", isOn: false },
+        { Tag: "瑪家三兄妹", name: "瑪家三兄妹", info:"瑪家三兄妹位於屏東縣瑪家鄉，是當地非常熱門的大眾化登山路線的三座山岳。", isOn: false },
+    ]);
+
+    // 篩選
+    const getArea = () => jsonData.value.map((e) => e.area);
+    const getCounty = () => jsonData.value.map((e) => e.county);
+    const getLevel = () => jsonData.value.map((e) => e.lv);
+
+    const setArea = (e) => {
+        Filters.value.area = e.target.value;
+    };
+
+    const setCounty = (e) => {
+        Filters.value.county = e.target.value;
+    };
+
+    const setLevel = (e) => {
+        Filters.value.lv = e.target.value;
+    };
+
+    const setTags = (Tag) => {
+        Filters.value.Tags = [Tag];
+        Tags.value.forEach((tag) => {
+            tag.isOn = (tag === Tag);
         });
-        const Tags = ref([
-            { Tag: "", name: "全部", isOn: true },
-            { Tag: "百岳100", name: "百岳", info:"由台灣登山界名人林文安先生所發起，選定標高三千公尺，擁有奇、險、峻、秀特色的一百座台灣山峰。", isOn: false },
-            { Tag: "小百岳", name: "小百岳", info:"為了推動全民登山運動，以各縣市近郊山區為標的，所甄選出來的一百座較具特色或具代表性的「郊山」。", isOn: false },
-            { Tag: "百名山", name: "百名山", info:"由《台灣山岳》雜誌以自然與人文為評選依據，選出的「台灣百名山」。", isOn: false },
-            { Tag: "百步道", name: "百步道", info:"由林務局於民國建國百年，所特別嚴選的一百條推薦步道。", isOn: false },
-            { Tag: "十峻", name: "十峻", info:"十峻指「五嶽三尖」之外，台灣百岳中另十座山形險峻，岩壁孤挺，坡度極陡，斷崖一瀉千里，目標明顯者。", isOn: false },
-            { Tag: "十崇", name: "十崇", info:"台灣高山中，山高而大，有高低起伏，頂部寬闊，坡度和緩，有敦厚詳和之氣勢。", isOn: false },
-            { Tag: "十巖", name: "十巖", info:"台灣高山中，山頂巨石磊磊，純為岩峰，須攀岩附壁才能登頂。", isOn: false },
-            { Tag: "十翠", name: "十翠", info:"台灣高山中，山色蒼翠，樹木蒼籠，箭竹高密，須穿梭箭竹林叢。", isOn: false },
-            { Tag: "十潤", name: "十潤", info:"台灣高山中，山容潤澤，山勢柔和，坡度緩和，不須爬岩者。", isOn: false },
-            { Tag: "九嶂", name: "九嶂", info:"台灣高山中，山嶺頂平，橫亙如垣，密如籬籓，阻隔遠望視線如屏幛者。", isOn: false },
-            { Tag: "九峨", name: "九峨", info:"台灣高山中，山高而巍峨，雄偉壯麗，卓而不群，立於周圍諸山，英挺秀出者。", isOn: false },
-            { Tag: "九平", name: "九平", info:"台灣高山中，山頂寬闊平坦，無大石巨木，淺草短竹柔美，步履可輕鬆。", isOn: false },
-            { Tag: "九偏", name: "九偏", info:"台灣高山中，位置偏僻，遠隔主脈，縱走主脊，無兼登之便，必須專訪。", isOn: false },
-            { Tag: "八秀", name: "八秀", info:"台灣高山中，山容秀麗，坡度和緩，淺竹如茵，無巨石叢林者。", isOn: false },
-            { Tag: "八瘦", name: "八瘦", info:"台灣高山中，山脊狹長，山腹瘦削，兩側多為崖壁或急坡。", isOn: false },
-            { Tag: "八銳", name: "八銳", info:"台灣高山中，山峰尖銳，多崖壁，多峻坡。", isOn: false },
-            { Tag: "八小巒", name: "八小巒", info:"台灣高山中，山頂矮小，坡勢緩和，容易攀登，縱走順路兼登。", isOn: false },
-            { Tag: "七峭", name: "七峭", info:"台灣高山中，山勢峭拔，坡度陡急，多佈散石，多垂崖壁。", isOn: false },
-            { Tag: "六肩稜", name: "六肩稜", info:"台灣高山中，臨近高峰肩狀平坦稜，有基點，有山名，狀如平肩，稍肩突丘。", isOn: false },
-            { Tag: "六易", name: "六易", info:"台灣高山中，山勢和緩，近貼山徑，容易順便登頂。", isOn: false },
-            { Tag: "五嶽", name: "五嶽", info:"五嶽是指高山峻嶺，山形獨特明顯，展望極佳，可雄霸一方鎮護地方之山，評選有五座。", isOn: false },
-            { Tag: "三尖100", name: "三尖", info:"三尖是指百岳中三座以「尖山」為名，山形特別突出陡峭，頂端尖聳，山勢呈金字塔狀的高山。", isOn: false },
-            { Tag: "三高", name: "三高", info:"指日治時期，名稱有高字的三座高山，如此稱呼今已少用。", isOn: false },
-            { Tag: "一奇", name: "一奇", info:"一奇，又稱一怪，是指以「奇」為名的奇萊北峰，其山勢險峻，陡峭難行。", isOn: false },
-            { Tag: "武陵四秀", name: "武陵四秀", info:"又稱武陵四秀，因近武陵農場，且四座連峰而得此名。", isOn: false },
-            { Tag: "中橫四辣", name: "中橫四辣", info:"即中橫四辣，是登山口皆在中橫公路上的四座高山，山徑多陡坡峭壁，高度落差大，攀登不易，因而得名。", isOn: false },
-            { Tag: "南橫三星", name: "南橫三星", info:"即南橫三星，又稱南橫三山，是南橫公路旁的三座高山。", isOn: false },
-            { Tag: "嘉義十二名山", name: "嘉義十二名山", info:"是指位於台灣嘉義縣境內的十二座知名山峰。", isOn: false },
-            { Tag: "東北黃金十稜", name: "東北黃金十稜", info:"最早出現於《林宗聖黃金十大傳奇》一書，指的是東北角十條被喻為最美的山頭稜線。", isOn: false },
-            { Tag: "谷關七雄", name: "谷關七雄", info:"台灣中部谷關一帶的七座中級山。", isOn: false },
-            { Tag: "太魯閣七雄", name: "太魯閣七雄", info:"太魯閣七雄因山形特殊、陡峭，被人們視為中級山中的王者。", isOn: false },
-            { Tag: "埔里六秀", name: "埔里六秀", info:"環繞南投縣埔里鎮的六座知名中級山。", isOn: false },
-            { Tag: "廬山六寶", name: "廬山六寶", info:"起源於山界前輩曾木樹先生於 80 年代主編的【中台灣名山大系】一書，從原先的三寶後來慢慢增列到今日的六寶。", isOn: false },
-            { Tag: "蘭陽五大名山", name: "蘭陽五大名山", info:"蘭陽五大名山位於台北與宜蘭的交界，鎮守一方，景色各異。", isOn: false },
-            { Tag: "明潭四秀", name: "明潭四秀", info:"指的是日月潭周遭的四座名山，又稱日月潭四兄妹。", isOn: false },
-            { Tag: "溪頭四珠", name: "溪頭四珠", info:"均位於溪頭與杉林溪兩大熱門森林遊樂區周圍的四座山，遊園登山兼備，交通便利，可及性高。", isOn: false },
-            { Tag: "水雲三星", name: "水雲三星", info:"位在苗栗泰安鄉泰安溫泉附近的龍、虎、鳳三座山。", isOn: false },
-            { Tag: "砂卡噹三雄", name: "砂卡噹三雄", info:"三座位於花蓮縣秀林鄉，路程雖然艱辛，但風景壯麗，堪稱台灣山岳中的經典。", isOn: false },
-            { Tag: "復興三尖", name: "復興三尖", info:"復興三尖指的是位於桃園市復興區的三座尖尖山頭。", isOn: false },
-            { Tag: "瑪家三兄妹", name: "瑪家三兄妹", info:"瑪家三兄妹位於屏東縣瑪家鄉，是當地非常熱門的大眾化登山路線的三座山岳。", isOn: false },
-        ]);
+    };
 
-
-        // 篩選
-        const getArea = () => jsonData.value.map((e) => e.area);
-        const getCounty = () => jsonData.value.map((e) => e.county);
-        const getLevel = () => jsonData.value.map((e) => e.lv);
-
-        const setArea = (e) => {
-            Filters.value.area = e.target.value;
-        };
-
-        const setCounty = (e) => {
-            Filters.value.county = e.target.value;
-        };
-
-        const setLevel = (e) => {
-            Filters.value.lv = e.target.value;
-        };
-
-        const setTags = (Tag) => {
-            Filters.value.Tags = [Tag];
-            Tags.value.forEach((tag) => {
-                tag.isOn = (tag === Tag);
-            });
-        };
-
-        const getItems = () => {
-            const tags = Filters.value.Tags.map((tag) => tag.Tag).join('');
-            return jsonData.value.filter((b) => {
-                return (
-                    b.name.toLowerCase().includes(Filters.value.name.toLowerCase()) &&
-                    b.area.includes(Filters.value.area) &&
-                    b.county.includes(Filters.value.county) &&
-                    b.lv.includes(Filters.value.lv) &&
-                    b.tags.some((g) => g.includes(tags))
-                );
-            });
-        };
-
-
-        // RWD 時 search 開關
-        const toggleActiveState = () => {
-            searchOn.value = !searchOn.value;
-        };
-        
-        // Fetch data
-        onMounted(() => {
-            fetch("/js/data/mountains.json")
-                .then((response) => response.json())
-                .then((data) => {
-                jsonData.value = data;
-                })
-                .catch((error) => {
-                console.error("Error:", error);
-                });
+    const getItems = () => {
+        const tags = Filters.value.Tags.map((tag) => tag.Tag).join('');
+        return jsonData.value.filter((b) => {
+            return (
+                b.name.toLowerCase().includes(Filters.value.name.toLowerCase()) &&
+                b.area.includes(Filters.value.area) &&
+                b.county.includes(Filters.value.county) &&
+                b.lv.includes(Filters.value.lv) &&
+                b.tags.some((g) => g.includes(tags))
+            );
         });
+    };
 
-        // GO TOP
-        const onBtnTopClick = () => {
-            const duration = 500;
-            const start = window.pageYOffset;
-            let startTime = null;
+    // search on
+    const { searchOn, searchToggleActive } = useSearch();
 
-            const animateScroll = (timestamp) => {
-                if (!startTime) startTime = timestamp;
-                const progress = timestamp - startTime;
-                const easeInOutCubic = (t) =>
-                t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-                const scrollTop =
-                easeInOutCubic(Math.min(progress / duration, 1)) * (0 - start) + start;
-                window.scrollTo(0, scrollTop);
-                if (progress < duration) {
-                requestAnimationFrame(animateScroll);
-                }
-            };
-
-            requestAnimationFrame(animateScroll);
-        };
-
-        const updateButtonVisibility = () => {
-            isShowButton.value = window.scrollY > 400;
-        };
-
-        onBeforeMount(() => {
-            // Add event listener
-            window.addEventListener("scroll", updateButtonVisibility);
-        });
-
-        onBeforeUnmount(() => {
-            // Remove event listener
-            window.removeEventListener("scroll", updateButtonVisibility);
-        });
-
-        return {
-            jsonData,
-            isActive,
-            isShowButton,
-            filterOpen,
-            searchOn,
-            Filters,
-            Tags,
-            getArea,
-            getCounty,
-            getLevel,
-            setArea,
-            setCounty,
-            setLevel,
-            setTags,
-            getItems,
-            toggleActiveState,
-            onBtnTopClick,
-        };
-    },
-}
+    // mounted
+    onMounted(async () => {
+        await fetchData(jsonData, 'mountains');
+    });
 </script>

@@ -10,16 +10,12 @@
     </div>
 </template>
 
-<script>
-export default {
-    setup () {
-        // layout
-        definePageMeta({
-            layout: false
-        });
+<script setup lang="ts">
+    // layout
+    definePageMeta({
+        layout: false
+    });
 
-        // 404
-        setResponseStatus(404)
-    },
-}
+    // 404
+    setResponseStatus(404);
 </script>

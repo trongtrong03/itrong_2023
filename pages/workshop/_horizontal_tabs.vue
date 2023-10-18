@@ -180,13 +180,9 @@ Vue.createApp(vueExample).mount('#app');</code></pre>
     </NuxtLayout>
 </template>
 
-<script>
-export default {
-    setup () {
-        // layout
-        definePageMeta({
-            layout: false
-        });
-    }
-}
+<script setup lang="ts">
+    // layout
+    definePageMeta({
+        layout: false
+    });
 </script>

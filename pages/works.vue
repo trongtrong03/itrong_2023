@@ -88,67 +88,52 @@
     </section>
 </template>
 
-<script>
-export default {
-    setup() {
-        const tabsActive = ref(1);
-        const jsonData = ref([]);
-        const selectedItem = ref(null);
-        const currentIndex = ref(0);
+<script setup lang="ts">
+    const tabsActive = ref(1);
+    const jsonData = ref([]);
+    const selectedItem = ref(null);
+    const currentIndex = ref(0);
 
-        // Fetch data on component mounted
-        onMounted(async () => {
-            try {
-                const response = await fetch('/js/data/works.json');
-                const data = await response.json();
-                jsonData.value = data.reverse().map((item, index) => ({
-                    ...item,
-                    currentIndex: index,
-                }));
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        });
+    // Fetch data on component mounted
+    onMounted(async () => {
+        try {
+            const response = await fetch('/js/data/works.json');
+            const data = await response.json();
+            jsonData.value = data.reverse().map((item, index) => ({
+                ...item,
+                currentIndex: index,
+            }));
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
 
-        // Function to fetch data for a selected item
-        const fetchData = (item) => {
-            selectedItem.value = item;
-            currentIndex.value = item.currentIndex;
-        };
+    // Function to fetch data for a selected item
+    const fetchData = (item) => {
+        selectedItem.value = item;
+        currentIndex.value = item.currentIndex;
+    };
 
-        // Function to toggle body scroll
-        const noScroll = () => {
-            document.body.classList.toggle('no-scroll');
-        };
+    // Function to toggle body scroll
+    const noScroll = () => {
+        document.body.classList.toggle('no-scroll');
+    };
 
-        // Function to load the previous item
-        const loadPrevItem = () => {
-            currentIndex.value--;
-            if (currentIndex.value < 0) {
-            currentIndex.value = jsonData.value.length - 1;
-            }
-            selectedItem.value = jsonData.value.find((item) => item.currentIndex === currentIndex.value);
-        };
+    // Function to load the previous item
+    const loadPrevItem = () => {
+        currentIndex.value--;
+        if (currentIndex.value < 0) {
+        currentIndex.value = jsonData.value.length - 1;
+        }
+        selectedItem.value = jsonData.value.find((item) => item.currentIndex === currentIndex.value);
+    };
 
-        // Function to load the next item
-        const loadNextItem = () => {
-            currentIndex.value++;
-            if (currentIndex.value >= jsonData.value.length) {
-            currentIndex.value = 0;
-            }
-            selectedItem.value = jsonData.value.find((item) => item.currentIndex === currentIndex.value);
-        };
-
-        return {
-            tabsActive,
-            jsonData,
-            selectedItem,
-            currentIndex,
-            fetchData,
-            noScroll,
-            loadPrevItem,
-            loadNextItem,
-        };
-    },
-};
+    // Function to load the next item
+    const loadNextItem = () => {
+        currentIndex.value++;
+        if (currentIndex.value >= jsonData.value.length) {
+        currentIndex.value = 0;
+        }
+        selectedItem.value = jsonData.value.find((item) => item.currentIndex === currentIndex.value);
+    };
 </script>

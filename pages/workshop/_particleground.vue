@@ -91,13 +91,9 @@ parallaxMultiplier: 5,      // 數值越小，視差跟隨的效果就越極端�
     </NuxtLayout>
 </template>
 
-<script>
-export default {
-    setup () {
-        // layout
-        definePageMeta({
-            layout: false
-        });
-    }
-}
+<script setup lang="ts">
+    // layout
+    definePageMeta({
+        layout: false
+    });
 </script>

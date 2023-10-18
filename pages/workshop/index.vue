@@ -52,71 +52,41 @@
     </section>
 </template>
 
-<script>
-export default {
-    setup() {
-        const jsonData = ref([]);
-        const filter = ref('all');
-        const query = ref('');
-        const isActive = ref(1);
-        const searchOn = ref(false);
+<script setup lang="ts">
+    const jsonData = ref([]);
+    const filter = ref('all');
+    const query = ref('');
+    const isActive = ref(1);
+    const searchOn = ref(false);
 
-        // Fetch data on component mounted
-        onMounted(async () => {
-            try {
-                const response = await fetch('/js/data/workshop.json');
-                const data = await response.json();
-                jsonData.value = data.reverse();
-            } catch (error) {
-                console.error('Error:', error);
-            }
+    // mounted
+    onMounted(async () => {
+        await fetchData(jsonData, 'workshop', true);
+        
+        initializeAOS();
+    });
 
-            // Initialize AOS after data is loaded
-            AOS.init({
-                once: true,
-                easing: 'ease-in-out-sine',
-            });
-        });
-
-        // Computed property for filtered data
-        const filterSearch = computed(() => {
-            return jsonData.value.filter((item) => {
-                if (filter.value === 'all') {
-                    return item.title.toLowerCase().indexOf(query.value.toLowerCase()) !== -1;
-                }
-                else {
-                    return (
-                        item.title.toLowerCase().indexOf(query.value.toLowerCase()) !== -1 &&
-                        item[filter.value] === true
-                    );
-                }
-            });
-        });
-
-        // Method to toggle the search state
-        const toggleActiveState = () => {
-            searchOn.value = !searchOn.value;
-        };
-
-        // Function to check if an item should be shown
-        const shouldShowItem = (item) => {
+    // Computed property for filtered data
+    const filterSearch = computed(() => {
+        return jsonData.value.filter((item) => {
             if (filter.value === 'all') {
-                return true;
-            } else {
-                return item[filter.value] && item.title.toLowerCase().indexOf(query.value.toLowerCase()) !== -1;
+                return item.title.toLowerCase().indexOf(query.value.toLowerCase()) !== -1;
             }
-        };
+            else {
+                return (
+                    item.title.toLowerCase().indexOf(query.value.toLowerCase()) !== -1 &&
+                    item[filter.value] === true
+                );
+            }
+        });
+    });
 
-        return {
-            jsonData,
-            filter,
-            query,
-            isActive,
-            searchOn,
-            filterSearch,
-            toggleActiveState,
-            shouldShowItem,
-        };
-    },
-};
+    // Function to check if an item should be shown
+    const shouldShowItem = (item) => {
+        if (filter.value === 'all') {
+            return true;
+        } else {
+            return item[filter.value] && item.title.toLowerCase().indexOf(query.value.toLowerCase()) !== -1;
+        }
+    };
 </script>

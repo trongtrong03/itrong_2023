@@ -117,13 +117,9 @@ function go_to_page(page_num){
     </NuxtLayout>
 </template>
 
-<script>
-export default {
-    setup () {
-        // layout
-        definePageMeta({
-            layout: false
-        });
-    }
-}
+<script setup lang="ts">
+    // layout
+    definePageMeta({
+        layout: false
+    });
 </script>

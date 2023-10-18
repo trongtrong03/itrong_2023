@@ -79,11 +79,15 @@
     &:hover {
         .nav-text {
             svg {
-                fill: rgba(#FFF, .8);
+                fill: var(--c1);
             }
         }
-        .nav-sub {
-            display: block;
+    }
+    @include MQ(min-960) {
+        &:hover {
+            .nav-sub {
+                display: block !important;
+            }
         }
     }
 }
@@ -129,7 +133,7 @@
     }
 }
 
-.nav-acrodin {
+.nav-accrodin {
     display: none;
     @include MQ(max-960) {
         position: absolute;

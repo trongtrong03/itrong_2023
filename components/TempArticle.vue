@@ -7,9 +7,10 @@
         <h1 v-text="getIndex({ jsonData, index: jsonData.length-propValue }).title"></h1>
     </hgroup>
 </template>
-<script>
-export default {
-    props: {
+
+<script setup lang="ts">
+    // 使用 props 來傳入各個模板的值
+    const props = defineProps({
         propValue: {
             type: Number,
             required: true,
@@ -18,30 +19,16 @@ export default {
             type: String,
             required: true,
         },
-    },
-    setup(props) {
-        const jsonData = ref([]);
+    });
 
-        const getIndex = ({ jsonData = [], index = 0 }) => {
-            return jsonData[index] || {};
-        };
+    const jsonData = ref([]);
 
-        onMounted(() => {
-            // get data based on fileType
-            fetch(`/js/data/${props.fileType}.json`)
-                .then((response) => response.json())
-                .then((data) => {
-                    jsonData.value = data.reverse();
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
-        });
+    const getIndex = ({ jsonData = [], index = 0 }) => {
+        return jsonData[index] || {};
+    };
 
-        return {
-            jsonData,
-            getIndex,
-        };
-    },
-};
+    // Fetch data
+    onMounted(async () => {
+        await fetchData(jsonData, `${props.fileType}`, true);
+    });
 </script>

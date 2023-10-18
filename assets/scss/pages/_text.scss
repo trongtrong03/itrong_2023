@@ -327,7 +327,12 @@
             }
         }
         &.btn-top {
+            position: relative;
+            right: auto;
+            bottom: auto;
             display: none;
+            background-color: transparent;
+            border-radius: 0;
             &::before {
                 content: '\f062';
             }

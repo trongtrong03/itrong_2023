@@ -401,20 +401,9 @@ var hasPassed = score >= pass;</code></pre>
     </NuxtLayout>
 </template>
 
-<script>
-export default {
-    setup () {
-        // layout
-        definePageMeta({
-            layout: false
-        });
-
-        // Define reactive data using ref
-        const isActive = ref(0);
-
-        return {
-            isActive
-        };
-    }
-}
+<script setup lang="ts">
+    // layout
+    definePageMeta({
+        layout: false
+    });
 </script>

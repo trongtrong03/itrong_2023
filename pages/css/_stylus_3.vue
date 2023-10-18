@@ -208,13 +208,9 @@ alpha(rgba(0,0,0,0.4))
     </NuxtLayout>
 </template>
 
-<script>
-export default {
-    setup () {
-        // layout
-        definePageMeta({
-            layout: false
-        });
-    },
-}
+<script setup lang="ts">
+    // layout
+    definePageMeta({
+        layout: false
+    });
 </script>

@@ -19,7 +19,7 @@
                         </select>
                     </div>
                     <div class="list-input">
-                        <button @click="toggleActiveState" :class="{ 'search-on': searchOn }"></button>
+                        <button @click="searchToggleActive" :class="{ 'search-on': searchOn }"></button>
                         <input type="text" placeholder="請輸入關鍵字" v-model="query" :class="{ 'search-on': searchOn }">
                     </div>
                     <div class="list-sort">
@@ -57,47 +57,18 @@
     </section>
 </template>
 
-<script>
-export default {
-    setup() {
-        const jsonData = ref([]);
-        const filter = ref('all');
-        const query = ref('');
-        const isActive = ref(1);
-        const searchOn = ref(false);
+<script setup lang="ts">
+    const jsonData = ref([]);
+    const query = ref('');
+    const filter = ref('all');
+    const isActive = ref(1);
 
-        // Fetch data on component mounted
-        onMounted(async () => {
-            try {
-                const response = await fetch('/js/data/resourceWebfront.json');
-                const data = await response.json();
-                jsonData.value = data;
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        });
+    // Search
+    const { searchOn, searchToggleActive } = useSearch();
+    const filterSearch = createFilterSearch(jsonData, query);
 
-        // Computed property for filtered data
-        const filterSearch = computed(() => {
-            return jsonData.value.filter((item) => {
-                return item.title.toLowerCase().indexOf(query.value.toLowerCase()) !== -1;
-            });
-        });
-
-        // Function to toggle the search state
-        const toggleActiveState = () => {
-            searchOn.value = !searchOn.value;
-        };
-
-        return {
-            jsonData,
-            filter,
-            query,
-            isActive,
-            searchOn,
-            filterSearch,
-            toggleActiveState,
-        };
-    },
-};
+    // Fetch data
+    onMounted(async () => {
+        await fetchData(jsonData, 'resourceWebfront');
+    });
 </script>

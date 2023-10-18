@@ -1,7 +1,7 @@
 <template>
     <header class="header-wrap" :class="{ 'is-active': navActive }">
         <figure class="logo-wrap">
-            <MyNuxtLink to="/">
+            <MyNuxtLink to="/" @click="navToggleActive">
                 <svg id="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100" style="enable-background:new 0 0 200 100;">
                     <path d="M200,82.39c-4.58-0.26-8.88-0.38-13.15-0.79c-2.82-0.27-5.15-1.79-7.14-3.77
                         c-4.78-4.75-9.55-9.51-14.32-14.27c-2.46-2.45-4.94-4.88-7.36-7.36c-5.56-5.68-15.25-5.35-20.17-0.44
@@ -29,12 +29,12 @@
                     </svg>
                     <span>個人資料</span>
                 </div>
-                <button class="nav-acrodin"></button>
+                <button class="nav-accrodin"></button>
                 <div class="nav-sub">
                     <ul>
-                        <li><MyNuxtLink to="/about" @click="handleNavLinkFalse">關於我</MyNuxtLink></li>
-                        <li><MyNuxtLink to="/works" @click="handleNavLinkFalse">專案作品</MyNuxtLink></li>
-                        <li><MyNuxtLink to="/logs" @click="handleNavLinkFalse">更新日誌</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/about" @click="navToggleActive">關於我</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/works" @click="navToggleActive">專案作品</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/logs" @click="navToggleActive">更新日誌</MyNuxtLink></li>
                     </ul>
                 </div>
             </div>
@@ -54,13 +54,13 @@
                     </svg>
                     <span>山林日誌</span>
                 </div>
-                <button class="nav-acrodin"></button>
+                <button class="nav-accrodin"></button>
                 <div class="nav-sub">
                     <ul>
-                        <li><MyNuxtLink to="/mountains" @click="handleNavLinkFalse">山岳資料庫</MyNuxtLink></li>
-                        <li><MyNuxtLink to="/routes" @click="handleNavLinkFalse">路線彙整</MyNuxtLink></li>
-                        <li><MyNuxtLink to="/mtlogs" @click="handleNavLinkFalse">登山心得</MyNuxtLink></li>
-                        <li><MyNuxtLink to="/gallery" @click="handleNavLinkFalse">影像故事</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/mountains" @click="navToggleActive">山岳資料庫</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/routes" @click="navToggleActive">路線彙整</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/mtlogs" @click="navToggleActive">登山心得</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/gallery" @click="navToggleActive">影像故事</MyNuxtLink></li>
                     </ul>
                 </div>
             </div>
@@ -83,14 +83,14 @@
                     </svg>
                     <span>程式語言</span>
                 </div>
-                <button class="nav-acrodin"></button>
+                <button class="nav-accrodin"></button>
                 <div class="nav-sub">
                     <ul>
-                        <li><MyNuxtLink to="/html" @click="handleNavLinkFalse">HTML</MyNuxtLink></li>
-                        <li><MyNuxtLink to="/css" @click="handleNavLinkFalse">CSS</MyNuxtLink></li>
-                        <li><MyNuxtLink to="/javascript" @click="handleNavLinkFalse">JavaScript</MyNuxtLink></li>
-                        <li><MyNuxtLink to="/workshop" @click="handleNavLinkFalse">工作坊</MyNuxtLink></li>
-                        <li><MyNuxtLink to="/development" @click="handleNavLinkFalse">開發工具</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/html" @click="navToggleActive">HTML</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/css" @click="navToggleActive">CSS</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/javascript" @click="navToggleActive">JavaScript</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/workshop" @click="navToggleActive">工作坊</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/development" @click="navToggleActive">開發工具</MyNuxtLink></li>
                     </ul>
                 </div>
             </div>
@@ -110,13 +110,13 @@
                     </svg>
                     <span>知識文章</span>
                 </div>
-                <button class="nav-acrodin"></button>
+                <button class="nav-accrodin"></button>
                 <div class="nav-sub">
                     <ul>
-                        <li><MyNuxtLink to="/kl_network" @click="handleNavLinkFalse">網路相關</MyNuxtLink></li>
-                        <li><MyNuxtLink to="/kl_draw" @click="handleNavLinkFalse">繪圖軟體</MyNuxtLink></li>
-                        <li><MyNuxtLink to="/_maintain" @click="handleNavLinkFalse">野外觀念</MyNuxtLink></li>
-                        <!-- <li><MyNuxtLink to="/" @click="handleNavLinkFalse">投資學習</MyNuxtLink></li> -->
+                        <li><MyNuxtLink to="/kl_network" @click="navToggleActive">網路相關</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/kl_draw" @click="navToggleActive">繪圖軟體</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/_maintain" @click="navToggleActive">野外觀念</MyNuxtLink></li>
+                        <!-- <li><MyNuxtLink to="/" @click="navToggleActive">投資學習</MyNuxtLink></li> -->
                     </ul>
                 </div>
             </div>
@@ -142,16 +142,16 @@
                     </svg>
                     <span>推薦資源</span>
                 </div>
-                <button class="nav-acrodin"></button>
+                <button class="nav-accrodin"></button>
                 <div class="nav-sub">
                     <ul>
-                        <li><MyNuxtLink to="/rs_webfront" @click="handleNavLinkFalse">網頁開發</MyNuxtLink></li>
-                        <li><MyNuxtLink to="/rs_plugins" @click="handleNavLinkFalse">前端套件</MyNuxtLink></li>
-                        <li><MyNuxtLink to="/rs_material" @click="handleNavLinkFalse">素材模板</MyNuxtLink></li>
-                        <li><MyNuxtLink to="/rs_media" @click="handleNavLinkFalse">影音繪圖</MyNuxtLink></li>
-                        <li><MyNuxtLink to="/rs_teach" @click="handleNavLinkFalse">教學資源</MyNuxtLink></li>
-                        <li><MyNuxtLink to="/rs_hiking" @click="handleNavLinkFalse">登山健行</MyNuxtLink></li>
-                        <li><MyNuxtLink to="/rs_others" @click="handleNavLinkFalse">其他</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/rs_webfront" @click="navToggleActive">網頁開發</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/rs_plugins" @click="navToggleActive">前端套件</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/rs_material" @click="navToggleActive">素材模板</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/rs_media" @click="navToggleActive">影音繪圖</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/rs_teach" @click="navToggleActive">教學資源</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/rs_hiking" @click="navToggleActive">登山健行</MyNuxtLink></li>
+                        <li><MyNuxtLink to="/rs_others" @click="navToggleActive">其他</MyNuxtLink></li>
                     </ul>
                 </div>
             </div>
@@ -174,63 +174,76 @@
                     </svg>
                     <span>外部連結</span>
                 </div>
-                <button class="nav-acrodin"></button>
+                <button class="nav-accrodin"></button>
                 <div class="nav-sub">
                     <ul>
-                        <li><MyNuxtLink to="https://github.com/trongtrong03" target="_blank">GitHub</MyNuxtLink></li>
-                        <li><MyNuxtLink to="https://codepen.io/itrong" target="_blank">Codepen</MyNuxtLink></li>
+                        <li><MyNuxtLink to="https://github.com/trongtrong03" target="_blank" @click="navToggleActive">GitHub</MyNuxtLink></li>
+                        <li><MyNuxtLink to="https://codepen.io/itrong" target="_blank" @click="navToggleActive">Codepen</MyNuxtLink></li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <button class="nav-btn" aria-label="Nav Button" :class="navActive==true ? 'is-active' : ''" @click="handleNavLinkClick">
+        <button class="nav-btn" aria-label="Nav Button" :class="navActive==true ? 'is-active' : ''" @click="navToggleActive">
             <span><b></b><b></b><b></b><b></b></span>
         </button>
     </header>
 </template>
 
-<script>
-export default {
-    setup() {
-        const navActive = ref(false);
+<script setup lang="ts">
+    const navActive = ref(false);
+    const navToggleActive = () => {
+        navActive.value = !navActive.value;
 
-        // nav sub
-        const navItems = ref([]);
-        const navSub = ref(null);
-
-        const handleButtonClick = (button) => {
-            navItems.value.forEach((navItem) => {
-                navItem.classList.remove('is-active');
-                navSub.value.style.display = 'none';
-            });
-
-            const parentNavItem = button.parentNode;
-            parentNavItem.classList.add('is-active');
-
-            const nextNavSub = button.nextElementSibling;
-            if (nextNavSub) {
-                nextNavSub.style.display = nextNavSub.style.display === 'block' ? 'none' : 'block';
-            }
-        };
-
-        onMounted(() => {
-            navItems.value = Array.from(document.querySelectorAll('.nav-item button'));
-            navSub.value = document.querySelector('.nav-sub');
-            navItems.value.forEach((button) => {
-                button.addEventListener('click', () => handleButtonClick(button));
-            });
+        // 移除子選單的顯示狀態
+        const navTitles = document.querySelectorAll('.nav-accrodin');
+        const navSubs = document.querySelectorAll('.nav-sub');
+        
+        navTitles.forEach((navTitle) => {
+            navTitle.classList.remove("is-active");
         });
 
-        return {
-            navActive,
-            handleNavLinkClick: () => {
-                navActive.value = !navActive.value;
-            },
-            handleNavLinkFalse: () => {
-                navActive.value = false;
-            },
-        };
-    },
-};
+        navSubs.forEach((navSub) => {
+            navSub.style.display = 'none';
+        });
+    };
 
+    // 子選單展開收合
+    const handleNavAccordionClick = (e) => {
+        const titles = document.querySelectorAll(".nav-accrodin");
+
+        titles.forEach((title) => {
+            title.addEventListener("click", function (e) {
+                const parent = this.parentElement;
+                const content = parent.querySelector(".nav-sub");
+
+                if (content) {
+                    e.preventDefault();
+                }
+
+                if (!this.classList.contains("is-active")) {
+                    const allContents = document.querySelectorAll(".nav-sub");
+                    const allTitles = document.querySelectorAll(".nav-accrodin");
+
+                    allContents.forEach((item) => {
+                        item.style.display = "none";
+                    });
+
+                    allTitles.forEach((item) => {
+                        item.classList.remove("is-active");
+                    });
+
+                    content.style.display = "block";
+                    this.classList.add("is-active");
+                }
+                else if (this.classList.contains("is-active")) {
+                    this.classList.remove("is-active");
+                    content.style.display = "none";
+                }
+            });
+        });
+    };
+
+    onMounted(() => {
+        handleNavAccordionClick();
+    });
 </script>

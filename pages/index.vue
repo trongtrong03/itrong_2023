@@ -449,125 +449,129 @@
     </section>
 </template>
 
-<script>
-export default {
-    setup () {
-        // load js
-        useHead({
-            script: [
-                { src: "/js/slick.min.js" }
+
+<script setup lang="ts">
+    // load js
+    useHead({
+        script: [
+            { src: "/js/slick.min.js" }
+        ],
+    });
+
+    const jsonData = ref([]);
+    const sliderListRef = ref(null);
+
+    const initializeSlickSlider = () => {
+        $(sliderListRef.value).slick({
+            centerMode: true,
+            centerPadding: '0',
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 4000,
+            arrows: false,
+            dots: true,
+            infinite: true,
+            responsive: [
+                {
+                breakpoint: 960,
+                    settings: {
+                        centerMode: true,
+                        slidesToShow: 2,
+                    },
+                },
+                {
+                breakpoint: 480,
+                    settings: {
+                        centerMode: true,
+                        slidesToShow: 1,
+                    },
+                },
             ],
         });
-    },
+    };
 
-    data() {
-        return {
-            jsonData: [],
-        }
-    },
-    
-    mounted() {
-        ////- get data
+    // AOS 指定元素進入畫面才觸發
+    const observeElements = () => {
+        const elementsToAnimate = document.querySelectorAll('[data-aos]');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    initializeAOS(); // Initialize AOS when the element is in view
+                    observer.disconnect(); // Stop observing once initialized
+                }
+            });
+        });
+        
+        elementsToAnimate.forEach((element) => {
+            observer.observe(element);
+        });
+    };
+
+    onMounted(() => {
         fetch('/js/data/mtlogs.json')
-            .then(response => response.json())
-            .then(data => {
-                this.jsonData = data.reverse();
-                // this.$nextTick(() => {
-                //     this.initializeSlickSlider();
-                // });
+            .then((response) => response.json())
+            .then((data) => {
+                jsonData.value = data.reverse();
                 setTimeout(() => {
-                    this.initializeSlickSlider();
+                    initializeSlickSlider();
                 }, 100);
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error('Error:', error);
             });
 
-        ////- scroll animation
-        AOS.init({
-            once: true,
-            easing: "ease-in-out-sine"
-        });
+        // AOS scroll animation
+        observeElements();
 
-        ////- COPY START
-        // 純JavaScript版本的copiq函式
-        function copiq(element, options) {
-        var settings = Object.assign(
-            {
-                parent: "body",
-                content: "",
-                onSuccess: function() {},
-                onError: function() {},
-            },
-            options
-        );
+        // COPY START
+        const copiq = (element: HTMLElement, options: Record<string, any>) => {
+            const settings = Object.assign(
+                {
+                    parent: 'body',
+                    content: '',
+                    onSuccess: () => {},
+                    onError: () => {},
+                },
+                options
+            );
 
-        element.addEventListener("click", function() {
-            var parentElement = document.querySelector(settings.parent);
-            var contentElement = parentElement.querySelector(settings.content);
-            var range = document.createRange();
-            var selection = window.getSelection();
+            element.addEventListener('click', () => {
+                const parentElement = document.querySelector(settings.parent);
+                const contentElement = parentElement?.querySelector(settings.content);
+                const range = document.createRange();
+                const selection = window.getSelection();
 
-            range.selectNodeContents(contentElement);
-            selection.removeAllRanges();
-            selection.addRange(range);
+                if (contentElement) {
+                    range.selectNodeContents(contentElement);
+                    selection?.removeAllRanges();
+                    selection?.addRange(range);
 
-            try {
-                var isSuccess = document.execCommand("copy");
-                var callback = isSuccess ? "onSuccess" : "onError";
-                settings[callback](element, contentElement, selection.toString());
-            } catch (error) {}
+                    try {
+                        const isSuccess = document.execCommand('copy');
+                        const callback = isSuccess ? 'onSuccess' : 'onError';
+                        settings[callback](element, contentElement, selection.toString());
+                    } catch (error) {}
 
-            selection.removeAllRanges();
-        });
-        }
+                    selection?.removeAllRanges();
+                }
+            });
+        };
 
-        // 使用純JavaScript調用copiq函式
-        var copyBtn = document.querySelector('.copy-btn');
+        const copyBtn = document.querySelector('.copy-btn');
+        if (copyBtn) {
             copiq(copyBtn, {
-            parent: '.index-contact-copy',
-            content: '.text',
-            onSuccess: function(element, source, selection) {
-                element.classList.add("copied");
-                setTimeout(function() {
-                    element.classList.remove("copied");
-                }, 2000);
-            }
-        });
-        ////- COPY END
-    },
-
-    methods: {
-        initializeSlickSlider() {
-            ////- slick slider
-            $(this.$refs.sliderListRef).slick({
-                centerMode: true,
-                centerPadding: '0',
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 4000,
-                arrows: false,
-                dots: true,
-                infinite: true,
-                responsive: [
-                    {
-                        breakpoint: 960,
-                        settings: {
-                            centerMode: true,
-                            slidesToShow: 2
-                        }
-                    },
-                    {
-                        breakpoint: 480,
-                        settings: {
-                            centerMode: true,
-                            slidesToShow: 1
-                        }
-                    },
-                ]
+                parent: '.index-contact-copy',
+                content: '.text',
+                onSuccess: (element: HTMLElement) => {
+                    element.classList.add('copied');
+                    setTimeout(() => {
+                    element.classList.remove('copied');
+                    }, 2000);
+                },
             });
         }
-    },
-}
+        // COPY END
+    });
 </script>

@@ -8,6 +8,7 @@
                 <slot />
             </div>
         </main>
+        <ScrollToTop />
         <!-- footer -->
         <Footer />
     </article>

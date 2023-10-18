@@ -1078,19 +1078,9 @@ li:last-child {
     </NuxtLayout>
 </template>
 
-<script>
-export default {
-    setup () {
-        // layout
-        definePageMeta({
-            layout: false
-        });
-
-        const fixed = ref(false);
-
-        return {
-            fixed
-        };
-    },
-}
+<script setup lang="ts">
+    // layout
+    definePageMeta({
+        layout: false
+    });
 </script>

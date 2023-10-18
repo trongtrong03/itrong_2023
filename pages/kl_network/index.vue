@@ -15,8 +15,8 @@
                         </select>
                     </div>
                     <div class="list-input">
-                        <button @click="toggleActiveState" :class="{ 'search-on': searchOn }"></button>
-                        <input type="text" :class="{ 'search-on': searchOn }" placeholder="請輸入關鍵字" v-model="query">
+                        <button @click="searchToggleActive" :class="{ 'search-on': searchOn }"></button>
+                        <input type="text" placeholder="請輸入關鍵字" v-model="query" :class="{ 'search-on': searchOn }">
                     </div>
                 </div>
                 <div class="list-article" v-if="jsonData">
@@ -42,55 +42,20 @@
     </section>
 </template>
 
-<script>
-export default {
-    setup() {
-        // Define reactive data using ref
-        const jsonData = ref([]);
-        const filter = ref('all');
-        const query = ref('');
-        const isActive = ref(1);
-        const searchOn = ref(false);
+<script setup lang="ts">
+    const jsonData = ref([]);
+    const query = ref('');
+    const filter = ref('all');
+    const isActive = ref(1);
 
-        onMounted(async () => {
-            // fetch data
-            try {
-                const response = await fetch('/js/data/klNetwork.json');
-                const data = await response.json();
-                jsonData.value = data.reverse();
-            } catch (error) {
-                console.error('Error:', error);
-            }
+    // Search
+    const { searchOn, searchToggleActive } = useSearch();
+    const filterSearch = createFilterSearch(jsonData, query);
 
-            // scroll animation
-            AOS.init({
-                once: true,
-                easing: "ease-in-out-sine"
-            });
-        });
+    // Fetch data
+    onMounted(async () => {
+        await fetchData(jsonData, 'klNetwork', true);
 
-        // Define a computed property for filtering search
-        const filterSearch = computed(() => {
-            return jsonData.value.filter(item => {
-                return item.title.toLowerCase().indexOf(query.value.toLowerCase()) !== -1;
-            });
-        });
-
-        // Define a method to toggle the search state
-        const toggleActiveState = () => {
-            searchOn.value = !searchOn.value;
-        };
-
-        // Return the data and methods you want to expose to the template
-        return {
-            jsonData,
-            filter,
-            query,
-            isActive,
-            searchOn,
-            filterSearch,
-            toggleActiveState
-        };
-    }
-}
+        initializeAOS();
+    });
 </script>

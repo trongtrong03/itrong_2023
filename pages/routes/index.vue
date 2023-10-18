@@ -94,7 +94,7 @@
                         </select>
                     </div>
                     <div class="list-input">
-                        <button @click="toggleActiveState" :class="{ 'search-on': searchOn }"></button>
+                        <button @click="searchToggleActive" :class="{ 'search-on': searchOn }"></button>
                         <input type="text" :class="{ 'search-on': searchOn }" placeholder="請輸入路線名稱" v-model="Filters.name">
                     </div>
                     <div class="list-sort">
@@ -146,122 +146,53 @@
                 </div>
             </div>
         </div>
-        <button class="top-btn" :class="{ 'is-show': isShowButton }" @click="onBtnTopClick"></button>
     </section>
 </template>
 
-<script>
-export default {
-    setup() {
-        const jsonData = ref([]);
-        const isActive = ref(1);
-        const isShowButton = ref(false);
-        const searchOn = ref(false);
-        const Filters = ref({
-            name: "",
-            lv: "",
-            daytime: "",
-            length: "",
+<script setup lang="ts">
+    const jsonData = ref([]);
+    const isActive = ref(1);
+    const Filters = ref({
+        name: "",
+        lv: "",
+        daytime: "",
+        length: "",
+    });
+
+    // 篩選
+    const getLevel = () => jsonData.value.map((e) => e.lv);
+    const getDaytime = () => jsonData.value.map((e) => e.daytime);
+    const getLength = () => jsonData.value.map((e) => e.length);
+
+    const setLevel = (e) => {
+        Filters.value.lv = e.target.value;
+    };
+
+    const setDaytime = (e) => {
+        Filters.value.daytime = e.target.value;
+    };
+
+    const setLength = (e) => {
+        Filters.value.length = e.target.value;
+    };
+
+    const getItems = () => {
+        const { name, lv, daytime, length } = Filters.value;
+        return jsonData.value.filter((b) => {
+            return (
+                b.name.toLowerCase().includes(name.toLowerCase()) &&
+                b.lv.includes(lv) &&
+                b.daytime.includes(daytime) &&
+                b.length.includes(length)
+            );
         });
+    };
 
-        // 篩選
-        const getLevel = () => jsonData.value.map((e) => e.lv);
-        const getDaytime = () => jsonData.value.map((e) => e.daytime);
-        const getLength = () => jsonData.value.map((e) => e.length);
+    // search on
+    const { searchOn, searchToggleActive } = useSearch();
 
-        const setLevel = (e) => {
-            Filters.value.lv = e.target.value;
-        };
-
-        const setDaytime = (e) => {
-            Filters.value.daytime = e.target.value;
-        };
-
-        const setLength = (e) => {
-            Filters.value.length = e.target.value;
-        };
-
-        const getItems = () => {
-            const { name, lv, daytime, length } = Filters.value;
-            return jsonData.value.filter((b) => {
-                return (
-                    b.name.toLowerCase().includes(name.toLowerCase()) &&
-                    b.lv.includes(lv) &&
-                    b.daytime.includes(daytime) &&
-                    b.length.includes(length)
-                );
-            });
-        };
-
-        // RWD 時 search 開關
-        const toggleActiveState = () => {
-            searchOn.value = !searchOn.value;
-        };
-
-        // Fetch data
-        onMounted(() => {
-            fetch("/js/data/routes.json")
-                .then((response) => response.json())
-                .then((data) => {
-                jsonData.value = data;
-                })
-                .catch((error) => {
-                console.error("Error:", error);
-                });
-        });
-
-        // GO TOP
-        const onBtnTopClick = () => {
-            const duration = 500;
-            const start = window.pageYOffset;
-            let startTime = null;
-
-            const animateScroll = (timestamp) => {
-                if (!startTime) startTime = timestamp;
-                const progress = timestamp - startTime;
-                const easeInOutCubic = (t) =>
-                t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-                const scrollTop =
-                easeInOutCubic(Math.min(progress / duration, 1)) * (0 - start) + start;
-                window.scrollTo(0, scrollTop);
-                if (progress < duration) {
-                requestAnimationFrame(animateScroll);
-                }
-            };
-
-            requestAnimationFrame(animateScroll);
-        };
-
-        const updateButtonVisibility = () => {
-            isShowButton.value = window.scrollY > 400;
-        };
-
-        onBeforeMount(() => {
-            // Add event listener
-            window.addEventListener("scroll", updateButtonVisibility);
-        });
-
-        onBeforeUnmount(() => {
-            // Remove event listener
-            window.removeEventListener("scroll", updateButtonVisibility);
-        });
-
-        return {
-            jsonData,
-            isActive,
-            isShowButton,
-            Filters,
-            searchOn,
-            getLevel,
-            getDaytime,
-            getLength,
-            setLevel,
-            setDaytime,
-            setLength,
-            getItems,
-            toggleActiveState,
-            onBtnTopClick,
-        };
-    },
-};
+    // mounted
+    onMounted(async () => {
+        await fetchData(jsonData, 'routes');
+    });
 </script>
