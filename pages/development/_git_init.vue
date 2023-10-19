@@ -42,7 +42,7 @@
         <h2>二、建立版本庫</h2>
         <p>在專案還沒建立版本庫之前，任何有關 Git 的指令皆無效，因此我們必須先在專案資料夾裡建立版本庫，其指令語法為：</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$git init</code></pre>
+            <pre><code class="language-git">$git init</code></pre>
         </div>
         <p><em>$</em> 是 Bash 的執行緒代號，如果是用 Windows 命令提示字元下指令的話不用加這個字符。版本庫建立完成後，<b>demo</b> 資料夾會生成一個「<b>.git</b>」的隱藏資料夾。「<b>.git</b>」資料夾將用來存取每一次版本提交的內容。</p>
         <p>另外要注意的是，Git 指令有大小寫之分。</p>
@@ -68,13 +68,13 @@
         <p><br></p>
         <h6>1. 將工作區域檔案添加至暫存區域（Ataging area）</h6>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$git add .</code></pre>
+            <pre><code class="language-git">$git add .</code></pre>
         </div>
         <p><em>add</em> 是 Git 將工作區域的檔案「添加」到暫存區域的動作，其指令參數有很多種，詳細留到以後再獨立成篇介紹。這裡先使用最簡單灑脫的參數 <em>.</em>，意即將所有檔案通通添加到暫存區域。</p>
         <p><br></p>
         <h6>2. 將暫存區域檔案提交至版本庫（Repository）</h6>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$git commit -m "c1"</code></pre>
+            <pre><code class="language-git">$git commit -m "c1"</code></pre>
         </div>
         <p><em>commit</em> 則是將暫存區域內的檔案「提交」到版本庫的命令，<em>-m</em> 中的 m 是 message 的意思，我們需要在其後方用雙引號撰寫此次提交版本的訊息，例如範例中「c1」。Git 的 Commit Message 最好以清楚易讀為原則，以方便未來檢視提交日誌時，能更一目了然各個提交版本的目的是什麼。</p>
         <p>Git 提交成功後的畫面：</p>
@@ -86,7 +86,7 @@
         <h3>git status：</h3>
         <p>第一個方法是 <em>git status</em> 指令，它可以查看目前檔案的狀態，如果你的檔案已是最新版本，它會返回「nothing to commit, working tree clean」的訊息。</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$git status</code></pre>
+            <pre><code class="language-git">$git status</code></pre>
         </div>
         <figure>
             <img src="/images/learn/dev/git-init-8.jpg">
@@ -95,7 +95,7 @@
         <h3>git log：</h3>
         <p>第二種方法則是 <em>git log</em>，這個指令可以列出版本庫的所有 Commit 記錄，是 Git 裡非常重要且也是相當好用的功能。</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$git log</code></pre>
+            <pre><code class="language-git">$git log</code></pre>
         </div>
         <figure>
             <img src="/images/learn/dev/git-init-9.jpg">

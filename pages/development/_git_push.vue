@@ -42,7 +42,7 @@
         </figure>
         <p>複製其網址，並貼入到底下指令 URL 位置：</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$git remove add origin URL</code></pre>
+            <pre><code class="language-git">$git remove add origin URL</code></pre>
         </div>
         <p>例如：</p>
         <figure>
@@ -58,11 +58,11 @@
         <h2>二、push</h2>
         <p>建立好遠端與本機端儲存庫的連結後，我們就可以將專案版控同步備份到遠端上了，其核心指令為 <em>push</em>，因此我們在看 Git 相關中文文件時，常常會看到作者將同步備份的行為稱作「推送」。</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$git push -u origin master</code></pre>
+            <pre><code class="language-git">$git push -u origin master</code></pre>
         </div>
         <p><em>origin</em> 指的是主機名稱，而 <em>master</em> 則是指 Git 版控樹狀節點結構中的主分支。如果嫌字太多麻煩，也可以用 <em>--all</em> 指令取代：</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$git push -all</code></pre>
+            <pre><code class="language-git">$git push -all</code></pre>
         </div>
         <p>按下確認鍵，此時 GitHub 會要求使用者輸入他的帳號密碼，倘若資料皆正確便可成功執行推送。</p>
         <figure>
@@ -87,7 +87,7 @@
         </figure>
         <p>推送資料時再指定主機名稱對象即可，例如我要將檔案推送至 <em>origin2</em>，指令就這樣下：</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$git push -u origin2 master</code></pre>
+            <pre><code class="language-git">$git push -u origin2 master</code></pre>
         </div>
         <p>使用者可能以為 <em>push --all</em> 會將版控檔案推送到全部的遠端儲存庫，經實際測試後得到的結果並不然。<em>push --all</em> 指令會以前次使用者推送遠端儲存庫為依據執行推送。</p>
     </div>
@@ -97,25 +97,25 @@
         <p><br></p>
         <h3>顯示遠端儲存庫主機名稱：</h3>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$git remote</code></pre>
+            <pre><code class="language-git">$git remote</code></pre>
         </div>
         <p><br></p>
         <h3>刪除遠端儲存庫：</h3>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$git remote rm 名稱</code></pre>
+            <pre><code class="language-git">$git remote rm 名稱</code></pre>
         </div>
         <p>例如：</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$git remote rm origin</code></pre>
+            <pre><code class="language-git">$git remote rm origin</code></pre>
         </div>
         <p><br></p>
         <h3>更改遠端儲存庫主機名稱：</h3>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$git remote rename 舊名 新名</code></pre>
+            <pre><code class="language-git">$git remote rename 舊名 新名</code></pre>
         </div>
         <p>例如：</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$git remote rename origin2 itrong</code></pre>
+            <pre><code class="language-git">$git remote rename origin2 itrong</code></pre>
         </div>
     </div>
     <div class="text-block" id="act4">

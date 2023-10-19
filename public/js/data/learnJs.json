@@ -92,17 +92,10 @@
     },
     {
         "id": 14,
-        "href": "jq_faq",
-        "title": "jQuery 常見錯誤訊息問題、除錯建議以及各種疑難雜症彙整",
-        "time": "2020.01.06",
-        "type": "jquery"
-    },
-    {
-        "id": 15,
-        "href": "node_faq",
-        "title": "Node.js 常見錯誤訊息問題、除錯建議以及各種疑難雜症彙整",
-        "time": "2022.02.18",
-        "type": "nodejs"
+        "href": "js_this",
+        "title": "What is 「this」？認識 JavaScript 複雜的 this 關鍵字機制",
+        "time": "2020.01.19",
+        "type": "javascript"
     },
     {
         "id": 30,

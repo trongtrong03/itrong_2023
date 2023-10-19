@@ -76,11 +76,11 @@
         <p><br></p>
         <p>我們也可以將 Token 直接設定到本機端專案設定中，這樣就不用每一次 Push 都要執行 Token 驗證，其 Bash 指令為：</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$git remote set-url origin https://[TOKEN]@github.com/[USERNAME]/[REPO].git/</code></pre>
+            <pre><code class="language-git">$git remote set-url origin https://[TOKEN]@github.com/[USERNAME]/[REPO].git/</code></pre>
         </div>
         <p>其中 <em>[TOKEN]</em> 是你的 Token 碼，<em>[USERNAME]</em> 則是你的 GitHub 帳戶名稱，而 <em>[REPO]</em> 則是與本機端 Git 專案連接的遠端資料庫名稱，例如：</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$git remote set-url origin https://ghp_xxxxxxxxxxxxxxxxxx@github.com/trongtrong03/GitDemo.git/</code></pre>
+            <pre><code class="language-git">$git remote set-url origin https://ghp_xxxxxxxxxxxxxxxxxx@github.com/trongtrong03/GitDemo.git/</code></pre>
         </div>
         <p>如此便完成設定，未來推送專案版控時就會略過使用者帳號與 Token 的驗證要求了。要注意的是，倘若有天你移除了 GitHub 裡的 Token，遺留在本機端 Git 專案的設定也會隨之失效，必須重新進行設定。</p>
     </div>

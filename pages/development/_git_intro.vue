@@ -99,23 +99,23 @@
         <p>這個步驟非常重要，不少人安裝完 Git 之後就迫不及待趕緊運用到專案管理上，但在這之前最好先設定使用者的名稱與電子信箱，否則後續執行提交（<em>commit</em>）指令時，Git 會發出警示訊息，要求你設定這兩項資訊。主要是因為每一次提交 Git 都會記錄此次提交版本的作者是誰，以供其他人員方便「緝凶」。</p>
         <p>設定使用者名稱與電子信箱帳號的 Git Bash 指令分別是：</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$ git config --global user.name "名稱"
+            <pre><code class="language-git">$ git config --global user.name "名稱"
 $ git config --global user.email 電子信箱帳號</code></pre>
         </div>
         <p>例如：</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$ git config --global user.name "iTrong"
+            <pre><code class="language-git">$ git config --global user.name "iTrong"
 $ git config --global user.email trongtrong03@gmail.com</code></pre>
         </div>
         <p><br></p>
         <p>若要查詢使用者資料，可以輸入以下指令：</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$ git config --global user.name
+            <pre><code class="language-git">$ git config --global user.name
 $ git config --global user.email</code></pre>
         </div>
         <p>或是輸入 <em>config --list</em> 也可以：</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$ git config --list</code></pre>
+            <pre><code class="language-git">$ git config --list</code></pre>
         </div>
         <p>只不過這個指令同時會列出其他設定訊息，需要花點心思找出使用者名稱與電子信箱帳號的條列位置。</p>
         <p><br></p>

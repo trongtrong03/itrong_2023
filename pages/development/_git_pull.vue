@@ -29,7 +29,7 @@
         </figure>
         <p>經過比對可以看出遠端儲存庫的版本較新，因此當我們需要對專案執行維護之前，需先將遠端儲存庫較新的版本更新下來，此刻先展示的指令是 <em>fetch</em>，Git 指令為：</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$git fetch origin master</code></pre>
+            <pre><code class="language-git">$git fetch origin master</code></pre>
         </div>
         <p>如果沒有特別指名分支的話，省略只打 <em>git fetch</em> 也可以，為求完整性，練習時仍明確輸入遠端對象的主機及其主分支名稱。</p>
         <p>當 Git 確定本機端當前舊版本檔案與遠端對應版本資料一致，就會自動將較新的版本同步至使用的工作電腦內。假如舊版本的檔案與遠端對應版本的資料比對有出入，則系統視窗會返回相關的錯誤提示訊息，導致無法執行同步工作，此為「衝突」情況，有關衝突的解決方法後面再提。</p>
@@ -43,7 +43,7 @@
         </figure>
         <p>這是因為 <em>fetch</em> 指令會先與本機端版本庫記錄比對後，將較新的提交版本暫存在 <b>.git/FETCH_HEAD</b> 檔案中，而不會直接馬上與本機端儲存庫進行合併（Merge），畢竟有些開發者可能只是要確認遠端儲存庫的內容，並不是真的要將較新版本的資料同步更新到本機端儲存庫內。</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$git log -p master..origin/master</code></pre>
+            <pre><code class="language-git">$git log -p master..origin/master</code></pre>
         </div>
         <p>我們可以用這個指令，去比對新舊版本之間變更的地方：</p>
         <figure>
@@ -53,7 +53,7 @@
         <p><br></p>
         <p>我們使用 <em>merge</em> 指令，將較新版本的資料與本機端主分支進行「合併」：</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$git merge origin/master</code></pre>
+            <pre><code class="language-git">$git merge origin/master</code></pre>
         </div>
         <p>合併完成並用 <em>log</em> 查看版本記錄日誌：</p>
         <figure>
@@ -73,7 +73,7 @@
         <p><br></p>
         <p>Git 指令的語法和 <em>fetch</em> 基本上一樣，只是 <em>fetch</em> 改成 <em>pull</em>：</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$git pull origin master</code></pre>
+            <pre><code class="language-git">$git pull origin master</code></pre>
         </div>
         <p>實際執行畫面：</p>
         <figure>
@@ -90,11 +90,11 @@
         <h2>三、clone</h2>
         <p>同樣是向遠端儲存庫拉取檔案，<em>fetch</em> 與 <em>pull</em> 與其說是下載，不如說更趨近於本機端專案更新檔案的行為。倘若工作電腦不存在該專案，就無法用 <em>fetch</em>、<em>pull</em> 指令取得檔案，此時正確的執行指令為 <em>clone</em>。</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$git clone [REPO].git</code></pre>
+            <pre><code class="language-git">$git clone [REPO].git</code></pre>
         </div>
         <p>例如：</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-bash">$git clone https://github.com/trongtrong03/GitDemo.git</code></pre>
+            <pre><code class="language-git">$git clone https://github.com/trongtrong03/GitDemo.git</code></pre>
         </div>
         <p>實際操作結果：</p>
         <figure>

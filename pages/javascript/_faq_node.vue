@@ -1,6 +1,8 @@
 <template>
     <NuxtLayout name="article">
-        <TempArticle :propValue="15" fileType="learnJs" />
+        <hgroup class="text-heading">
+            <h1>Node.js 常見錯誤訊息問題、除錯建議以及各種疑難雜症彙整</h1>
+        </hgroup>
 <!-- start -->
 <div class="text-content">
     <div class="text-catalog">
