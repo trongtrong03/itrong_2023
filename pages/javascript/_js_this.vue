@@ -38,12 +38,13 @@
             <p>例如，如果有一個名為「Car」的類別，你可以創建該類別的多個實例，每個實例代表一輛不同的汽車。每個「Car」實例都有自己的屬性（例如品牌、型號、顏色）和方法（例如啟動、停止、加速）。</p>
         </blockquote>
         <p>因此，Brendan Eich 便將 <em>new</em> 命令也引入到了 Javascript，用來讓原形對象物件建立新的實例對象。然而，Javascript 並沒有類別（class）的概念，這是 Brendan Eich 當初並沒有考慮在 Javascript 引用類別概念而遺留的鍋，興許是他當時只將 Javascript 定位在一個簡單的程式語言，不想徒增初學者入門難度之緣故。總而言之，沒有「類別」的概念，要如何表示原型對象呢？</p>
-        <p>Brendan Eich 從 C++ 與 JAVA 使用 <em>new</em> 命令時會調用類別構造函式（constructor）獲得靈感，他將其做簡化設計，讓 Javascript 在建立新的物件時，<em>new</em> 後面跟的不是類別，而是構造函式。例如我們現在建立一個名稱為「Car」的構造函式，用來表示該物件原型：</p>
+        <p>Brendan Eich 從 C++ 與 JAVA 使用 <em>new</em> 命令時會調用類別建構函式（constructor）獲得靈感，他將其做簡化設計，讓 Javascript 在建立新的物件時，<em>new</em> 後面跟的不是類別，而是建構函式。例如我們現在建立一個名稱為「Car」的建構函式，用來表示該物件原型：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">function Car(name){
     this.name = name;
 }</code></pre>
         </div>
+        <p>所謂的建構函式，其實就是一個普通的函式，只不過其內部使用了 <em>this</em> 關鍵字，當我們對建構函式使用 <em>new</em> 就能建立新的實例，並且經由 <em>this</em> 將變數綁定在實例物件身上。</p>
         <p>在這個原型物件建構函式中，我們的「Car」建構函式接受了一個名為 <em>name</em>的參數，並將其賦值給 <em>this.name</em>屬性。</p>
         <p>我們可以透過 <em>new</em> 建立新的實例，而他的原型對象就是「Car」：</p>
         <div class="text-code" v-pre>
@@ -60,14 +61,14 @@ console.log(car1.name);   // 大白</code></pre>
         </ol>
         <p>綜觀上述流程，可以歸納出 <em>this.name</em> 的設置將會影響新建立對象的 <em>name</em> 屬性，因此 <em>car1.name</em> 的值等於「大白」。</p>
         <p><br></p>
-        <p>只不過用建構函式建立實例對象有一個缺點，那就是無法共享屬性和方法。例如我們在原型物件中建立一個共有屬性 <em>color</em>：</p>
+        <p>只不過用建構函式建立實例物件有一個缺點，那就是無法共享屬性和方法。例如我們在原型物件中建立一個共有屬性 <em>color</em>：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">function Car(name){
     this.name = name;
     this.color = "白色";
 }</code></pre>
         </div>
-        <p>然後我新建立兩個實例：</p>
+        <p>然後我們新建立兩個實例：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">var car1 = new Car("大白");
 var car2 = new Car("二白");</code></pre>
@@ -82,7 +83,30 @@ car1.color = "黑色";
 console.log(car1.color);    // 黑色
 console.log(car2.color);    // 白色</code></pre>
         </div>
-        <p>這意味著每一個創建的實例對象，都有自己屬性和方法的副本，不僅無法做到資料共享，也會造成資源上的浪費。</p>
+        <p>這意味著每一個創建的實例物件，都有自己屬性和方法的副本，不僅無法做到資料共享，也會造成資源上的浪費，因為每建立一個新的實例，就必須為那些重複的屬性或方法，多佔用一些記憶體空間。有鑑於此狀況，Brendan Eich 決定為建構函式設置一個名為 <em>prototype</em> 屬性，這個屬性是每個函式都具有的特殊屬性，允許我們添加屬性或方法到構造函式的原型物件上，從而使這些屬性、方法能夠被該構造函式所創建的物件繼承。新的實例物件一旦被創建，都將會自動引用 <em>prototype</em> 裡定義的屬性與方法，換句話說，就是讓那些重複的屬性或方法，在記憶體中只建立一次，然後讓所有實例物件都指向它。</p>
+        <p>說這麼多還是直接看例子比較好理解，我們將前一個範例以 <em>prototype</em> 進行改寫：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function Car(name){
+    this.name = name;
+}
+
+Car.prototype = { color: "白色" };
+
+var car1 = new Car("大白");
+var car2 = new Car("二白");
+
+console.log(car1.color);    // 白色
+console.log(car2.color);    // 白色</code></pre>
+        </div>
+        <p>現在 <em>color</em> 屬性已經放在 <em>prototype</em> 物件之中，是後續其他新創建的實例所共享的，如果這時我們更改了 <em>prototype</em> 物件裡面 <em>color</em> 的值，其他實例的值也會同時進行變更：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">Car.prototype.color = "綠色";
+
+console.log(car1.color);    // 綠色
+console.log(car2.color);    // 綠色</code></pre>
+        </div>
+        <p>當我們將屬性與方法定義在建構函式的 <em>prototype</em> 物件中，這意味著它們只會被保存一次，而不若最原先將共用屬性建立在原型物件的作法，會讓新建立的實例都複製一次共用的屬性，這種作法的好處可以減少記憶體的佔用，特別是在我們需要建立很大量的共用物件的時候。</p>
+        <p>總結來說，由於所有實例物件共享同一個 <em>prototype</em> 物件，那麼在外界眼裡，<em>prototype</em> 物件彷彿就像這些實例物件的原型，乍看之下實例物件就好像「繼承」了 <em>prototype</em> 物件裡的屬性與方法，這就是 JavaScript 繼承機制的設計思想。</p>
 
 
     </div>
