@@ -9,8 +9,8 @@
             <li><a href="#act1">一、JavaScript 的繼承機制</a></li>
             <li><a href="#act2">二、constructor 與 prototype</a></li>
             <li><a href="#act3">三、this 關鍵字</a></li>
-            <li><a href="#act4">四、</a></li>
-            <li><a href="#act5">五、</a></li>
+            <li><a href="#act4">四、ES6 帶來的影響</a></li>
+            <li><a href="#act5">五、框架語言的差異</a></li>
             <li><a href="#act6">六、參考資料</a></li>
         </ul>
     </div>
@@ -241,20 +241,186 @@ Animal();    // 阿比</code></pre>
         <p>函式也可以包裝成特定物件的方法，這時 <em>this</em> 就是指該特定物件的上級物件。例如：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">function Animal(){
-    console.log(this.dog);
+    console.log(this.name);
 }
 
-var obj = {};
-obj.dog = "阿比";
-obj.x = Animal;
+var dog = {};
+dog.name = "阿比";
+dog.x = Animal;
 
-obj.x();     // 阿比</code></pre>
+dog.x();     // 阿比</code></pre>
         </div>
         <p>在範例中，函式 <em>Animal</em> 被賦值給 <em>obj</em> 物件的屬性 <em>x</em>，通過 <em>obj.x()</em> 的方式來調用 <em>Animal</em> 函式。在這種情況下，<em>this</em> 在 <em>Animal</em> 函式內部指向 <em>obj</em>，因為它是 <em>x</em> 方法所屬的物件。</p>
         <p>所以當我們調用 <em>obj.x()</em> 時，<em>this.dog</em> 指的就是 <em>obj.dog</em>，輸出結果為「阿比」，這就是上級物件的意思。</p>
+        <p><br></p>
+        <h3>3. 作為建構函式調用：</h3>
+        <p>這個用法就是前面介紹 <em>prototype</em> 時所舉的建構函式範例，透過建構函式可以建立新的實例物件，這時 <em>this</em> 指的就是這個新的物件。例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function Animal(){
+    this.name = "阿比";
+}
 
+var dog = new Animal();
+console.log(dog.name);    // 阿比</code></pre>
+        </div>
+        <p>乍看之下這裡使用的 <em>this</em> 似乎和第一種全局作用域的用法有些神似，為了證明這時的 <em>this</em> 指向不是全域物件，我們針對以上範例做一些改寫：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var name = "咪咪";
+function Animal(){
+    this.name = "阿比";
+}
+
+var dog = new Animal();
+console.log(dog.name);    // 阿比</code></pre>
+        </div>
+        <p>會發現即便在全局作用域先定義好 <em>name</em> 的變數，<em>this</em> 最終打印出來的結果仍然指向建構函式裡的物件。</p>
+        <p><br></p>
+        <h3>4. apply 调用：</h3>
+        <p><em>apply()</em> 是函式中的一個方法，其功用是改變函式的調用對象，例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var name = "咪咪";
+function Animal(){
+    console.log(this.name);
+}
+
+var dog = {};
+dog.name = "阿比";
+dog.x = Animal;
+dog.x.apply();    // 咪咪</code></pre>
+        </div>
+        <p>如果沒有在 <em>apply()</em> 括號內填入參數，那麼它預設調用的對象會是全域物件，這時建構函式 <em>Animal</em> 裡頭的 <em>this</em> 將調用全局作用域中宣告的 <em>name</em> 變數，得到「咪咪」的結果。但如果我們在括號內填入 <em>dog</em>，<em>this</em> 得到的結果將會是「阿比」：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var name = "咪咪";
+function Animal(){
+    console.log(this.name);
+}
+
+var dog = {};
+dog.name = "阿比";
+dog.x = Animal;
+dog.x.apply(dog);    // 阿比</code></pre>
+        </div>
+        <p>與 <em>apply()</em> 相似的還有 <em>call()</em>，兩者皆是 JavaScript 中用於調用函式的方法，主要差別在於傳參數的方式不同。</p>
     </div>
-    
+    <div class="text-block" id="act4">
+        <h2>四、ES6 帶來的影響</h2>
+        <p>雖然在文章前面有提過，JavaScript 作為一個定位在處理簡單需求的程式語言，並沒有導入 JAVA、C++ 這類 OOP 物件導向編程擁有類別的概念，不過到了 ES6 版本，JavaScript 新增了許多特性和語法糖，類別（Class）便是其中之一，除此之外 ES6 版本裡還引進了「箭頭函式」，它和 Class 都為 JavaScript 複雜的 <em>this</em> 用法帶來了些許變化。</p>
+        <p><br></p>
+        <h3>箭頭函式（Arrow Functions）：</h3>
+        <p>ES6 出現的箭頭函式提供比過往函式書寫方式更簡潔的語法，傳統的函式寫法通常會長這樣：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function add(a, b) {
+    return a + b;
+}</code></pre>
+        </div>
+        <p>換成箭頭函式的格式則會變成這個樣子：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">const add = (a, b) => a + b;</code></pre>
+        </div>
+        <p>主要是省略了 <em>function</em> 關鍵字以及第一個大括號，使得程式碼整體看起來變得緊湊、簡潔。至於 <em>this</em> 的部分，由於箭頭函式本身沒有 <em>this</em>，如果在其內部使用 <em>this</em>，它將會繼承外部作用域的 <em>this</em> 值，舉例來說：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">const Animal = {
+    name: "阿比",
+    obj: function() {
+        const dog = () => {
+            console.log(this.name);
+        }
+        dog();
+    }
+};
+
+Animal.obj(); // 阿比</code></pre>
+        </div>
+        <p>由此可得知箭頭函式內部的 <em>this</em> 始終繼承包含它的外部作用域，而非創建自己的 <em>this</em>，而傳統函式的 <em>this</em> 值則是取決於程式執行時的調用方式，但整體來說箭頭函式的 <em>this</em> 規則跟以往並沒有太大不同，當我們直接調用 <em>obj()</em>，得到的結果會是 <em>undefined</em>，也就是指向全域物件。</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">const obj = Animal.obj;
+obj();    // undefined</code></pre>
+        </div>
+        <p><br></p>
+        <h3>類別（Class）：</h3>
+        <p>ES6 引入類別（Class）的概念，使得類別中的方法可以直接被宣告，而不再需要透過 <em>function</em> 建構函式來定義。舉例來說，這是前面已經看到膩的傳統建構函式的語法：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function Animal(name) {
+    this.name = name;
+}
+
+Animal.prototype.sayHello = function() {
+    console.log(this.name);
+}
+
+var dog = new Animal("阿比");
+dog.sayHello.apply(dog);</code></pre>
+        </div>
+        <p>使用 ES6 <em>class</em> 關鍵字的語法將會是這樣：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+
+    sayHello() {
+        console.log(this.name);
+    }
+}
+const dog = new Animal("阿比");
+dog.sayHello();    // 阿比</code></pre>
+        </div>
+        <p>在類別（Class）中定義的方法會直接綁定到實例上，所以我們可以不用透過 <em>apply()</em>、<em>call()</em>、<em>bind()</em> 等方法明確綁定 <em>this</em>，大大簡化原本繁瑣的程式書寫過程。當然，無論是箭頭函式還是 <em>class</em>，這篇文章提到的內容僅僅不過是冰山一角，主要還是圍繞 <em>this</em> 關鍵字做基本探討，有關語法糖的詳細內容留至其他文章再行筆記。</p>
+    </div>
+    <div class="text-block" id="act5">
+        <h2>五、框架語言的差異</h2>
+        <p>隨著技術發展，基於 JavaScript 開發的框架語言也越來越繁多，從早期為人所熟知的 jQuery，到現今十分熱門的 React、Vue 等，它們不僅使 JavaScript 變得更容易上手使用，也補足、解決一些 JavaScript 比較為人詬病的一些問題沉痾，其中自然也包括了 <em>this</em> 的用法。以下就來說明一些目前比較熱門的框架語言，其針對原生 JavaScript 複雜的 <em>this</em> 關鍵字，做出什麼樣的應對，讓開發者可以更直觀地去使用它。</p>
+        <p><br></p>
+        <h3>jQuery：</h3>
+        <p>jQuery 主要簡化了 DOM 的操作，在 jQuery 中，<em>this</em> 通常表示目前正在處理的 DOM 元素，當我們透過 jQuery 選擇器選擇一或多個元素，並對這些元素執行操作時，其內部使用的 <em>this</em> 會引用這些元素。例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">$("button").click(function() {
+    $(this).hide();   // 隱藏被點擊的按鈕
+});</code></pre>
+        </div>
+        <p>範例中的 <em>this</em> 會指向被點擊的 <em>button</em> 按鈕元素。</p>
+        <p><br></p>
+        <h3>Vue：</h3>
+        <p>Vue 主要用途在於建構使用者介面，在 Vue 組件中使用的 <em>this</em>，通常指向當前的實例，我們可以在組件的方法（methods）或生命週期鉤子函式中使用 <em>this</em> 來訪問組件的屬性與方法。例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">new Vue({
+    data: {
+        message: "Hello, Vue!"
+    },
+    methods: {
+        showMessage: function() {
+            alert(this.message); // 訪問組件的數據
+        }
+    }
+});</code></pre>
+        </div>
+        <p>在這個範例中，<em>this</em> 指向 Vue 實例，允許其訪問 <em>message</em> 數據與 <em>showMessage</em> 方法。</p>
+        <p><br></p>
+        <h3>React：</h3>
+        <p>React 的 <em>this</em> 主要用在類組件裡，類組件裡的 <em>this</em> 指向目前組件的實例，可用來訪問組件的狀態與屬性。例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">class MyComponent extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { count: 0 };
+    }
+
+    handleClick() {
+        this.setState({ count: this.state.count + 1 });
+    }
+
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;p&gt;Count: {this.state.count}&lt;/p&gt;
+                &lt;button onClick={this.handleClick.bind(this)}&gt;Increment&lt;/button&gt;
+            &lt;/div&gt;
+        );
+    }
+}
+</code></pre>
+        </div>
+    </div>
     <div class="text-block" id="act6">
         <h2>六、參考資料</h2>
         <dl>
