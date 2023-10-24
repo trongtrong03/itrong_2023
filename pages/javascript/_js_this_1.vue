@@ -428,6 +428,7 @@ dog.sayHello();    // 阿比</code></pre>
             <dd><a href="https://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html" target="_blank">Javascript 的 this 用法</a></dd>
             <dd><a href="https://github.com/aszx87410/blog/issues/18" target="_blank">該來理解 JavaScript 的原型鍊了</a></dd>
             <dd><a href="https://blog.techbridge.cc/2019/02/23/javascript-this/" target="_blank">淺談 JavaScript 頭號難題 this：絕對不完整，但保證好懂</a></dd>
+            <dd><a href="https://javascript.alphacamp.co/basic-idea-of-oo.html" target="_blank">物件導向基本觀念</a></dd>
         </dl>
     </div>
 </div>
