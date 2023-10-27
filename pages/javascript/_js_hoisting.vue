@@ -35,9 +35,8 @@ var dog;</code></pre>
             <pre><code class="language-javascript">var dog;
 console.log(dog);    // undefined</code></pre>
         </div>
-        <p>但說是想像，實際上原本的程式碼順序並沒有被作改動，Hoisting 是 JavaScript 在進行編譯的時候對變數、函式宣告的一種「預處理」行為，屬於其內部機制之一，用來確保作用域內的變數及函式能在它們被宣告前可使用，所以在程式腳本在真正執行前，JavaScript 就先內過內部機制進行了預處理，將變數、函式提升到最上面。</p>
-        <p><em>undefined</em> 這個資料型用來表示那些還沒給值、尚未初始化，以及調用不存在該屬性的變數。在第二個範例我們僅宣告變數「dog」，還沒有賦值給它，所以 Console 它才會回傳 <em>undefined</em> 的結果──</p>
-        <p>其實這麼解釋並不完全正確，假如我們現在再將範例改寫成宣告變數並同時賦值給它，經過 JavaScript 預處理 Hoisting 後觀察程式碼執行會發生什麼事：</p>
+        <p>之所以說是想像，是因為實際上原本的程式碼順序並沒有被作改動，Hoisting 是 JavaScript 在進行編譯的時候對變數、函式宣告的一種「預處理」行為，屬於其內部機制之一，用來確保作用域內的變數及函式能在它們被宣告前可使用，所以在程式腳本在真正執行前，JavaScript 就先內過內部機制進行了預處理，將變數、函式提升到最上面。</p>
+        <p><em>undefined</em> 這個資料型用來表示那些還沒給值、尚未初始化，以及調用不存在該屬性的變數。在第二個範例我們僅宣告變數「dog」，還沒有賦值給它，所以 Console 它才會回傳 <em>undefined</em> 的結果──其實這麼解釋並不完全正確，假如我們現在再將範例改寫成宣告變數並同時賦值給它，經過 JavaScript 預處理 Hoisting 後觀察程式碼執行會發生什麼事：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">console.log(dog);    // undefined
 var dog = "阿比";</code></pre>
@@ -65,7 +64,7 @@ console.log(dog);    // 阿比</code></pre>
         <p>我們可以拆解成以下會更容易理解：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">var dog;
-var dog
+var dog;
 console.log(dog);    // undefined
 dog = "阿比";
 console.log(dog);    // 阿比</code></pre>
