@@ -98,6 +98,13 @@
         "type": "javascript"
     },
     {
+        "id": 15,
+        "href": "js_hoisting",
+        "title": "不存在的專有名詞──Hoisting，JavaScript 重要的「提升」觀念",
+        "time": "2020.02.27",
+        "type": "javascript"
+    },
+    {
         "id": 30,
         "href": "vue_lifecycle_1",
         "title": "循序漸進學 Vue3：認識 Vue1.0 到 Vue3.0 的生命週期（Lifecycle Diagram）-上",

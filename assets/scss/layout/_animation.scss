@@ -148,3 +148,13 @@
         transform: scale(1);
     }
 }
+
+@keyframes list_accordin_btn_move {
+    0% {
+        transform: translate(-50%, .75rem);
+    }
+
+    100% {
+        transform: translate(-50%, 1.25rem);
+    }
+}

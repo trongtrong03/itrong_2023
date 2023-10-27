@@ -23,21 +23,35 @@
                     </div>
                 </div>
                 <div class="list-article" v-if="jsonData">
-                    <ul>
-                        <li class="is-jquery" data-aos="fade-in">
-                            <NuxtLink to="/javascript/_faq_jq">
-                                <figure></figure>
-                                <h2>jQuery 常見錯誤訊息問題、除錯建議以及各種疑難雜症彙整</h2>
-                            </NuxtLink>
-                        </li>
-                        <li class="is-nodejs" data-aos="fade-in">
-                            <NuxtLink to="/javascript/_faq_node">
-                                <figure></figure>
-                                <h2>Node.js 常見錯誤訊息問題、除錯建議以及各種疑難雜症彙整</h2>
-                            </NuxtLink>
-                        </li>
-                    </ul>
-                    <span class="sp-line" data-aos="fade-in"></span>
+                    <div class="list-accordin" :class="{ 'is-active': listAccordin }">
+                        <ul>
+                            <li class="is-javascript" data-aos="fade-in">
+                                <NuxtLink to="/javascript/_faq_js">
+                                    <figure></figure>
+                                    <h2>JavaScript 常見錯誤訊息問題、除錯建議以及各種疑難雜症彙整</h2>
+                                </NuxtLink>
+                            </li>
+                            <li class="is-jquery" data-aos="fade-in">
+                                <NuxtLink to="/javascript/_faq_jq">
+                                    <figure></figure>
+                                    <h2>jQuery 常見錯誤訊息問題、除錯建議以及各種疑難雜症彙整</h2>
+                                </NuxtLink>
+                            </li>
+                            <li class="is-nodejs" data-aos="fade-in">
+                                <NuxtLink to="/javascript/_faq_node">
+                                    <figure></figure>
+                                    <h2>Node.js 常見錯誤訊息問題、除錯建議以及各種疑難雜症彙整</h2>
+                                </NuxtLink>
+                            </li>
+                            <li class="is-yarn" data-aos="fade-in">
+                                <NuxtLink to="/javascript/_faq_yarn">
+                                    <figure></figure>
+                                    <h2>Yarn 常見錯誤訊息問題、除錯建議以及各種疑難雜症彙整</h2>
+                                </NuxtLink>
+                            </li>
+                        </ul>
+                        <button class="btn-toggle" @click="listAccordinToggleActive"></button>
+                    </div>
                     <ul>
                         <li v-for="(item, index) in filterSearch" :key="index" v-show="filter=='all' || filter==item.type" :class="'is-' + item.type" data-aos="fade-up">
                             <NuxtLink :to="'/javascript/_' + item.href">
@@ -65,6 +79,12 @@
     const query = ref('');
     const filter = ref('all');
     const isActive = ref(1);
+    const listAccordin = ref(false);
+
+    // list accordin
+    const listAccordinToggleActive = () => {
+        listAccordin.value = !listAccordin.value;
+    };
 
     // Search
     const { searchOn, searchToggleActive } = useSearch();

@@ -754,6 +754,10 @@
             }
         }
 
+        &:last-child {
+            margin-bottom: 0;
+        }
+
         $list: html html5 svg css css3 sass stylus javascript jquery ajax nodejs vue nuxtjs tabnine uiux git yarn;
         @each $item in $list {
             &.is-#{$item} {
@@ -790,6 +794,68 @@
                     font-size: .875rem;
                 }
             }
+        }
+    }
+}
+
+.list-accordin {
+    position: relative;
+    border-bottom: 1px dashed #DDD;
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        display: block;
+        width: 100%;
+        height: 5rem;
+        background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,1) 100%);
+        transition: opacity .3s;
+    }
+    button {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        z-index: 2;
+        display: block;
+        width: auto;
+        height: 2rem;
+        background-color: #fff;
+        font-size: 1rem;
+        color: #ddd;
+        padding: 0 2rem;
+        transform: translate(-50%, 1rem);
+        animation-duration: .5s;
+        animation-fill-mode: both;
+        animation-iteration-count: infinite;
+        &::before {
+            content: '\f103';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+        }
+        &:hover {
+            animation-name: list_accordin_btn_move;
+        }
+    }
+    ul {
+        max-height: 10rem;
+        overflow: hidden;
+        transition: all .5s;
+    }
+    &.is-active {
+        &::before {
+            opacity: 0;
+        }
+        button {
+            &::before {
+                content: '\f102';
+            }
+        }
+        ul {
+            max-height: 50rem;
         }
     }
 }
@@ -868,10 +934,4 @@
             }
         }
     }
-}
-
-.sp-line {
-    display: block;
-    border-bottom: 1px dashed #DDD;
-    margin: 2rem 0;
 }

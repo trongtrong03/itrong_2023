@@ -836,6 +836,11 @@
     border-bottom: .25rem solid #333;
     margin: 1rem 0;
     overflow-x: auto;
+    p {
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
     .f-width {
         min-width: 40rem;
     }

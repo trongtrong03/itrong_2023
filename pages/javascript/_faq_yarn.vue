@@ -5,17 +5,27 @@
 <div class="text-content">
     <div class="text-catalog">
         <ul>
-            <li><a href="#act1">一、XXX</a></li>
-            <li><a href="#act2">二、XXX</a></li>
-            <li><a href="#act3">三、問題集錦</a></li>
+            <li><a href="#act1">一、錯誤訊息</a></li>
+            <li><a href="#act2">二、警告提示</a></li>
+            <li><a href="#act3">三、其他疑難雜症</a></li>
         </ul>
     </div>
-    <div class="text-block" id="act3">
-        <h2>三、問題集錦</h2>
+    <div class="text-block" id="act1">
+        <h2>一、錯誤訊息</h2>
         <div class="text-accordin is-error">
-            <div class="accordin-item" :class="isActive==1 ? 'is-active' : ''">
-                <div class="accordin-title" @click="isActive = 1;">
-                    <p>yarn : 因為這個系統上已停用指令碼執行，所以無法載入 C:\Users\itrong_chen\AppData\Roaming\npm\yarn.ps1 檔案。如需詳細資訊，請參閱 about_Execution_Policies，網址為 https:/go.microsoft.com/fwlink/?LinkID=135170。 位於 線路:1 字元:1</p>
+        </div>
+    </div>
+    <div class="text-block" id="act2">
+        <h2>二、警告提示</h2>
+        <div class="text-accordin is-warning">
+        </div>
+    </div>
+    <div class="text-block" id="act3">
+        <h2>三、其他疑難雜症</h2>
+        <div class="text-accordin is-others">
+            <div class="accordin-item" :class="isActive==3001 ? 'is-active' : ''">
+                <div class="accordin-title" @click="isActive = 3001;">
+                    <p>yarn : 因為這個系統上已停用指令碼執行，所以無法載入 Path...\AppData\Roaming\npm\yarn.ps1 檔案。如需詳細資訊，請參閱 about_Execution_Policies，網址為 https:/go.microsoft.com/fwlink/?LinkID=135170。 位於 線路:1 字元:1</p>
                 </div>
                 <div class="accordin-content">
                     <p>這個錯誤訊息表示你的作業系統禁用了執行 PowerShell 指令碼，而 Yarn 則必須透過 PowerShell 指令碼來執行。要解決這個問題，可以按照以下步驟來調整你的 PowerShell 執行原則：</p>
