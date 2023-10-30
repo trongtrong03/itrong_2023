@@ -8,10 +8,9 @@
             <li><a href="#act0">序、前言</a></li>
             <li><a href="#act1">一、變數提升</a></li>
             <li><a href="#act2">二、函式提升</a></li>
-            <li><a href="#act3">三、XXX</a></li>
-            <li><a href="#act4">四、XXX</a></li>
-            <li><a href="#act5">五、XXX</a></li>
-            <li><a href="#act6">六、參考資料</a></li>
+            <li><a href="#act3">三、變數與函式提升的練習</a></li>
+            <li><a href="#act4">四、Hoisting 的原理</a></li>
+            <li><a href="#act5">五、參考資料</a></li>
         </ul>
     </div>
     <div class="text-block" id="act0">
@@ -99,20 +98,385 @@ function Animal(){
     console.log(dog);
 }</code></pre>
         </div>
-        <p>會發現程式這樣寫也能正常執行，這便是受惠於 Hoisting 的影響，不止如此，Hoisting 的機制也能允許不同函式彼此互相呼叫</p>
+        <p>會發現程式這樣寫也能正常執行，這便是受惠於 Hoisting 的影響，不止如此，Hoisting 的機制也能允許不同函式彼此互相呼叫，例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">Animal();    // 我養了一隻狗
+function Animal() {
+    console.log("我養了一隻狗");
+    dog();    // 阿比
+}
 
+function dog() {
+    console.log("阿比");
+}</code></pre>
+        </div>
+        <p>經過編譯後會分別得到「我養了一隻狗」、「阿比」的回傳結果。原理很簡單，雖然乍看之下 <em>Animal()</em> 函式在宣告後就立即調用了尚未被宣告的 <em>dog()</em> 函式，不過由於 Hoisting 的機制，函式調用都會提升到最頂部，所以我們可以視同這串程式碼等同以下程式碼結構：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">Animal();    // 我養了一隻狗
+dog();    // 阿比
+
+function Animal() {
+    console.log("我養了一隻狗");
+}
+
+function dog() {
+    console.log("阿比");
+}</code></pre>
+        </div>
+        <p>還是要重申那句話，儘管可以視同上面的程式碼，但是我們原本寫的程式實際上並沒有做更動。</p>
+        <p><br></p>
+        <p>再來就是傳入參數的狀況，若今天設定的函式有參數傳入時，該參數是否也會被 Hoisting？以下透過程式範例實際測試看看：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">Animal("阿比");
+
+function Animal(dog) {
+    var dog;
+    console.log(dog);    // 阿比
+    var dog = "咪咪";
+}</code></pre>
+        </div>
+        <p>由此可知參數也同樣得到提升，我們可以將其視為等同以下結構：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">Animal("阿比");
+
+function Animal(dog) {
+    var dog = "阿比";    // &lt;--傳入的參數
+    var dog;
+    console.log(dog);    // 阿比
+    var dog = "咪咪";
+}</code></pre>
+        </div>
     </div>
     <div class="text-block" id="act3">
-        <h2>xxxx</h2>
+        <h2>三、變數與函式提升的練習</h2>
+        <p>中場小結一下函式、參數與變數之間的 Hoisting 順序，其依序為「函式宣告」、「傳入函式的參數」，最後才是「變數宣告」。知道優先順序後，我們需要透過練習來驗證是否真的有搞懂 JavaScript Hoisting 的機制運作，試著回答以下程式碼片段中各個 Console 所要打印回傳的結果：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var dog = "阿比";
+function Animal(){
+    console.log("Q1.", dog);
+    var dog = "汪汪";
+    console.log("Q2.", dog);
+    pet1();
+    console.log("Q4.", dog);
+    pet2(cat);
+    function pet1() {
+        console.log("Q3.", dog);
+        dog = "阿財";
+        cat = "咪咪";
+    }
+    function pet2(cat) {
+        console.log("Q5.", cat);
+        cat = "花花";
+        console.log("Q6.", cat);
+    }
+}
+Animal();
+console.log("Q7.", dog);
+console.log("Q8.", cat);
+</code></pre>
+        </div>
+        <p>答案：</p>
+        <ol>
+            <li>undefined</li>
+            <li>汪汪</li>
+            <li>汪汪</li>
+            <li>阿財</li>
+            <li>咪咪</li>
+            <li>花花</li>
+            <li>阿比</li>
+            <li>咪咪</li>
+        </ol>
+        <p><br></p>
+        <h3>Q1：undefined</h3>
+        <p>謹記函式宣告會優先於變數宣告的順序，在「dog」變數宣告為「阿比」之前，函式「Animal()」已提升到最頂部開始執行，此時函式內部的「dog」變數也會提升到其函式內部頂端（仍在函式作用域內），不過因為賦值不會跟著提升，因此本問題最後得到的回傳結果為 <em>undefined</em>。</p>
+        <p>綜觀上述，我們可以將第一個問題的程式碼視為以下結構：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">Animal();
+var dog;
+dog = "阿比";
+function Animal(){
+    var dog;
+    console.log("Q1.", dog);    // undefined
+    dog = "汪汪";
+}</code></pre>
+        </div>
+        <p>看到這裡或許心中會產生疑問，為什麼前面在介紹函式互相調用時，函式內部調用的函式經過提升也會推到全局作用域的頂端，但是在這個練習裡，函式內部宣告的變數卻只有提升到其所屬函式的頂端，這是為什麼？變數和函式提升的範圍不一樣嗎？</p>
+        <p>其實這與 JavaScript 的設計原則有關，變數宣告只會提升到該變數所處作用域的頂部，這是因為 JavaScript 遵循「變數封閉」的原則，即變數應該要在最接近它們的作用域中被宣告，這意味著在函式局部作用域範圍內，所宣告的變數將限制在其函式範圍內，避免與全局作用域的變數互相衝突。</p>
+        <p>雖然函式提升的範圍同樣也是以其在全局還是局部作用域內，而提升至該範圍頂部，不過因為 JavaScript 向來鼓勵函式的重複可用性，因此函式通常會在全局作用域中做宣告，以方便開發者在任何地方都能調用該函式。</p>
+        <p><br></p>
+        <h3>Q2：汪汪</h3>
+        <p>因為第二個問題敘述句執行之前，其所在「Animal()」函式作用域內已經宣告變數「dog」的值為「汪汪」，故回傳的結果為「汪汪」。</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">Animal();
+var dog;
+function Animal(){
+    var dog;
+    console.log("Q1.", dog);    // undefined
+    dog = "汪汪";
+    console.log("Q2.", dog);    // 汪汪
+}
+dog = "阿比";</code></pre>
+        </div>
+        <p><br></p>
+        <h3>Q3：汪汪</h3>
+        <p>因為「pet1()」函式內的「dog」並沒有經過宣告，屬於無宣告變數，因此會向外層繼續尋找，然後在「Animal()」中找到了已經宣告的「dog」，而此時「dog」變數的值為「汪汪」。原本問題中的這段程式碼（已經過簡化只挑出與 Q3 有關的程式碼片段）：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function Animal(){
+    var dog = "汪汪";
+    pet1();
+    function pet1() {
+        console.log("Q3.", dog);
+        dog = "阿財";
+    }
+}
+Animal();
+</code></pre>
+        </div>
+        <p>經過育處理後視同：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function Animal(){
+    pet1();
+    var dog;
+    dog = "汪汪";
+    function pet1() {
+        console.log("Q3.", dog);    // 汪汪
+        dog = "阿財";
+    }
+}
+Animal();</code></pre>
+        </div>
+        <p>因為「pet1()」執行的時候它的內部找不到「dog」這個變數宣告，往上繼續尋找則找到了外部有宣告的「dog」，而依照程式碼順序，在「pet1()」函式內部的定義執行前，變數「dog」已經賦予了「汪汪」的值，故函式執行後回傳的結果為「汪汪」。</p>
+        <p><br></p>
+        <h3>Q4：阿財</h3>
+        <p>由於「pet1()」函式在這個問題的敘述句之前已經執行，其函式裡的「dog」賦值「阿財」取代了先前宣告的賦值「汪汪」，因此得到的回傳結果為「阿財」。</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var dog = "阿比";
+function Animal(){
+    var dog = "汪汪";
+    pet1();
+    console.log("Q4.", dog);    // 阿財
+    function pet1() {
+        dog = "阿財";
+    }
+}
+Animal();</code></pre>
+        </div>
+        <p><br></p>
+        <h3>Q5：咪咪</h3>
+        <p>這個問題的解釋有點複雜，但如果要精簡來說，那就是「cat」變數在這個程式碼範例中，最終被視為全域變數，儘管整段程式碼裡都沒有宣告它這個變數。也正因為如此，所以 JavaScript 才會一直往上尋找是否有包含宣告「cat」變數的局部作用域或全局作用域，最終找到了全局作用域，雖然沒被宣告，但還是被 JavaScript 視為「cat」屬於全域變數。</p>
+        <p>因此我們可以這樣想像「cat」變數宣告的程式碼片段會是這個樣子：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var cat;
+function Animal(){
+    pet1();
+    pet2(cat);
+    function pet1() {
+        cat = "咪咪";
+    }
+    function pet2(cat) {
+        console.log("Q5.", cat);    // 咪咪
+        cat = "花花";
+    }
+}
+Animal();</code></pre>
+        </div>
+        <p>回到問題，因為「pet2(cat)」執行前先執行了「pet1()」函式，其內部將「cat」賦值為「咪咪」，而「cat」因為函式內的作用域都沒有宣告的關係而成為全域變數，「pet2(cat)」在執行第五個問題的敘述句時，向上遍歷找到了全域中的「cat」，故得到的回傳結果為「咪咪」。</p>
+        <p><br></p>
+        <h3>Q6：花花</h3>
+        <p>和第四個問題的思路相似，在「pet2(cat)」執行的時候「cat」被重新賦值為「花花」，所以後面執行的第六個問題因而得到「花花」這個結果。</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function Animal(){
+    pet1();
+    pet2(cat);
+    function pet1() {
+        cat = "咪咪";
+    }
+    function pet2(cat) {
+        cat = "花花";
+        console.log("Q6.", cat);    // 花花
+    }
+}
+Animal();</code></pre>
+        </div>
+        <p><br></p>
+        <h3>Q7：阿比</h3>
+        <p>這個問題呼叫的「dog」屬於全域變數，也就是開頭宣告的「dog」，因其賦值為「阿比」，故得到的結果為「阿比」。至於「Animal()」函式內的多項「dog」變數宣告與賦值，其作用域都局限在函式之中。在 JavaScript 中，局部變數會遮蔽全域變數，因此我們在函式內部調用局部變數時，它會先查找函式內的變數，而非直接取用全域宣告的同名變數。反過來說，如果我們在全局作用域呼叫已宣告的全域變數，自然而然優先得到的也就會是該變數所賦予的值了。</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var dog = "阿比";
+function Animal(){
+    var dog = "汪汪";
+    pet1();
+    function pet1() {
+        dog = "阿財";
+    }
+}
+Animal();
+console.log("Q7.", dog);    // 阿比</code></pre>
+        </div>
+        <p>雖然「pet1()」裡面的「dog」並沒有宣告為變數，但是它在往上尋找過程找到了「Animal()」函式內宣告的「dog」，所以「pet1」中的「阿財」取代的是「Animal()」函式裡的「汪汪」，可是這個值並不會向外輸出去取代「阿比」，此乃是受 JavaScript 變數遮蔽的機制影響，我們可以將全域宣告的「dog」及函式內部宣告的「dog」視為相互獨立的變數。</p>
+        <p><br></p>
+        <h3>Q8：咪咪</h3>
+        <p>這個問題要和第七個問題擺在一起比較，第七個問題中的「dog」因為有在全局作用域下進行變數宣告，然而第八個問題中的「cat」並沒有在任何地方進行宣告，雖然因為 JavaScript 的機制最終被認定為全域變數。然而，在「pet1()」函式裡，「cat」被賦值為「咪咪」，由於該函式沒有宣告變數的關係，「咪咪」遂向上賦值成為全局作用域裡「cat」變數宣告的值。</p>
+        <p>而在「pet2(cat)」函式中，我們傳入了「cat」參數，它將被當作局部變數，這個變數只在「pet2()」函式內使用，與全域的「cat」變數沒有關係，因此「pet2(cat)」函式傳入的參數不會影響全局變數的值。</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function Animal(){
+    pet1();
+    pet2(cat);
+    function pet1() {
+        cat = "咪咪";   // 這裡沒有使用 var 宣告
+    }
+    function pet2(cat) {
+        cat = "花花";   // 這裡的 cat 是 pet2 函式的參數，所以屬於局部變數
+    }
+}
+Animal();
+console.log("Q8.", cat);    // 咪咪</code></pre>
+        </div>
     </div>
-    <div class="text-block" id="act6">
-        <h2>六、參考資料</h2>
+    <div class="text-block" id="act4">
+        <h2>四、Hoisting 的原理</h2>
+        <p>說到底，JavaScript Hoisting 機制存在意義主要還是想解決函式無法互相呼叫的問題，以下面程式碼為例：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function loop(n){
+    if (n > 1) {
+        logEvenOrOdd(--n)
+    }
+}
+
+function logEvenOrOdd(n) {
+    console.log(n, n % 2 ? 'Odd' : 'Even')
+    loop(n)
+}
+
+loop(10);</code></pre>
+        </div>
+        <p>如果沒有 Hoisting 機制，幾可斷言這段程式無法順利執行，因為依照正常邏輯來說，程式不可能同時做到函式Ａ在函式Ｂ之上，而函式Ｂ也在函式Ａ頭上。當然這也不是 Hoisting 機制唯一要解決的問題，如果沒有 Hoisting，我們在寫 JavaScript 的時候必須要先宣告變數才可以使用該變數，而函式同樣也得先經過宣告才能呼叫它，雖說某方面來講養成先宣告再使用的習慣並無壞處，但有 Hoisting 機制存在則能讓我們更方便地撰寫程式碼。</p>
+        <p>開頭曾說 Hoisting 這個詞並不是 JavaScript 官方文件釋出的專有名詞，不過我們其實可以從相關規範中找到有關 Hoisting 起源的蛛絲馬跡，在這裡先說結論：Hoisting 與 Execution Contexts 密切相關。Execution Contexts 是什麼？Execution Contexts 用中文解讀其涵義為「執行環境」，指的是 JavaScript 執行時，引擎將程式碼拆解成許多區塊，並將這些區塊一塊塊堆疊起來，運算完結果就移除當前的區塊，然後繼續運算下一部分的區塊。當我們進入一個函式時，JavaScript 就會產生一個 Execution Contexts，裡面存放著和該函式有關的一些資訊，例如變數物件（Variable Object）、範圍鏈（Scope Chain）...等，一旦生成 Execution Contexts，JavaScript 引擎會將其放到 stack 裡面，等函式執行結束後，就會把 Execution Contexts 給拿出來。</p>
+        <p>舉例來說，我們現在有個程式碼如下：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function Animal(){
+    dog();
+}
+
+function dog(){
+    console.log("阿比");
+}
+
+Animal();</code></pre>
+        </div>
+        <p>我們開始執行函式時，整個執行環境的堆疊看起來會是這樣：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">[main, Animal, dog]
+</code></pre>
+        </div>
+        <p>當「dog()」函式執行完之後，執行環境就會變成：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">[main, Animal]
+</code></pre>
+        </div>
+        <p>等「Animal()」也執行完，最終就會只剩下主程式本身：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">[main]
+</code></pre>
+        </div>
+        <p>若用圖解來看差不多是這個樣貌：</p>
+        <figure>
+            <img src="/images/learn/js/hoisting-1.jpg">
+        </figure>
+        <p>示意圖上面 Execution Context 們都可稱作是 Function Execution Context（函式執行環境），除了它們之外，還有一個 Global Execution Contexts（全域執行環境），上面範例中的「main」所指便是它。有關執行環境的詳細內容會再另外開一個坑去填補它，目前只要先知道個大概就好，在這裡提到 Execution Context 的目的主要是要我們知道所有函式需要的資訊都會儲存在個別的 Execution Context 之中。</p>
+        <p>在來要開始說說和 Hoisting 的關聯，ES3 官方文件裡 Execution Context 章節有一段話敘述如下：</p>
+        <blockquote>
+            <p>Every execution context has associated with it a variable object. Variables and functions declared in the source text are added as properties of the variable object. For function code, parameters are added as properties of the variable object.</p>
+        </blockquote>
+        <p>其意思是在說明每一個執行環境都會有相對應的變數物件（Variable Object），在執行環境裡宣告的變數、函式都會被加進 Variable Object 裡面，如果加進去的函式包含參數，則參數也會被加入到 Variable Object 之中。</p>
+        <p><strong>那麼，我們什麼時候會用到 Variable Object？</strong></p>
+        <p>答案是在我們要存取值的時候，假如現在宣告一個變數 <em>var dog = "阿比"</em>，我們可以將其拆分成兩個部份：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var dog;
+dog = "阿比";</code></pre>
+        </div>
+        <ol>
+            <li><em>var dog</em>：在 Variable Object 裡面新增一個名稱為 <em>dog</em> 的屬性，並初始化為 <em>undefined</em> 資料型別。</li>
+            <li><em>dog = "阿比"</em>：搜尋 Variable Object 裡是否有符合 <em>dog</em> 名稱的屬性，如果有，賦值「阿比」的值給它。</li>
+        </ol>
+        <p>假如該 Variable Object 裡面找不到符合的名稱，它就會透過範圍鏈（Scope Chain）不斷往上層作用域鏈上的其他 Execution Contexts 尋找，直到 Global Execution Contexts，假設每一層都找不到則最終 JavaScript 會回報錯誤訊息，也就是 <b>Uncaught ReferenceError: dog is not defined.</b>。</p>
+        <p><br></p>
+        <p>再來是這段引用：</p>
+        <blockquote>
+            <p>For function code: for each formal parameter, as defined in the FormalParameterList, create a property of the variable object whose name is the Identifier and whose attributes are determined by the type of code. The values of the parameters are supplied by the caller as arguments to [[Call]].</p>
+            <p><br></p>
+            <p>If the caller supplies fewer parameter values than there are formal parameters, the extra formal parameters have value undefined.</p>
+        </blockquote>
+        <p>大意是說函式傳入的「參數」會直接存進 Variable Object 裡，倘若遇到部份參數沒有給值的情況，它們的值將會初始化為 <em>undefined</em>。舉例來說：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function Animal(dog, cat, rat) { ... }
+Animal("阿比");</code></pre>
+        </div>
+        <p>其 Variable Object 就會是：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">{
+    dog: "阿比",
+    cat: undefined,
+    rat: undefined
+}</code></pre>
+        </div>
+        <p>如果是宣告的東西是函式，ES3 給出的規範是這樣：</p>
+        <blockquote>
+            <p>For each FunctionDeclaration in the code, in source text order, create a property of the variable object whose name is the Identifier in the FunctionDeclaration, whose value is the result returned by creating a Function object as described in 13, and whose attributes are determined by the type of code.</p>
+            <p><br></p>
+            <p>If the variable object already has a property with this name, replace its value and attributes. Semantically, this step must follow the creation of FormalParameterList properties.</p>
+        </blockquote>
+        <p>基本上也是在 Variable Object 裡面新增一個屬性來存放函式，而該屬性的值則是函式建立完後所回傳的結果。至於引述內容第二段則提到 Variable Object 內屬性同名的情況下，若 Variable Object 已存在相同命名的屬性，後者將會把前者覆蓋掉。我們承襲前面的例子做改寫，在「Animal()」函式內新增另一個函式，名稱則與「Animal()」傳入的參數名稱相同：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function Animal(dog) {
+    function dog(){ ... }
+}
+Animal("阿比");</code></pre>
+        </div>
+        <p>存入的 Variable Object 將會是：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">{
+    dog: function dog
+}</code></pre>
+        </div>
+        <p>以上是針對函式與函式參數進行說明，如果是變數宣告，Variable Object 又是怎麼處理呢？官方敘述如下：</p>
+        <blockquote>
+            <p>For each VariableDeclaration or VariableDeclarationNoIn in the code, create a property of the variable object whose name is the Identifier in the VariableDeclaration or VariableDeclarationNoIn, whose value is undefined and whose attributes are determined by the type of code. If there is already a property of the variable object with the name of a declared variable, the value of the property and its attributes are not changed.</p>
+            <p><br></p>
+            <p>Semantically, this step must follow the creation of the FormalParameterList and FunctionDeclaration properties. In particular, if a declared variable has the same name as a declared function or formal parameter, the variable declaration does not disturb the existing property.</p>
+        </blockquote>
+        <p>變數和函式傳入的參數差不多，在沒有明確給值的前提下，該變數會在 Variable Object 裡新增一個屬性，其屬性值預設為 <em>undefined</em>，可是「如果 Variable Object 已經存在該屬性名稱，屬性值不會被改變」。</p>
+        <p>總結時間！當 JavaScript 開始執行一個 Execution Context 的時候，會依序執行以下三件行為：</p>
+        <ol>
+            <li>把參數存入 Variable Object 裡面並設定好值，傳什麼值進來就是什麼值，如果沒有值則給予 <em>undefined</em>。</li>
+            <li>把函式宣告存入 Variable Object 裡，假如已存在相有同名稱的就覆蓋掉。</li>
+            <li>把變數宣告存入 Variable Object 裡，如果已經有同名的則忽略。</li>
+        </ol>
+        <p>補充一點：進入 Execution Context 並非執行整個程式碼，這個階段比較像是開始執行函式，但還沒開始跑函式內部程式碼的這個階段，也就是前面文章時不時提到的「預處理」。所以，每個函式開始執行的時候可以視同分成兩個階段，第一個階段是進入 Execution Context，第二個階段才是一行一行執行函式裡面的程式碼。</p>
+        <p>再看一個例子：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function Animal(dog) {
+    console.log(dog);
+    var dog = "咪咪";
+}
+Animal("阿比");</code></pre>
+        </div>
+
+
+
+
+
+
+    </div>
+    <div class="text-block" id="act5">
+        <h2>五、參考資料</h2>
         <dl>
             <dd><a href="https://developer.mozilla.org/zh-TW/docs/Glossary/Hoisting" target="_blank">mdn web docs 提升（Hoisting）</a></dd>
             <dd><a href="https://blog.techbridge.cc/2018/11/10/javascript-hoisting/" target="_blank">我知道你懂 hoisting，可是你了解到多深？</a></dd>
             <dd><a href="https://www.shubo.io/javascript-hoisting/#javascript-hoisting-%E6%8F%90%E5%8D%87" target="_blank">[教學] JavaScript Hoisting 是什麼？ let, const, var 的差異是什麼？</a></dd>
             <dd><a href="https://jianline.com/javascript-hoisting/#Temporal_dead_zone%E6%9A%AB%E6%99%82%E6%AD%BB%E5%8D%80%E8%88%87const%E3%80%81let" target="_blank">[筆記]-JavaScript 提升(Hoisting)是什麼?關於提升的5個觀念</a></dd>
             <dd><a href="https://suochantsao.medium.com/js%E7%AD%86%E8%A8%98%E7%B3%BB%E5%88%97-%E6%9A%AB%E6%99%82%E6%80%A7%E6%AD%BB%E5%8D%80-temporal-dead-zone-c7cad9b5cc1" target="_blank">JS筆記系列：暫時性死區 Temporal Dead Zone</a></dd>
+            <dd><a href="https://shawnlin0201.github.io/JavaScript/JavaScript-Execution-Context/" target="_blank">JavaScript 深入淺出 Execution Content 執行環境</a></dd>
         </dl>
     </div>
 </div>
