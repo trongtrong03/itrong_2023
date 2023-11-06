@@ -453,7 +453,7 @@ Animal("阿比");</code></pre>
             <li>把變數宣告存入 Variable Object 裡，如果已經有同名的則忽略。</li>
         </ol>
         <p>補充一點：進入 Execution Context 並非執行整個程式碼，這個階段比較像是開始執行函式，但還沒開始跑函式內部程式碼的這個階段，也就是前面文章時不時提到的「預處理」。所以，每個函式開始執行的時候可以視同分成兩個階段，第一個階段是進入 Execution Context，第二個階段才是一行一行執行函式裡面的程式碼。</p>
-        <p>再看一個例子：</p>
+        <p>了解原理後，我們再看一個複合例子：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">function Animal(dog) {
     console.log(dog);
@@ -461,12 +461,24 @@ Animal("阿比");</code></pre>
 }
 Animal("阿比");</code></pre>
         </div>
-
-
-
-
-
-
+        <p>經過 Execution Context 執行環境所儲存的 Variable Object 將會是：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">{
+    dog: "阿比"
+}</code></pre>
+        </div>
+        <p>在進入 Execution Context 時開始建立 Variable Object，因為有傳入參數「dog」，所以把「dog」放進 Variable Object 並且賦予值為「阿比」，再來接著是函式內所宣告的變數「var dog = "咪咪"」，由於 Variable Object 已經存在「dog」這個屬性，根據原則，變數遇到同名的屬性名稱將會被忽略，因此 Variable Object 存取的「dog」值仍舊是「阿比」。</p>
+        <p>函式內的程式敘述句會在 Variable Object 建立完後開始逐行執行，當執行到第二行「console.log(dog)」的那個時間點，Variable Object 裡「dog」存取的值乃是「阿比」，這就是為什麼 Console 回傳的結果會是「阿比」而非「咪咪」了。</p>
+        <p>如果我們在函式內宣告「dog」變數的下一行再次 Console 該變數，這時得到的結果就會不一樣了：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function Animal(dog) {
+    console.log(dog);    // 阿比
+    var dog = "咪咪";
+    console.log(dog);    // 咪咪
+}
+Animal("阿比");</code></pre>
+        </div>
+        <p>因為函式內第二行的變數「dog」執行後，Variable Object 裡面的「dog」屬性值就被「咪咪」取代了，因此回到程式執行階段，下方的 Console 回傳的是「咪咪」此一結果。</p>
     </div>
     <div class="text-block" id="act5">
         <h2>五、參考資料</h2>

@@ -105,6 +105,20 @@
         "type": "javascript"
     },
     {
+        "id": 16,
+        "href": "js_learn00_tree",
+        "title": "從、重新認識 JavaScript（零）──學習樹狀圖總覽",
+        "time": "2021.03.13",
+        "type": "javascript"
+    },
+    {
+        "id": 17,
+        "href": "js_learn01_var",
+        "title": "從、重新認識 JavaScript（壹）──變數 Variables",
+        "time": "2021.03.15",
+        "type": "javascript"
+    },
+    {
         "id": 30,
         "href": "vue_lifecycle_1",
         "title": "循序漸進學 Vue3：認識 Vue1.0 到 Vue3.0 的生命週期（Lifecycle Diagram）-上",
