@@ -83,9 +83,9 @@
         </ol>
         <p><br></p>
         <h3>有哪些作用域？</h3>
-        <p>目前 JavaScript 作用域分為以下三個層級，分別是「全域作用域」（Global Level Scope）、「函式作用域」（Function Scope）、「區塊作用域」（Block Scope）。</p>
+        <p>目前 JavaScript 作用域分為以下三個層級，分別是「全域作用域」（Global Scope）、「函式作用域」（Function Scope）、「區塊作用域」（Block Scope）。</p>
         <p><br></p>
-        <h4>全域作用域（Global Level Scope）：</h4>
+        <h4>全域作用域（Global Scope）：</h4>
         <p>當 JavaScript 開始執行編譯前的最初階段，會產生一個 Global Execution Context，中文通譯為「全域執行環境」，而在全域執行環境中都會包含一個「全域變數物件」（Global Variable Object），用來存放所有在全域環境中宣告的變數（也包含函式），這些放在全域環境的變數，我們可以在程式任何地方去存取它，意即該變數的作用域就是「全域作用域」。</p>
         <p>如果要從程式碼片段裡分辨該變數是不是全域變數，最直接了當的方式就是看它是不是在函式或區塊內做宣告，像這樣直接宣告在 JavaScript 最外部沒有被任何程式符號包裹住的，基本上就是存活在全域作用域的變數：</p>
         <div class="text-code" v-pre>
@@ -100,7 +100,7 @@ Animal();</code></pre>
         </div>
         <p>可以看到無論是在全域直接 Console 打印，還是在函式 <em>Animal()</em> 內呼叫 <em>dog</em> 這個變數，所得到的回傳結果都是「阿比」這個在宣告階段同時綁定的賦值。</p>
         <p><br></p>
-        <h4>函式作用域（Function Level Scope）：</h4>
+        <h4>函式作用域（Function Scope）：</h4>
         <p>承襲全域作用域變數的說明，若今天變數是在函式內做宣告，其影響範圍就只會侷限在函式內，函式是什麼？函式指的就是由關鍵字 <em>function</em> 宣告並構成的一個程式碼架構，譬如：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">// 函式變數宣告
@@ -156,7 +156,7 @@ console.log(dog);    // 咪咪</code></pre>
         </div>
         <p>會發現最後全域打印 <em>dog</em>時，函式內的 <em>dog</em> 變數值「咪咪」竟然取代了全域 <em>dog</em> 變數原先的值「阿比」，這就是先前說的「變數汙染」現象。至於為什麼會這樣？其實這和 JavaScript 的 Hoisting（提升）機制有關，關於 Hoisting 機制三言兩語很難解釋得清，不過簡單來說因為函式內沒有宣告 <em>dog</em> 這個變數，JavaScript 遂繼續向上層尋找，然後發現了全域作用域層級有個符合相同名稱的變數，故 JavaScript 不會將函式內的 <em>dog</em> 當作新的變數，而是直接「引用」全域變數 <em>dog</em>，致使函式內的賦值（咪咪）順理成章覆蓋了原先的賦值（阿比）。</p>
         <p><br></p>
-        <h4>區塊作用域（Block Level Scope）：</h4>
+        <h4>區塊作用域（Block Scope）：</h4>
         <p>區塊作用域的誕生是伴隨 ES6 新生的 <em>let</em> 與 <em>const</em> 這兩個變數宣告方式，它是一種範圍更小的作用域，只會存在於 <em>{ }</em> 範圍中，最常出現在函式作用域裡的 <em>{ }</em>，像是 <em>if</em> 或 <em>for</em> 之類的方法。</p>
         <p>舉例來說，用以往 <em>var</em> 在函式內的 <em>if</em> 語句進行變數宣告：</p>
         <div class="text-code" v-pre>
@@ -189,8 +189,8 @@ Animal();</code></pre>
         <p>2. 變數名稱衝突：<br>無論是函式作用域還是區塊作用域，它們都有助於減少變數名稱衝突的機會。在不同作用域範圍可以使用相同名稱的變數，而它們之間不會互相干擾。當然非刻意為之的情況下，盡量還是避免重複名稱的命名宣告比較穩妥。</p>
         <h5>差異處：</h5>
         <p>1. 作用範圍：<br>函式作用域限制變數的作用範圍僅在函式內部，而區塊作用域限制變數的作用範圍可以是在 <em>if</em> 語句、<em>for</em> 迴圈、<em>while</em> 迴圈等區塊中。</p>
-        <p>2. ES6 的引入：函式作用域是 ES6 版本之前的主要作用域概念，而區塊作用域則是 ES6 引入的新概念，主要是透過 <em>let</em> 與 <em>const</em> 關鍵字實現。</p>
-        <p>3. 提升機制：<br>若在函式作用域內使用 <em>var</em> 關鍵字宣告變數，該變數會受到提升機制影響，提升成全域變數（但變數提升僅提升變數宣告的名稱本身，不包含賦值）；而區塊作用域中經由 <em>let</em>、<em>const</em> 宣告的變數不會被提升。</p>
+        <p>2. ES6 的引入：<br>函式作用域是 ES6 版本之前的主要作用域概念，而區塊作用域則是 ES6 引入的新概念，主要是透過 <em>let</em> 與 <em>const</em> 關鍵字實現。</p>
+        <p>3. 提升機制：<br>若在函式作用域內使用 <em>var</em> 關鍵字宣告變數，該變數會受到提升機制影響，提升成全域變數（但變數提升僅提升變數宣告的名稱本身，不包含賦值）；而區塊作用域中經由 <em>let</em>、<em>const</em> 宣告的變數雖然也會提升，但會受限於 JavaScript Temporal Dead Zone（TDZ，暫時性死區）機制，必須先經過宣告才能調用。</p>
         <p><br></p>
         <h3>var、let、const 作用域的差異？</h3>
         <p><em>let</em>、<em>const</em> 這兩者和 <em>var</em> 的差別透過前面內容的介紹大概都有個底了，那麼它們兩個之間具體又有什麼差異呢？其實這兩者無論在作用域範圍、變數提升，還是面對重複宣告情況下的表現都如出一轍，而最主要的差異在於 <em>const</em> 必須在宣告的同時就要賦值給它，這個值通稱為「常數」（Constant），否則編譯時就會直接報錯。</p>
@@ -231,9 +231,259 @@ console.log(dog);    // {"name": "阿比"}
 dog.years = 3;
 console.log(dog);    // {"name": "阿比", "years": 3}</code></pre>
         </div>
-        <p>或許你現在還不認識陣列或物件的觀念，但沒關係，舉這些例子其實可以一言以蔽之這兩個變數關鍵字之間的關係──「<em>const</em> 可視為規矩更嚴謹的 <em>let</em>」</p>
+        <p>或許你現在還不認識陣列或物件的觀念，但不打緊，舉這些例子其實可以一言以蔽之這兩個變數關鍵字之間的關係──「<em>const</em> 可視為規矩更嚴謹的 <em>let</em>」。</p>
+        <p><br></p>
+        <p>以下我們用表格將三個變數宣告關鍵字從宣告方式、變數提升、作用域範圍等面相進行彙整：</p>
+        <h4>作用域範圍：</h4>
+        <div class="text-flex">
+            <div class="f-width">
+                <div class="f-head">
+                    <div class="f-f0">關鍵字</div>
+                    <div class="f-f1">範圍</div>
+                    <div class="f-f3">補充</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0">無關鍵字宣告</div>
+                    <div class="f-f1">全域（Global）</div>
+                    <div class="f-f3">從裡到外搜尋變數，如果沒有找到則視為建立全域變數</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>var</em></div>
+                    <div class="f-f1">函式（Function）</div>
+                    <div class="f-f3"></div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>let</em></div>
+                    <div class="f-f1">區塊（Block）</div>
+                    <div class="f-f3"></div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>const</em></div>
+                    <div class="f-f1">區塊（Block）</div>
+                    <div class="f-f3"></div>
+                </div>
+            </div>
+        </div>
+        <p><br></p>
+        <h4>變數提升：</h4>
+        <p>在變數宣告前就被程式敘述句調用的狀況下，編譯將會回傳什麼結果？</p>
+        <div class="text-flex">
+            <div class="f-width">
+                <div class="f-head">
+                    <div class="f-f0">關鍵字</div>
+                    <div class="f-f1">回傳結果</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0">無關鍵字宣告</div>
+                    <div class="f-f1"><b>Uncaught ReferenceError: dog is not defined.</b></div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>var</em></div>
+                    <div class="f-f1"><em>undefined</em></div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>let</em></div>
+                    <div class="f-f1"><b>Uncaught ReferenceError: Cannot access 'dog' before initialization.</b></div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>const</em></div>
+                    <div class="f-f1"><b>Uncaught ReferenceError: Cannot access 'dog' before initialization.</b></div>
+                </div>
+            </div>
+        </div>
+        <p><br></p>
+        <h4>重複宣告：</h4>
+        <div class="text-flex">
+            <div class="f-width">
+                <div class="f-head">
+                    <div class="f-f0">關鍵字</div>
+                    <div class="f-f1">回傳結果</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0">無關鍵字宣告</div>
+                    <div class="f-f1">最後宣告的值</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>var</em></div>
+                    <div class="f-f1">最後宣告的值</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>let</em></div>
+                    <div class="f-f1"><b>Uncaught SyntaxError: Identifier 'dog' has already been declared.</b></div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>const</em></div>
+                    <div class="f-f1"><b>Uncaught SyntaxError: Identifier 'dog' has already been declared.</b></div>
+                </div>
+            </div>
+        </div>
+        <p><br></p>
+        <h4>宣告不給值：</h4>
+        <p>當我們只先單純宣告一個變數 <em>dog</em>，卻不給它值然後讓程式去調用，編譯將會發生什麼結果。</p>
+        <div class="text-flex">
+            <div class="f-width">
+                <div class="f-head">
+                    <div class="f-f0">關鍵字</div>
+                    <div class="f-f1">回傳結果</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0">無關鍵字宣告</div>
+                    <div class="f-f1"><b>Uncaught ReferenceError: dog is not defined.</b></div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>var</em></div>
+                    <div class="f-f1"><em>undefined</em></div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>let</em></div>
+                    <div class="f-f1"><em>undefined</em></div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>const</em></div>
+                    <div class="f-f1"><b>Uncaught SyntaxError: Missing initializer in const declaration.</b></div>
+                </div>
+            </div>
+        </div>
+        <p><br></p>
+        <h4>修改宣告的值：</h4>
+        <p>和重複宣告不同的是本項並非是從已宣告的變數之後再次宣告相同的變數，而是在其後另外給值以修改原本宣告的值，這些宣告關鍵字分別回傳的結果是：</p>
+        <div class="text-flex">
+            <div class="f-width">
+                <div class="f-head">
+                    <div class="f-f0">關鍵字</div>
+                    <div class="f-f1">回傳結果</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0">無關鍵字宣告</div>
+                    <div class="f-f1">最新修改的值</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>var</em></div>
+                    <div class="f-f1">最新修改的值</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>let</em></div>
+                    <div class="f-f1">最新修改的值</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>const</em></div>
+                    <div class="f-f1"><b>Uncaught TypeError: Assignment to constant variable.</b></div>
+                </div>
+            </div>
+        </div>
+        <p><br></p>
+        <h3>不同作用域的同名變數優先權</h3>
+        <p>雖然盡可能不要在這篇文章題太多關於 JavaScript Hoisting（提升）機制的東西，因為要深入探討這個機制且充分了解它，將會佔據很長的文章篇幅，但由於變數作用域的優先權層級和提升機制息息相關，要完全閉口不提幾乎是不可能的事。若要盡可能先簡易地說，Hoisting 是 JavaScript 在執行階段時，如何運行程式腳本的思路，屬於一種行為概念衍生的名詞，其概念主要牽涉變數及函式宣告在程式腳本執行過程中被「提升」到其作用域頂部的現象，依據變數、函式在不同作用域或上下文作宣告，對程式執行可能會產生不同的影響。</p>
+        <p>以變數宣告來說，如果我們試圖去向一個沒有被宣告的變數取值，例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">console.log(dog);    // Uncaught ReferenceError: dog is not defined </code></pre>
+        </div>
+        <p>你將發現我們會得到 <b>Uncaught ReferenceError: dog is not defined</b> 的錯誤結果，這個意思是在說「dog」這個變數尚未被定義，所以 JavaScript 無法取得這個變數。有趣的是如果我們現在將程式碼寫成這樣：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">console.log(dog);    // undefined
+var dog;</code></pre>
+        </div>
+        <p>依我們對程式語言的認知，程式執行的時候正常都是由上而下一行一行去執行的，第一個程式範例的寫法因為沒有先宣告而噴錯這很好理解，可是第二個範例中明明也是先取用變數，只是後續才補給該變數的宣告，如果按照由上而下的順序，不是應該也是要噴錯嗎，怎麼得到的結果會是「undefined」型別？</p>
+        <p>這種現象就叫做 Hoisting，下方的變數因為某種原因被「提升」到了最上面，所以我們可以想像 JavaScript 在執行第二個範例時將程式改動成這樣：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var dog;
+console.log(dog);    // undefined</code></pre>
+        </div>
+        <p>之所以說是想像，是因為實際上原本的程式碼順序並沒有被作改動，Hoisting 是 JavaScript 在進行編譯的時候對變數、函式宣告的一種「預處理」行為，屬於其內部機制之一，用來確保作用域內的變數及函式能在它們被宣告前可使用，所以在程式腳本在真正執行前，JavaScript 就先內過內部機制進行了預處理，將變數、函式提升到最上面。</p>
+        <p>前面演示完變數提升的過程，函式也是差不多道理，而函式有 Hoisting 的好處是我們可以在定義好函式之前就先呼叫它。一般正常情況下，我們會這樣定義與呼叫函式：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function Animal(){
+    var dog = "阿比";
+    console.log(dog);
+}
 
+Animal();    // 阿比</code></pre>
+        </div>
+        <p>但是因為 Hoisting 的關係，變數、函式的宣告都會在 JavaScript 預處理的時候提升到最頂端，因此有時候自己在寫或看到別人將函式呼叫放在定義之前，像這樣：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">Animal();    // 阿比
 
+function Animal(){
+    var dog = "阿比";
+    console.log(dog);
+}</code></pre>
+        </div>
+        <p>我們會發現程式這樣寫也能正常執行，至於實務上要先定義函式再進行呼叫，還是先呼叫後再寫函式，說真的也沒一定的對錯，有些人就習慣先把要呼叫的函式名稱通通寫在腳本開頭，底下再慢條斯理地撰寫函式內的程式碼結構；而有些人則傾向按照程式執行順序，先將函式定義好，爾後再進行呼叫。無論誰先誰後，最重要的還是保持整體的一致性，不要這一塊先呼叫再定義，另一塊先定義然後才做呼叫，搞得自己或團隊在維護上一頭霧水。</p>
+        <p>但是函式提升也不單單只有函式內部所宣告的變數，還有一種情況是函式傳入的參數，例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">Animal("阿比");
+
+function Animal(dog) {
+    var dog;
+    console.log(dog);    // 阿比
+    var dog = "咪咪";
+}</code></pre>
+        </div>
+        <p>由此可知參數也同樣得到提升，我們可以將其視為等同以下結構：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">Animal("阿比");
+
+function Animal(dog) {
+    var dog = "阿比";    // &lt;--傳入的參數
+    var dog;
+    console.log(dog);    // 阿比
+    var dog = "咪咪";
+}</code></pre>
+        </div>
+        <p><br></p>
+        <p>通常情況我們如果沒有重複使用到相同名稱的變數，也許不太需要去在意變數提升，但如果全域、函式作用域內都存在重複名稱的變數，那麼理解提升機制的規則便顯得至關重要。當不同作用域存在相同名稱的變數，要分辨其優先權的先後順序，綜觀前面有關提升機制的說明，主要可分成三種：全域變數、區域變數以及參數變數（函式傳入的參數）。</p>
+        <p>一般來說，作用域裡的變數優先順序由高到低如下：</p>
+        <h5>1. 區域變數</h5>
+        <p>當函式內存在與全域作用域相同的區域變數名稱，而函式被呼叫時，會以函式內的區域變數優先度較高。</p>
+        <p>例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var dog = "阿比";
+
+function Animal() {
+    var dog = "咪咪";
+    console.log(dog);
+}
+Animal();    // 咪咪</code></pre>
+        </div>
+        <p><br></p>
+        <h5>2. 參數變數</h5>
+        <p>當一個函式被呼叫且傳入參數時，函式內部的參數將會覆蓋全域作用域中的同名變數。</p>
+        <p>例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var dog = "阿比";
+
+function Animal(dog) {
+    console.log(dog);
+};
+Animal("咪咪");    // 咪咪</code></pre>
+        </div>
+        <p>但假設函式內已經存在相同變數名稱的區域變數宣告，則會以函式內的區域變數為優先：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var dog = "阿比";
+
+function Animal(dog) {
+    var dog = "咪咪";
+    console.log(dog);
+}
+Animal("娃娃");    // 咪咪</code></pre>
+        </div>
+        <p><br></p>
+        <h5>3. 全域變數</h5>
+        <p>假設函式內沒有宣告同名變數，函式才會向上尋找全域作用域中的全域變數。</p>
+        <p>例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var dog = "阿比";
+
+function Animal() {
+    console.log(dog);
+}
+Animal();    // 阿比</code></pre>
+        </div>
+        <p><br></p>
+        <p>總結：</p>
+        <p>區域變數 &gt; 參數變數 &gt; 全域變數</p>
+        <p><br></p>
+        <h3>什麼是作用域鏈（Scope Chain）？</h3>
     </div>
     <div class="text-block" id="act3">
         <h2>三、變數的資料型別</h2>
