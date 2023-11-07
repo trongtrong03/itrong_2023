@@ -584,11 +584,12 @@
     }
 
     h2 {
-        line-height: 1.75;
+        display: inline-block;
+        line-height: 1;
         font-size: 2rem;
         font-weight: bold;
-        color: #000;
-        margin-bottom: 1rem;
+        border-bottom: 2px solid var(--c1);
+        margin-bottom: 2rem;
         padding: 0.5rem 0;
     }
 
@@ -598,17 +599,22 @@
     }
 
     h4 {
-        font-size: 1.25rem;
+        position: relative;
+        display: inline-block;
+        font-size: 1.125rem;
         font-weight: bold;
-        color: #666;
-        &::before {
-            content: '■ ';
-            color: var(--red);
-        }
+        color: #FFF;
+        background-color: var(--black);
+        margin-bottom: 1rem;
+        padding: 0 0.5rem;
+        // &::before {
+        //     content: '■ ';
+        //     color: var(--red);
+        // }
     }
 
     h5 {
-        font-size: 1.125rem;
+        font-size: 1rem;
         font-weight: bold;
     }
 

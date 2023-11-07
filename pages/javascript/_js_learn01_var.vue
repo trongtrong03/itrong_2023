@@ -76,13 +76,164 @@
         <blockquote>
             <p>The current context of execution. The context in which values and expressions are “visible” or can be referenced. If a variable or other expression is not “in the current scope,” then it is unavailable for use. Scopes can also be layered in a hierarchy, so that child scopes have access to parent scopes, but not vice versa.</p>
         </blockquote>
-        <p>在 JavaScript 世界裡，當變數在「執行環境」（Execution Contexts） 被宣告的那一刻起，它便開始存在了，只是它和它所綁定的值可以影響整個程式片段的範圍到哪裡？關於這個問題就是作用域要討論的內容。而上面這段引述大概可以簡化成以下兩個重點：</p>
+        <p>在 JavaScript 世界裡，當變數在「執行環境」（Execution Contexts，有關執行環境相關介紹留到本章節末段再說明）被宣告的那一刻起，它便開始存在了，只是它和它所綁定的值可以影響整個程式片段的範圍到哪裡？這個問題就是作用域所要討論的內容。而上面這段引述大概可以簡化成以下兩個重點：</p>
         <ol>
             <li>作用域指的是變數的有效範圍，離開有效範圍的變數無法被存取。</li>
             <li>外部作用域無法取得內部作用域的變數，但內層的變數可以取得外層的變數。</li>
         </ol>
         <p><br></p>
         <h3>有哪些作用域？</h3>
+        <p>目前 JavaScript 作用域分為以下三個層級，分別是「全域作用域」（Global Level Scope）、「函式作用域」（Function Scope）、「區塊作用域」（Block Scope）。</p>
+        <p><br></p>
+        <h4>全域作用域（Global Level Scope）：</h4>
+        <p>當 JavaScript 開始執行編譯前的最初階段，會產生一個 Global Execution Context，中文通譯為「全域執行環境」，而在全域執行環境中都會包含一個「全域變數物件」（Global Variable Object），用來存放所有在全域環境中宣告的變數（也包含函式），這些放在全域環境的變數，我們可以在程式任何地方去存取它，意即該變數的作用域就是「全域作用域」。</p>
+        <p>如果要從程式碼片段裡分辨該變數是不是全域變數，最直接了當的方式就是看它是不是在函式或區塊內做宣告，像這樣直接宣告在 JavaScript 最外部沒有被任何程式符號包裹住的，基本上就是存活在全域作用域的變數：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var dog = "阿比";    // 全域變數
+
+console.log(dog);    // 阿比
+
+function Animal(){
+    console.log(dog);    // 阿比
+};
+Animal();</code></pre>
+        </div>
+        <p>可以看到無論是在全域直接 Console 打印，還是在函式 <em>Animal()</em> 內呼叫 <em>dog</em> 這個變數，所得到的回傳結果都是「阿比」這個在宣告階段同時綁定的賦值。</p>
+        <p><br></p>
+        <h4>函式作用域（Function Level Scope）：</h4>
+        <p>承襲全域作用域變數的說明，若今天變數是在函式內做宣告，其影響範圍就只會侷限在函式內，函式是什麼？函式指的就是由關鍵字 <em>function</em> 宣告並構成的一個程式碼架構，譬如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">// 函式變數宣告
+function Animal(){
+    var dog = "阿比";
+    console.log(dog);
+};
+Animal();    // 呼叫函式</code></pre>
+        </div>
+        <p>與變數同為 Javascript 構成的基本要素，有關函式的討論將會另外開篇幅撰文筆記，這裡就先不著墨太多內容，現階段我們只要先知道函式粗略形貌即可。而在函式內宣告的變數，其作用域只會存在於函式 <em>{ }</em> 範圍內，如果在外部全局作用域或其他函式內去調用那個變數，我們將會得到「ReferenceError」的錯誤警告。</p>
+        <p>例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">// 區域變數宣告
+function Animal(){
+    var dog = "阿比";
+};
+
+// 全域呼叫變數打印結果
+console.log(dog);    // Uncaught ReferenceError: dog is not defined.</code></pre>
+        </div>
+        <p>所以，如果說全域作用域宣告的變數被稱為「全域變數」（Global Variable），那麼這種存在於函式內的變數，則稱為「區域變數」（Local Variable）。</p>
+        <p><br></p>
+        <p>在前一章節變數最末段曾提到幾種不好的宣告方式，現在我們已經了解全域作用域與函式作用域的差別，如果我們在函式內直接設定變數名稱並賦值，而不使用 <em>var</em> 關鍵字作宣告，這種寫法會對 JavaScript 執行產生什麼樣的後果？以下我們透過範例來作驗證，首先是全域、函式內都正常宣告變數的情況：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">// 全域變數宣告
+var dog = "阿比";
+
+// 區域變數宣告
+function Animal(){
+    var dog = "咪咪";
+    console.log(dog);    // 咪咪
+};
+Animal();
+
+// 全域呼叫變數打印結果
+console.log(dog);    // 阿比</code></pre>
+        </div>
+        <p>先不講「盡量避免宣告重複名稱的變數」這件事，假設全域與函式內都宣告了相同名稱的變數，且也各自賦予不同的值，透過範例可以得知，函式內宣告的 <em>dog</em> 變數的值，不會影響到全域同名的 <em>dog</em> 變數，在全域作用域打印它依然是回傳「阿比」之結果，這就表示函式內宣告的變數，它的值只會存在它所屬的函式範圍內。</p>
+        <p>假設現在我們把函式內的 <em>var</em> 關鍵字拿掉，看看會發生什麼事：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">// 全域變數宣告
+var dog = "阿比";
+
+// 區域變數宣告
+function Animal(){
+    dog = "咪咪";
+    console.log(dog);    // 咪咪
+};
+Animal();
+
+// 全域呼叫變數打印結果
+console.log(dog);    // 咪咪</code></pre>
+        </div>
+        <p>會發現最後全域打印 <em>dog</em>時，函式內的 <em>dog</em> 變數值「咪咪」竟然取代了全域 <em>dog</em> 變數原先的值「阿比」，這就是先前說的「變數汙染」現象。至於為什麼會這樣？其實這和 JavaScript 的 Hoisting（提升）機制有關，關於 Hoisting 機制三言兩語很難解釋得清，不過簡單來說因為函式內沒有宣告 <em>dog</em> 這個變數，JavaScript 遂繼續向上層尋找，然後發現了全域作用域層級有個符合相同名稱的變數，故 JavaScript 不會將函式內的 <em>dog</em> 當作新的變數，而是直接「引用」全域變數 <em>dog</em>，致使函式內的賦值（咪咪）順理成章覆蓋了原先的賦值（阿比）。</p>
+        <p><br></p>
+        <h4>區塊作用域（Block Level Scope）：</h4>
+        <p>區塊作用域的誕生是伴隨 ES6 新生的 <em>let</em> 與 <em>const</em> 這兩個變數宣告方式，它是一種範圍更小的作用域，只會存在於 <em>{ }</em> 範圍中，最常出現在函式作用域裡的 <em>{ }</em>，像是 <em>if</em> 或 <em>for</em> 之類的方法。</p>
+        <p>舉例來說，用以往 <em>var</em> 在函式內的 <em>if</em> 語句進行變數宣告：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">// 區域變數宣告
+function Animal() {
+    if (true) {
+        var dog = "阿比";
+    }
+    console.log(dog);   // 阿比
+}
+
+Animal();</code></pre>
+        </div>
+        <p>以往的 <em>var</em> 即便放在函式內宣告，經過 JavaScript Hoisting 提升機制也會成為全域變數，因此函式作用域內也可以正常調用，但如果將 <em>var</em> 抽換為 <em>let</em>（或 <em>const</em>）：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">// 區域變數宣告
+function Animal() {
+    if (true) {
+        let dog = "阿比";
+    }
+    console.log(dog);   // Uncaught ReferenceError: dog is not defined
+}
+
+Animal();</code></pre>
+        </div>
+        <p>透過範例可發現到在區塊作用域裡經由 <em>let</em> 或 <em>const</em> 宣告的變數，不管是變數還是其賦值都只能在該作用域範圍內進行存取，即使同屬在同一函式作用域範圍內的程式，也無法取得區塊作用域裡的變數，這就是它們與傳統 <em>var</em> 的不同點之一，即各自存活的作用域範圍不同。<em>let</em> 或 <em>const</em> 的出現令 JavaScript 的宣告變得更加嚴謹，減少變數提升造成的汙染可能。</p>
+        <p>有些人或許會認為函式作用域和區塊作用域相似，認為它們都侷限在 <em>{ }</em> 範圍裡，確實，就某方面來說這兩個作用域有一些相似之處，但也存在一些差異。</p>
+        <h5>相似處：</h5>
+        <p>1. 變數的可見性：<br>無論是函式作用域還是區塊作用域，它們都用於限制變數的可見性，確保變數只在特定範圍內可見。</p>
+        <p>2. 變數名稱衝突：<br>無論是函式作用域還是區塊作用域，它們都有助於減少變數名稱衝突的機會。在不同作用域範圍可以使用相同名稱的變數，而它們之間不會互相干擾。當然非刻意為之的情況下，盡量還是避免重複名稱的命名宣告比較穩妥。</p>
+        <h5>差異處：</h5>
+        <p>1. 作用範圍：<br>函式作用域限制變數的作用範圍僅在函式內部，而區塊作用域限制變數的作用範圍可以是在 <em>if</em> 語句、<em>for</em> 迴圈、<em>while</em> 迴圈等區塊中。</p>
+        <p>2. ES6 的引入：函式作用域是 ES6 版本之前的主要作用域概念，而區塊作用域則是 ES6 引入的新概念，主要是透過 <em>let</em> 與 <em>const</em> 關鍵字實現。</p>
+        <p>3. 提升機制：<br>若在函式作用域內使用 <em>var</em> 關鍵字宣告變數，該變數會受到提升機制影響，提升成全域變數（但變數提升僅提升變數宣告的名稱本身，不包含賦值）；而區塊作用域中經由 <em>let</em>、<em>const</em> 宣告的變數不會被提升。</p>
+        <p><br></p>
+        <h3>var、let、const 作用域的差異？</h3>
+        <p><em>let</em>、<em>const</em> 這兩者和 <em>var</em> 的差別透過前面內容的介紹大概都有個底了，那麼它們兩個之間具體又有什麼差異呢？其實這兩者無論在作用域範圍、變數提升，還是面對重複宣告情況下的表現都如出一轍，而最主要的差異在於 <em>const</em> 必須在宣告的同時就要賦值給它，這個值通稱為「常數」（Constant），否則編譯時就會直接報錯。</p>
+        <p>例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">let dog;
+console.log(dog);    // undefined</code></pre>
+        </div>
+        <p>如果 <em>let</em> 僅宣告變數名稱而沒有賦值，其實這個變數也依然是有被建立成功的，只是這種情況下去取用它的值將會是 <em>undefined</em>。但如果用相同程式邏輯改用 <em>const</em> 去做宣告，得到的回傳結果將會是：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">const dog;
+console.log(dog);    // Missing initializer in const declaration</code></pre>
+        </div>
+        <blockquote class="is-warning">
+            <p><em>const</em> 宣告中缺少初始化程序。</p>
+        </blockquote>
+        <p>由此可見，<em>const</em> 在宣告的同時，就必須賦予常數值給它，所謂的常數，可以是任何合法的運算子，諸如算術、字串，或者函式陳述式...等類。光是這樣還不夠（嚴謹），一旦 <em>const</em> 的值被宣告，<em>const</em> 會對於它的值建立一個唯獨的參考，假如我們嘗試再給值去修改該變數，將會得到系統回傳的報錯警告。例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">const dog = "阿比";
+dog = "咪咪";
+console.log(dog);    // Uncaught TypeError: Assignment to constant variable.</code></pre>
+        </div>
+        <p>並不是說透過 <em>const</em> 關鍵字宣告的值不可變更，而是該變數不能再一次指定值（註一）。假如變數的常數值是個物件（Object），那麼該物件的內容還是可以被修改的。我們可以透過以下兩個例子來加深理解，第一個例子是當 <em>const</em> 宣告的常數是陣列的時候：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">const arr = [1, 2, 3];
+console.log(arr);    // [1,2,3]
+
+arr.push(4, 5);
+console.log(arr);    // [1,2,3,4,5]</code></pre>
+        </div>
+        <p>第二個例子則是物件：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">const dog = {
+    name: "阿比"
+};
+console.log(dog);    // {"name": "阿比"}
+
+dog.years = 3;
+console.log(dog);    // {"name": "阿比", "years": 3}</code></pre>
+        </div>
+        <p>或許你現在還不認識陣列或物件的觀念，但沒關係，舉這些例子其實可以一言以蔽之這兩個變數關鍵字之間的關係──「<em>const</em> 可視為規矩更嚴謹的 <em>let</em>」</p>
+
+
     </div>
     <div class="text-block" id="act3">
         <h2>三、變數的資料型別</h2>
