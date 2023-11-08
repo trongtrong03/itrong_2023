@@ -469,7 +469,7 @@ Animal("娃娃");    // 咪咪</code></pre>
         </div>
         <p><br></p>
         <h5>3. 全域變數</h5>
-        <p>假設函式內沒有宣告同名變數，函式才會向上尋找全域作用域中的全域變數。</p>
+        <p>假設函式域作用域中的全域變數。</p>
         <p>例如：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">var dog = "阿比";
@@ -484,19 +484,498 @@ Animal();    // 阿比</code></pre>
         <p>區域變數 &gt; 參數變數 &gt; 全域變數</p>
         <p><br></p>
         <h3>什麼是作用域鏈（Scope Chain）？</h3>
+        <p>先前已經提過，當 JavaScript 調用每一個變數的時候，首先會在當下作用域裡面尋找符合的指定變數，如果找不到，就會試著往上層（父層作用域）做尋找，找到了就取值，找不到就繼續往上找直到全域作用域，假使到了全域作用域也還是找不到符合的變數，那麼程式就會回傳錯誤警示訊息。而這一層一層的關係，便是「作用域鏈」（Scope Chain）。</p>
+        <p>範例：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var globalVar = "阿比";
+
+function outerFunction() {
+    var outerVar = "咪咪";
+
+    function innerFunction() {
+        var innerVar = "娃娃";
+        console.log(globalVar);    // 阿比
+        console.log(outerVar);    // 咪咪
+        console.log(innerVar);    // 娃娃
+    }
+    innerFunction();
+
+    console.log(globalVar);    // 阿比
+    console.log(outerVar);    // 咪咪
+    console.log(innerVar);    // Uncaught ReferenceError: innerVar is not defined 
+
+}
+outerFunction();
+
+console.log(globalVar);    // 阿比
+console.log(outerVar);    // Uncaught ReferenceError: outerVar is not defined
+console.log(innerVar);    // Uncaught ReferenceError: innerVar is not defined</code></pre>
+        </div>
     </div>
     <div class="text-block" id="act3">
         <h2>三、變數的資料型別</h2>
+        <p>我們常常會看見或聽別人說 JavaScript 是「弱型別」的程式語言，什麼是弱型別程式語言？這個問題留到本章節末段再來解釋，我們首先要知道的是，在電腦程式語言世界裡，存在著「型別」這樣的一個系統，用來定義程式語言中的數值或運算式之類型。拿第一個章節的 <em>var price;</em> 為例，當沒有將任何數值指定給宣告變數的狀況下，其回傳值結果為 <em>undefined</em>，這個 <em>undefined</em> 就是 JavaScript 其中一種型別。而 <em>var price = 20;</em> 時，回傳的結果為 <em>20</em>，它也是型別的一種，屬於「數值（Number）資料型別」。或許看到這裡會狐疑定義變數數值的型別究竟有什麼用？當然有用，就像我們會用「元」來定論某個商品的售價，而不是以公分或顏色作為交易單位。對程式語言而言，型別象徵變數值的特徵，不同資料類型的型別，必須適才適所地運用在適當的程式邏輯。</p>
+        <p>目前 ECMAScript 最新的標準定義了七種資料型別，分別是：</p>
+        <div class="text-flex">
+            <div class="f-width">
+                <div class="f-head">
+                    <div class="f-f1">型別</div>
+                    <div class="f-f1">說明</div>
+                    <div class="f-f3">範例</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">Number</div>
+                    <div class="f-f1">數值</div>
+                    <div class="f-f3"><em>1</em>、<em>-2000</em>、<em>3.14</em> ...</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">String</div>
+                    <div class="f-f1">字串</div>
+                    <div class="f-f3"><em>"abc"</em>、<em>'hello world'</em> ...</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">Boolean</div>
+                    <div class="f-f1">布林</div>
+                    <div class="f-f3"><em>true</em>、<em>false</em></div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">Object</div>
+                    <div class="f-f1">物件</div>
+                    <div class="f-f3"><em>[1, 2, 3]</em>、<em>{ name: 'iTrong' }</em>、<em>function foo(){}</em> ...</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">Null</div>
+                    <div class="f-f1">空值</div>
+                    <div class="f-f3"></div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">Undefined</div>
+                    <div class="f-f1">未定義</div>
+                    <div class="f-f3"></div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">Symbol</div>
+                    <div class="f-f1">標誌</div>
+                    <div class="f-f3">於 ES6 新定義</div>
+                </div>
+            </div>
+        </div>
+        <p>可以在具有 Console 功能的視窗輸入 <em>typeof</em> 指令來查看指定數值的型別是什麼，例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">typeof 1000;</code></pre>
+        </div>
+        <figure>
+            <img src="/images/learn/js/learn-var-2.jpg">
+            <figcaption>Codepen 的 Console 功能視窗。</figcaption>
+        </figure>
+        <p>在繼續詳細介紹各資料型別之前，我們仍必須釐清一個重要觀念：「變數本身沒有型別」。有型別之分的是指定給變數的「值」，變數可以在不同的時機點擁有不同型別的值，因此，我們如果使用 <em>typeof</em> 檢測某個變數的型別，檢測的對象是變數儲存的值，而非變數本身。</p>
+        <p><br></p>
+        <h3>Number：</h3>
+        <p>數字資料型別，此型別處理的值應該不難理解，指的就是阿拉伯數字，且它可以是負數或小數。例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">typeof 1;    // number
+typeof -100;    // number
+typeof 3.14159;    // number</code></pre>
+        </div>
+        <p>有趣的是，在計算機科學中有兩種特別的數據類型：<b>Infinity</b> 與 <b>NaN</b>（Not a Number），分別代表「無窮」與「非數」的概念，假如我們使用 <em>typeof</em> 查看它們，會發現...</p>
+        <figure>
+            <img src="/images/learn/js/learn-var-3.jpg">
+            <figcaption>檢測的結果為「Number」。</figcaption>
+        </figure>
+        <p>雖然它們看似不是數字，但卻屬於數字型別的成員之一。<b>Infinity</b> 表示數字是超出顯示範圍的無限大或無限小之意思。<b>NaN</b> 則表示它不等於任一數字，且也包含自己在內，意即 <em>NaN = NaN</em> 這樣的判斷式是錯誤（<em>false</em>）的結果。</p>
+        <blockquote>
+            <p>補充：在《你所不知道的JS導讀，型別與文法》一書裡則宣稱應視 <b>NaN</b> 為一個「無效數字」、「不合格數字」或「壞掉的數字」，會比它本身的名稱「不是一個數字」（Not a Number）來得更加適切。</p>
+        </blockquote>
+        <p><br></p>
+        <h3>String：</h3>
+        <p>字串資料型別包含字母和其他字元，其格式由單引號或雙引號構成，引號內的任何字母、數字都將視為字串。要注意的是，引號必須前後一致成對使用，不能前單後雙或前雙後單。</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">typeof "iTrong";    // string
+typeof '12345678';    // string
+typeof "頭好壯壯";    // string</code></pre>
+        </div>
+        <p>以下是錯誤的定義方式：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">typeof "123456;    // Error!
+typeof "iTrong';    // Error!
+typeof 'Let's go';    // Error!</code></pre>
+        </div>
+        <p><br></p>
+        <h3>Boolean：</h3>
+        <p>布林資料型別的值只有兩個──「<em>true</em>」與「<em>false</em>」，它主要被用來進行條件判斷，達到控制程式推進的功用。我們可以將布林值想像為開關，其狀態不是開啟就是關閉。</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">typeof true;    // boolean
+typeof false;    // boolean</code></pre>
+        </div>
+        <p><br></p>
+        <h3>Object：</h3>
+        <p>物件資料型別...關於「物件」在 JavaScript 的存在感可說是強烈到能被學者單獨出書記述，對於還在新手村打磨裝備的我們來說，尚不適宜過度深入探討，在這個階段，我們只需知道 <em>function</em>（函式）、<em>array</em>（陣列）皆屬於物件的一種就好，另外如果看到用大括號 <em>{ }</em> 格式產生的東西，基本上也是物件。</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">typeof [];    // object
+typeof {};    // object
+typeof function(){}     // object</code></pre>
+        </div>
+        <p><br></p>
+        <h3>Null：</h3>
+        <p><em>null</em> 代表空值，此型別也只有 <em>null</em> 這一個值。通常是指一個不存在或無效的物件，因此，當我們用 <em>typeof</em> 檢測 <em>null</em> 的型別時，我們會驚人地發現回傳的結果竟然不是 <b>Null</b>，而是 <b>Object</b>。</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">typeof null;    // object</code></pre>
+        </div>
+        <figure>
+            <img src="/images/learn/js/learn-var-4.jpg">
+        </figure>
+        <p><br></p>
+        <h3>Undefined：</h3>
+        <p>和 <b>Null</b> 型別類似，此型別的值只有 <em>undefined</em>，表示該值為未定義。對比其它多數程式語言而言，JavaScript <em>undefined</em> 更貼近它們的 <em>null</em> 值用法。</p>
+        <p>回到 JavaScript，<em>undefined</em> 常常與 <em>null</em> 牽扯在一起，看似貌合的兩人本質上仍有差別，<em>undefined</em> 代表的是「該變數還沒有值，所以不知道是什麼」，但 <em>null</em> 的意思則是「該變數可能曾經有或沒有值，但現在值是空的」。</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var a;
+console.log(a);    // undefined
+
+var b = null;
+console.log(b);    // null</code></pre>
+        </div>
+        <p><br></p>
+        <h3>Symbol：</h3>
+        <p>最後是 <b>Symbol</b> 資料型態，它是 JavaScript 到了 ES6 版本才新增的資料型別，用來表示「獨一無二」的值。它的誕生與 <b>Object</b> 有關，現階段解釋起來過於複雜，留待日後與物件一塊兒作筆記。</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">typeof Symbol();    // symbol</code></pre>
+        </div>
+        <p><br></p>
+        <p>看完 JavaScript 七大型別的介紹，回到最一開始提到的「弱型別」話題，既然有弱，就代表電腦程式語言中也存在著「強型別」的程式語言。用最簡單直觀的方式來講，強型別語言對於型別檢查上非常嚴格，說一不二，例如 JAVA 就是強型別語言的代表。而弱型別在判定上較為寬鬆，甚至可以允許錯誤，像本系列的主角 JavaScript，以及 PHP 都是弱型別程式語言之一。</p>
+        <p>弱型別容錯率高，具體來說是怎樣個容錯法？首先以 PHP 為例：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-php">$a = 100 + "300";
+echo $a;    // 400</code></pre>
+        </div>
+        <p>如果我們預期 <em>a</em> 的值是數字相加的結果，但是在計算過程中，我們卻給了它 <em>"300"</em> 的字串，而非數字，這在強型別語言例如 JAVA，印出 <em>a</em> 的結果將會是錯誤代碼。然而在 PHP 身上，卻會得出 <em>400</em> 的相加答案，這就是弱型別程式語言會容忍一定的錯誤，自動自發地協助轉值型態，「正確」地計算出結果。</p>
+        <p>假設同樣的狀況發生在 JavaScript 身上...</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var a = 100 + "300";
+console.log(a);     // "100300"</code></pre>
+        </div>
+        <p><em>a</em> 回傳的結果為 <em>"100300"</em>，為字串相加。儘管它不像 PHP 這麼聰明，會自動將字串轉為數字並作加總計算，可是也不會像 JAVA 如同 NBA 裁判奉行零容忍原則般說一不二，依舊會回傳出個結果給我們。雖然比起強型別，弱型別語言的彈性較大，但不嚴謹招致錯誤轉型判斷的可能也比前者來的高（像 JavaScript 就是很好的例子），畢竟程式語言不是開發者本人，無法準確地判斷開發者給予的數值究竟是不是本人所期望的，因此培養編寫程式時反覆檢查的習慣非常重要。</p>
     </div>
     <div class="text-block" id="act4">
         <h2>四、變數的命名規則</h2>
+        <p>英文字母的大小寫在諸多程式語言是不同的字詞，對 JavaScript 而言也不例外，除此之外，當我們在宣告變數名稱的時候，也有一些命名規則需要遵循或注意。本章節談論變數命名主要分為兩種談論方向，一是變數命名的規則，二是應該用什麼樣的命名方式比較適當。</p>
+        <p><br></p>
+        <h3>命名規則：</h3>
+        <p>首先是規則，縱使 JavaScript 並不是很嚴謹的程式語言，但也不是我們想隨便怎麼寫就怎麼寫，單就變數命名的部份，我們需要恪守以下幾點原則：</p>
+        <h4>1. 不能使用關鍵字與保留字</h4>
+        <p>關鍵字（Keywords）指的是「告知解譯器執行指定動作」的特別字詞，例如：<em>var</em>。保留字（reserved words）則是未來版本可能會被採用並成為關鍵字的詞彙。</p>
+        <p>關鍵字與保留字名單：</p>
+        <div class="text-flex">
+            <div class="f-width">
+                <div class="f-head">
+                    <div class="f-f1">名稱</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">abstract</div>
+                    <div class="f-f1">boolean</div>
+                    <div class="f-f1">break</div>
+                    <div class="f-f1">byte</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">case</div>
+                    <div class="f-f1">catch</div>
+                    <div class="f-f1">char</div>
+                    <div class="f-f1">class</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">const</div>
+                    <div class="f-f1">continue</div>
+                    <div class="f-f1">debugger</div>
+                    <div class="f-f1">default</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">delete</div>
+                    <div class="f-f1">do</div>
+                    <div class="f-f1">double</div>
+                    <div class="f-f1">else</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">enum</div>
+                    <div class="f-f1">export</div>
+                    <div class="f-f1">extends</div>
+                    <div class="f-f1">false</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">final</div>
+                    <div class="f-f1">finally</div>
+                    <div class="f-f1">float</div>
+                    <div class="f-f1">for</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">function</div>
+                    <div class="f-f1">goto</div>
+                    <div class="f-f1">if</div>
+                    <div class="f-f1">implements</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">import</div>
+                    <div class="f-f1">in</div>
+                    <div class="f-f1">instanceof</div>
+                    <div class="f-f1">int</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">interface</div>
+                    <div class="f-f1">long</div>
+                    <div class="f-f1">native</div>
+                    <div class="f-f1">new</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">null</div>
+                    <div class="f-f1">package</div>
+                    <div class="f-f1">private</div>
+                    <div class="f-f1">protected</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">public</div>
+                    <div class="f-f1">return</div>
+                    <div class="f-f1">short</div>
+                    <div class="f-f1">static</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">super</div>
+                    <div class="f-f1">switch</div>
+                    <div class="f-f1">synchronized</div>
+                    <div class="f-f1">this</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">throw</div>
+                    <div class="f-f1">throws</div>
+                    <div class="f-f1">transient</div>
+                    <div class="f-f1">true</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">try</div>
+                    <div class="f-f1">typeof</div>
+                    <div class="f-f1">var</div>
+                    <div class="f-f1">void</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">volatile</div>
+                    <div class="f-f1">while</div>
+                    <div class="f-f1">with</div>
+                    <div class="f-f1"></div>
+                </div>
+            </div>
+        </div>
+        <p>如果我們強硬地使用這些關鍵字與保留字當作變數名稱，例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var var = "阿比";</code></pre>
+        </div>
+        <p>JavaScript 將會回報 <b>Uncaught SyntaxError: Unexpected token 'var'</b> 錯誤警告，這個意思主要是在訴說我們在不允許的位置使用了 <em>var</em> 這個關鍵字。</p>
+        <p>另外需要注意的是，上面的關鍵字與保留字名單，並非 JavaScript 內部已存在的所有單字，有些關鍵字並沒有在名單內而仍可以被當作變數名稱來宣告，像是 <em>let</em>：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var let = "阿比";
+console.log(let);    // 阿比</code></pre>
+        </div>
+        <p>雖然程式不會報錯，這個「let」變數乍看也能被存取、調用，但我們都知道它是用來宣告變數的關鍵字之一，因此仍應該避免用它來做命名，更何況它在這邊的寫法沒有問題，不代表在其他程式引用也沒問題，譬如我們改用 <em>let</em> 去宣告它的話...</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">let let = "阿比";    // Uncaught SyntaxError: let is disallowed as a lexically bound name</code></pre>
+        </div>
+        <p>不用等到存取報錯，在宣告的當下 JavaScript 就會警示<b>Uncaught SyntaxError: let is disallowed as a lexically bound name</b>，提醒我們不應該在 <em>let</em> 宣告的上下文內又使用 <em>let</em> 關鍵字。</p>
+        <p>由此可知，使用這些關鍵字或保留字當作變數的名稱本身不是錯誤的問題核心，而是 JavaScript 在編譯時認為它們是關鍵字，而我們在不合乎規則的地方使用了它們，因而產生錯誤。</p>
+        <p><br></p>
+        <h4>2. 不能以數字起始</h4>
+        <p>變數名稱的開頭可以使用字母、金額符號（<em>$</em>）、底線（<em>_</em>），但絕對不能使用數字起始。</p>
+        <p>例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var 9547 = "阿比";    // Uncaught SyntaxError: Unexpected number</code></pre>
+        </div>
+        <p>其實不只是 JavaScript，大多數程式語言的變數命名都不允許用數字當開頭，主要原因在於如果允許用數字開頭來命名變數，那麼程式語言在編譯的時候會無法確定那個以數字開頭的單字究竟是數字還是變數。</p>
+        <p><br></p>
+        <h4>3. 不能使用特殊符號、破折號和句點</h4>
+        <p>誠如第二項開頭敘述，變數名稱的開頭可以使用字母、金額符號（<em>$</em>）、底線（<em>_</em>），其他特殊符號諸如「#」、「@」等都不能用來當作變數命名的開頭，而且任何位置都不行，不管是字符中間還是詞尾，一律都會報錯。例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var &dog = "阿比";    // Uncaught SyntaxError: Unexpected token '&'
+var do@g = "阿比";    // Uncaught SyntaxError: Unexpected token 'do'
+var dog# = "阿比";    // Uncaught SyntaxError: Invalid or unexpected token</code></pre>
+        </div>
+        <p>另外像點號「<em>.</em>」、運算符「<em>+</em>」、「<em>-</em>」...等也都不能用於變數名稱之中，點號在 JavaScript 的用途是用來訪問物件裡的屬性，而運算符之所以不能摻在變數名稱裡的原因則和不能使用數字有異曲同工之妙，如果變數名稱包含運算符，將會造成程式判讀上的誤會，因此規則上不允許。</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var &dog = "do.g";    // Uncaught SyntaxError: Unexpected token 'do'
+var d+o+g = "阿比";    // Uncaught SyntaxError: Unexpected token '+'</code></pre>
+        </div>
+        <p><br></p>
+        <h4>4. 不能用空格</h4>
+        <p>變數名稱之間也不能用空格隔開字符，例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var dog name = "阿比";    // Uncaught SyntaxError: Unexpected identifier 'name' </code></pre>
+        </div>
+        <p><br></p>
+        <h3>命名方式：</h3>
+        <p>和命名規則不同的是，命名方式的好壞不會影響程式對變數的判讀與存取，主要影響的是開發者本身或整個開發團隊人員在閱讀程式碼時的易讀性，一般會建議在命名的時候先考慮兩件事：</p>
+        <h4>1. 使用已知詞彙來命名</h4>
+        <p>善加使用已知的英文詞彙來描述變數所儲存的資訊，有助於我們直觀理解該變數的用途是什麼，不需要再花時間去思索它的用途，太過匪夷所思的命名甚至會讓其他維護的人員得透過後續程式引用的內容才能理解該變數宣告的意義，如此一來就本末倒置了。</p>
+        <p>例如這篇文章的變數範例大量使用「dog」來命名，我們可以推敲出這個變數存取的值跟狗有關，假如要再精確一點表示這個變數宣告的目的是要用來存放狗的名稱，那麼我們可以將變數名稱取名為「dog_name」或「dogName」，使變數更容易被識別。</p>
+        <p><br></p>
+        <h4>2. 注意大小寫的區分</h4>
+        <p>同一字母的大小寫在 JavaScript 會被視為不同的字符，同理也套用在我們使用既定英文單字命名變數的場合，舉例來說：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var dog = "阿比";
+var Dog = "咪咪";
+console.log(dog);    // 阿比</code></pre>
+        </div>
+        <p>還記得變數命名規則曾提過不能使用已知關鍵字名稱嗎？有趣的是，如果我們將那些關鍵字改為大寫，就能規避掉 JavaScript 判讀的錯誤，例如我們將「var」改成「VAR」...</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var VAR = "阿比";
+console.log(VAR);    // 阿比</code></pre>
+        </div>
+        <p>但不管是不是關鍵字或保留字，我們最好都還是為每一個變數取下不同的名稱，而不是用大小寫去區分，才不會引發閱讀及使用上的誤會。</p>
+        <p><br></p>
+        <p>然而──</p>
+        <p>雖說在想變數名稱的時候，建議可以先從既存的單字片語作命名，但實際上有些變數的宣告目的並非一個單字就能明確告知用途，譬如要宣告一個變數叫做「狗的名字」，正常用英文翻譯會是「dog name」，可是變數命名不允許使用空格，那要怎樣命名會比較洽當呢？</p>
+        <p>最直接的方式就是不管空白格，直接讓所有單字黏在一起，像是「dogname」，假如各單字的字符不長，直接去掉空白格串在一起或許勉強還能讀懂，如果是多個單字或長字符組成的名稱呢？例如「animalplanetchannel」看得出這個變數名稱是指什麼嗎？答案是「animal planet channel」，顯然，對複數或長字元單字來說，單純移除空白格不是很好的命名方式。另外有些人的作法是使用下底線「_」，例如「animal_planet_channel」，這種命名方式通常稱為「下底線命名法」（Snake Case），更極端的甚至會用下底線數量來精分連接每一個單字，好釐清前綴的群組關係，譬如「animal__planet_channel」。確實，這樣命名變數會比移除空白格來的好閱讀，不過使用這種命名方式宣告變數的開發者數量還不是最大宗，現下最廣為人青睞且流行的命名方式當屬「駝峰式命名法」（Camel Case Naming）。</p>
+        <h5>駝峰式命名法（Camel Case Naming）：</h5>
+        <p>駝峰式命名法這個稱呼的由來是形容透過這種命名方式宣告的變數名稱看起來宛如駱駝的背部，其命名精髓就是除了第一個單字通常是小寫字母外，其他所有單字的字首全部都是大寫字母，各單字之間也沒有空白格或其他分隔符。例如「dogName」、「animalPlanetChannel」...等。</p>
+        <p>有些人也許會問，那我連第一個單字的字首也大寫可不可以？當然沒問題，駝峰式命名法又分為「小駝峰」（Lower Camel Case）和「大駝峰」（Upper Camel Case），小駝峰指的就是首字字首字母為小寫的命名方式，大駝峰則是所有單字字首字母皆為大寫，例如：「DogName」、「AnimalPlanetChannel」。</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">// 小駝峰
+var dogName = "阿比";
+var animalPlanetChannel = "動物星球頻道";
+
+// 大駝峰
+var DogName = "阿比";
+var AnimalPlanetChannel = "動物星球頻道";</code></pre>
+        </div>
+        <p><br></p>
+        <h5>匈牙利命名法（Hungarian Notation）：</h5>
+        <p>比起「駝峰式命名法」、「下底線命名法」，採用匈牙利命名法的人其實並不多，但 JavaScript 確實存在這麼一派使用者，其基本思想是在變數名稱裡除了描述用途的單字外，在其前綴加上該變數值的資料型別，精簡扼要來說它的命名公式是「資料型別＋名稱描述」。例如我們宣告一個存放狗名的變數，其賦值資料型別是字串，使用匈牙利命名法的方式將會是：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var strDogName = "阿比";</code></pre>
+        </div>
+        <p>看起來其實和駝峰式命名法差不多，不過透過匈牙利命名法宣告的變數，前綴基本上不外乎都是那些變數值的資料型別或特殊資料類型，至於常見有哪些前綴命名，請見下表：</p>
+        <div class="text-flex">
+            <div class="f-width">
+                <div class="f-head">
+                    <div class="f-f1">前綴</div>
+                    <div class="f-f1">型別或類型</div>
+                    <div class="f-f3">範例</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">str</div>
+                    <div class="f-f1">String（字串）</div>
+                    <div class="f-f3">strName</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">num</div>
+                    <div class="f-f1">Number（數字）</div>
+                    <div class="f-f3">numAge</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">bool</div>
+                    <div class="f-f1">Boolean（布林值）</div>
+                    <div class="f-f3">boolIsReady</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">arr</div>
+                    <div class="f-f1">陣列（Array）</div>
+                    <div class="f-f3">arrColors</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">obj</div>
+                    <div class="f-f1">Object（物件）</div>
+                    <div class="f-f3">objPerson</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">func</div>
+                    <div class="f-f1">Function（函式）</div>
+                    <div class="f-f3">funcCalculate</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">re</div>
+                    <div class="f-f1">Regular Expression（正規表達式）</div>
+                    <div class="f-f3">rePhoneNumber</div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="text-block" id="act5">
         <h2>五、總結</h2>
+        <p>回顧本篇文章，我們精簡總結一下變數學到的所有內容：</p>
+        <h5>1. 變數宣告方式</h5>
+        <ul>
+            <li>宣告關鍵字有三種：<em>var</em>、<em>let</em>、<em>const</em>。</li>
+            <li>變數宣告最好也同時賦值給它，避免變數汙染問題。</li>
+        </ul>
+        <h5>2. 變數作用域</h5>
+        <ul>
+            <li>作用域主要分為「全域作用域」、「函式作用域」、「區塊作用域」。</li>
+            <li>離開其有效範圍作用域的變數無法被存取。</li>
+            <li>外部作用域無法取得內部作用域的變數，但內層的變數可以取得外層的變數。</li>
+        </ul>
+        <h5>3. 變數提升</h5>
+        <ul>
+            <li>變數提升（Hoisting）是 JavaScript 編譯時的預先處理機制。</li>
+            <li>該機制底下的變數可分為三種類型：「全域變數」、「區域變數」、「參數變數」。</li>
+            <li>如果三種類型的變數同時存在於各自作用域，其優先權順序將會是：區域變數 &gt; 參數變數 &gt; 全域變數</li>
+        </ul>
+        <h5>4. 資料型別</h5>
+        <ul>
+            <li>Number（數值）</li>
+            <li>String（字串）</li>
+            <li>Boolean（布林值）</li>
+            <li>Object（物件）</li>
+            <li>Null（空值）</li>
+            <li>Undefined（未定義）</li>
+            <li>Symbol（標誌）</li>
+        </ul>
+        <h5>5. 命名規則與方法</h5>
+        <ul>
+            <li>不能使用關鍵字與保留字。</li>
+            <li>不能以數字起始。</li>
+            <li>不能使用特殊符號、破折號、句點與空白符。</li>
+            <li>建議使用已知詞彙來命名。</li>
+            <li>注意大小寫的區分。</li>
+            <li>常見的命名方式有「駝峰式命名法」、「下底線命名法」、「匈牙利命名法」。</li>
+        </ul>
+        <p><br></p>
+        <p>至於本篇文章提到的 JavaScript 專業術語有以下這些，如有需要可以循著原詞單字順藤摸瓜去搜尋更專業、完整的教學文章：</p>
+        <div class="text-flex">
+            <div class="f-width">
+                <div class="f-head">
+                    <div class="f-f1">名詞</div>
+                    <div class="f-f1">中譯</div>
+                    <div class="f-f3">說明</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">Variables</div>
+                    <div class="f-f1">變數</div>
+                    <div class="f-f3">用來儲存各種資料類型的容器，像是數字、文字或物件等，當我們將這些資料儲存在變數裡，就可以在許多地方重複地使用它或對其進行任何操作。</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">Scope</div>
+                    <div class="f-f1">作用域</div>
+                    <div class="f-f3">指的是變數的可見性與其訪問的範圍</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">Scope Chain</div>
+                    <div class="f-f1">作用域鏈</div>
+                    <div class="f-f3"></div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">Execution Contexts</div>
+                    <div class="f-f1">執行環境</div>
+                    <div class="f-f3"></div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">Hoisting</div>
+                    <div class="f-f1">提升</div>
+                    <div class="f-f3">stName</div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="text-block" id="act6">
         <h2>六、參考資料</h2>
         <dl>
+            <dd><a href="https://www.books.com.tw/products/0010744702" target="_blank">《JavaScript & JQuery：網站互動設計程式進化之道》</a></dd>
+            <dd><a href="https://cythilya.github.io/2018/10/11/types/" target="_blank">你懂 JavaScript 嗎？#4 型別（Types）</a></dd>
+            <dd><a href="https://ithelp.ithome.com.tw/articles/10202260" target="_blank">你不可不知的 JavaScript 二三事#Day3：資料型態的夢魘——動態型別加弱型別(2)</a></dd>
+            <dd><a href="https://pydoing.blogspot.com/2012/12/JavaScript-Variable-Naming.html" target="_blank">JavaScript 入門指南 - 變數命名規則</a></dd>
             <dd><a href="https://blog.csdn.net/lbxx1984/article/details/39205717" target="_blank">几张简约而不简单的JavaScript学习树状图</a></dd>
             <dd><a href="https://medium.com/take-a-day-off/js-scope-%E4%BD%9C%E7%94%A8%E5%9F%9F-ee536640963b" target="_blank">[JS] Scope 作用域</a></dd>
             <dd><a href="https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part3/function_scope.html" target="_blank">函式與作用域</a></dd>
