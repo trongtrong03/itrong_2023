@@ -895,7 +895,7 @@ var AnimalPlanetChannel = "動物星球頻道";</code></pre>
     </div>
     <div class="text-block" id="act5">
         <h2>五、總結</h2>
-        <p>回顧本篇文章，我們精簡總結一下變數學到的所有內容：</p>
+        <p>回顧本篇文章，精簡總結一下我們從變數身上學到哪些東西：</p>
         <h5>1. 變數宣告方式</h5>
         <ul>
             <li>宣告關鍵字有三種：<em>var</em>、<em>let</em>、<em>const</em>。</li>
@@ -910,11 +910,12 @@ var AnimalPlanetChannel = "動物星球頻道";</code></pre>
         <h5>3. 變數提升</h5>
         <ul>
             <li>變數提升（Hoisting）是 JavaScript 編譯時的預先處理機制。</li>
-            <li>該機制底下的變數可分為三種類型：「全域變數」、「區域變數」、「參數變數」。</li>
+            <li>該機制的變數可分為三種類型：「全域變數」、「區域變數」、「參數變數」。</li>
             <li>如果三種類型的變數同時存在於各自作用域，其優先權順序將會是：區域變數 &gt; 參數變數 &gt; 全域變數</li>
         </ul>
         <h5>4. 資料型別</h5>
         <ul>
+            <li>資料型別指的不是變數，而是變數的「值」。</li>
             <li>Number（數值）</li>
             <li>String（字串）</li>
             <li>Boolean（布林值）</li>
