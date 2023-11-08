@@ -947,6 +947,11 @@ var AnimalPlanetChannel = "動物星球頻道";</code></pre>
                     <div class="f-f3">用來儲存各種資料類型的容器，像是數字、文字或物件等，當我們將這些資料儲存在變數裡，就可以在許多地方重複地使用它或對其進行任何操作。</div>
                 </div>
                 <div class="f-row">
+                    <div class="f-f1">Function</div>
+                    <div class="f-f1">函式</div>
+                    <div class="f-f3"></div>
+                </div>
+                <div class="f-row">
                     <div class="f-f1">Scope</div>
                     <div class="f-f1">作用域</div>
                     <div class="f-f3">指的是變數的可見性與其訪問的範圍</div>
@@ -964,7 +969,7 @@ var AnimalPlanetChannel = "動物星球頻道";</code></pre>
                 <div class="f-row">
                     <div class="f-f1">Hoisting</div>
                     <div class="f-f1">提升</div>
-                    <div class="f-f3">stName</div>
+                    <div class="f-f3"></div>
                 </div>
             </div>
         </div>
