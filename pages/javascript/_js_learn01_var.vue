@@ -23,12 +23,6 @@
         <p>某天，阿比牽著一台油箱可容納 7 公升的摩托車去加油站加油，95 無鉛汽油的價格為每公升 20 元，在油箱一滴油都不剩的前提下，試問阿比此行要花多少加油錢？這是很簡單的數學運算，公式為「容升 x 每公升價格 = 總價格」，最終得出 140 元（7 x 20）的結果。然而，雖然摩托車的油箱容升是固定的，油價卻不可能永遠停在每公升 20 元，也許下週大降 0.1 元，下下週小漲 2 元...等，它是一種時不時發生改變的浮動數字，因此，我們就可以稱它是──或者說是使它成為一個變數。</p>
         <p>JavaScript 會透過定義變數的方式，快速取得每一次數值變動後的計算結果，最後更新到畫面元素裡（即 HTML 的元素標籤），對於掌管網頁動態資訊來往的 JavaScript 而言，基本上任何程式操作都很難脫離變數獨自去執行，因此，變數可說是 JavaScript 這門程式語言的重要核心之一，無時無刻都會看見也會使用到它。</p>
         <p>本篇文章學習 JavaScript 變數包含以下這些要點：</p>
-        <ul>
-            <li>宣告</li>
-            <li>作用域</li>
-            <li>資料型別</li>
-            <li>命名規則</li>
-        </ul>
     </div>
     <div class="text-block" id="act1">
         <h2>一、如何宣告變數？</h2>
@@ -843,11 +837,11 @@ var AnimalPlanetChannel = "動物星球頻道";</code></pre>
         </div>
         <p><br></p>
         <h5>匈牙利命名法（Hungarian Notation）：</h5>
-        <p>比起「駝峰式命名法」、「下底線命名法」，採用匈牙利命名法的人其實並不多，但 JavaScript 確實存在這麼一派使用者，其基本思想是在變數名稱裡除了描述用途的單字外，在其前綴加上該變數值的資料型別，精簡扼要來說它的命名公式是「資料型別＋名稱描述」。例如我們宣告一個存放狗名的變數，其賦值資料型別是字串，使用匈牙利命名法的方式將會是：</p>
+        <p>比起「駝峰式命名法」、「下底線命名法」，採用匈牙利命名法的人其實並不多，但 JavaScript 確實仍存在這麼一派使用者，其基本思想是在變數名稱裡除了描述用途的單字外，還會在其前綴加上該變數值的資料型別，精簡扼要來說，它的命名公式是「資料型別＋名稱描述」。例如我們宣告一個存放狗名的變數，其賦值資料型別是字串，使用匈牙利命名法的方式將會是：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">var strDogName = "阿比";</code></pre>
         </div>
-        <p>看起來其實和駝峰式命名法差不多，不過透過匈牙利命名法宣告的變數，前綴基本上不外乎都是那些變數值的資料型別或特殊資料類型，至於常見有哪些前綴命名，請見下表：</p>
+        <p>因為名字通常都是字串，所以前綴使用 String 縮寫 str，書寫格式看起來其實和駝峰式命名法差不多，不過透過匈牙利命名法宣告的變數，前綴基本上不外乎都是那些變數值的資料型別或特殊資料類型，至於常見有哪些前綴命名，請見下表：</p>
         <div class="text-flex">
             <div class="f-width">
                 <div class="f-head">
@@ -892,6 +886,8 @@ var AnimalPlanetChannel = "動物星球頻道";</code></pre>
                 </div>
             </div>
         </div>
+        <p><br></p>
+        <p>以上命名觀念不單侷限於變數命名，函式命名方式同樣也適用。</p>
     </div>
     <div class="text-block" id="act5">
         <h2>五、總結</h2>
@@ -931,10 +927,10 @@ var AnimalPlanetChannel = "動物星球頻道";</code></pre>
             <li>不能使用特殊符號、破折號、句點與空白符。</li>
             <li>建議使用已知詞彙來命名。</li>
             <li>注意大小寫的區分。</li>
-            <li>常見的命名方式有「駝峰式命名法」、「下底線命名法」、「匈牙利命名法」。</li>
+            <li>主流命名方式有「駝峰式命名法」、「下底線命名法」、「匈牙利命名法」。</li>
         </ul>
         <p><br></p>
-        <p>至於本篇文章提到的 JavaScript 專業術語有以下這些，如有需要可以循著原詞單字順藤摸瓜去搜尋更專業、完整的教學文章：</p>
+        <p>至於本篇文章提到的 JavaScript 常見名詞術語有以下這些，但有些術語所代表的技術或知識已經超過本篇主題的範疇，礙於篇幅因此沒有辦法太深入探討，如有需要可以循著原詞單字順藤摸瓜去搜尋更專業、完整的教學文章：</p>
         <div class="text-flex">
             <div class="f-width">
                 <div class="f-head">
@@ -950,27 +946,32 @@ var AnimalPlanetChannel = "動物星球頻道";</code></pre>
                 <div class="f-row">
                     <div class="f-f1">Function</div>
                     <div class="f-f1">函式</div>
-                    <div class="f-f3"></div>
+                    <div class="f-f3">也有人稱為「函數」，是構成 Javascript 的基本要素之一，它將一系列的敘述句組合起來，以執行一項特定的工作。</div>
                 </div>
                 <div class="f-row">
                     <div class="f-f1">Scope</div>
                     <div class="f-f1">作用域</div>
-                    <div class="f-f3">指的是變數的可見性與其訪問的範圍</div>
+                    <div class="f-f3">指的是變數的可見性與其訪問的範圍，主要分為「全域」、「函式」、「區塊」三種作用域類型。</div>
                 </div>
                 <div class="f-row">
                     <div class="f-f1">Scope Chain</div>
                     <div class="f-f1">作用域鏈</div>
-                    <div class="f-f3"></div>
+                    <div class="f-f3">作用域鏈是 JavaScript 非常重要的概念之一，它決定了程式碼在尋找變數時的順序與範圍，即變數可見性與訪問權限。認識作用域鏈同時也是理解作用域與閉包的關鍵。</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">Closure</div>
+                    <div class="f-f1">閉包</div>
+                    <div class="f-f3">閉包是一個函式建立時的就有的自然特性。在 JavaScript 中每當函式被建立時，一個閉包就會被產生，其主要用途可以把程式中需要重複執行的部分透過閉包封裝起來，進一步簡化程式。</div>
                 </div>
                 <div class="f-row">
                     <div class="f-f1">Execution Contexts</div>
                     <div class="f-f1">執行環境</div>
-                    <div class="f-f3"></div>
+                    <div class="f-f3">執行環境指的是 JavaScript 執行時，引擎將程式碼拆解成許多區塊，並將這些區塊一塊塊堆疊起來，運算完結果就移除當前的區塊，然後繼續運算下一部分的區塊。</div>
                 </div>
                 <div class="f-row">
                     <div class="f-f1">Hoisting</div>
                     <div class="f-f1">提升</div>
-                    <div class="f-f3"></div>
+                    <div class="f-f3">「提升」是 JavaScript 中的一個概念行為，指的是在程式碼執行之前，JavaScript 引擎會將變數和函式的聲明提升到它們所在作用域的頂部。這意味著我們可以在宣告之前使用這些變數和函式。</div>
                 </div>
             </div>
         </div>

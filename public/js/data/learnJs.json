@@ -119,6 +119,13 @@
         "type": "javascript"
     },
     {
+        "id": 18,
+        "href": "js_learn02_function",
+        "title": "從、重新認識 JavaScript（貳）──函式 Function",
+        "time": "2021.03.24",
+        "type": "javascript"
+    },
+    {
         "id": 30,
         "href": "vue_lifecycle_1",
         "title": "循序漸進學 Vue3：認識 Vue1.0 到 Vue3.0 的生命週期（Lifecycle Diagram）-上",
