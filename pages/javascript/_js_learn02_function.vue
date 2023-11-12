@@ -210,10 +210,22 @@ var result = addNumber(5, 10);    // 15</code></pre>
 var result = addNumber(5, 10);    // 15</code></pre>
         </div>
         <p>在程式閱讀上明顯比函式建構式來的容易理解，所以多數人在面對類似程式需求的時候，比起建構式更傾向用另外兩種定義方式來撰寫程式。此外，雖說「彈性」是函式建構式的蜜糖，卻也是毒藥。在允許使用者輸入資料的情況下，函式建構式允許「以字串形式接收函式程式碼」，意味著有心人士可以藉此輸入帶有惡意的程式碼字串，進而引發安全性問題。</p>
-
-
         <p><br></p>
-        <h3>5. 立即函式（Immediately Invoked Function Expression，IIFE）：</h3>
+        <h3>立即函式（Immediately Invoked Function Expression，IIFE）：</h3>
+        <p>前面介紹的幾種函式寫法，基本上都需要定義或宣告前後，再透過呼叫才能執行函式，而立即函式的特性，允許我們在定義函式後就立刻被執行。</p>
+        <p>它的語法架構有兩種，分別是：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">(function(){
+    // code
+}());</code></pre>
+        </div>
+        <p>以及</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">(function(){
+    // code
+})();</code></pre>
+        </div>
+        <p>仔細看會發現兩者的不同主要是最後面表示執行程式的小括號位置，通常第一種寫法佔大多數。</p>
         <p><br></p>
         <h3>6. 箭頭函式（Arrow Function）：</h3>
 
@@ -247,6 +259,7 @@ var result = addNumber(5, 10);    // 15</code></pre>
         <h2>六、參考資料</h2>
         <dl>
             <dd><a href="https://www.books.com.tw/products/0010744702" target="_blank">《JavaScript & JQuery：網站互動設計程式進化之道》</a></dd>
+            <dd><a href="https://www.explainthis.io/zh-hant/swe/what-is-iife" target="_blank">JavaScript 立即調用函式 IIFE (Immediately Invoked Function Expression) 是什麼？優缺點是什麼？</a></dd>
         </dl>
     </div>
 </div>
