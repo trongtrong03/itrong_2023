@@ -226,6 +226,24 @@ var result = addNumber(5, 10);    // 15</code></pre>
 })();</code></pre>
         </div>
         <p>仔細看會發現兩者的不同主要是最後面表示執行程式的小括號位置，通常第一種寫法佔大多數。</p>
+        <p>立即函式同樣分成具名與不具名兩種格式，前面的語法結構屬於不具名寫法，具名的話則是在 <em>function</em> 關鍵字後方加上函式的名稱：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">(function dog(){
+    console.log("阿比");    // 阿比
+})();</code></pre>
+        </div>
+        <p>立即函式除了有著「立即執行」的特行外，它還有另一種特性是「無法在函式外再次被執行」，透過上例我們在函式之外呼叫「dog」，得到的結果將會是「Uncaught ReferenceError: dog is not defined.」</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">(function dog(){
+    console.log("阿比");    // 阿比
+})();
+
+dog();    // Uncaught ReferenceError: dog is not defined.</code></pre>
+        </div>
+        <p>無法在函式外再次被執行的好處就是可以創建一個局部作用域，避免全局作用域的變數值造成全域變數的汙染。</p>
+
+
+
         <p><br></p>
         <h3>6. 箭頭函式（Arrow Function）：</h3>
 
@@ -260,6 +278,7 @@ var result = addNumber(5, 10);    // 15</code></pre>
         <dl>
             <dd><a href="https://www.books.com.tw/products/0010744702" target="_blank">《JavaScript & JQuery：網站互動設計程式進化之道》</a></dd>
             <dd><a href="https://www.explainthis.io/zh-hant/swe/what-is-iife" target="_blank">JavaScript 立即調用函式 IIFE (Immediately Invoked Function Expression) 是什麼？優缺點是什麼？</a></dd>
+            <dd><a href="https://israynotarray.com/javascript/20201118/707576253/" target="_blank">JavaScript 核心觀念(36)-函式以及 This 的運作-立即函式</a></dd>
         </dl>
     </div>
 </div>
