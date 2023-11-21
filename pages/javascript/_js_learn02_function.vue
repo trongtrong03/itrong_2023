@@ -7,7 +7,7 @@
         <ul>
             <li><a href="#act0">序、前言</a></li>
             <li><a href="#act1">一、如何定義函式？</a></li>
-            <li><a href="#act2">二、XXX</a></li>
+            <li><a href="#act2">二、如何傳入參數？</a></li>
             <li><a href="#act3">三、xxx</a></li>
             <li><a href="#act4">四、xxx</a></li>
             <li><a href="#act5">五、總結</a></li>
@@ -36,12 +36,13 @@
             <img src="/images/learn/js/learn-function-2.jpg">
             <figcaption>利用函式來處理重複使用的程式碼。</figcaption>
         </figure>
-        <p>了解函式在 JavaScript 扮演的角色與好處，我們該如何定義函式？其實 JavaScript 提供好幾種函式定義的方式，大體而言有三種：</p>
+        <p>了解函式在 JavaScript 扮演的角色與好處，我們該如何定義函式？其實 JavaScript 提供好幾種函式定義的方式，最基本而言可分成三種：</p>
         <ul>
             <li>Function Declaration</li>
             <li>Function Constructor</li>
             <li>Function Expression</li>
         </ul>
+        <p>除了這三類之外，另外還有立即函式與箭頭函式這些比較特別的用法，後續會一併進行介紹。</p>
         <p><br></p>
         <h3>函式宣告式（Function Declaration）：</h3>
         <p>範例：</p>
@@ -240,12 +241,58 @@ var result = addNumber(5, 10);    // 15</code></pre>
 
 dog();    // Uncaught ReferenceError: dog is not defined.</code></pre>
         </div>
-        <p>無法在函式外再次被執行的好處就是可以創建一個局部作用域，避免全局作用域的變數值造成全域變數的汙染。</p>
+        <p>無法在函式外再次被執行的好處就是可以創建一個局部作用域，避免全局作用域的變數值造成全域變數的汙染。那麼立即函式通常用在什麼場合？一是前面提到的隔離作用域避免變數汙染；二是模組化程式碼，立即函式可以用來創建簡單的模組，將相關的變數和函式封裝在一個單一的作用域中，並且不會與其他部分的程式碼發生衝突。譬如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var myModule = (function() {
+    var privateVar = 'I am private';
 
+    function privateFunction() {
+        console.log('This is a private function');
+    }
 
+    return {
+        publicVar: 'I am public',
+        publicFunction: function() {
+            console.log('This is a public function');
+        }
+    };
+})();
 
+console.log(myModule.publicVar);
+myModule.publicFunction();
+
+// privateVar 和 privateFunction 在這裡不可見
+</code></pre>
+        </div>
+        <p>除此之外，也正是立即函式具有隔離作用域與函式外部無法再次被執行的特性，因此亦可以有效防止變數提升機制可能導致的意外問題。</p>
+        <p>總結一下立即函式的優點：</p>
+        <ul>
+            <li>隔離作用域避免全域變數汙染。</li>
+            <li>避免變數命名衝突與變數提升可能導致的問題。</li>
+            <li>模組化程式碼。</li>
+            <li>提高程式碼執行效率。</li>
+        </ul>
+        <p>乍看很美好，但現實是立即函式也並非如此完美無瑕，它存在這些缺點：</p>
+        <ul>
+            <li>不利於重複使用。</li>
+            <li>程式碼不易維護。</li>
+            <li>增加程式碼複雜度。</li>
+        </ul>
+        <blockquote class="is-info">
+            <p>自 ES6 推出 <em>let</em> 與 <em>const</em> 變數宣告關鍵字及模組化系統的普及，立即函式能做到的事情開始有其他方式可以替代，因此立即函式使用時機也逐漸減少。</p>
+        </blockquote>
         <p><br></p>
         <h3>6. 箭頭函式（Arrow Function）：</h3>
+        <p>箭頭函式是 ES6 版本新增的一種函式表現方式，其最大特色在於省略掉了 <em>function</em> 關鍵字，改由「箭頭」替代。例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var dog = () => {
+    console.log("阿比");
+}
+dog();    // 阿比</code></pre>
+        </div>
+        <p>當然，這只是最基本且顯而易見的部分，箭頭函式跟一般函式的區別除了語法變簡潔之外，</p>
+
+
 
     </div>
 
