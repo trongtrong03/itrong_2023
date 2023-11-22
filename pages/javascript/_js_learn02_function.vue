@@ -8,7 +8,7 @@
             <li><a href="#act0">序、前言</a></li>
             <li><a href="#act1">一、如何定義函式？</a></li>
             <li><a href="#act2">二、如何傳入參數？</a></li>
-            <li><a href="#act3">三、xxx</a></li>
+            <li><a href="#act3">三、調用方法有哪些？</a></li>
             <li><a href="#act4">四、xxx</a></li>
             <li><a href="#act5">五、總結</a></li>
             <li><a href="#act6">六、參考資料</a></li>
@@ -282,7 +282,7 @@ myModule.publicFunction();
             <p>自 ES6 推出 <em>let</em> 與 <em>const</em> 變數宣告關鍵字及模組化系統的普及，立即函式能做到的事情開始有其他方式可以替代，因此立即函式使用時機也逐漸減少。</p>
         </blockquote>
         <p><br></p>
-        <h3>6. 箭頭函式（Arrow Function）：</h3>
+        <h3>箭頭函式（Arrow Function）：</h3>
         <p>箭頭函式是 ES6 版本新增的一種函式表現方式，其最大特色在於省略掉了 <em>function</em> 關鍵字，改由「箭頭」替代。例如：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">var dog = () => {
@@ -290,10 +290,113 @@ myModule.publicFunction();
 }
 dog();    // 阿比</code></pre>
         </div>
-        <p>當然，這只是最基本且顯而易見的部分，箭頭函式跟一般函式的區別除了語法變簡潔之外，</p>
+        <p>當然，這只是最基本且顯而易見的部分，假如有使用到 <em>return</em> 且程式只有一行，那麼 <em>return</em> 和大括號 <em>{}</em> 都可以省略。譬如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var sum = (n) => {
+    return n + 1;
+}
+console.log(sum(5));    // 6</code></pre>
+        </div>
+        <p>可以簡化成：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var sum = (n) => n + 1;
+console.log(sum(5));    // 6</code></pre>
+        </div>
+        <p>除了看起來更簡潔之外，箭頭函式還有許多和傳統函式不一樣之處，但不在本篇文章主題的討論範疇內，故不著墨太多，以下是箭頭函式整體歸納的特點：</p>
+        <ul>
+            <li>語法不同、更簡潔。</li>
+            <li>沒有自己的 <em>this</em>，也無法直接修改 <em>this</em> 的指向。</li>
+            <li>沒有自己的 <em>arguments</em></li>
+            <li>不能作為構造函式使用。</li>
+        </ul>
+    </div>
+    <div class="text-block" id="act2">
+        <h2>二、如何傳入參數？</h2>
+        <p>以下先列舉一則模擬情境──有間主打彩繪手機殼的商店，提供顧客客製化彩繪的服務，依據上門顧客提供的樣本，來產出符合顧客需求的彩繪手機殼，此乃店家接單製作的標準作業流程。假如今天要用 JavaScript 表示，我們可以將「從接收訂單到將成品提交給顧客」這一連串的過程寫成函式，例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function 訂單() {
+    接收顧客需求;
+    進行手機殼彩繪作業;
+    將手機殼交給顧客;
+}
 
+訂單();
+訂單();
+...
+訂單();</code></pre>
+        </div>
+        <p>看完後相信你多少有察覺到不對勁──是的，儘管函式可以允許我們在不同的程式碼區域重複呼叫並執行其內部的程式碼，但並非所有顧客的需求都一樣，也許有的顧客主題是花卉、寵物、動漫...等，這種情況下，我們需要為函式代入一個參數，此參數用來傳遞顧客客製化訂單的需求。</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function 訂單(參數) {
+    接收顧客 參數 需求;
+    進行手機殼彩繪作業;
+    將手機殼交給顧客;
+}
 
-
+訂單(羽蝶蘭);
+訂單(我愛一條柴);
+...
+訂單(初音未來);</code></pre>
+        </div>
+        <p>如此一來，就能在不同區域呼叫函式時，傳入各別的參數值給函式執行程式。</p>
+        <p>看完文字舉例，我們將中文敘述轉換成程式碼，看看函式是如何表示的，此處我們以計算區域平面面積的公式為例：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function getArea(width, height) {
+    return width * height;
+}</code></pre>
+        </div>
+        <p>此函式範例要展示的重點有二，一是要表達 <em>width</em>、<em>height</em> 為參數，其在函式中使用方式視同變數的概念。二則是函式設定的傳遞參數可不止一個。當我們要呼叫這個函式時，會在呼叫它的小括號內傳入要使用的值，例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">getArea(30, 60);    // 1800</code></pre>
+        </div>
+        <p>於函式呼叫的小括弧內傳入的值，我們稱之為「引數」，它們可以用「數值」或「變數」的方式進行傳遞。數值的部分如同上方的範例，而變數傳遞的方式如下：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">itemW = 30;
+itemH = 60;
+getArea(itemW, itemH);    // 1800</code></pre>
+        </div>
+        <p>由此可見，函式呼叫裡的值不一定要是確定的數值，透過變數傳遞至對應的參數也能完成相同的工作。</p>
+        <p>認識函式參數是什麼之後，我們最後來看看各個函式宣告方式的參數傳入如何寫：</p>
+        <h3>函式宣告式：</h3>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function dog(name) {
+    console.log(name);
+}
+dog("阿比");    // 阿比</code></pre>
+        </div>
+        <p><br></p>
+        <h3>函式表達式：</h3>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var dog = function(name) {
+    console.log(name);
+}
+dog("阿比");     // 阿比</code></pre>
+        </div>
+        <p><br></p>
+        <h3>函式建構式：</h3>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var addNumber = new Function('a', 'b', 'return a + b');
+var result = addNumber(5, 10);
+console.log(result);     // 15</code></pre>
+        </div>
+        <p><br></p>
+        <h3>立即函式：</h3>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">(function dog(name){
+    console.log(name);
+})("阿比");    // 阿比</code></pre>
+        </div>
+        <p><br></p>
+        <h3>箭頭函式：</h3>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var dog = (name) => {
+    console.log(name);
+}
+dog("阿比");    // 阿比</code></pre>
+        </div>
+    </div>
+    <div class="text-block" id="act3">
+        <h2>三、調用方法有哪些？</h2>
     </div>
 
     <div class="text-block" id="act5">
