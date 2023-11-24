@@ -9,9 +9,10 @@
             <li><a href="#act1">一、如何定義函式？</a></li>
             <li><a href="#act2">二、如何傳入參數？</a></li>
             <li><a href="#act3">三、調用方法有哪些？</a></li>
-            <li><a href="#act4">四、xxx</a></li>
-            <li><a href="#act5">五、總結</a></li>
-            <li><a href="#act6">六、參考資料</a></li>
+            <li><a href="#act4">四、return 是什麼？</a></li>
+            <li><a href="#act5">五、parameters 與 arguments</a></li>
+            <li><a href="#act6">六、總結</a></li>
+            <li><a href="#act7">七、參考資料</a></li>
         </ul>
     </div>
     <div class="text-block" id="act0">
@@ -325,7 +326,7 @@ console.log(sum(5));    // 6</code></pre>
 ...
 訂單();</code></pre>
         </div>
-        <p>看完後相信你多少有察覺到不對勁──是的，儘管函式可以允許我們在不同的程式碼區域重複呼叫並執行其內部的程式碼，但並非所有顧客的需求都一樣，也許有的顧客主題是花卉、寵物、動漫...等，這種情況下，我們需要為函式代入一個參數，此參數用來傳遞顧客客製化訂單的需求。</p>
+        <p>看完後相信你多少有察覺到不對勁──是的，儘管函式可以允許我們在不同的程式碼區域重複呼叫並執行其內部的程式碼，但並非所有顧客的需求都一樣，也許有的顧客主題是花卉、寵物、動漫...等，這種情況下，我們需要為函式代入一個參數（parameter），此參數用來傳遞顧客客製化訂單的需求。</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">function 訂單(參數) {
     接收顧客 參數 需求;
@@ -356,7 +357,8 @@ itemH = 60;
 getArea(itemW, itemH);    // 1800</code></pre>
         </div>
         <p>由此可見，函式呼叫裡的值不一定要是確定的數值，透過變數傳遞至對應的參數也能完成相同的工作。</p>
-        <p>認識函式參數是什麼之後，我們最後來看看各個函式宣告方式的參數傳入如何寫：</p>
+        <p><br></p>
+        <p>認識函式參數是什麼之後，我們再來看看各種函式宣告方式的參數傳入如何寫：</p>
         <h3>函式宣告式：</h3>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">function dog(name) {
@@ -397,9 +399,266 @@ dog("阿比");    // 阿比</code></pre>
     </div>
     <div class="text-block" id="act3">
         <h2>三、調用方法有哪些？</h2>
+        <p>在第一個章節的練習中，我們已經知道函式定義完成後，必須在其前或後方添加該函式的名稱，方能執行函式裡的內容，例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function dog() {
+    console.log("阿比");
+}
+dog();    // 阿比</code></pre>
+        </div>
+        <p>這個操作就叫「調用」（Invoke），也有人稱之「呼叫」（Callback，或翻譯成「回調」），雖然原文用詞不同，但其實描述的是相同之行為，若要鉅細靡遺地述說兩者差異，Invoke 比較像是主張人正在引導程式執行該函式，當我們調用一個函式時，實際上在主動請求該函式執行；Callback 則是站在程式語言的角度來看，且通常用在將一個函式作為參數傳遞給另一個函式的時候，前者會在後者執行的過程中被調用，所以大多是在程式執行異步操作、事件處理的場合，這時被傳遞的函式就可被稱為「回調函式」，因為它會在特定事件或條件發生時被呼叫執行。</p>
+        <p>JavaScript 存在多種調用方式：</p>
+        <h3>1. 直接調用：</h3>
+        <p>最常見也是最直觀簡單的語法，即前面範例多次使用到的方式，呼叫函式名稱且在後方加上小括號，要傳入的參數則放在小括號裡面。</p>
+        <p>範例：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function dog() {
+    console.log("阿比");
+}
+dog();    // 阿比</code></pre>
+        </div>
+        <p><br></p>
+        <h3>2. 方法調用：</h3>
+        <p>函式作為物件的方法被調用。</p>
+        <p>範例：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var dog = {
+    name: "阿比",
+    printName: function() {
+        console.log(this.name);
+    }
+};
+
+dog.printName();    // 阿比
+</code></pre>
+        </div>
+        <p><br></p>
+        <h3>3. 遞迴調用：</h3>
+        <p>在函式內部調用函式自己，也就是前面介紹「具名函式表達式」時提到的「迴圈函式」。</p>
+        <p>範例：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var factorial = function calculateFactorial(n) {
+    if (n === 0 || n === 1) {
+        return 1;
+    } else {
+        return n * calculateFactorial(n - 1);
+    }
+};
+
+var result = factorial(5);    // 120</code></pre>
+        </div>
+        <p><br></p>
+        <h3>4. apply 與 call：</h3>
+        <p><em>apply</em>、<em>call</em>，另外還有個 <em>bind</em>（可能還得再算上 <em>curry</em>），這幾者是有些相似但各自還是存在區別的 JavaScript 方法，它們主要與 <em>this</em> 指向有關，需要另外單獨一篇文章來詳細記錄，故此處就不多做敘述，姑且知道一下它們也是函式調用的方式之一即可。</p>
+        <p>範例：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function dog(name) {
+    console.log(name);
+}
+
+dog.call(null, "阿比");    // 阿比
+dog.apply(null, ["阿比"]);    // 阿比</code></pre>
+        </div>
+        <p><br></p>
+        <h3>5. 在 HTML 標籤調用：</h3>
+        <p>透過 HTML 元素標籤去調用函式。</p>
+        <p>語法：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-html">&lt;a href="javascript:函式名稱()"&gt;&lt;/a&gt;</code></pre>
+        </div>
+    </div>
+    <div class="text-block" id="act4">
+        <h2>四、return 是什麼？</h2>
+        <p><em>return</em> 是 JavaScript 內建的關鍵字之一，我們很常在函式裡面看到它的蹤影。那麼，<em>return</em> 是什麼？它究竟有什麼用處？其實，<em>return</em> 的用途就如同它的字面意思，主要用來回傳函式調用後返回的值。</p>
+        <p>例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function calculateArea(width, height) {
+    var area = width * height;
+    return area;
+}</code></pre>
+        </div>
+        <p>在 <em>calculateArea</em> 此函式中，宣告了一個名為 <em>area</em> 的變數，以儲存運算（<em>width * height</em>）的結果。<em>return</em> 是用來回傳一個值給最初呼叫此函式的程式碼，一旦 <em>return</em> 被執行，解譯器便會跳出函式，回到當初呼叫此函式的敘述句位置。</p>
+        <p>範例二：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function calculateArea(width, height) {
+    var area = width * height;
+    return area;
+}
+
+var a = calculateArea(5, 10);
+var b = calculateArea(9, 15);
+
+console.log(a);    // 50
+console.log(b);    // 135</code></pre>
+        </div>
+        <p>我們在這個範例分別呼叫了 <em>calculateArea</em> 函式兩次，並傳遞不同的引數給函式執行運算，接著透過 <em>return</em> 將運算結果的值回傳給我們另外宣告的變數（<em>a</em>、<em>b</em>）。</p>
+        <p>在下達 <em>return</em> 的時候需要注意兩件事：</p>
+        <h4>1. 只能寫在函式內，否則會報錯</h4>
+        <p>錯誤範例：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">return "阿比";    // Uncaught SyntaxError: Illegal return statement.</code></pre>
+        </div>
+        <p>該錯誤訊息告訴我們在錯誤的地方使用了 <em>return</em>。</p>
+        <h4>2. 與返回值之間不能換行</h4>
+        <p>由於瀏覽器在解析 JavaScript 通常會自動插入敘述句結尾分號，因此 <em>return</em> 若與其回傳的值分行書寫，該值就無法被順利回傳而直接返回 <em>undefined</em>。</p>
+        <p>錯誤範例：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function dog(){
+    return
+    "阿比";
+};
+console.log(dog());    // undefined</code></pre>
+        </div>
+        <p><br></p>
+        <h3>「Return 的用途不是只有如此。」</h3>
+        <p>當函式讀取到 <em>return</em> 的時候，函式就會隨之中止，並回傳結果，寫在 <em>return</em> 之後的程式都不會被執行。舉例來說：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function calculateArea(width, height) {
+    var area = width * height;
+    console.log(area);
+    return area;
+    console.log(area);    // 不會被執行
+}</code></pre>
+        </div>
+        <p>因此正常情況下，<em>return</em> 都會放在函式的最後。不過前面幾個範例使用 <em>return</em> 都是在有值可回傳的情境下，那如果沒有值需要回傳，單純寫一個 <em>return</em> 也可以嗎？答案是可以的，在這種情況下的 <em>return</em> 單純表示函式結束執行。看到這裡可能會產生一個疑問，不回傳值的 <em>return</em> 單純表示函式結束，那我有沒有寫它似乎都沒什麼差別？其實，在不回傳值的條件下，不管函式最後有沒有寫 <em>return</em>，函式都會回傳一個 <em>undefined</em> 的結果。這個 <em>undefined</em> 通常是無法直接看到的，但我們可以透過 Console 來打印顯現它：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function dog(name) {
+    console.log(name);
+    return;
+}
+
+console.log(dog("阿比"));    // 阿比, undefined</code></pre>
+        </div>
+        <p>沒有 <em>return</em> 的打印結果也是一樣的：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function dog(name) {
+    console.log(name);
+}
+
+console.log(dog("阿比"));    // 阿比, undefined</code></pre>
+        </div>
+        <p>在一般不需要回傳值的函式有沒有 <em>return</em> 確實影響不大，即使回傳 <em>undefined</em> 也會因為函式本身不需要返回值所以不怎麼會影響到程式。而 <em>return</em> 回傳的值除了常見的數字或字串外，回傳布林值也是十分常見的用法，也就是 <em>return true</em> 與 <em>return false</em>，這兩者通常用於表示函式執行的結果是真或假的情況，譬如驗證使用者是否有在輸入欄位填寫內容：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function checkInput(input) {
+    if (input.length > 0) {
+        return true;    // 有效，返回 true
+    } else {
+        return false;    // 無效，返回 false
+    }
+}</code></pre>
+        </div>
+        <p>只不過 <em>if</em> 條件式本身就會回傳 <em>true</em> 及 <em>false</em>，因此上面範例又可以簡化為：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function checkInput(input) {
+    return input.length > 0;
+}</code></pre>
+        </div>
+        <p>因此，實務上 <em>return true</em>、<em>return false</em> 使用的機會並不多。</p>
+        <p>總結一下重點：</p>
+        <ul>
+            <li>只能寫在函式裡面。</li>
+            <li>後面銜接的值或表達式不得換行。</li>
+            <li>當程式讀取到 <em>return</em> 後就會跳出，不會繼續執行在其函式所在位置之後的程式句。</li>
+            <li>一個函式可以使用多個 <em>return</em>，但只有一個會在函式執行時被執行。</li>
+            <li>如果單獨使用 <em>return</em> 沒有附加值，則返回 <em>undefined</em>。</li>
+        </ul>
+    </div>
+    <div class="text-block" id="act5">
+        <h2>五、parameters 與 arguments</h2>
+        <p>parameters 中文譯作「參數」，也就是我們第二章所介紹的主角，arguments 翻譯成中文同樣也叫做「參數」，但是就實際表現來看，或許用「引數」來稱呼它會更加貼切，說是這樣說，究竟兩者之間究竟存在什麼差別呢？</p>
+        <p>儘管第二章已經介紹過參數（parameters）的定義和用途，但在深入認識 arguments 之前，還是得回頭補充一些 parameters 不甚詳盡的部分。首先，我們已經知道 parameters 就是我們定義函式用來傳遞值得變數，例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function dog(name, year, gender) {
+    console.log(name, year, gender);
+}
+dog("阿比", 5, "公");    // 阿比, 5, 公</code></pre>
+        </div>
+        <p>包含上面範例，之前的例子我們都循規蹈矩，引用了參數，在調用的時候都會傳值進去，那如果現在不傳值，直接調用的話會發生什麼事？</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function dog(name, year, gender) {
+    console.log(name, year, gender);
+}
+dog();    // undefined, undefined, undefined</code></pre>
+        </div>
+        <p>答案是得到三個 <em>undefined</em>，而非變數未定義之類的錯誤警告。之所以會這樣是因為當 JavaScript 執行函式的時候，會先將我們定義好的參數建立起記憶體位置，且賦予 <em>undefined</em> 的值給它們，這個機制就是 JavaScript Hoisting（提升）。</p>
+        <p>此外，函式參數的傳入順序是由左至右，像上面範例我們定義了三個參數要傳入函式，但如果實際調用時沒有導入三個參數，函式也還是可以正常運作的，只是後面未填滿的值仍會是預設的 <em>undefined</em>。例：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function dog(name, year, gender) {
+    console.log(name, year, gender);
+}
+dog("阿比", "公");    // 阿比 公 undefined</code></pre>
+        </div>
+        <p><br></p>
+        <p>假如希望函式在沒有賦值的情況下，回傳的結果也不是 <em>undefined</em>，可行嗎？白話一點說，就是想給參數設定自定義的參數值，以方便我們每次執行該函式，對於比較頻繁出現的值就不需要一次次都得把值寫一遍。答案是可以的，不過由於這是 ES6 之後有支援其版本的瀏覽器才能這麼做，所以我們很多時候會看見別人不那麼推崇這樣的定義方式。</p>
+        <p>設定參數預設值的範例：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function dog(name, year, gender="公") {
+    console.log(name, year, gender);
+}
+
+dog();    // undefined undefined 公
+dog("阿比");    // 阿比 undefined 公
+dog("咪咪", "母");    // 咪咪 母 公
+dog("咪咪", 5, "母");    // 咪咪 5 母</code></pre>
+        </div>
+        <p><br></p>
+        <p>補充完 parameters，接著回頭講 arguments。如果要硬啃書本文件的釋義，arguments 是一個對應傳入函式之引數的類陣列（Array-like）物件。挑明來說，arguments 其實就是該函式所有 parameters 的集合。</p>
+        <p>我們直接透過例子會比較容易理解：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function dog(name, year, gender) {
+    console.log(arguments);    // Arguments(3) ['阿比', 5, '公', callee: ƒ, Symbol(Symbol.iterator): ƒ]
+}
+
+dog("阿比", 5, "公");</code></pre>
+        </div>
+        <p>可以看到我們在函式內利用 <em>arguments</em> 打印函式結果，得到的值是存放了所傳入參數的「類陣列」物件，因此才會說 <em>arguments</em> 是 <em>parameters</em> 的集合體。只是，為什麼會說 arguments 是「類陣列」呢？因為儘管 <em>arguments</em> 回傳的格式類似陣列，但它卻不能使用陣列的操作方法（例如 <em>push</em>、<em>pop</em>...等）。</p>
+        <p>雖然 <em>arguments</em> 不是真正的陣列，但多數情況下，我們仍能把它當作陣列來呼叫，例如我們可以用 <em>length</em> 方法檢測儲存參數的數目：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function dog(name, year, gender) {
+    console.log(arguments.length);    // 3
+}
+
+dog("阿比", 5, "公");</code></pre>
+        </div>
+        <p>然後加入條件式判斷，如果當參數數目為 0，則回傳「請傳入參數」的打印訊息，並跳出函式：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function dog(name, year, gender) {
+    console.log(arguments.length);
+    if(arguments.length === 0) {
+        console.log("請傳入參數");
+        return;
+    }
+}
+
+dog();    // 請傳入參數</code></pre>
+        </div>
+        <p>既然提到 <em>length</em>，就順便說說我們也可以透過索引來訪問指定的 <em>arguments</em> 位置上的參數，例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function dog(name, year, gender) {
+    console.log(arguments[0]);    // 阿比
+}
+
+dog("阿比", 5, "公");</code></pre>
+        </div>
+        <blockquote class="is-info">
+            <p>索引是從 0 開始起計，因此陣列、類陣列中的第一筆資料，索引值為 0。</p>
+        </blockquote>
+        <p>一直在強調 <em>arguments</em> 是類陣列而不是陣列，那它的資料型別到底是什麼呢？我們可以透過 <em>typeof</em> 去查看：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function dog(name, year, gender) {
+    console.log(typeof arguments);    // object
+}
+
+dog("阿比", 5, "公");</code></pre>
+        </div>
+        <p>答案是「物件」（object）。</p>
+        <p><br></p>
+        <blockquote class="is-info">
+            <p>JavaScript 於 ES6 版本新增了新的運算子，名叫「展開運算子」（Spread），其格式為 <em>...</em>，其用途可以將函式裡在調用時額外新增的參數，新增成為一個新的陣列。由於 <em>arguments</em> 本身可以允許函式在沒有定義參數的情況下通過它去訪問到傳遞給函式的所有參數值，展開運算子也能做到這點，所以現代大多數的寫法已以展開運算子為主流。</p>
+        </blockquote>
     </div>
 
-    <div class="text-block" id="act5">
+    <div class="text-block" id="act6">
         <h2>五、總結</h2>
         <p>回顧本篇文章，精簡總結一下我們從變數身上學到哪些東西：</p>
         <h5>1. xxx</h5>
@@ -423,12 +682,16 @@ dog("阿比");    // 阿比</code></pre>
             </div>
         </div>
     </div>
-    <div class="text-block" id="act6">
+    <div class="text-block" id="act7">
         <h2>六、參考資料</h2>
         <dl>
             <dd><a href="https://www.books.com.tw/products/0010744702" target="_blank">《JavaScript & JQuery：網站互動設計程式進化之道》</a></dd>
             <dd><a href="https://www.explainthis.io/zh-hant/swe/what-is-iife" target="_blank">JavaScript 立即調用函式 IIFE (Immediately Invoked Function Expression) 是什麼？優缺點是什麼？</a></dd>
             <dd><a href="https://israynotarray.com/javascript/20201118/707576253/" target="_blank">JavaScript 核心觀念(36)-函式以及 This 的運作-立即函式</a></dd>
+            <dd><a href="https://www.explainthis.io/zh-hant/swe/what-is-arrow-function" target="_blank">什麼是箭頭函式 (Arrow Function)？跟一般的函式有什麼差別？</a></dd>
+            <dd><a href="https://medium.com/schaoss-blog/%E4%B8%80%E6%AC%A1%E6%90%9E%E6%87%82%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%A9%A6%E6%9C%80%E6%84%9B%E5%95%8F%E7%9A%84-apply-bind-call-708f57518776" target="_blank">一次搞懂前端面試最愛問的 apply、bind、call</a></dd>
+            <dd><a href="https://pjchender.blogspot.com/2016/04/javascriptparameterargumentsspread.html" target="_blank">[筆記] 談談JavaScript中函式的參數(parameter),arguments和展開運算子(spread)</a></dd>
+            <dd><a href="https://ithelp.ithome.com.tw/articles/10204008" target="_blank">學JS的心路歷程 Day7-函式（二） arguments</a></dd>
         </dl>
     </div>
 </div>
