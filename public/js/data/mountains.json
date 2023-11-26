@@ -20292,10 +20292,10 @@
         "application_m": false,
         "intro": "電火圳生態步道位於新社山的山腰上，於日治大正年間開鑿的圳溝，「電火」在客、台語皆為電燈的意思，故稱其名。電火圳生態步道與南眉古道、梅子古道相接，路程皆很短約十分鐘可走完，可順便造訪鄰近的土牛客家文化館、情人木橋，或五福臨門神木等景點。",
         "notes": "",
-        "img": false,
+        "img": true,
         "gpx": "https://hiking.biji.co/index.php?q=trail&act=gpx_detail&id=2516878",
-        "finish": false,
-        "fDate": "",
+        "finish": true,
+        "fDate": "2023.11.25",
         "article": "",
         "aLink": ""
     },
