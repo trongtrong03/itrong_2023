@@ -566,7 +566,7 @@ console.log(dog("阿比"));    // 阿比, undefined</code></pre>
     <div class="text-block" id="act5">
         <h2>五、parameters 與 arguments</h2>
         <p>parameters 中文譯作「參數」，也就是我們第二章所介紹的主角，arguments 翻譯成中文同樣也叫做「參數」，但是就實際表現來看，或許用「引數」來稱呼它會更加貼切，說是這樣說，究竟兩者之間究竟存在什麼差別呢？</p>
-        <p>儘管第二章已經介紹過參數（parameters）的定義和用途，但在深入認識 arguments 之前，還是得回頭補充一些 parameters 不甚詳盡的部分。首先，我們已經知道 parameters 就是我們定義函式用來傳遞值得變數，例如：</p>
+        <p>儘管第二章已經介紹過參數（parameters）的定義和用途，但在深入認識 arguments 之前，還是得回頭補充一些 parameters 不甚詳盡的部分。首先，我們已經知道 parameters 就是我們定義函式用來傳遞值的變數，例如：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">function dog(name, year, gender) {
     console.log(name, year, gender);
@@ -602,7 +602,7 @@ dog("咪咪", "母");    // 咪咪 母 公
 dog("咪咪", 5, "母");    // 咪咪 5 母</code></pre>
         </div>
         <p><br></p>
-        <p>補充完 parameters，接著回頭講 arguments。如果要硬啃書本文件的釋義，arguments 是一個對應傳入函式之引數的類陣列（Array-like）物件。挑明來說，arguments 其實就是該函式所有 parameters 的集合。</p>
+        <p>補充完 parameters，接著回頭講 arguments。如果要硬啃書本文件的釋義，arguments 是一個對應傳入函式之參數的類陣列（Array-like）物件。挑明來說，arguments 其實就是該函式所有 parameters 的集合。</p>
         <p>我們直接透過例子會比較容易理解：</p>
         <div class="text-code" v-pre>
             <pre><code class="language-javascript">function dog(name, year, gender) {
@@ -657,14 +657,50 @@ dog("阿比", 5, "公");</code></pre>
             <p>JavaScript 於 ES6 版本新增了新的運算子，名叫「展開運算子」（Spread），其格式為 <em>...</em>，其用途可以將函式裡在調用時額外新增的參數，新增成為一個新的陣列。由於 <em>arguments</em> 本身可以允許函式在沒有定義參數的情況下通過它去訪問到傳遞給函式的所有參數值，展開運算子也能做到這點，所以現代大多數的寫法已以展開運算子為主流。</p>
         </blockquote>
     </div>
-
     <div class="text-block" id="act6">
-        <h2>五、總結</h2>
+        <h2>六、總結</h2>
         <p>回顧本篇文章，精簡總結一下我們從變數身上學到哪些東西：</p>
-        <h5>1. xxx</h5>
+        <h5>1. 函式定義方式</h5>
         <ul>
-            <li>xxxx。</li>
+            <li>函式宣告式（Function Declaration）</li>
+            <li>函式表達式（Function Expression）</li>
+            <li>函式建構式（Function Constructor），此方式一般不建議使用。</li>
+            <li>立即函式（Immediately Invoked Function Expression，IIFE）</li>
+            <li>箭頭函式（Arrow Function）</li>
         </ul>
+        <h5>2. 函式命名</h5>
+        <ul>
+            <li>有命名：具名函式</li>
+            <li>無命名：匿名函式 / 不具名函式</li>
+        </ul>
+        <h5>3. 參數（parameters）</h5>
+        <ul>
+            <li>用來傳遞特定值給函式的變數。</li>
+            <li>傳入函式的參數可以不止一個。</li>
+            <li>參數也存在變數提升，預設值是 <em>undefined</em>。</li>
+        </ul>
+        <h5>4. 引數（arguments）</h5>
+        <ul>
+            <li>是一個對應傳入函式之參數的類陣列（Array-like）物件。</li>
+            <li>回傳的格式類似陣列，但它卻不能使用陣列的操作方法。</li>
+            <li>在 ES6 版本後，多以「展開運算子」替代用途。</li>
+        </ul>
+        <h5>5. 調用方法</h5>
+        <ul>
+            <li>直接調用</li>
+            <li>方法調用</li>
+            <li>遞迴調用</li>
+            <li>apply 與 call</li>
+            <li>在 HTML 標籤調用</li>
+        </ul>
+        <h5>6. return</h5>
+        <ul>
+            <li>主要用來回傳函式調用後返回的值。</li>
+            <li>只能寫在函式內，否則會報錯。</li>
+            <li>後面銜接的值或表達式不得換行。</li>
+            <li>當程式讀取到 <em>return</em> 後就會跳出，不會繼續執行在其函式所在位置之後的程式句。</li>
+        </ul>
+
         <p><br></p>
         <p>至於本篇文章提到的 JavaScript 常見名詞術語有以下這些，但有些術語所代表的技術或知識已經超過本篇主題的範疇，礙於篇幅因此沒有辦法太深入探討，如有需要可以循著原詞單字順藤摸瓜去搜尋更專業、完整的教學文章：</p>
         <div class="text-flex">
@@ -679,19 +715,36 @@ dog("阿比", 5, "公");</code></pre>
                     <div class="f-f1">函式</div>
                     <div class="f-f3">也有人稱為「函數」，是構成 Javascript 的基本要素之一，它將一系列的敘述句組合起來，以執行一項特定的工作。</div>
                 </div>
+                <div class="f-row">
+                    <div class="f-f1">Invoke</div>
+                    <div class="f-f1">調用</div>
+                    <div class="f-f3">比較像是主張人正在引導程式執行該函式，當我們調用一個函式時，實際上在主動請求該函式執行。</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">Callback</div>
+                    <div class="f-f1">呼叫 / 回調</div>
+                    <div class="f-f3">通常用在將一個函式作為參數傳遞給另一個函式的時候，比較像是站在程式語言的角度來稱呼。</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1">Hoisting</div>
+                    <div class="f-f1">提升</div>
+                    <div class="f-f3">「提升」是 JavaScript 中的一個概念行為，指的是在程式碼執行之前，JavaScript 引擎會將變數和函式的聲明提升到它們所在作用域的頂部。這意味著我們可以在宣告之前使用這些變數和函式。</div>
+                </div>
             </div>
         </div>
     </div>
     <div class="text-block" id="act7">
-        <h2>六、參考資料</h2>
+        <h2>七、參考資料</h2>
         <dl>
             <dd><a href="https://www.books.com.tw/products/0010744702" target="_blank">《JavaScript & JQuery：網站互動設計程式進化之道》</a></dd>
+            <dd><a href="https://javascript.alphacamp.co/function.html" target="_blank">JavaScript 入門指南 - Function 函式</a></dd>
             <dd><a href="https://www.explainthis.io/zh-hant/swe/what-is-iife" target="_blank">JavaScript 立即調用函式 IIFE (Immediately Invoked Function Expression) 是什麼？優缺點是什麼？</a></dd>
             <dd><a href="https://israynotarray.com/javascript/20201118/707576253/" target="_blank">JavaScript 核心觀念(36)-函式以及 This 的運作-立即函式</a></dd>
             <dd><a href="https://www.explainthis.io/zh-hant/swe/what-is-arrow-function" target="_blank">什麼是箭頭函式 (Arrow Function)？跟一般的函式有什麼差別？</a></dd>
             <dd><a href="https://medium.com/schaoss-blog/%E4%B8%80%E6%AC%A1%E6%90%9E%E6%87%82%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%A9%A6%E6%9C%80%E6%84%9B%E5%95%8F%E7%9A%84-apply-bind-call-708f57518776" target="_blank">一次搞懂前端面試最愛問的 apply、bind、call</a></dd>
             <dd><a href="https://pjchender.blogspot.com/2016/04/javascriptparameterargumentsspread.html" target="_blank">[筆記] 談談JavaScript中函式的參數(parameter),arguments和展開運算子(spread)</a></dd>
             <dd><a href="https://ithelp.ithome.com.tw/articles/10204008" target="_blank">學JS的心路歷程 Day7-函式（二） arguments</a></dd>
+            <dd><a href="https://miahsuwork.medium.com/%E7%AC%AC%E5%9B%9B%E9%80%B1-javascript-%E5%87%BD%E5%BC%8F-function-5c6114de5fff" target="_blank">[第四週] JavaScript — 函式 function</a></dd>
         </dl>
     </div>
 </div>
