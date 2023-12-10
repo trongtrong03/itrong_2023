@@ -1,14 +1,14 @@
 <template>
     <NuxtLayout name="article">
-        <TempArticle :propValue="18" fileType="learnJs" />
+        <TempArticle :propValue="19" fileType="learnJs" />
 <!-- start -->
 <div class="text-content">
     <div class="text-catalog">
         <ul>
             <li><a href="#act0">序、前言</a></li>
             <li><a href="#act1">一、什麼是運算式？</a></li>
-            <li><a href="#act2">二、XXXX</a></li>
-            <li><a href="#act3">三、XXXX</a></li>
+            <li><a href="#act2">二、什麼是運算子？</a></li>
+            <li><a href="#act3">三、運算子的優先級</a></li>
             <li><a href="#act4">四、XXXX</a></li>
             <li><a href="#act5">五、XXXX</a></li>
             <li><a href="#act6">六、總結</a></li>
@@ -50,6 +50,26 @@
 dog = "阿比";    // 有指定值，可視為運算式
 var x = "阿比" + "蹦蹦跳";    // 等號左邊敘述變數宣告，右邊賦值，可視為運算式</code></pre>
         </div>
+    </div>
+    <div class="text-block" id="act2">
+        <h2>二、什麼是運算子？</h2>
+        <p>運算式構成要素基本上都ㄧ定會包含運算子（operators），這是因為運算式的操作必須依賴它們才能進行。JavaScript 提供了大量的運算子提供運算式進行計算，不同種類的運算子，理所當然產生不同類型的運算式，例如算術運算式、比較運算式...等等。它們幫助程式開發者得以從一或多個值中，產生一個結果值。</p>
+        <p>就目前 JavaScript 版本來說，運算子可分為以下這些類型：</p>
+        <ul>
+            <li>指定運算子（Assign operators）</li>
+            <li>比較運算子（Comparison operators）</li>
+            <li>算術運算子（Arithmetic operators）</li>
+            <li>位元運算子</li>
+            <li>邏輯運算子（Logical operators）</li>
+            <li>字串運算子（String operators）</li>
+            <li>條件（三元）運算子</li>
+            <li>逗點運算子</li>
+            <li>一元運算子</li>
+            <li>關係運算子</li>
+            <li>分組運算子</li>
+            <li>new 運算子</li>
+            <li>展開運算子</li>
+        </ul>
     </div>
 
     <div class="text-block" id="act6">

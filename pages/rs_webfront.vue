@@ -69,6 +69,6 @@
 
     // Fetch data
     onMounted(async () => {
-        await fetchData(jsonData, 'resourceWebfront');
+        await fetchData(jsonData, 'resourceWebFront');
     });
 </script>
