@@ -59,17 +59,136 @@ var x = "阿比" + "蹦蹦跳";    // 等號左邊敘述變數宣告，右邊賦
             <li>指定運算子（Assign operators）</li>
             <li>比較運算子（Comparison operators）</li>
             <li>算術運算子（Arithmetic operators）</li>
-            <li>位元運算子</li>
+            <li>位元運算子（Bitwise operator）</li>
             <li>邏輯運算子（Logical operators）</li>
             <li>字串運算子（String operators）</li>
-            <li>條件（三元）運算子</li>
-            <li>逗點運算子</li>
-            <li>一元運算子</li>
-            <li>關係運算子</li>
-            <li>分組運算子</li>
-            <li>new 運算子</li>
-            <li>展開運算子</li>
+            <li>條件（三元）運算子（Conditional (ternary) operator）</li>
+            <li>逗點運算子（Comma operator）</li>
+            <li>一元運算子（Unary operators）</li>
+            <li>關係運算子（Relational operators）</li>
+            <li>分組運算子（Grouping operator）</li>
+            <li>new 運算子（new operator）</li>
+            <li>展開運算子（Spread syntax）</li>
         </ul>
+        <h3>指定運算子（Assign operators）</h3>
+        <p>最常見的指定運算子就是 <em>=</em> 符號，用來表示將某個值指定給變數。例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var dog = "阿比";</code></pre>
+        </div>
+        <p>除此之外，只要有掛上一個 <em>=</em> 的都可以算是指定運算子的成員之一，詳見如下表：</p>
+        <div class="text-flex">
+            <div class="f-width">
+                <div class="f-head">
+                    <div class="f-f0">運算子</div>
+                    <div class="f-f1">範例</div>
+                    <div class="f-f6">說明</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>=</em></div>
+                    <div class="f-f1">x = y</div>
+                    <div class="f-f6">將 y 值指定給變數 x</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>+=</em></div>
+                    <div class="f-f1">x += y</div>
+                    <div class="f-f6">相當於 x = x + y</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>-=</em></div>
+                    <div class="f-f1">x -= y</div>
+                    <div class="f-f6">相當於 x = x - y</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>*=</em></div>
+                    <div class="f-f1">x *= y</div>
+                    <div class="f-f6">相當於 x = x * y</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>/=</em></div>
+                    <div class="f-f1">x /= y</div>
+                    <div class="f-f6">相當於 x = x / y，<em>/</em> 是相除的意思</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>%=</em></div>
+                    <div class="f-f1">x %= y</div>
+                    <div class="f-f6">相當於 x = x % y，意即將 x 除以 y 後的餘數指定給 x</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>**=</em></div>
+                    <div class="f-f1">x **= y</div>
+                    <div class="f-f6">相當於 x = x ** y，意即將 x 的 y 次方值指定給 x</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>&lt;&lt;=</em></div>
+                    <div class="f-f1">x &lt;&lt;= y</div>
+                    <div class="f-f6">相當於 x = x &lt;&lt;= y，意即將 x 所有位元左移 y 位，右邊的位元補入 0 後的值指定回給 x</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>>>=</em></div>
+                    <div class="f-f1">x >>= y</div>
+                    <div class="f-f6">相當於 x = x >>= y，意即將 x 所有位元右移 y 位，最左邊的位元 (sign bit) 補入跟原本最左位元一樣值後指定回給 x</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>>>>=</em></div>
+                    <div class="f-f1">x >>>= y</div>
+                    <div class="f-f6">相當於 x = x >>>= y，和 <em>>>=</em> 一樣，但最左邊的位元補 0</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>&=</em></div>
+                    <div class="f-f1">x &= y</div>
+                    <div class="f-f6">相當於 x = x & y，意即將 x y 做位元 AND 運算後的值指定回給 x</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>^=</em></div>
+                    <div class="f-f1">x ^= y</div>
+                    <div class="f-f6">相當於 x = x ^ y，意即將 x y 做位元 XOR 運算後的值指定回給 x</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>|=</em></div>
+                    <div class="f-f1">x |= y</div>
+                    <div class="f-f6">相當於 x = x | y，意即將 x y 做位元 OR 運算後的值指定回給 x</div>
+                </div>
+            </div>
+        </div>
+        <p>透過表格可以看出指定運算子常與其他類型的運算子搭配使用，以達到產生指定結果值予變數之目的。</p>
+        <p><br></p>
+        <h3>比較運算子（Comparison operators）</h3>
+        <p><br></p>
+        <h3>算術運算子（Arithmetic operators）</h3>
+        <p>算術運算子（Arithmetic operators）包含基本的加減乘除，以及遞增、遞減等運算方式。例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var total = 10 * 3;</code></pre>
+        </div>
+        <p>我們都知道數學運算有著「先乘除後加減」的鐵律，若要先加減後乘除，則必須用括號將優先計算加減的值包含起來，這一點在程式運算亦同。舉例來說：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var total = 6 + 10 * 3;</code></pre>
+        </div>
+        <p>得到的結果會是 <em>36</em>，而不是 <em>48</em>。若要先加後乘的話，則必須這樣定義：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var total = (6 + 10) * 3;</code></pre>
+        </div>
+        <p>如此一來，回傳的結果就會是 <em>48</em>。</p>
+        <p><br></p>
+        <h3>位元運算子（Bitwise operator）</h3>
+        <p><br></p>
+        <h3>邏輯運算子（Logical operators）</h3>
+        <p><br></p>
+        <h3>字串運算子（String operators）</h3>
+        <p><br></p>
+        <h3>條件（三元）運算子（Conditional (ternary) operator）</h3>
+        <p><br></p>
+        <h3>逗點運算子（Comma operator）</h3>
+        <p><br></p>
+        <h3>一元運算子（Unary operators）</h3>
+        <p><br></p>
+        <h3>關係運算子（Relational operators）</h3>
+        <p><br></p>
+        <h3>分組運算子（Grouping operator）</h3>
+        <p><br></p>
+        <h3>new 運算子（new operator）</h3>
+        <p><br></p>
+        <h3>展開運算子（Spread syntax）</h3>
+        <p><br></p>
     </div>
 
     <div class="text-block" id="act6">
