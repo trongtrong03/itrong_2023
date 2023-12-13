@@ -70,13 +70,6 @@
         "type": "javascript"
     },
     {
-        "id": 11,
-        "href": "js_learn_conditional",
-        "title": "條件運算子、展開運算子、其餘運算子介紹",
-        "time": "2019.12.19",
-        "type": "javascript"
-    },
-    {
         "id": 12,
         "href": "js_learn_var",
         "title": "ES6 新的宣告方式 const、let，和 var 的不同之處？",

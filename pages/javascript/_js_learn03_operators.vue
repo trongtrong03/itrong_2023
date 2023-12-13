@@ -69,7 +69,9 @@ var x = "阿比" + "蹦蹦跳";    // 等號左邊敘述變數宣告，右邊賦
             <li>分組運算子（Grouping operator）</li>
             <li>new 運算子（new operator）</li>
             <li>展開運算子（Spread syntax）</li>
+            <li>其餘運算子（Rest Operator）</li>
         </ul>
+        <p><br></p>
         <h3>指定運算子（Assign operators）</h3>
         <p>最常見的指定運算子就是 <em>=</em> 符號，用來表示將某個值指定給變數。例如：</p>
         <div class="text-code" v-pre>
@@ -153,29 +155,236 @@ var x = "阿比" + "蹦蹦跳";    // 等號左邊敘述變數宣告，右邊賦
         <p>透過表格可以看出指定運算子常與其他類型的運算子搭配使用，以達到產生指定結果值予變數之目的。</p>
         <p><br></p>
         <h3>比較運算子（Comparison operators）</h3>
+        <p>如同它字面意義所述，我們可以將程式碼中的值與預期值進行比較，評估後的結果將會以「布林值」表示，也就是 <em>true</em> 或 <em>false</em>。運算元可以是數值、字串、表達式 (expression) 或物件等。假如比較的運算元型別不同，JavaScript 會嘗試將之轉型成相同型別後再行比較，通常情況下，會先轉成數字資料型別（Number）。</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var pass = 60;
+var score = 87;
+var hasPassed = score >= pass;    // true</code></pre>
+        </div>
+        <p><em>score</em> 值（<em>87</em>）大於 <em>pass</em> 值（<em>60</em>），故回傳的結果為 <em>true</em>。</p>
+        <p>前面有提到，運算元不一定要是單一值或是變數名稱，它也可以是一個運算式，例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">((num1 + num2) > (num3 + num4));</code></pre>
+        </div>
+        <p>實際演練：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var score1 = 90;
+var score2 = 95;
+var average1 = 60.5;
+var average2 = 80;
+
+var final = (score1 + score2) > (average1 + average2);    // true</code></pre>
+        </div>
+        <p>接著來看看比較運算子的字符有哪些：</p>
+        <div class="text-flex">
+            <div class="f-width">
+                <div class="f-head">
+                    <div class="f-f0">運算子</div>
+                    <div class="f-f6">說明</div>
+                    <div class="f-f2">範例</div>
+                    <div class="f-f1">結果</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>==</em></div>
+                    <div class="f-f6">等於，比較兩個值（數字、字串、布林值）並確認是否相同</div>
+                    <div class="f-f2">'123' == '123'<br>'123' == '1234'<br>'123' == 123</div>
+                    <div class="f-f1">true<br>false<br>true</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>===</em></div>
+                    <div class="f-f6">嚴格等於，比較兩個值（數字、字串、布林值）並確認資料型別與值皆相同</div>
+                    <div class="f-f2">'123' === 123<br>'123' === '123'</div>
+                    <div class="f-f1">false<br>true</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>!=</em></div>
+                    <div class="f-f6">不等於，比較兩個值（數字、字串、布林值）並確認是否不相同</div>
+                    <div class="f-f2">'123' != '123'<br>123 != '123'<br>'123' != '1234'<br></div>
+                    <div class="f-f1">false<br>false<br>true</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>!==</em></div>
+                    <div class="f-f6">嚴格不等於，比較兩個值（數字、字串、布林值）並確認資料型別與值皆不相同</div>
+                    <div class="f-f2">'123' !== 123<br>'123' !== '123'</div>
+                    <div class="f-f1">true<br>false</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>></em></div>
+                    <div class="f-f6">大於，檢視左邊的數字是否大於右邊的數字</div>
+                    <div class="f-f2">5 > 3<br>'5' > 3<br>3 > 5</div>
+                    <div class="f-f1">true<br>true<br>false</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>&lt;</em></div>
+                    <div class="f-f6">小於，檢視左邊的數字是否小於右邊的數字</div>
+                    <div class="f-f2">5 &lt;3<br>'5' &lt; 3<br>3 &lt; 5</div>
+                    <div class="f-f1">false<br>false<br>true</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>>=</em></div>
+                    <div class="f-f6">大於等於，檢視左邊的數字是否大於「或」等於右邊的數字</div>
+                    <div class="f-f2">5 >= 3<br>3 >= 5<br>3 >= 3</div>
+                    <div class="f-f1">true<br>false<br>true</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>&lt;=</em></div>
+                    <div class="f-f6">小於等於，檢視左邊的數字是否小於「或」等於右邊的數字</div>
+                    <div class="f-f2">5 &lt;= 3<br>3 &lt;= 5<br>3 &lt;= 3</div>
+                    <div class="f-f1">false<br>true<br>true</div>
+                </div>
+            </div>
+        </div>
         <p><br></p>
         <h3>算術運算子（Arithmetic operators）</h3>
         <p>算術運算子（Arithmetic operators）包含基本的加減乘除，以及遞增、遞減等運算方式。例如：</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-javascript">var total = 10 * 3;</code></pre>
+            <pre><code class="language-javascript">var total = 10 * 3;    // 30</code></pre>
         </div>
         <p>我們都知道數學運算有著「先乘除後加減」的鐵律，若要先加減後乘除，則必須用括號將優先計算加減的值包含起來，這一點在程式運算亦同。舉例來說：</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-javascript">var total = 6 + 10 * 3;</code></pre>
+            <pre><code class="language-javascript">var total = 6 + 10 * 3;    // 36</code></pre>
         </div>
         <p>得到的結果會是 <em>36</em>，而不是 <em>48</em>。若要先加後乘的話，則必須這樣定義：</p>
         <div class="text-code" v-pre>
-            <pre><code class="language-javascript">var total = (6 + 10) * 3;</code></pre>
+            <pre><code class="language-javascript">var total = (6 + 10) * 3;    // 48</code></pre>
         </div>
         <p>如此一來，回傳的結果就會是 <em>48</em>。</p>
         <p><br></p>
         <h3>位元運算子（Bitwise operator）</h3>
         <p><br></p>
         <h3>邏輯運算子（Logical operators）</h3>
+        <p>比較運算子通常回傳 <em>true</em> 或 <em>false</em> 的單一結果值，邏輯運算子則可以針對多個比較運算子產生的結果值，再進行邏輯判斷。以下是邏輯運算子的常見運用方法之一的範例：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">((5 &lt; 2) && (3 &gt;= 2));</code></pre>
+        </div>
+        <p>這個結構包含三個運算式，每一個均會產生 <em>true</em> 或 <em>false</em> 的結果值，「運算式1」指的是 <em>(5 &lt; 2)</em> 這段，其結果為 <em>false</em>。而「運算式2」則是 <em>(3 &gt;= 2)</em>，其結果為 <em>true</em>。「運算式3」則是將前兩個運算式囊括起來，並使用了一個邏輯運算子「<em>&&</em>」，這個符號表示意義是「AND」邏輯運算子，用來檢查運算式1和運算式2的結果是否均為 <em>true</em> 值，但因為運算式1的結果為 <em>false</em>，故最後運算式3輸出的結果為 <em>false</em>。</p>
+        <p>除了 <em>&&</em> 之外，邏輯運算子尚有 <em>||</em>、<em>!</em> 這兩個字符，以下透過表格來介紹之：</p>
+        <div class="text-flex">
+            <div class="f-width">
+                <div class="f-head">
+                    <div class="f-f0">運算子</div>
+                    <div class="f-f6">說明</div>
+                    <div class="f-f2">範例</div>
+                    <div class="f-f1">結果</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>&&</em></div>
+                    <div class="f-f6">表示 AND，兩邊運算式評估必須均為 true，輸出結果才會為 true，其餘皆 false。<br>true && true => true<br>true && false => false<br>false && true => false<br>false && false => false</div>
+                    <div class="f-f2">((6 > 5) && (3 >= 3))<br>((5 &lt; 2) && (3 >= 2))</div>
+                    <div class="f-f1">true<br>false</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>||</em></div>
+                    <div class="f-f6">表示 OR，只要任一運算式評估為 true，輸出結果就是 true，只有兩邊運算式都是 false 的情況，輸出結果才會是 false。<br>true && true => true<br>true && false => true<br>false && true => true<br>false && false => false</div>
+                    <div class="f-f2">((6 > 5) && (3 >= 3))<br>((5 &lt; 2) && (3 >= 2))<br>((5 &lt; 2) && (3 &lt; 2))</div>
+                    <div class="f-f1">true<br>true<br>false</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>!</em></div>
+                    <div class="f-f6">表示 NOT，將運算式的布林值轉換為相反值<br>!true => false<br>!false => true</div>
+                    <div class="f-f2">!(2 &lt; 1)</div>
+                    <div class="f-f1">true</div>
+                </div>
+            </div>
+        </div>
+        <p>此外值得一提的是，邏輯運算子是由左至右執行評估，如果第一個運算式條件已可提供足夠資訊取得整體運算式的答案，那麼 JavaScript 就不會繼續評估第二個條件。例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">(5 &lt; 2) && (3 >= 2);</code></pre>
+        </div>
+        <p>第一個條件 <em>(5 &lt; 2)</em> 經評估結果為 <em>false</em>，已可確定 AND 邏輯運算子的結果為 <em>false</em>，那麼就不會再去評估第二個條件了。</p>
         <p><br></p>
         <h3>字串運算子（String operators）</h3>
+        <p>字串運算子只有一種──「加號（<em>+</em>）」，可用於連接運算子兩端的字串資料值。寫程式的我們經常需要連接兩個以上的字串，以建立一個新的字串，這個連接的程序稱為「字串連結（concatenation）」。譬如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var firstName = "狗";
+var lastName = "阿比";
+var fullName = firstName + lastName;    // 狗阿比</code></pre>
+        </div>
+        <p>在這個範例中，我們將姓氏跟名字分開儲存於變數使用，但可能有時候會需要將它們結合，以顯示完整的姓名，透過字串運算子便可以實現我們的需求，透過新宣告一個名叫 <em>fullName</em> 的變數，把 <em>firstName</em> 與 <em>lastName</em> 兩個變數透過字串運算子串聯在一起，並得到結果為「狗阿比」。</p>
+        <blockquote>
+            <p>數值資料型別與字串資料型別是可以混合使用的，但是不同的表示方法會有不同的結果。</p>
+        </blockquote>
+        <p><br></p>
+        <h4>1. 數值加上引號：</h4>
+        <p>若在數值兩邊加上引號，它將成為字串資料型別，而不再是數值資料型別。例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var number1 = '10';
+var number2 = '99';
+var final = number1 + number2;    // 1099</code></pre>
+        </div>
+        <p><br></p>
+        <h4>2. 數值與字串相加：</h4>
+        <p>若將純數字的變數與字串變數相加，數值則會變成字串的一部分。例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var number = 10;
+var name = "阿比";
+var final = number + name;    // 10阿比</code></pre>
+        </div>
+        <p><br></p>
+        <h4>3. 對字串資料作數學運算：</h4>
+        <p>因為字串不是數字，若給它們執行算術運算，只會得到 <em>NaN</em>的結果。例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var number = "3";
+var name = "阿比";
+var final = number * name;    // NaN</code></pre>
+        </div>
         <p><br></p>
         <h3>條件（三元）運算子（Conditional (ternary) operator）</h3>
+        <p>條件運算子（Conditional Operator）亦可稱為「三元運算子」（Ternary Operator），從名字不難看出與條件式有關，事實上此運算子的確也常被用來當作條件式（<em>if</em>）的簡潔寫法。據 <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Conditional_Operator" target="_blank">MDN Web Docs</a> 文件所示，條件運算子的基礎語法為：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">condition ? exprIfTrue : exprIfFalse</code></pre>
+        </div>
+        <p><em>condition</em> 為條件的表達式。若表達式的值為 <em>true</em>，則執行 <em>exprIfTrue</em>；反之若為 <em>false</em>，則執行 <em>exprIfFalse</em>。舉例來說：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var status = (score >= 60) ? "及格" : "不及格";</code></pre>
+        </div>
+        <p>上述條件式意思為「變數 <em>score</em> 的值若大於等於 <em>60</em>，則回傳 <em>true</em>（及格）的結果；若小於 <em>60</em>，則回傳 <em>false</em>（不及格）」。</p>
+        <p>實際練習：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var score = 61;
+var status = (score >= 60) ? "及格" : "不及格";
+console.log(status);    // 及格</code></pre>
+        </div>
+        <p>在條件運算子敘述裡，條件表達式的括號可以被省略。而若將此條件運算子「還原」成條件式，可見語法如下：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var score = 61;
+var status;
+if(score >= 60){
+    status = "及格"
+}
+else {
+    status = "不及格"
+}
+console.log(status);    // 及格</code></pre>
+        </div>
+        <p>還原成熟悉的條件式之後，就不禁產生聯想──我們在開發網頁寫條件式的時候，往往不會只有一個「非 A 即 B」的條件，通常要加入複數的 <em>else if</em> 以滿足多重條件的函式，以下先舉一段條件鏈：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var age = 35;
+var status;
+if (age >= 30 && age &lt; 40) {
+    status = '我三十而立';
+} else if (age >= 41 && age &lt; 50) {
+    status = '我四十而不惑';
+} else if (age >= 51 && age &lt; 60) {
+    status = '我五十而知天命';
+} else if (age >= 61) {
+    status = '我六十以上';
+} else {
+    status = '我未滿三十';
+}
+console.log(status);    // 我三十而立</code></pre>
+        </div>
+        <p>接著我們來看如何將它們簡化成條件運算子：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var age = 35;
+var status =
+    (age >= 30 && age &lt; 40) ? "我三十而立" :
+    (age >= 41 && age &lt; 50) ? "我四十而不惑" :
+    (age >= 51 && age &lt; 60) ? "我五十而知天命" :
+    (age >= 61) ? "我六十以上" :
+    "我未滿三十";
+console.log(status);    // 我三十而立</code></pre>
+        </div>
         <p><br></p>
         <h3>逗點運算子（Comma operator）</h3>
         <p><br></p>
@@ -188,7 +397,106 @@ var x = "阿比" + "蹦蹦跳";    // 等號左邊敘述變數宣告，右邊賦
         <h3>new 運算子（new operator）</h3>
         <p><br></p>
         <h3>展開運算子（Spread syntax）</h3>
+        <p>展開運算子可用來將陣列中的值展開為個別值，其運算子表示方式為 <em>...</em>。首先我們來看一個基本的例子：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var number = [1, 2, 3, 4, 5];
+console.log(number);    // [1,2,3,4,5]</code></pre>
+        </div>
+        <p>倘若加入展開運算子，輸出結果就會變成：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var number = [1, 2, 3, 4, 5];
+console.log(...number);    // 1 2 3 4 5</code></pre>
+        </div>
+        <p>當然除了數字之外，字串也可以透過展開運算子將之打散：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var name = "iTrong";
+console.log(name);    // 輸出的結果為 "iTrong"
+
+console.log(...name);    // "i" "T" "r" "o" "n" "g"</code></pre>
+        </div>
+        <p>因為展開運算子這種類似將變數值「打散」的概念，所以我們可以運用在陣列的合併上，舉例來說：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var array1 = [1, 2, 3];
+var array2 = [...array1, "apple", "banana"];
+console.log(array2);    // [1, 2, 3, "apple", "banana"]</code></pre>
+        </div>
+        <p>是否隱隱約約覺得和陣列中的操作方法 <em>.concat()</em> 很相似呢？沒錯，自 ES6 推出展開運算子之後，以往陣列合併 <em>.concat()</em> 的寫法就能用 <em>...</em> 取代，同樣的例子我們來看看如果用原本陣列合併的方法是如何表示：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var array1 = [1, 2, 3];
+var array2 = ["apple", "banana"];
+console.log(array1.concat(array2)); // [1, 2, 3, "apple", "banana"]</code></pre>
+        </div>
         <p><br></p>
+        <p>展開運算子也可以用於陣列的「淺拷貝」，即便經拷貝產生的新陣列加入新的值，也不會影響原本被拷貝的陣列：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var array1 = ["apple", "banana"];
+var array2 = [...array1];
+array2.push("orange", "grape");
+
+console.log(array1); // ["apple", "banana"]
+console.log(array2); // ["apple", "banana", "orange", "grape"]</code></pre>
+        </div>
+        <p>再來就是可取代 <em>.apply()</em> 方法，將陣列值傳入函式做為參數。例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function sumFuc(x, y){
+  return x + y;
+}
+var arr = [5, 10];
+var result = sumFuc.apply(null, arr);
+console.log(result);    // 15</code></pre>
+        </div>
+        <p>改由展開運算子簡化的寫法：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function sumFuc(x, y){
+  return x + y;
+}
+var arr = [5, 10];
+var result = sumFuc(...arr);
+console.log(result);    // 15</code></pre>
+        </div>
+        <p><br></p>
+        <h3>其餘運算子（Rest Operator）</h3>
+        <p>其餘運算子（Rest Operator）的符號表達方式與展開運算子相同，都是以 <em>...</em> 表示，然而用途卻不一樣。後者主要用於將陣列中的值打散成個別的值，而前者則是將不確定數量的參數值集合成一個陣列。比方來說，我們定義一個簡單輸出代入參數的函式：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function demo(e) {
+    console.log("result:", e);
+}
+
+demo("a", "b", 3, "n");    // a</code></pre>
+        </div>
+        <p>由於只設置一個變數 <em>e</em>，因此即便傳入再多參數，也只有第一個參數 <em>a</em> 會被執行。但如果我們導入其餘運算子：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function demo(...e) {
+    console.log("result:", e);
+}
+
+demo("a", "b", 3, "n");    // ["a", "b", "3", "n"]</code></pre>
+        </div>
+        <p>加入其餘運算子後，會發現它將傳入的參數通通集結起來成為一個新的陣列，同樣的概念，這次在函式裡再多增加幾個定義參數，我們就能更明顯看出其餘運算子的功用：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function demo(x, y, ...e) {
+    console.log(x, y, e);
+}
+
+demo("a", "b", 3, "n", 5);    // "a" "b" [3, "n", 5]</code></pre>
+        </div>
+        <p>如果剩餘傳入的參數只剩一個值，其餘運算子依舊會將其組成陣列；再假設已經沒有剩餘的值分給其餘運算子，其餘運算子仍會產生一個空的陣列，而非 <em>undefined</em>。例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function demo(x, y, ...e) {
+    console.log(x, y, e);
+}
+
+demo("a", "b", "c");    // "a" "b" ["c"]
+demo("a", "b");         // "a" "b" []</code></pre>
+        </div>
+        <p>在前面練習展開運算子的時候，都是由展開運算子去處理其他陣列的參數，那如果現在反向由參數去填入 <em>...</em> 會發生什麼事呢？</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var [x, ...y] = ["a", "b", 3, "n"];
+
+console.log(x); // a
+console.log(y); // ["b", 3, "n"]</code></pre>
+        </div>
+        <p>這種用法一般稱其為「解構賦值」（Destructuring），可以想像成鏡像的方式來進行賦值，而除了陣列之外，也可以用來解構物件（<em>{ ... }</em>）。</p>
     </div>
 
     <div class="text-block" id="act6">
@@ -236,6 +544,8 @@ var x = "阿比" + "蹦蹦跳";    // 等號左邊敘述變數宣告，右邊賦
             <dd><a href="https://www.books.com.tw/products/0010744702" target="_blank">《JavaScript & JQuery：網站互動設計程式進化之道》</a></dd>
             <dd><a href="https://hackmd.io/@F8_ZGXr0SHWEX7aKUyrU9w/BJVrhtIbO" target="_blank">Javascript 第三章 運算元和運算子</a></dd>
             <dd><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Expressions_and_operators" target="_blank">mdn web docs 運算式與運算子</a></dd>
+            <dd><a href="https://www.itread01.com/content/1548882731.html" target="_blank">淺談js“三元表示式” （三元運算子）</a></dd>
+            <dd><a href="https://medium.com/@kyokyox2/js-%E4%B8%89%E5%85%83%E9%81%8B%E7%AE%97%E7%AC%A6-%E4%B8%89%E5%85%83%E9%81%8B%E7%AE%97%E5%80%BC-3987be9623a5" target="_blank">[Js] 三元運算符 / 三元運算值</a></dd>
         </dl>
     </div>
 </div>
