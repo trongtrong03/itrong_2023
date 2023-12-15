@@ -266,44 +266,6 @@ var final = (score1 + score2) > (average1 + average2);    // true</code></pre>
                     <div class="f-f1">結果</div>
                 </div>
                 <div class="f-row">
-                    <div class="f-f0"><em>&&</em></div>
-                    <div class="f-f6">表示 AND，兩邊運算式評估必須均為 true，輸出結果才會為 true，其餘皆 false。<br>true && true => true<br>true && false => false<br>false && true => false<br>false && false => false</div>
-                    <div class="f-f2">((6 > 5) && (3 >= 3))<br>((5 &lt; 2) && (3 >= 2))</div>
-                    <div class="f-f1">true<br>false</div>
-                </div>
-                <div class="f-row">
-                    <div class="f-f0"><em>||</em></div>
-                    <div class="f-f6">表示 OR，只要任一運算式評估為 true，輸出結果就是 true，只有兩邊運算式都是 false 的情況，輸出結果才會是 false。<br>true && true => true<br>true && false => true<br>false && true => true<br>false && false => false</div>
-                    <div class="f-f2">((6 > 5) && (3 >= 3))<br>((5 &lt; 2) && (3 >= 2))<br>((5 &lt; 2) && (3 &lt; 2))</div>
-                    <div class="f-f1">true<br>true<br>false</div>
-                </div>
-                <div class="f-row">
-                    <div class="f-f0"><em>!</em></div>
-                    <div class="f-f6">表示 NOT，將運算式的布林值轉換為相反值<br>!true => false<br>!false => true</div>
-                    <div class="f-f2">!(2 &lt; 1)</div>
-                    <div class="f-f1">true</div>
-                </div>
-            </div>
-        </div>
-
-
-        <p><br></p>
-        <h3>邏輯運算子（Logical operators）</h3>
-        <p>比較運算子通常回傳 <em>true</em> 或 <em>false</em> 的單一結果值，邏輯運算子則可以針對多個比較運算子產生的結果值，再進行邏輯判斷。以下是邏輯運算子的常見運用方法之一的範例：</p>
-        <div class="text-code" v-pre>
-            <pre><code class="language-javascript">((5 &lt; 2) && (3 &gt;= 2));</code></pre>
-        </div>
-        <p>這個結構包含三個運算式，每一個均會產生 <em>true</em> 或 <em>false</em> 的結果值，「運算式1」指的是 <em>(5 &lt; 2)</em> 這段，其結果為 <em>false</em>。而「運算式2」則是 <em>(3 &gt;= 2)</em>，其結果為 <em>true</em>。「運算式3」則是將前兩個運算式囊括起來，並使用了一個邏輯運算子「<em>&&</em>」，這個符號表示意義是「AND」邏輯運算子，用來檢查運算式1和運算式2的結果是否均為 <em>true</em> 值，但因為運算式1的結果為 <em>false</em>，故最後運算式3輸出的結果為 <em>false</em>。</p>
-        <p>除了 <em>&&</em> 之外，邏輯運算子尚有 <em>||</em>、<em>!</em> 這兩個字符，以下透過表格來介紹之：</p>
-        <div class="text-flex">
-            <div class="f-width">
-                <div class="f-head">
-                    <div class="f-f0">運算子</div>
-                    <div class="f-f6">說明</div>
-                    <div class="f-f2">範例</div>
-                    <div class="f-f1">結果</div>
-                </div>
-                <div class="f-row">
                     <div class="f-f0"><em>&</em></div>
                     <div class="f-f6">xxx</div>
                     <div class="f-f2">xxx</div>
@@ -344,6 +306,46 @@ var final = (score1 + score2) > (average1 + average2);    // true</code></pre>
                     <div class="f-f6">xxx</div>
                     <div class="f-f2">xxx</div>
                     <div class="f-f1">xxx</div>
+                </div>
+            </div>
+        </div>
+
+        
+
+
+        <p><br></p>
+        <h3>邏輯運算子（Logical operators）</h3>
+        <p>比較運算子通常回傳 <em>true</em> 或 <em>false</em> 的單一結果值，邏輯運算子則可以針對多個比較運算子產生的結果值，再進行邏輯判斷。以下是邏輯運算子的常見運用方法之一的範例：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">((5 &lt; 2) && (3 &gt;= 2));</code></pre>
+        </div>
+        <p>這個結構包含三個運算式，每一個均會產生 <em>true</em> 或 <em>false</em> 的結果值，「運算式1」指的是 <em>(5 &lt; 2)</em> 這段，其結果為 <em>false</em>。而「運算式2」則是 <em>(3 &gt;= 2)</em>，其結果為 <em>true</em>。「運算式3」則是將前兩個運算式囊括起來，並使用了一個邏輯運算子「<em>&&</em>」，這個符號表示意義是「AND」邏輯運算子，用來檢查運算式1和運算式2的結果是否均為 <em>true</em> 值，但因為運算式1的結果為 <em>false</em>，故最後運算式3輸出的結果為 <em>false</em>。</p>
+        <p>除了 <em>&&</em> 之外，邏輯運算子尚有 <em>||</em>、<em>!</em> 這兩個字符，以下透過表格來介紹之：</p>
+        <div class="text-flex">
+            <div class="f-width">
+                <div class="f-head">
+                    <div class="f-f0">運算子</div>
+                    <div class="f-f6">說明</div>
+                    <div class="f-f2">範例</div>
+                    <div class="f-f1">結果</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>&&</em></div>
+                    <div class="f-f6">表示 AND，兩邊運算式評估必須均為 true，輸出結果才會為 true，其餘皆 false。<br>true && true => true<br>true && false => false<br>false && true => false<br>false && false => false</div>
+                    <div class="f-f2">((6 > 5) && (3 >= 3))<br>((5 &lt; 2) && (3 >= 2))</div>
+                    <div class="f-f1">true<br>false</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>||</em></div>
+                    <div class="f-f6">表示 OR，只要任一運算式評估為 true，輸出結果就是 true，只有兩邊運算式都是 false 的情況，輸出結果才會是 false。<br>true && true => true<br>true && false => true<br>false && true => true<br>false && false => false</div>
+                    <div class="f-f2">((6 > 5) && (3 >= 3))<br>((5 &lt; 2) && (3 >= 2))<br>((5 &lt; 2) && (3 &lt; 2))</div>
+                    <div class="f-f1">true<br>true<br>false</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>!</em></div>
+                    <div class="f-f6">表示 NOT，將運算式的布林值轉換為相反值<br>!true => false<br>!false => true</div>
+                    <div class="f-f2">!(2 &lt; 1)</div>
+                    <div class="f-f1">true</div>
                 </div>
             </div>
         </div>
