@@ -251,14 +251,12 @@ var final = (score1 + score2) > (average1 + average2);    // true</code></pre>
         <p>如此一來，回傳的結果就會是 <em>48</em>。</p>
         <p><br></p>
         <h3>位元運算子（Bitwise operator）</h3>
-        <p><br></p>
-        <h3>邏輯運算子（Logical operators）</h3>
-        <p>比較運算子通常回傳 <em>true</em> 或 <em>false</em> 的單一結果值，邏輯運算子則可以針對多個比較運算子產生的結果值，再進行邏輯判斷。以下是邏輯運算子的常見運用方法之一的範例：</p>
-        <div class="text-code" v-pre>
-            <pre><code class="language-javascript">((5 &lt; 2) && (3 &gt;= 2));</code></pre>
-        </div>
-        <p>這個結構包含三個運算式，每一個均會產生 <em>true</em> 或 <em>false</em> 的結果值，「運算式1」指的是 <em>(5 &lt; 2)</em> 這段，其結果為 <em>false</em>。而「運算式2」則是 <em>(3 &gt;= 2)</em>，其結果為 <em>true</em>。「運算式3」則是將前兩個運算式囊括起來，並使用了一個邏輯運算子「<em>&&</em>」，這個符號表示意義是「AND」邏輯運算子，用來檢查運算式1和運算式2的結果是否均為 <em>true</em> 值，但因為運算式1的結果為 <em>false</em>，故最後運算式3輸出的結果為 <em>false</em>。</p>
-        <p>除了 <em>&&</em> 之外，邏輯運算子尚有 <em>||</em>、<em>!</em> 這兩個字符，以下透過表格來介紹之：</p>
+        <p>在認識 JavaScipt 位元運算子原理之前，我們必須要知道數學進位制的概念，譬如我們日常生活中使用的進位制為「十進位」，所謂的十進位指的是使用十個數字作為表示數量的方式，這十個數字分別是：「0 1 2 3 4 5 6 7 8 9」，因此當記數記到第十個數字，「十」本身並沒有數字符號，我們看到的「10」是藉由進位而得，拆開成算式來看即為「1 * 10^1 + 0 * 10^0 = 10 + 0 = 10」。再舉一個例子，數字 123 拆解成算式則會是「1 * 10^2 + 2 * 10^1 + 3 * 10^0 = 100 + 20 + 3 = 123」。</p>
+        <blockquote class="is-info">
+            <p>或許有些人會疑惑為什麼 3 * 10^0 = 3 * 1 中 10 的零次方會等於 1，這乃是數學定義，該規定主要是為了保持數學中一些重要的特性和公式。</p>
+        </blockquote>
+        <p>而在電腦計算機程式語言裡，進位制有二進位、八進位、十六進位......等等，原理和十進位大同小異。至於 JavaScipt 位元運算子將數字（運算元）當作二進位來看待，意思是我們不會看到 2 這個數字，一旦記數碰到 2 就會進位，例如「10」這個數字用二進位表示將會是「1010」，詳細進位算式攤開來看即為「1 * 2^3 + 0 * 2^2 + 1 * 2^1 + 0 * 2^0 = 8 + 0 + 2 + 0 = 10」。</p>
+        <p>位元運算子有以下這些：</p>
         <div class="text-flex">
             <div class="f-width">
                 <div class="f-head">
@@ -284,6 +282,68 @@ var final = (score1 + score2) > (average1 + average2);    // true</code></pre>
                     <div class="f-f6">表示 NOT，將運算式的布林值轉換為相反值<br>!true => false<br>!false => true</div>
                     <div class="f-f2">!(2 &lt; 1)</div>
                     <div class="f-f1">true</div>
+                </div>
+            </div>
+        </div>
+
+
+        <p><br></p>
+        <h3>邏輯運算子（Logical operators）</h3>
+        <p>比較運算子通常回傳 <em>true</em> 或 <em>false</em> 的單一結果值，邏輯運算子則可以針對多個比較運算子產生的結果值，再進行邏輯判斷。以下是邏輯運算子的常見運用方法之一的範例：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">((5 &lt; 2) && (3 &gt;= 2));</code></pre>
+        </div>
+        <p>這個結構包含三個運算式，每一個均會產生 <em>true</em> 或 <em>false</em> 的結果值，「運算式1」指的是 <em>(5 &lt; 2)</em> 這段，其結果為 <em>false</em>。而「運算式2」則是 <em>(3 &gt;= 2)</em>，其結果為 <em>true</em>。「運算式3」則是將前兩個運算式囊括起來，並使用了一個邏輯運算子「<em>&&</em>」，這個符號表示意義是「AND」邏輯運算子，用來檢查運算式1和運算式2的結果是否均為 <em>true</em> 值，但因為運算式1的結果為 <em>false</em>，故最後運算式3輸出的結果為 <em>false</em>。</p>
+        <p>除了 <em>&&</em> 之外，邏輯運算子尚有 <em>||</em>、<em>!</em> 這兩個字符，以下透過表格來介紹之：</p>
+        <div class="text-flex">
+            <div class="f-width">
+                <div class="f-head">
+                    <div class="f-f0">運算子</div>
+                    <div class="f-f6">說明</div>
+                    <div class="f-f2">範例</div>
+                    <div class="f-f1">結果</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>&</em></div>
+                    <div class="f-f6">xxx</div>
+                    <div class="f-f2">xxx</div>
+                    <div class="f-f1">xxx</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>|</em></div>
+                    <div class="f-f6">xxx</div>
+                    <div class="f-f2">xxx</div>
+                    <div class="f-f1">xxx</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>^</em></div>
+                    <div class="f-f6">xxx</div>
+                    <div class="f-f2">xxx</div>
+                    <div class="f-f1">xxx</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>~</em></div>
+                    <div class="f-f6">xxx</div>
+                    <div class="f-f2">xxx</div>
+                    <div class="f-f1">xxx</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>&lt;&lt;</em></div>
+                    <div class="f-f6">xxx</div>
+                    <div class="f-f2">xxx</div>
+                    <div class="f-f1">xxx</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>&gt;&gt;</em></div>
+                    <div class="f-f6">xxx</div>
+                    <div class="f-f2">xxx</div>
+                    <div class="f-f1">xxx</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f0"><em>&gt;&gt;&gt;</em></div>
+                    <div class="f-f6">xxx</div>
+                    <div class="f-f2">xxx</div>
+                    <div class="f-f1">xxx</div>
                 </div>
             </div>
         </div>
