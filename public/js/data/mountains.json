@@ -19335,10 +19335,10 @@
         "application_m": false,
         "intro": "位於新竹橫山油羅溪南岸的南坪古道，原是昔日泰雅族馬胎部落往來內灣的聯絡通道，自公路修築之後便逐漸荒廢，直到內灣成為熱門的觀光景點，才重新整建為一條景觀健行步道，在冬末春初有山櫻花可賞，初夏的夜晚，溪谷邊還有滿天飛舞的螢火蟲，沿途林蔭蔽道、溪水潺潺，與熙來攘往的老街相比，古道格外幽靜秀麗。",
         "notes": "",
-        "img": false,
+        "img": true,
         "gpx": "https://hiking.biji.co/index.php?q=trail&act=gpx_detail&id=1223999",
-        "finish": false,
-        "fDate": "",
+        "finish": true,
+        "fDate": "2023.12.16",
         "article": "",
         "aLink": ""
     },
