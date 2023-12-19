@@ -252,6 +252,7 @@ var final = (score1 + score2) > (average1 + average2);    // true</code></pre>
         <p><br></p>
         <h3>位元運算子（Bitwise operator）</h3>
         <p>在認識 JavaScipt 位元運算子原理之前，我們必須要知道數學進位制的概念，譬如我們日常生活中使用的進位制為「十進位」，所謂的十進位指的是使用十個數字作為表示數量的方式，這十個數字分別是：「0 1 2 3 4 5 6 7 8 9」，因此當記數記到第十個數字，「十」本身並沒有數字符號，我們看到的「10」是藉由進位而得，拆開成算式來看即為「1 * 10^1 + 0 * 10^0 = 10 + 0 = 10」。再舉一個例子，數字 123 拆解成算式則會是「1 * 10^2 + 2 * 10^1 + 3 * 10^0 = 100 + 20 + 3 = 123」。</p>
+        <p>（※ 這裡的 ^ 符號指的是「平方」的意思，並非表示 JavaScipt 的符號意義。）</p>
         <blockquote class="is-info">
             <p>或許有些人會疑惑為什麼 3 * 10^0 = 3 * 1 中 10 的零次方會等於 1，這乃是數學定義，該規定主要是為了保持數學中一些重要的特性和公式。</p>
         </blockquote>
@@ -267,52 +268,77 @@ var final = (score1 + score2) > (average1 + average2);    // true</code></pre>
                 </div>
                 <div class="f-row">
                     <div class="f-f0"><em>&</em></div>
-                    <div class="f-f6">xxx</div>
-                    <div class="f-f2">xxx</div>
-                    <div class="f-f1">xxx</div>
+                    <div class="f-f6">回傳兩個運算元對於每個位元做 AND 的結果。</div>
+                    <div class="f-f2">3 & 2</div>
+                    <div class="f-f1">2</div>
                 </div>
                 <div class="f-row">
                     <div class="f-f0"><em>|</em></div>
-                    <div class="f-f6">xxx</div>
-                    <div class="f-f2">xxx</div>
-                    <div class="f-f1">xxx</div>
+                    <div class="f-f6">回傳兩個運算元對於每個位元做 OR 的結果。</div>
+                    <div class="f-f2">3 | 2</div>
+                    <div class="f-f1">3</div>
                 </div>
                 <div class="f-row">
                     <div class="f-f0"><em>^</em></div>
-                    <div class="f-f6">xxx</div>
-                    <div class="f-f2">xxx</div>
-                    <div class="f-f1">xxx</div>
+                    <div class="f-f6">回傳兩個運算元對於每個位元做 XOR 的結果。</div>
+                    <div class="f-f2">3 ^ 2</div>
+                    <div class="f-f1">1</div>
                 </div>
                 <div class="f-row">
                     <div class="f-f0"><em>~</em></div>
-                    <div class="f-f6">xxx</div>
-                    <div class="f-f2">xxx</div>
-                    <div class="f-f1">xxx</div>
+                    <div class="f-f6">將運算元中的每個位元反轉（1 -> 0，0 -> 1）。</div>
+                    <div class="f-f2">~ 2</div>
+                    <div class="f-f1">-3</div>
                 </div>
                 <div class="f-row">
                     <div class="f-f0"><em>&lt;&lt;</em></div>
-                    <div class="f-f6">xxx</div>
-                    <div class="f-f2">xxx</div>
-                    <div class="f-f1">xxx</div>
+                    <div class="f-f6">將左側值的每個位元向左移動與右側值相應的位元數，空餘的位數以 0 填滿。</div>
+                    <div class="f-f2">3 &lt;&lt; 2</div>
+                    <div class="f-f1">12</div>
                 </div>
                 <div class="f-row">
                     <div class="f-f0"><em>&gt;&gt;</em></div>
-                    <div class="f-f6">xxx</div>
-                    <div class="f-f2">xxx</div>
-                    <div class="f-f1">xxx</div>
+                    <div class="f-f6">將左側值的每個位元向右移動與右側值相應的位元數，空餘的位數以最高位填滿。</div>
+                    <div class="f-f2">3 &gt;&gt; 2</div>
+                    <div class="f-f1">0</div>
                 </div>
                 <div class="f-row">
                     <div class="f-f0"><em>&gt;&gt;&gt;</em></div>
-                    <div class="f-f6">xxx</div>
-                    <div class="f-f2">xxx</div>
-                    <div class="f-f1">xxx</div>
+                    <div class="f-f6">將左側值的每個位元向右移動與右側值相應的位元數，空餘的位數以 0 填滿。</div>
+                    <div class="f-f2">9 &gt;&gt;&gt; 2</div>
+                    <div class="f-f1">2</div>
                 </div>
             </div>
         </div>
-
-        
-
-
+        <p>位元運算子使用的時機不算廣泛，這裡稍微提一下上面表格裡各範例所產生結果的原理，首先我們要將 3 和 2 這兩個範例數字轉換成二進位，分別是「011」與「010」，<em>&</em> 表示 AND，將左右數值的二進位位元進行比對，若兩者皆為 1，則回傳「true」，也就是 1；若兩者皆為 0，或其中一者為 0 另一者為 1，則回傳「false」，即 0。因此，我們回頭檢視 <em>3 & 2</em>，轉化成二進位 011 與 010 進行比對，得到的結果會是 010，故還原後回傳的數字為「2」。</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">範例：3 & 2
+第一位：1 & 0 -> 0
+第二位：1 & 1 -> 1
+第三位：0 & 0 -> 0
+---
+結果：010    // 2</code></pre>
+        </div>
+        <p>接下來 <em>|</em> 和 <em>^</em> 的原理也是一樣，差別只在於邏輯不同，以下我們直接拆解成程式碼來看：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">範例：3 | 2
+第一位：1 | 0 -> 1
+第二位：1 | 1 -> 1
+第三位：0 | 0 -> 0
+---
+結果：011    // 3</code></pre>
+        </div>
+        <p><em>^</em> XOR 和 OR 不一樣，OR 是只要其中一個位元數為 1，即表示 true 並返回 1，XOR 則是若比對數字同位元進位值皆相同的情況下，返回結果為 false，反之若不同，則返回 true：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">範例：3 ^ 2
+第一位：1 ^ 0 -> 1
+第二位：1 ^ 1 -> 0
+第三位：0 ^ 0 -> 0
+---
+結果：001    // 1</code></pre>
+        </div>
+        <p>至於 <em>~</em> 使用的是「補數」（implement）的概念，會將二進位各位元數的 0 與 1 進行反轉，若原數為 0 反轉為 1，若是 1 則反轉為 0，同時二進位會為每組數字前面分配一個「Sign Bit」，用來表示數字的正負數，因此數字 2 解析成二進位將會是「010」（最前面的 0 表示正數，如果是負數則為 1），經反轉後得到的結果為「101」，根據「二補數表示法」（two's complement），正數的表示與無符號整數相同，而負數則是將對應的正數的二進位表示取反（每一位取反），然後加 1，得到的結果為 -3。</p>
+        <p><em>&lt;&lt;</em> 與 <em>&gt;&gt;</em> 運算子用來移動數字往符號指向的方向，後面的數字表示移動的次數，因此範例的 <em>3 &lt;&lt; 2</em> 表示 3 的二進位數字向左移動兩格，011 變成 01100，換算回來結果為 12。反之向右移動二進位表示結果就變成 0（011 向右移動兩格，後面的 11 就被移出去了），剩下的 0 僅表示正負數，實際上二進位已經不存在任何數字，所以回傳結果為 0。如果你覺得 3 這個數字舉例不太好理解，我們改用 <em>9 &gt;&gt; 2</em> 來示範，9 的二進位表示法為 01001，向右移動兩格後變成 010，故結果為 2。</p>
         <p><br></p>
         <h3>邏輯運算子（Logical operators）</h3>
         <p>比較運算子通常回傳 <em>true</em> 或 <em>false</em> 的單一結果值，邏輯運算子則可以針對多個比較運算子產生的結果值，再進行邏輯判斷。以下是邏輯運算子的常見運用方法之一的範例：</p>
@@ -449,8 +475,29 @@ console.log(status);    // 我三十而立</code></pre>
         </div>
         <p><br></p>
         <h3>逗點運算子（Comma operator）</h3>
+        <p>逗點運算子也是二元運算子的其中一種，顧名思義，其符號就是用逗號 <em>,</em> 來表示。其用途主要在於將兩個或以上的運算式合併在一起，其語法形式如下：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">expr1, expr2, expr3, ..., exprN</code></pre>
+        </div>
+        <p>需要注意的是，無論逗點運算子合併多少個運算式，它都只會返回最後一個運算式的值，前面其他運算式的結果都將會被忽略。舉例來說：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">var total = (1+2, 3+4, 5+6);
+console.log(total);    // 11</code></pre>
+        </div>
+        <p>藉由上方的例子可以得知我們透過逗點運算子合併多個運算式，但最終回傳的結果只有最後一個運算式的計算結果，不過這不代表前面的運算式就直接被忽略了，它們一樣會被執行，只是就回傳結果來說，逗點運算子只會返回最後運算式的結果。</p>
+        <p>逗號運算子有時在壓縮代碼、一行內執行多個操作等情境下使用（很常在 For 迴圈見到）。請注意，雖然逗號運算子有其用途，但在可讀性方面可能不如單獨的語句清晰。在正常的開發中，請謹慎使用逗號運算子，確保代碼易於理解。</p>
+        <p>For 迴圈範例：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">for (let i = 0, j = 10; i &lt; 5; i++, j--) {
+  console.log("i:", i, "j:", j);
+}</code></pre>
+        </div>
         <p><br></p>
         <h3>一元運算子（Unary operators）</h3>
+
+
+
+        
         <p><br></p>
         <h3>關係運算子（Relational operators）</h3>
         <p><br></p>
@@ -608,6 +655,7 @@ console.log(y); // ["b", 3, "n"]</code></pre>
             <dd><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Expressions_and_operators" target="_blank">mdn web docs 運算式與運算子</a></dd>
             <dd><a href="https://www.itread01.com/content/1548882731.html" target="_blank">淺談js“三元表示式” （三元運算子）</a></dd>
             <dd><a href="https://medium.com/@kyokyox2/js-%E4%B8%89%E5%85%83%E9%81%8B%E7%AE%97%E7%AC%A6-%E4%B8%89%E5%85%83%E9%81%8B%E7%AE%97%E5%80%BC-3987be9623a5" target="_blank">[Js] 三元運算符 / 三元運算值</a></dd>
+            <dd><a href="https://ithelp.ithome.com.tw/articles/10265881" target="_blank">D2 - 先生 幫您帶位元運算子</a></dd>
         </dl>
     </div>
 </div>
