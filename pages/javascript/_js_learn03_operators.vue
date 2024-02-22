@@ -494,16 +494,171 @@ console.log(total);    // 11</code></pre>
         </div>
         <p><br></p>
         <h3>一元運算子（Unary operators）</h3>
-
-
-
-        
+        <p>撇除三元運算子，前面介紹的各個運算子種類，皆屬於二元運算子的一種，所謂的二元、三元，指的就是運算元的數量，因此顧名思義，一元運算子指的就是單單只需要一個運算元的運算方法。在初學 JavaScipt 階段，我們比較會先接觸到的一元運算子當屬 <em>typeof</em> 不讓，該運算子的用途在於檢測後方添加之運算元的資料型別為何。例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">let dog = "阿比";
+console.log(typeof dog);  // "string"</code></pre>
+        </div>
+        <p>除了 <em>typeof</em> 之外，還有以下這些一元運算子：</p>
+        <div class="text-flex">
+            <div class="f-width">
+                <div class="f-head">
+                    <div class="f-f1">運算子</div>
+                    <div class="f-f3">說明</div>
+                    <div class="f-f2">範例</div>
+                    <div class="f-f1">結果</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>typeof</em></div>
+                    <div class="f-f3">回傳運算元的資料型別。</div>
+                    <div class="f-f2">let dog = "阿比";<br>console.log(typeof dog);</div>
+                    <div class="f-f1">String</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>delete</em></div>
+                    <div class="f-f3">刪除指定的運算元物件，包含變數名稱、指定陣列的索引值、物件的特性等。</div>
+                    <div class="f-f2">delete dog<br>delete Array[3]<br>delete Car.name</div>
+                    <div class="f-f1"></div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>void</em></div>
+                    <div class="f-f3">此運算子會解析運算式而不回傳任何值，一般來說後方的運算式會用小括號囊括起來，但並非一定要添加，只是原則上會建議使用。</div>
+                    <div class="f-f2">&lt;a href="javascript:void(0)"&gt;點擊連結但不會觸發任何作用&lt;/a&gt;<br>&lt;a href="javascript:void(document.form.submit())"&gt;點擊以送出&lt;/a&gt;</div>
+                    <div class="f-f1"></div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>+</em></div>
+                    <div class="f-f3">將運算元值轉換為數值，如果已經是純數值則不變。</div>
+                    <div class="f-f2">let num = "10";<br>console.log(+num);</div>
+                    <div class="f-f1">10</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>-</em></div>
+                    <div class="f-f3">將運算元值轉換為相反的數值（並非轉換為負數，因為若數值為負，經過轉換則變成正數）。</div>
+                    <div class="f-f2">let num = "-10";<br>console.log(+num);</div>
+                    <div class="f-f1">-10</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>++</em></div>
+                    <div class="f-f3">遞增運算元數值，將其數值增加 1。</div>
+                    <div class="f-f2">let num = 5;<br>console.log(++num);</div>
+                    <div class="f-f1">6</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>--</em></div>
+                    <div class="f-f3">遞減運算元數值，將其數值減少 1。</div>
+                    <div class="f-f2">let num = 5;<br>console.log(--num);</div>
+                    <div class="f-f1">4</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>!</em></div>
+                    <div class="f-f3">表示邏輯 NOT，將布林值進行邏輯反轉。</div>
+                    <div class="f-f2">let isTrue = true;<br>console.log(!isTrue);</div>
+                    <div class="f-f1">false</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>~</em></div>
+                    <div class="f-f3">表示位元 NOT，將數值轉換的二進位進行反轉。</div>
+                    <div class="f-f2">let num = 5;<br>console.log(~num);</div>
+                    <div class="f-f1">-6</div>
+                </div>
+            </div>
+        </div>
         <p><br></p>
         <h3>關係運算子（Relational operators）</h3>
+        <p>關係運算子是用來比較兩個值之間的關係的運算子，它們會返回布林值（<em>true</em> 或 <em>false</em>），以此表示比較的結果。常見的關係運算子有以下這些：</p>
+        <div class="text-flex">
+            <div class="f-width">
+                <div class="f-head">
+                    <div class="f-f1">運算子</div>
+                    <div class="f-f3">說明</div>
+                    <div class="f-f2">範例</div>
+                    <div class="f-f1">結果</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>==</em></div>
+                    <div class="f-f3">相等於，檢查兩個值是否相等，不嚴格區分數據類型。</div>
+                    <div class="f-f2">let a = 5;<br>let b = "5";<br>console.log(a == b);</div>
+                    <div class="f-f1">true</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>===</em></div>
+                    <div class="f-f3">嚴格相等於，不僅檢查兩個值是否相等，同時也要求資料型別必須相同。</div>
+                    <div class="f-f2">let a = 5;<br>let b = "5";<br>console.log(a === b);</div>
+                    <div class="f-f1">false</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>!=</em></div>
+                    <div class="f-f3">不等於，檢查兩個值是否不相等，不嚴格區分數據類型。</div>
+                    <div class="f-f2">let a = 5;<br>let b = "5";<br>console.log(a != b);</div>
+                    <div class="f-f1">false</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>!==</em></div>
+                    <div class="f-f3">嚴格不等於，不僅檢查兩個值是否相等，同時也要求資料型別必須不相同。</div>
+                    <div class="f-f2">let a = 5;<br>let b = "5";<br>console.log(a !== b);</div>
+                    <div class="f-f1">true</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>&gt;</em></div>
+                    <div class="f-f3">大於。</div>
+                    <div class="f-f2">let a = 5;<br>let b = 3;<br>console.log(a &gt; b);</div>
+                    <div class="f-f1">true</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>&gt;=</em></div>
+                    <div class="f-f3">大於等於。</div>
+                    <div class="f-f2">let a = 5;<br>let b = 3;<br>console.log(a &gt;= b);</div>
+                    <div class="f-f1">true</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>&lt;</em></div>
+                    <div class="f-f3">小於。</div>
+                    <div class="f-f2">let a = 5;<br>let b = 3;<br>console.log(a &lt; b);</div>
+                    <div class="f-f1">false</div>
+                </div>
+                <div class="f-row">
+                    <div class="f-f1"><em>&lt;=</em></div>
+                    <div class="f-f3">小於等於。</div>
+                    <div class="f-f2">let a = 5;<br>let b = 3;<br>console.log(a &lt;= b);</div>
+                    <div class="f-f1">false</div>
+                </div>
+            </div>
+        </div>
         <p><br></p>
         <h3>分組運算子（Grouping operator）</h3>
+        <p>此運算子通常用括號 <em>()</em> 表示，是一種在表達式中用來指定計算順序的運算子。當一個表達式中包含多個運算子時，分組運算子可以確保某些部分的計算先於其他部分。分組運算子的優先級最高，即在一個表達式中，被括號括起來的部分會最先計算。</p>
+        <p>例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">let result = (2 + 3) * 4;
+console.log(result);    // 20</code></pre>
+        </div>
+        <p>其實這就是國中甚至國小就會教到的基礎數學運算概念，碰到數學運算，我們一般會想到「先乘除後加減」，但若遇到括號括起來的算式，則其內部運算式會優先執行計算，因此上面範例中，(2 + 3) 會先執行運算，得到結果為 5，然後才繼續乘以 4，故得到的結果為 20。</p>
         <p><br></p>
         <h3>new 運算子（new operator）</h3>
+        <p><em>new</em> 運算子是 JavaScript 其中一個關鍵字，當我們使用它時，將會建立一個新的空物件，而它主要用於調用構造函式（Constructor Function）的時候，例如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">function dog(){
+    this.name = "阿比";
+}
+let newDog = new dog();
+console.log(newDog);    // [object Object] { "name": "阿比" }</code></pre>
+        </div>
+        <p>像這種透過建構函式創建出來的新物件，一般大家稱其為「實例」（instance），如果你有接觸過 Vue，可能會對實例這個名詞感到似曾相識。沒錯，Vue.js 框架在它的應用開發中廣泛使用 <em>new</em> 運算子來建立其實例。譬如：</p>
+        <div class="text-code" v-pre>
+            <pre><code class="language-javascript">const app = new Vue({
+    el: "#app", // 指定要掛載的元素
+    data: {
+        message: 'Hello, Vue!'
+    },
+    methods: {
+        greet() {
+            console.log(this.message);
+        }
+    }
+});</code></pre>
+        </div>
+
         <p><br></p>
         <h3>展開運算子（Spread syntax）</h3>
         <p>展開運算子可用來將陣列中的值展開為個別值，其運算子表示方式為 <em>...</em>。首先我們來看一個基本的例子：</p>

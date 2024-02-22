@@ -24,12 +24,24 @@
     align-content: center;
     justify-content: center;
     width: 100%;
-    height: 3rem;
+    height: 4rem;
     svg {
         display: block;
-        width: 70%;
+        width: 80%;
         margin: 0 auto;
-        fill: #00BFBF;
+        .st0 {
+            fill-rule: evenodd;
+            clip-rule: evenodd;
+            fill: var(--c1);
+        }
+        .st1 {
+            fill-rule: evenodd;
+            clip-rule: evenodd;
+            fill: #FFF;
+        }
+        .st2 {
+            fill: var(--c1);
+        }
     }
     @include MQ(max-960) {
         position: absolute;

@@ -306,5 +306,16 @@
         "cover": true,
         "img": "cleanup",
         "type": "image"
+    },
+    {
+        "id": 29,
+        "title": "FlexClip",
+        "desc": "FlexClip 是一款所有人都適用的簡單但功能強大的影片製作編輯器。其致力於幫助使用者輕鬆地做出吸引人的影片內容，不論是個人或是商業用途，都不用花費力氣來學習。",
+        "href": "https://www.flexclip.com/tw",
+        "article": false,
+        "path": "",
+        "cover": true,
+        "img": "flexclip",
+        "type": "video"
     }
 ]

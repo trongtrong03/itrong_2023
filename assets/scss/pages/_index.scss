@@ -98,9 +98,27 @@
         background-position: 50% 50%;
         background-size: cover;
         animation-name: id_cover_1;
-        animation-duration: 15s;
+        animation-duration: 3s;
         animation-fill-mode: both;
         animation-timing-function: linear;
+    }
+    svg {
+        .st0 {
+            fill-rule: evenodd;
+            clip-rule: evenodd;
+            fill: #FFF;
+        }
+        .st1 {
+            fill-rule: evenodd;
+            clip-rule: evenodd;
+            fill: #FFF;
+        }
+        .st2 {
+            fill: #FFF;
+        }
+        .st3 {
+            fill: #FFF;
+        }
     }
 }
 
@@ -116,7 +134,7 @@
     animation-duration: 1.5s;
     animation-timing-function: steps(29);
     animation-fill-mode: both;
-    animation-delay: 3s;
+    animation-delay: 2s;
     -webkit-mask: url("~/assets/images/index/mask.png");
     -webkit-mask-size: 3000% 100%;
     &::before {
@@ -133,11 +151,29 @@
         border-radius: 0%;
         animation-name: id_cover_2;
         animation-duration: 110s;
-        animation-delay: 3s;
+        animation-delay: 2s;
         animation-fill-mode: both;
         animation-timing-function: linear;
         animation-direction: alternate;
         animation-iteration-count: infinite;
+    }
+    svg {
+        .st0 {
+            fill-rule: evenodd;
+            clip-rule: evenodd;
+            fill: var(--c1);
+        }
+        .st1 {
+            fill-rule: evenodd;
+            clip-rule: evenodd;
+            fill: #264960;
+        }
+        .st2 {
+            fill: var(--c1);
+        }
+        .st3 {
+            fill: #264960;
+        }
     }
     @include MQ(max-768) {
         &::before {
@@ -157,35 +193,14 @@
     left: 50%;
     z-index: 10;
     display: block;
-    width: 10rem;
+    width: 8rem;
     transform: translate(-50%, -50%);
     filter: drop-shadow(0 0 4px rgba(#000, .2));
     pointer-events: none;
-    p {
-        line-height: 1;
-        letter-spacing: 2px;
-        text-align: center;
-        font-family: 'Dongle', sans-serif;
-        font-size: 3rem;
-        color: #FFF;
-        animation-name: fadeUp;
-        animation-duration: .75s;
-        animation-delay: 1.5s;
-        animation-fill-mode: both;
-        animation-timing-function: ease-in-out;
-        span {
-            display: block;
-            &:nth-child(2) {
-                font-size: 0.5em;
-                margin-top: -.75rem;
-            }
-        }
-    }
 
     svg {
         display: block;
-        width: 8rem;
-        margin: 0 auto .5rem;
+        width: 100%;
         animation-name: svg_draw;
         animation-duration: 2.5s;
         animation-delay: .5s;

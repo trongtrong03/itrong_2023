@@ -64,5 +64,27 @@
         "cover": true,
         "img": "tldraw",
         "type": ""
+    },
+    {
+        "id": 7,
+        "title": "logoai",
+        "desc": "logoai 是一個可以透過 AI 生成大量 Logo 的線上工具網站，只需要經過簡單幾個文字需求指令，就能自動產出海量成品讓使用者挑選，可直接使用或進一步修改。",
+        "href": "https://www.logoai.com/",
+        "article": false,
+        "path": "",
+        "cover": true,
+        "img": "logoai",
+        "type": ""
+    },
+    {
+        "id": 8,
+        "title": "Pika",
+        "desc": "Pika 是一個 AI 生成動畫的線上服務網站，藉由輸入英文描述，就可以讓 AI 自動製作出符合描述的動畫內容。",
+        "href": "https://pika.art/",
+        "article": false,
+        "path": "",
+        "cover": true,
+        "img": "pika",
+        "type": ""
     }
 ]
